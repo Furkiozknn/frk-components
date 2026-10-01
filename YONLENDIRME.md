@@ -1,45 +1,53 @@
-# Yönlendirme (gözetim oturumu yazar)
+# Yönlendirme (yalnız gözetim oturumu yazar)
 
-## 01.10.2026 23:50 — GECE MODU
+## 02.10.2026 00:05 — İKİ OTURUM, KESİN İŞ BÖLÜMÜ
 
-Bu yönlendirme öncekini ve CLAUDE.md'deki "Pazartesiye kadar yalnız tasarım" kuralını geçersiz kılar.
+Bu yönlendirme öncekilerin yerine geçer. İki oturumun 23:56'da kendi aralarında yaptığı bölüşüm temel alındı.
+- **b1:** VS Code paneli, `frk-components-b1`.
+- **YEDEK:** terminal, `CLAUDE ve YONLENDIRME YEDEK`.
 
-Furki: "Kalan tüm hakları bu işe yönlendir, sabaha kadar boş bırakma." Başka hiçbir Claude oturumu ya da zamanlanmış görev çalışmıyor; haftalık kotanın kalanı senin. Sabaha kadar kimse yok. Soru sorma, sırayla ve durmadan ilerle.
+Gece modu sürüyor: kota bitene kadar durmadan çalışın, soru sormayın.
 
-1. `TASARIM.md` (en fazla 80 satır; bittiyse geç):
-   - ortak arayüz: `mount(el, opts)`, `seek(t)`, `play()`, `pause()` ve olaylar;
-   - dosya yapısı, demo düzeni, reçete şablonu, ölçüm planı.
-2. **Parça 1: odometre.** Pakette şunlar olsun:
-   - tek JS dosyası;
-   - `demo.html`;
-   - `README.md` (TR + EN);
-   - `RECETE.md`: bu parçayı yapmak için kullandığın promptlar ve adımlar.
+### Dosya sahipliği
 
-   Ölç:
-   - dosya boyutu;
-   - seek determinizmi: aynı `t` aynı kareyi üretmeli; iki kez çizip karşılaştır;
-   - klavye ve reduced-motion desteği.
+Bir oturum diğerinin dosyasına dokunmaz. Bir şey gerekirse sahibine SendMessage atar.
 
-   Sayıları koşunun çıktısından yaz.
-3. **Parça 2: prompt-terminal.** Aynı paket.
-4. **Parça 3: kanca ipi.** Fikir `D:\Repolar\kanca`'dan; o depo bizim, okuyabilirsin. Aynı paket.
-5. **Kök `index.html`:** FRK-OS kimliğiyle üç parçanın canlı demosu, mobil uyumlu.
-6. **Git:**
-   - yerel depo ve anlamlı commit'ler;
-   - GitHub'da **private** `Furkiozknn/frk-components` aç ve push et;
-   - Pages'i açma, depoyu public yapma.
-7. **HyperFrames denemesi:**
-   - odometreyi 5 saniyelik bir kompozisyonda render et;
-   - yöntemi `D:\Claude Projeleri\sosyal\uret\OKU.md` ve hafıza notu `hyperframes-video-hatti.md` dosyalarından oku;
-   - çıktı `deneme/` altına gitsin;
-   - render olmuyorsa nedenini yaz ve geç.
-8. Hepsi bittiyse dördüncü bir parça öner, `DURUM.md`'ye yaz ve tasarımına başla.
+| Sahip | Dosyalar |
+|---|---|
+| **b1** | `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.md`, `DURUM-b1.md` |
+| **YEDEK** | `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `.gitignore`, `OLCUM.md`, `DURUM.md` |
+| gözetim | `YONLENDIRME.md`, `CLAUDE.md` |
 
-Kurallar:
-- Her adımın sonunda `DURUM.md`'yi güncelle: ne bitti, ölçümler, sıradaki adım.
-- Her döngü turunda bu dosyayı yeniden oku; gözetim oturumu yönlendirmeyi buradan değiştirir.
-- Kota biterse ya da çözemediğin bir hata çıkarsa durumu `DURUM.md`'ye yaz ve dur.
+### b1: hareket ve video
+
+1. `rope-swing` (kanca ipi) paketi: JS, `demo.html`, README (TR+EN), `RECETE.md`.
+2. `deneme/`: her parça için 5 saniyelik HyperFrames kompozisyonu ve render.
+   - Seek determinizmi: aynı `t` aynı kareyi üretmeli. Kare karşılaştırmasıyla kanıtla.
+3. YENİ, parça 4: `status-orb`. Ship Notes'un Signal Orb'unun sarılabilir ve deterministik sürümü.
+   - Canvas 2D, tohumlu parçacıklar.
+   - Durumlar: dinliyor, düşünüyor, arıyor, bitti.
+   - reduced-motion'da sabit görünür.
+4. `TASARIM.md`'yi en fazla 80 satırda tut ve parçalarla uyumlu kalsın.
+5. Durumunu yalnız `DURUM-b1.md`'ye yaz. `DURUM.md`'ye yazma.
+
+### YEDEK: parçalar ve altyapı
+
+1. `odometer`'ı bitir, ardından `prompt-terminal` paketini yap.
+2. Ana demo ve depo:
+   - kök `index.html` (FRK-OS, mobil), `README.md` (TR+EN), `.gitignore`;
+   - git'i yalnız YEDEK kullanır; b1'in dosyalarını da o commit'ler;
+   - GitHub'da **private** `Furkiozknn/frk-components` aç;
+   - her parça bitince commit ve push. Kota her an bitebilir, iş GitHub'da dursun.
+3. `OLCUM.md`: `araclar/olc.mjs` ile bütün parçaların gerçek ölçüm tablosu (boyut, ilk boyama, FPS, erişilebilirlik).
+4. YENİ, parça 5: `katki-isi`. GitHub katkı ızgarası gibi zamanla dolan, sarılabilir ısı haritası. Demo verisi "örnek veri" diye etiketlenir.
+5. `DURUM.md` genel özetini yaz; b1'in durumunu `DURUM-b1.md`'den özetle.
+
+### İkisi için
+
+- RAM 7,8 GB. Ağır işler (HyperFrames render, Playwright ölçümü) aynı anda koşmasın. Başlamadan önce diğerine kısa bir mesaj at.
+- Her döngü turunda bu dosyayı yeniden oku.
 - Yasaklar:
-  - public yapma, Pages, npm, sosyal medya;
+  - depoyu public yapma, Pages, npm, sosyal medya;
   - `D:\Claude Projeleri` altına yazma;
   - kalıcı silme.
+- Kota biterse ya da çözemediğin bir hata çıkarsa kendi durum dosyana yaz ve dur.
