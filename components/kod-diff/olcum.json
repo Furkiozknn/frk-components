@@ -1,0 +1,126 @@
+{
+  "olculdu": "2026-10-01T22:08:16.579Z",
+  "hedef": "D:/Repolar/frk-components/components/kod-diff/demo.html",
+  "bilesen": "kodDiff",
+  "boyut": {
+    "js_bayt": 12601,
+    "js_gzip_bayt": 4671,
+    "demo_html_bayt": 7366,
+    "hedef_bayt": 51200
+  },
+  "yasak_cagri_taramasi": {
+    "Math.random": false,
+    "Date.now": false,
+    "performance.now": false,
+    "new Date": false
+  },
+  "tarayici": "Chromium 153.0.8010.12",
+  "ilk_boyama": {
+    "fcp_ms": 40,
+    "lcp_ms": 72,
+    "hedef_lcp_ms": 2500
+  },
+  "determinizm": {
+    "zamanlar": [
+      0,
+      0.37,
+      1,
+      1.234,
+      1.9,
+      2.4,
+      3
+    ],
+    "dom_ileri_geri_karisik_esit": true,
+    "piksel_ayni_t_iki_cizim_esit": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "piksel_farkli_olan_t": [],
+    "tohum_ayni_ayni": true,
+    "tohum_farkli_farkli": true
+  },
+  "konsol_hatasi": [],
+  "kod_diff": {
+    "varsayilan_mod_son_kare": {
+      "satir_sayisi": 11,
+      "sayac_metni": "+4 −1",
+      "aria_label": "src/hero.js dosyasında 4 satır eklendi, 1 satır silindi. Ekl"
+    },
+    "apply_modu": {
+      "piksel_farkli_olan_t": [],
+      "son_karede_cokmus_satir": 1,
+      "sure_sn": 5.432
+    }
+  },
+  "performans": {
+    "seek_ort_ms": 0.02,
+    "seek_max_ms": 0.4,
+    "canli_kare_sayisi": 318,
+    "kare_araligi_ort_ms": 16.67,
+    "kare_araligi_p95_ms": 17.9,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
+  },
+  "erisilebilirlik": {
+    "arac": "axe-core 4.13.0",
+    "taramalar": [
+      {
+        "t": 0,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 1.2,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 2.4,
+        "ihlal": 0,
+        "kurallar": []
+      }
+    ]
+  },
+  "klavye": {
+    "tab_sirasi": [
+      "play",
+      "replay",
+      "lang",
+      "t",
+      "v",
+      "mode"
+    ],
+    "oynat_enter": [
+      "Duraklat",
+      "Oynat",
+      true
+    ],
+    "oynat_space_dugmede": "Duraklat",
+    "govdede_space": [
+      "Oynat",
+      true
+    ],
+    "r_bastan_oynatir": true,
+    "kaydirici_oklari_t": 0.24,
+    "kaydirici_oynatmayi_durdurur": true
+  },
+  "reduced_motion": {
+    "t_150ms": 5.282,
+    "t_750ms": 5.282,
+    "son_kare_gosterildi": true,
+    "animasyon_yok": true,
+    "normalde_oynuyor": true
+  },
+  "mobil_390": {
+    "tasma_yok": true,
+    "sahne_genislik_px": 358,
+    "dokunma_hedefi_min_px": 44,
+    "axe_ihlal": 0,
+    "not": "Chromium mobil emülasyonu; gerçek telefon ölçülmedi"
+  }
+}

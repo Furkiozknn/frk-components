@@ -146,6 +146,25 @@ if (name === 'katkiIsi') {
   await ctx.close();
 }
 
+if (name === 'kodDiff') {
+  // Son kare sayaçları; apply modunda silinen satır çöker ve piksel sıraya bağlı olmamalı
+  const { ctx, page } = await open();
+  await page.evaluate(() => window.inst.pause());
+  const son = await page.evaluate(() => { const i = window.inst; i.seek(i.duration); const st = document.getElementById('stage');
+    return { satir_sayisi: st.querySelectorAll('.frk-kd-r').length, sayac_metni: st.querySelector('.frk-kd-bar b').textContent.trim(), aria_label: st.getAttribute('aria-label').slice(0, 60) }; });
+  await page.evaluate(() => { window.inst.destroy(); window.inst = FRKComponents.kodDiff.mount(document.getElementById('stage'), { mode: 'apply', seed: 1, locale: 'tr' }); window.inst.pause(); });
+  const stg = page.locator('#stage'), dur = await page.evaluate(() => window.inst.duration), farkli = [];
+  const gec = (x) => page.evaluate((v) => window.inst.seek(v), x);
+  for (const t of [0, 1.0, 1.7, 2.6, 3.4, dur * 0.9, dur]) {
+    const hs = [];
+    for (const prev of [0.1, dur * 0.5, dur + 0.5, dur * 0.97]) { await gec(prev); await gec(t); hs.push(createHash('sha256').update(await stg.screenshot()).digest('hex')); }
+    if (new Set(hs).size > 1) farkli.push(+t.toFixed(3));
+  }
+  const cokenSatir = await page.evaluate(() => { window.inst.seek(window.inst.duration); return Array.from(document.querySelectorAll('.frk-kd-r')).filter((r) => r.getBoundingClientRect().height < 0.5).length; });
+  out.kod_diff = { varsayilan_mod_son_kare: son, apply_modu: { piksel_farkli_olan_t: farkli, son_karede_cokmus_satir: cokenSatir, sure_sn: +dur.toFixed(3) } };
+  await ctx.close();
+}
+
 // 5) Kare maliyeti: seek süresi + canlı oynatmada rAF aralıkları
 {
   const { ctx, page } = await open();

@@ -12,6 +12,7 @@
 | [`rope-swing`](components/rope-swing) | Kanca ipi: otopilotlu, Boşluk/dokunuşla oynanan canvas oyunu / rope swing: autopilot-driven canvas game, playable with Space or touch | hazır, ölçüldü / done, measured |
 | [`status-orb`](components/status-orb) | Dört durumlu (dinliyor, düşünüyor, arıyor, bitti) deterministik parçacık küresi / deterministic particle orb with four states | hazır, ölçüldü / done, measured |
 | [`katki-isi`](components/katki-isi) | Zamanla dolan katkı ısı haritası; veri örnek veridir / contribution heat map that fills over time; the data is sample data | hazır, ölçüldü / done, measured |
+| [`kod-diff`](components/kod-diff) | Eklenen satırın harf harf yazıldığı, silinenin işaretlendiği kod farkı animasyonu (örnek değişiklik) / code-diff animation: added lines type out, removed lines get marked (sample change) | hazır, ölçüldü / done, measured |
 
 Hepsini bir arada görmek için `index.html`'i bir HTTP sunucusundan açın (ör. `python -m http.server`); kartlardaki ölçüm satırları `olcum.json` dosyalarını `fetch` ile okur, doğrudan `file://` açılışında tarayıcı bunu engeller. / To see them together, open `index.html` from an HTTP server; the measurement rows `fetch` the `olcum.json` files, which browsers block under `file://`.
 
