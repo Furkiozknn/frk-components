@@ -53,7 +53,7 @@ Renk ve yazı tipi: `--frk-pt-bg`, `--frk-pt-fg`, `--frk-pt-accent`, `--frk-pt-d
 
 ## Ölçümler / Measurements
 
-`araclar/olc.mjs` koşusundan, `olcum.json` dosyasında. Başsız Chromium 153, bu makine, masaüstü; telefon, Safari ve Firefox **ölçülmedi**. / From the `araclar/olc.mjs` run, stored in `olcum.json`. Headless Chromium 153, this machine, desktop; phone, Safari and Firefox **not measured**.
+`araclar/olc.mjs` koşusundan, `olcum.json` dosyasında; zamanlama değerleri koşudan koşuya oynar, güncel değerler `olcum.json`'da. Başsız Chromium 153, bu makine, masaüstü; telefon, Safari ve Firefox **ölçülmedi**. / From the `araclar/olc.mjs` run, stored in `olcum.json`. Headless Chromium 153, this machine, desktop; phone, Safari and Firefox **not measured**.
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
@@ -61,9 +61,9 @@ Renk ve yazı tipi: `--frk-pt-bg`, `--frk-pt-fg`, `--frk-pt-accent`, `--frk-pt-d
 | `demo.html` | 6.803 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM aynı; 3 karede ara kareler çizilerek iki kez alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM; 3 frames re-drawn after other frames give byte-identical screenshots; same seed same, different seed differs |
 | Son kare / Final frame | TR (7,476 sn) ve EN (7,35 sn) varsayılan senaryolarında son karede görünen 6 satır `aria-label` metniyle aynı; `duration: 5` verilince süre 5 sn ve metin yine tam / the 6 visible rows on the final frame equal the `aria-label` text for TR (7.476 s) and EN (7.35 s); with `duration: 5` the length is 5 s and the text is still complete |
-| `seek` maliyeti / cost | ort. 0,02 ms, en çok 0,5 ms (600 çağrı) / avg 0.02 ms, max 0.5 ms (600 calls) |
-| Canlı kare aralığı / live frame gap | ort. 16,68 ms, p95 17,8 ms, 449 kare (hedef 16,7) / avg 16.68 ms, p95 17.8 ms, 449 frames |
-| İlk boyama / first paint | FCP 40 ms, LCP 60 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | ort. 0,014 ms, en çok 0,2 ms (600 çağrı) / avg 0.014 ms, max 0.2 ms (600 calls) |
+| Canlı kare aralığı / live frame gap | ort. 16,66 ms, p95 17,9 ms, 450 kare (hedef 16,7) / avg 16.66 ms, p95 17.9 ms, 450 frames |
+| İlk boyama / first paint | FCP 32 ms, LCP 44 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → tohum; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → seed; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause |
 | `prefers-reduced-motion` | Açılışta son kare (`t = 7,476`), 600 ms sonra değişmiyor; normalde oynuyor / final frame on load, unchanged 600 ms later; plays normally otherwise |

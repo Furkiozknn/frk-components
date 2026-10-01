@@ -27,19 +27,21 @@
 
 <script src="components/odometer/odometer.js"></script>
 <script src="components/prompt-terminal/prompt-terminal.js"></script>
+<script src="components/katki-isi/katki-isi.js"></script>
 <script>
 (function () {
   // Yeni parça = bu listeye bir satır. js: dosya, g: FRKComponents altındaki ad, o: mount seçenekleri.
   const PARCALAR = [
     { id: 'odometer', g: 'odometer', dir: 'components/odometer', js: 'odometer.js', o: (l) => ({ value: 167829, locale: l }) },
     { id: 'prompt-terminal', g: 'promptTerminal', dir: 'components/prompt-terminal', js: 'prompt-terminal.js', o: (l) => ({ locale: l }) },
+    { id: 'katki-isi', g: 'katkiIsi', dir: 'components/katki-isi', js: 'katki-isi.js', o: (l) => ({ locale: l }) },
   ];
   const T = {
     tr: {
       tag: '// frk-components · kamuya kapalı depo',
       lead: 'Tek dosya, kütüphanesiz, kare kare sarılabilir arayüz parçaları. Aynı dosya canlı demo, HyperFrames video sahnesi ve kopyalanabilir kod olarak çalışır. Aşağıdaki kartlar parçaların kendisidir, görüntü değil.',
-      name: { odometer: 'Odometre', 'prompt-terminal': 'Prompt terminal' },
-      desc: { odometer: 'Haneleri soldan sağa sırayla duran sayaç.', 'prompt-terminal': 'Komutun harf harf yazıldığı, çıktının aktığı terminal. Senaryo örnektir.' },
+      name: { odometer: 'Odometre', 'prompt-terminal': 'Prompt terminal', 'katki-isi': 'Katkı ısısı' },
+      desc: { odometer: 'Haneleri soldan sağa sırayla duran sayaç.', 'prompt-terminal': 'Komutun harf harf yazıldığı, çıktının aktığı terminal. Senaryo örnektir.', 'katki-isi': 'Zamanla dolan katkı ısı haritası. Veri örnek veridir.' },
       demo: 'Canlı demo', code: 'Kod', recipe: 'Reçete', replay: 'Baştan oynat',
       noMeas: 'olcum.json okunamadı. Dosya doğrudan (file://) açıldıysa tarayıcı okumayı engeller; bir HTTP sunucusundan açın.',
       size: 'Boyut', kb: 'KB', gz: 'gzip', seek: 'seek maliyeti', ms: 'ms', axe: 'axe-core ihlali', det: 'Determinizm', detOk: 'ileri, geri, karışık sıra aynı kare', detNo: 'tutarsız',
@@ -49,8 +51,8 @@
     en: {
       tag: '// frk-components · private repo',
       lead: 'Single-file, dependency-free UI parts that can be wrapped frame by frame. The same file works as a live demo, a HyperFrames video scene and copyable code. The cards below are the parts themselves, not images.',
-      name: { odometer: 'Odometer', 'prompt-terminal': 'Prompt terminal' },
-      desc: { odometer: 'A counter whose digits stop one by one, left to right.', 'prompt-terminal': 'A terminal where the command types out and the output streams. The script is a sample.' },
+      name: { odometer: 'Odometer', 'prompt-terminal': 'Prompt terminal', 'katki-isi': 'Contribution heat' },
+      desc: { odometer: 'A counter whose digits stop one by one, left to right.', 'prompt-terminal': 'A terminal where the command types out and the output streams. The script is a sample.', 'katki-isi': 'A contribution heat map that fills over time. The data is sample data.' },
       demo: 'Live demo', code: 'Code', recipe: 'Recipe', replay: 'Play again',
       noMeas: 'olcum.json could not be read. If the page was opened directly (file://) the browser blocks it; open it from an HTTP server.',
       size: 'Size', kb: 'KB', gz: 'gzip', seek: 'seek cost', ms: 'ms', axe: 'axe-core violations', det: 'Determinism', detOk: 'same frame forward, reverse, shuffled', detNo: 'inconsistent',
@@ -95,7 +97,7 @@
     PARCALAR.forEach((p) => {
       const card = el('article', 'card');
       const h = el('h2'); const a = el('a', null, t.name[p.id] || p.id); a.href = p.dir + '/demo.html'; h.appendChild(a);
-      const stage = el('div', 'stage');
+      const stage = el('div', 'stage'); if (p.ar) stage.style.aspectRatio = p.ar;
       card.append(h, el('p', null, t.desc[p.id] || ''), stage);
       const row = el('div', 'row');
       const rb = el('button', null, '↻ ' + t.replay); rb.type = 'button';

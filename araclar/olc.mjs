@@ -59,7 +59,7 @@ const open = async (ctxOpts = {}) => {
   const { ctx, page, errors } = await open();
   await page.evaluate(() => window.inst.pause());
   const times = [0, 0.37, 1.0, 1.234, 1.9, 2.4, 3.0];
-  const dom = () => page.evaluate(() => document.getElementById('stage').innerHTML);
+  const dom = () => page.evaluate(() => { const st = document.getElementById('stage'); return st.innerHTML + Array.from(st.querySelectorAll('canvas')).map((c) => c.toDataURL()).join(''); });
   const seek = (t) => page.evaluate((x) => window.inst.seek(x), t);
   const ileri = {};
   for (const t of times) { await seek(t); ileri[t] = await dom(); }
@@ -80,7 +80,7 @@ const open = async (ctxOpts = {}) => {
   // Tohum: aynı tohum aynı kare, farklı tohum (orta zamanda) farklı kare
   const seedDom = await page.evaluate((nm) => {
     const mk = (seed) => { const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
-      const i = FRKComponents[nm].mount(d, { seed, value: 167829 }); i.seek(1.2); const h = d.innerHTML; i.destroy(); d.remove(); return h; };
+      const i = FRKComponents[nm].mount(d, { seed, value: 167829 }); i.seek(1.2); const h = d.innerHTML + Array.from(d.querySelectorAll('canvas')).map((c) => c.toDataURL()).join(''); i.destroy(); d.remove(); return h; };
     return { ayniTohum: mk(7) === mk(7), farkliTohum: mk(7) !== mk(8) };
   }, name);
   out.determinizm = {
@@ -119,6 +119,18 @@ if (name === 'promptTerminal') {
       const r = { locale: loc, sure_sn: +i.duration.toFixed(3), dogru: rows === beklenen, satir_sayisi: d.querySelectorAll('.frk-pt-l').length };
       i.destroy(); d.remove(); return r; };
     return [kos('tr'), kos('en'), Object.assign(kos('tr', { duration: 5 }), { istenen_sure_sn: 5 })];
+  });
+  await ctx.close();
+}
+
+if (name === 'katkiIsi') {
+  // Örnek veri etiketi: veri verilmezse etiketli, verilirse etiketsiz; son karede sayaç toplamı
+  const { ctx, page } = await open();
+  out.ornek_veri_etiketi = await page.evaluate(() => {
+    const kos = (o) => { const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
+      const i = FRKComponents.katkiIsi.mount(d, o); const r = { etiket: d.getAttribute('aria-label'), toplam: i.total }; i.destroy(); d.remove(); return r; };
+    const tr = kos({ locale: 'tr' }), en = kos({ locale: 'en' }), veri = kos({ data: [1, 2, 3, 0, 4, 5, 6], weeks: 1 });
+    return { tr_baslangic_ornek: tr.etiket.startsWith('Örnek veri'), en_baslangic_sample: en.etiket.startsWith('Sample data'), veri_verilince_etiket_yok: !/Örnek veri|Sample data/.test(veri.etiket), verilen_veri_toplami: veri.toplam, beklenen_toplam: 21 };
   });
   await ctx.close();
 }

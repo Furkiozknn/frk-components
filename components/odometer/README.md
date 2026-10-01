@@ -46,7 +46,7 @@ Renk, zemin ve yazı tipi CSS değişkenleriyle: `--frk-odo-color`, `--frk-odo-b
 
 ## Ölçümler / Measurements
 
-Hepsi `araclar/olc.mjs` koşusundan, `olcum.json` dosyasında. Başsız Chromium 153, bu makine, masaüstü; telefon ve Safari/Firefox **ölçülmedi**. / All from the `araclar/olc.mjs` run, stored in `olcum.json`. Headless Chromium 153, this machine, desktop; phone, Safari and Firefox **not measured**.
+Hepsi `araclar/olc.mjs` koşusundan, `olcum.json` dosyasında; zamanlama değerleri koşudan koşuya oynar, güncel değerler `olcum.json`'da. Başsız Chromium 153, bu makine, masaüstü; telefon ve Safari/Firefox **ölçülmedi**. / All from the `araclar/olc.mjs` run, stored in `olcum.json`. Headless Chromium 153, this machine, desktop; phone, Safari and Firefox **not measured**.
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
@@ -54,9 +54,9 @@ Hepsi `araclar/olc.mjs` koşusundan, `olcum.json` dosyasında. Başsız Chromium
 | `demo.html` | 6.702 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM aynı; 3 karede ara kareler çizilerek iki kez alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM; 3 frames re-drawn after other frames give byte-identical screenshots; same seed same, different seed differs |
 | Son değer / Final value | 7 durum (0, 7, 10, 167.829 tr/en, 999.999, 1,234,567): görünen hane dizisi `aria-label` ile aynı, son karede ölçek 1 / 7 cases: visible digits equal `aria-label`, scale 1 on the final frame |
-| `seek` maliyeti / cost | ort. 0,034 ms, en çok 0,4 ms (600 çağrı) / avg 0.034 ms, max 0.4 ms (600 calls) |
-| Canlı kare aralığı / live frame gap | ort. 16,6 ms, p95 17,7 ms, 146 kare (hedef 16,7) / avg 16.6 ms, p95 17.7 ms, 146 frames |
-| İlk boyama / first paint | FCP 88 ms, LCP 188 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | ort. 0,021 ms, en çok 0,2 ms (600 çağrı) / avg 0.021 ms, max 0.2 ms (600 calls) |
+| Canlı kare aralığı / live frame gap | ort. 16,66 ms, p95 18,3 ms, 146 kare (hedef 16,7) / avg 16.66 ms, p95 18.3 ms, 146 frames |
+| İlk boyama / first paint | FCP 48 ms, LCP 108 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → değer; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları ileri-geri sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → value; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause playback |
 | `prefers-reduced-motion` | Açılışta son kare (`t = 2.4`), 600 ms sonra değişmiyor; normalde oynuyor / final frame on load, unchanged 600 ms later; plays normally otherwise |

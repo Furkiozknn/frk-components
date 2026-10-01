@@ -16,15 +16,20 @@ for (const ad of readdirSync(dizin).sort()) {
 }
 const ok = (v) => (v ? 'evet' : 'HAYIR');
 const tablo = [
-  '| Parça | JS (bayt) | gzip (bayt) | FCP (ms) | LCP (ms) | seek ort. (ms) | kare aralığı ort./p95 (ms) | axe ihlali | DOM determinizmi | piksel determinizmi | tohum | reduced-motion son kare | klavye | konsol hatası |',
+  '| Parça | JS (bayt) | gzip (bayt) | FCP (ms) | LCP (ms) | seek ort./en çok (ms) | kare aralığı ort./p95 (ms) | axe ihlali | DOM determinizmi | piksel determinizmi | tohum | reduced-motion son kare | klavye | konsol hatası |',
   '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
 ];
 for (const r of rows) {
   if (r.yok) { tablo.push(`| ${r.ad} | ölçülmedi | | | | | | | | | | | | |`); continue; }
-  const m = r.m, d = m.determinizm, k = m.klavye;
+  const m = r.m, d = m.determinizm, k = m.klavye, p = m.performans;
   const axe = m.erisilebilirlik.taramalar.reduce((s, x) => s + x.ihlal, 0);
-  const klavye = k.oynat_enter && k.oynat_enter[2] && k.r_bastan_oynatir && k.kaydirici_oynatmayi_durdurur && k.tab_sirasi.slice(0, 5).every((x) => x !== 'BODY');
-  tablo.push(`| ${r.ad} | ${tr(m.boyut.js_bayt, 0)} | ${tr(m.boyut.js_gzip_bayt, 0)} | ${tr(m.ilk_boyama.fcp_ms, 0)} | ${tr(m.ilk_boyama.lcp_ms, 0)} | ${tr(m.performans.seek_ort_ms)} | ${tr(m.performans.kare_araligi_ort_ms, 2)} / ${tr(m.performans.kare_araligi_p95_ms, 1)} | ${axe} | ${ok(d.dom_ileri_geri_karisik_esit)} | ${ok(d.piksel_ayni_t_iki_cizim_esit.every(Boolean))} | ${ok(d.tohum_ayni_ayni && d.tohum_farkli_farkli)} | ${ok(m.reduced_motion.son_kare_gosterildi && m.reduced_motion.animasyon_yok)} | ${ok(klavye)} | ${m.konsol_hatasi.length} |`);
+  const dom = d.dom_ileri_geri_karisik_esit ?? d.durum_ileri_ters_karisik_esit;          // rope-swing: oyun durumu (JSON) karşılaştırması
+  const pix = d.piksel_ayni_t_iki_cizim_esit ?? [d.piksel_ileri_ters_karisik_esit];
+  const sAvg = p.seek_ort_ms ?? p.seek_js_ms?.ort, sMax = p.seek_max_ms ?? p.seek_js_ms?.maks;
+  const klavye = k.oynat_enter
+    ? k.oynat_enter[2] && k.r_bastan_oynatir && k.kaydirici_oynatmayi_durdurur && k.tab_sirasi.slice(0, 5).every((x) => x !== 'BODY')
+    : k.bosluk_basili ? k.bosluk_basili.hooked && !k.bosluk_birakildi.hooked && k.p_ikinci_basis_oynuyor : null;
+  tablo.push(`| ${r.ad} | ${tr(m.boyut.js_bayt, 0)} | ${tr(m.boyut.js_gzip_bayt, 0)} | ${tr(m.ilk_boyama.fcp_ms, 0)} | ${tr(m.ilk_boyama.lcp_ms, 0)} | ${tr(sAvg)} / ${tr(sMax, 1)} | ${tr(p.kare_araligi_ort_ms, 2)} / ${tr(p.kare_araligi_p95_ms, 1)} | ${axe} | ${ok(dom)} | ${ok(pix.every(Boolean))} | ${ok(d.tohum_ayni_ayni && d.tohum_farkli_farkli)} | ${ok(m.reduced_motion.son_kare_gosterildi && m.reduced_motion.animasyon_yok)} | ${klavye === null ? 'bkz. olcum.json' : ok(klavye)} | ${m.konsol_hatasi.length} |`);
 }
 const tarayici = [...new Set(rows.filter((r) => r.m).map((r) => r.m.tarayici))].join(', ');
 const md = `# Ölçümler
@@ -34,6 +39,8 @@ Bu tablo \`node araclar/olcum-md.mjs\` ile her parçanın \`olcum.json\` dosyas�
 Ortam: ${tarayici}, başsız, bu makine (Windows 11, masaüstü görünüm 900×1100). **Ölçülmedi:** gerçek telefon, Safari, Firefox, düşük güçlü cihaz. "Kare aralığı" başsız Chromium'un rAF ritmidir (60 Hz); bileşenin kendi maliyeti "seek ort." sütunudur.
 
 ${tablo.join('\n')}
+
+Notlar: \`rope-swing\` canvas olduğundan "DOM determinizmi" sütunu onda oyun durumunun (JSON) ileri/ters/karışık karşılaştırmasıdır, "seek" sütunu yalnız JS tarafıdır (canvas boşaltma ayrıca \`olcum.json\`'da); ölçümü \`b1\` oturumunun kendi betiğiyle alınmıştır.
 
 Hedefler (TASARIM.md §6): JS ≤ 51.200 bayt, LCP ≤ 2500 ms, ortalama kare ≤ 16,7 ms, axe ihlali 0.
 

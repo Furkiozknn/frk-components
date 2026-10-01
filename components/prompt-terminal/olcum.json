@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:02:00.489Z",
+  "olculdu": "2026-10-01T21:08:43.148Z",
   "hedef": "D:/Repolar/frk-components/components/prompt-terminal/demo.html",
   "bilesen": "promptTerminal",
   "boyut": {
@@ -16,8 +16,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 40,
-    "lcp_ms": 60,
+    "fcp_ms": 32,
+    "lcp_ms": 44,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -62,11 +62,11 @@
     }
   ],
   "performans": {
-    "seek_ort_ms": 0.02,
-    "seek_max_ms": 0.5,
-    "canli_kare_sayisi": 449,
-    "kare_araligi_ort_ms": 16.68,
-    "kare_araligi_p95_ms": 17.8,
+    "seek_ort_ms": 0.014,
+    "seek_max_ms": 0.2,
+    "canli_kare_sayisi": 450,
+    "kare_araligi_ort_ms": 16.66,
+    "kare_araligi_p95_ms": 17.9,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },

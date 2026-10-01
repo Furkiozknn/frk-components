@@ -1,0 +1,109 @@
+{
+  "olculdu": "2026-10-01T21:07:13.447Z",
+  "hedef": "D:/Repolar/frk-components/components/katki-isi/demo.html",
+  "bilesen": "katkiIsi",
+  "boyut": {
+    "js_bayt": 8827,
+    "js_gzip_bayt": 3529,
+    "demo_html_bayt": 6845,
+    "hedef_bayt": 51200
+  },
+  "yasak_cagri_taramasi": {
+    "Math.random": false,
+    "Date.now": false,
+    "performance.now": false,
+    "new Date": false
+  },
+  "tarayici": "Chromium 153.0.8010.12",
+  "ilk_boyama": {
+    "fcp_ms": 40,
+    "lcp_ms": 92,
+    "hedef_lcp_ms": 2500
+  },
+  "determinizm": {
+    "zamanlar": [
+      0,
+      0.37,
+      1,
+      1.234,
+      1.9,
+      2.4,
+      3
+    ],
+    "dom_ileri_geri_karisik_esit": true,
+    "piksel_ayni_t_iki_cizim_esit": [
+      true,
+      true,
+      true
+    ],
+    "tohum_ayni_ayni": true,
+    "tohum_farkli_farkli": true
+  },
+  "konsol_hatasi": [],
+  "ornek_veri_etiketi": {
+    "tr_baslangic_ornek": true,
+    "en_baslangic_sample": true,
+    "veri_verilince_etiket_yok": true,
+    "verilen_veri_toplami": 21,
+    "beklenen_toplam": 21
+  },
+  "performans": {
+    "seek_ort_ms": 0.651,
+    "seek_max_ms": 55.2,
+    "canli_kare_sayisi": 219,
+    "kare_araligi_ort_ms": 16.57,
+    "kare_araligi_p95_ms": 17.6,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
+  },
+  "erisilebilirlik": {
+    "arac": "axe-core 4.13.0",
+    "taramalar": [
+      {
+        "t": 0,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 1.2,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 2.4,
+        "ihlal": 0,
+        "kurallar": []
+      }
+    ]
+  },
+  "klavye": {
+    "tab_sirasi": [
+      "play",
+      "replay",
+      "lang",
+      "t",
+      "v",
+      "BODY"
+    ],
+    "oynat_enter": [
+      "Duraklat",
+      "Oynat",
+      true
+    ],
+    "oynat_space_dugmede": "Duraklat",
+    "govdede_space": [
+      "Oynat",
+      true
+    ],
+    "r_bastan_oynatir": true,
+    "kaydirici_oklari_t": 0.24,
+    "kaydirici_oynatmayi_durdurur": true
+  },
+  "reduced_motion": {
+    "t_150ms": 4,
+    "t_750ms": 4,
+    "son_kare_gosterildi": true,
+    "animasyon_yok": true,
+    "normalde_oynuyor": true
+  }
+}
