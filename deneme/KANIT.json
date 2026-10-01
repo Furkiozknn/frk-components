@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:45:51.038Z",
+  "olculdu": "2026-10-01T21:53:35.158Z",
   "sure_sn": 5,
   "fps": 30,
   "zamanlar": [
@@ -15,52 +15,44 @@
     "odometer": {
       "tuval": "1080x1080",
       "A_duz_chromium": {
-        "ileri_ters_esit": false,
+        "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
         "ayni_t_tekrar_esit": true,
         "farkli_kare_sayisi": 6,
         "zaman_sayisi": 7,
         "sayfa_hatalari": []
       },
-      "A2_farkli_zamanlar": {
-        "3.3": {
-          "onceki_t_ileri": 2.5,
-          "onceki_t_ters": 4.1,
-          "psnr_db": 55.484459,
-          "mse_ort": null
-        }
-      },
       "B_snapshot_ile_karsilastirma": {
         "1.2": {
           "bayt_esit": true,
-          "boyut_duz": 33913,
-          "boyut_hf": 33913
+          "boyut_duz": 34555,
+          "boyut_hf": 34555
         },
         "2.5": {
           "bayt_esit": true,
-          "boyut_duz": 34438,
-          "boyut_hf": 34438
+          "boyut_duz": 34506,
+          "boyut_hf": 34506
         },
         "4.8": {
           "bayt_esit": true,
-          "boyut_duz": 33915,
-          "boyut_hf": 33915
+          "boyut_duz": 33998,
+          "boyut_hf": 33998
         }
       },
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 14.6
+          "sn": 11.6
         },
         "isci1": {
           "kod": 0,
-          "sn": 14.1
+          "sn": 12.9
         },
         "kare_sayisi": [
           150,
           150
         ],
-        "ayni_kare_sayisi": 149
+        "ayni_kare_sayisi": 150
       }
     },
     "prompt-terminal": {
@@ -93,11 +85,11 @@
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 10.4
+          "sn": 11.1
         },
         "isci1": {
           "kod": 0,
-          "sn": 12.6
+          "sn": 12.2
         },
         "kare_sayisi": [
           150,
@@ -226,7 +218,7 @@
         },
         "isci1": {
           "kod": 0,
-          "sn": 12.8
+          "sn": 12.7
         },
         "kare_sayisi": [
           150,
