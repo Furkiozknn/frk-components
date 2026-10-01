@@ -15,7 +15,7 @@ const here = dirname(fileURLToPath(import.meta.url)), kok = resolve(here, '../..
 const req = createRequire(import.meta.url);
 const pw = req(req.resolve('playwright', { paths: [execFileSync('npm', ['root', '-g'], { encoding: 'utf8', shell: true }).trim()] }));
 const axeSrc = readFileSync(req.resolve('axe-core/axe.min.js', { paths: [resolve(kok, 'araclar')] }), 'utf8');
-const PARCALAR = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi'];
+const PARCALAR = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi'];
 const MOTORLAR = ['chromium', 'firefox', 'webkit'];
 const ORAN = [0, 0.07, 0.2, 0.42, 0.55, 0.7, 0.85, 1];
 const sha = (b) => createHash('sha256').update(b).digest('hex').slice(0, 16);

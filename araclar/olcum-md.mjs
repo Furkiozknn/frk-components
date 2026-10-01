@@ -29,7 +29,9 @@ for (const r of rows) {
   const sAvg = p.seek_ort_ms ?? p.seek_js_ms?.ort, sMax = p.seek_max_ms ?? p.seek_js_ms?.maks;
   const klavye = k.oynat_enter
     ? k.oynat_enter[2] && k.r_bastan_oynatir && k.kaydirici_oynatmayi_durdurur && k.tab_sirasi.slice(0, 5).every((x) => x !== 'BODY')
-    : k.bosluk_basili ? k.bosluk_basili.hooked && !k.bosluk_birakildi.hooked && k.p_ikinci_basis_oynuyor : null;
+    : k.bosluk_basili ? k.bosluk_basili.hooked && !k.bosluk_birakildi.hooked && k.p_ikinci_basis_oynuyor
+    : k.durum_dugmesi_enter ? k.durum_dugmesi_enter.durum === 'searching' && k.sayi_tusu_4 && k.sayi_tusu_4.durum === 'done' && k.r_bastan && k.r_bastan.oynuyor && k.bosluk_ikinci_oynuyor
+    : k.deger_kaydirici_oklari ? k.deger_kaydirici_oklari.olay >= 1 && k.deger_home_tusu && k.deger_home_tusu.aria_now === '0' && k.r_bastan && k.r_bastan.oynuyor && k.bosluk_ikinci_oynuyor : null;
   if (sMax > 16.7) uyari.push(`- \`${r.ad}\`: seek en çok ${tr(sMax, 1)} ms; tek kare bütçesi (16,7 ms) aşılıyor${p.seek_js_ms?.p95 != null ? ` (p95 ${tr(p.seek_js_ms.p95, 1)} ms)` : ''}. Ortalama kare aralığı yine de ${tr(p.kare_araligi_ort_ms, 2)} ms.`);
   tablo.push(`| ${r.ad} | ${tr(m.boyut.js_bayt, 0)} | ${tr(m.boyut.js_gzip_bayt, 0)} | ${tr(m.ilk_boyama.fcp_ms, 0)} | ${tr(m.ilk_boyama.lcp_ms, 0)} | ${tr(sAvg)} / ${tr(sMax, 1)} | ${tr(p.kare_araligi_ort_ms, 2)} / ${tr(p.kare_araligi_p95_ms, 1)} | ${axe} | ${ok(dom)} | ${ok(pix.every(Boolean))} | ${ok(d.tohum_ayni_ayni && d.tohum_farkli_farkli)} | ${ok(m.reduced_motion.son_kare_gosterildi && m.reduced_motion.animasyon_yok)} | ${klavye === null ? 'bkz. olcum.json' : ok(klavye)} | ${m.konsol_hatasi.length} |`);
 }
@@ -39,6 +41,7 @@ const cmYol = join(kok, 'deneme', 'CAPRAZ-MOTOR.json');
 if (existsSync(cmYol)) {
   const cm = JSON.parse(readFileSync(cmYol, 'utf8'));
   const motorlar = Object.keys(cm.motorlar);
+  const eksikCm = readdirSync(dizin).filter((d) => existsSync(join(dizin, d, 'olcum.json')) && !cm.parcalar[d]).sort();
   const hucre = (x, m) => {
     const d = x.determinizm, det = d.piksel_ileri_ters_karisik_esit && d.durum_ileri_ters_karisik_esit;
     const axe = x.axe.reduce((a, b) => a + b.ihlal, 0), rm = x.reduced_motion.son_kare_gosterildi && x.reduced_motion.animasyon_yok;
@@ -55,7 +58,7 @@ if (existsSync(cmYol)) {
   capraz = '## Çapraz motor (Chromium · Firefox · WebKit)\n\n' +
     'Kaynak: deneme/CAPRAZ-MOTOR.json (b1 oturumunun betiği deneme/araclar/capraz-motor.mjs). ' + motorlar.map((m) => cm.motorlar[m]).join(', ') + '; Playwright, Windows, başsız. **WebKit burada Playwright\'ın Windows yapısıdır, Safari değildir.** Gerçek Safari/iOS, Android Chrome ve gerçek dokunmatik cihaz **ölçülmedi**.\n\n' +
     sat.join('\n') + '\n\n' +
-    'Determinizm her motorun kendi içindedir (8 zaman noktası, ileri/ters/karışık sırada piksel ve durum aynı). Motorlar arası piksel eşitliği beklenmez ve yoktur (yazı tipi ve kenar yumuşatma farkı); PSNR yalnız farkın büyüklüğünü gösterir. rope-swing ve status-orb için PSNR, kare boyutu iki motorda 2 px farklı çıktığı yerde hesaplanamadı.\n\n';
+    'Determinizm her motorun kendi içindedir (8 zaman noktası, ileri/ters/karışık sırada piksel ve durum aynı). Motorlar arası piksel eşitliği beklenmez ve yoktur (yazı tipi ve kenar yumuşatma farkı); PSNR yalnız farkın büyüklüğünü gösterir. Kare boyutu iki motorda 2 px farklı çıktığında PSNR hesaplanamadı.' + (eksikCm.length ? ' **Bu koşuda yok:** ' + eksikCm.join(', ') + ' (çapraz motor koşusuna alınmadı).' : '') + '\n\n';
 }
 const tarayici = [...new Set(rows.filter((r) => r.m).map((r) => r.m.tarayici))].join(', ');
 const md = `# Ölçümler

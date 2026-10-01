@@ -147,19 +147,50 @@ try {
     await ctx.close();
   }
 
-  // 4) Kare maliyeti: seek (JS) ve seek + canvas boşaltma (getImageData ile ham kare maliyeti); ayrıca canlı rAF aralıkları
+  // 3d) Değer kaydı ↔ yeniden oynatma (ilerleme-halkasi): uygulamanın verdiği değerler kaydedilir, başka örnekte aynı kareleri verir
+  if (name === 'ilerlemeHalkasi') {
+    const { ctx, page } = await open();
+    out.deger_kaydi_tekrari = await page.evaluate(() => {
+      const mod = FRKComponents.ilerlemeHalkasi;
+      const mk = (o) => { const d = document.createElement('div'); d.style.cssText = 'width:480px;height:480px;position:absolute;left:0;top:0;opacity:0'; document.body.appendChild(d); return { d, i: mod.mount(d, o) }; };
+      const px = (x) => x.d.querySelector('canvas').toDataURL();
+      const A = mk({ value: 30, duration: 1 });
+      const plan = [[0.4, 60], [1.1, 20], [1.9, 100]];
+      const canli = [];
+      for (const [t, v] of plan) { A.i.seek(t); canli.push(px(A)); A.i.setValue(v); A.i.pause(); }
+      const kayit = A.i.values;
+      const B = mk({ values: kayit });
+      const hash = (x, t) => { x.i.seek(t); return px(x); };
+      const canliEsit = plan.map(([t], k) => hash(B, t) === canli[k]);
+      const ts = [0, 0.3, 0.7, 1.0, 1.4, 1.9, 2.4, 3.0];
+      const esit = ts.map((t) => hash(A, t) === hash(B, t));
+      const son = B.i.value;
+      A.i.seek(0); const bas = A.i.value;
+      const saf = mod.valueAt([[0, 72, 2.4]], 2.4, 0), yarim = mod.valueAt([[0, 72, 2.4]], 1.2, 0);
+      A.i.destroy(); B.i.destroy(); A.d.remove(); B.d.remove();
+      return { kayit, canli_kare_tekrarda_ayni: canliEsit, zamanlar: ts, son_kareler_esit: esit, baslangic_deger: bas, son_deger_beklenen_20_ya_da_100: son, hedefe_tam_varir: saf === 72, yari_zaman_degeri: +yarim.toFixed(2) };
+    });
+    // tamamlanma olayı: değer 100'e vardığında bir kez frk:done
+    out.tamamlanma_olayi = await page.evaluate(async () => {
+      const d = document.createElement('div'); d.style.cssText = 'width:300px;height:300px;position:absolute;left:0;top:0;opacity:0'; document.body.appendChild(d);
+      const i = FRKComponents.ilerlemeHalkasi.mount(d, { value: 100, duration: 1 });
+      let n = 0, durumu = '';
+      d.addEventListener('frk:done', () => { n++; durumu = d.querySelector('[role=status]').textContent; });
+      for (const t of [0, 0.2, 0.5, 0.9, 1.0, 0.95, 1.0]) i.seek(t);   // geriye gidince yeniden tetiklenmesin diye ileri yönlü sayılır
+      i.destroy(); d.remove();
+      return { done_olay_sayisi: n, canli_bolge: durumu };
+    });
+    await ctx.close();
+  }
+
+  // 4) Kare maliyeti. Önce canlı oynatma (taze sayfa: getImageData okumaları canvas'ı yazılımsal moda geçirip ilk karede takılma yaratabiliyor),
+  //    sonra ayrı taze sayfada seek süresi (JS) ve seek + canvas boşaltma (getImageData).
   {
     const { ctx, page } = await open();
     out.performans = await page.evaluate(async () => {
-      const inst = window.inst; inst.pause();
-      const el = document.getElementById('stage'), cv = el.querySelector('canvas'), g = cv.getContext('2d');
-      const N = 240, js = [], tam = [];     // bu ölçüm betiğidir, bileşen kodu değil
-      for (let i = 0; i < N; i++) { const t0 = performance.now(); inst.seek((i / N) * inst.duration); js.push(performance.now() - t0); }
-      g.getImageData(0, 0, 1, 1);          // ilk döngünün kuyruğa aldığı komutları ölçüm dışında boşalt
-      for (let i = 0; i < N; i++) { const t0 = performance.now(); inst.seek((i / N) * inst.duration); el.getBoundingClientRect(); g.getImageData(0, 0, 1, 1); tam.push(performance.now() - t0); }
-      const st = (a) => { const s = [...a].sort((x, y) => x - y); return { ort: +(a.reduce((x, y) => x + y, 0) / a.length).toFixed(3), medyan: +s[s.length >> 1].toFixed(3), p95: +s[Math.floor(s.length * 0.95)].toFixed(3), maks: +s[s.length - 1].toFixed(3) }; };
-      inst.seek(0);
-      const gaps = []; let last = 0, frames = 0;
+      const inst = window.inst; inst.pause(); inst.seek(0);
+      const el = document.getElementById('stage');
+      const gaps = []; let last = 0, frames = 0;                // bu ölçüm betiğidir, bileşen kodu değil
       await new Promise((res) => {
         const onTick = () => { const n = performance.now(); if (last) gaps.push(n - last); last = n; frames++; };
         el.addEventListener('frk:tick', onTick);
@@ -167,10 +198,25 @@ try {
         inst.play();
       });
       const gs = [...gaps].sort((a, b) => a - b);
-      return { seek_js_ms: st(js), seek_artı_canvas_bosaltma_ms: st(tam), canli_kare_sayisi: frames,
-        kare_araligi_ort_ms: +(gaps.reduce((a, b) => a + b, 0) / gaps.length).toFixed(2), kare_araligi_p95_ms: +gs[Math.floor(gs.length * 0.95)].toFixed(2),
+      return { canli_kare_sayisi: frames, beklenen_kare_60hz: Math.round(inst.duration * 60),
+        kare_araligi_ort_ms: +(gaps.reduce((a, b) => a + b, 0) / gaps.length).toFixed(2), kare_araligi_p95_ms: +gs[Math.floor(gs.length * 0.95)].toFixed(2), kare_araligi_maks_ms: +gs[gs.length - 1].toFixed(1),
         hedef_kare_ms: 16.7, not: 'Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi.' };
     });
+    await ctx.close();
+  }
+  {
+    const { ctx, page } = await open();
+    const seekler = await page.evaluate(async () => {
+      const inst = window.inst; inst.pause();
+      const el = document.getElementById('stage'), cv = el.querySelector('canvas'), g = cv.getContext('2d');
+      const N = 240, js = [], tam = [];
+      for (let i = 0; i < N; i++) { const t0 = performance.now(); inst.seek((i / N) * inst.duration); js.push(performance.now() - t0); }
+      g.getImageData(0, 0, 1, 1);          // ilk döngünün kuyruğa aldığı komutları ölçüm dışında boşalt
+      for (let i = 0; i < N; i++) { const t0 = performance.now(); inst.seek((i / N) * inst.duration); el.getBoundingClientRect(); g.getImageData(0, 0, 1, 1); tam.push(performance.now() - t0); }
+      const st = (a) => { const s = [...a].sort((x, y) => x - y); return { ort: +(a.reduce((x, y) => x + y, 0) / a.length).toFixed(3), medyan: +s[s.length >> 1].toFixed(3), p95: +s[Math.floor(s.length * 0.95)].toFixed(3), maks: +s[s.length - 1].toFixed(3) }; };
+      return { seek_js_ms: st(js), seek_artı_canvas_bosaltma_ms: st(tam) };
+    });
+    Object.assign(out.performans, seekler);
     await ctx.close();
   }
 
@@ -242,6 +288,25 @@ try {
     out.klavye = { tab_sirasi: odak, durum_dugmesi_enter: enter, sayi_tusu_4: sayi4, bosluk_ilk_oynuyor: bosluk1, bosluk_ikinci_oynuyor: bosluk2, r_bastan: r, kaydirici_oklari_t: slider };
     await ctx.close();
   }
+  if (name === 'ilerlemeHalkasi') {
+    const { ctx, page } = await open();
+    await page.evaluate(() => { window.inst.pause(); window.inst.seek(0); });
+    const odak = [];
+    for (let i = 0; i < 6; i++) { await page.keyboard.press('Tab'); odak.push(await page.evaluate(() => document.activeElement.id || document.activeElement.tagName)); }
+    const aria = await page.evaluate(() => { const r = document.querySelector('.frk-ring'); return { role: r.getAttribute('role'), etiket: r.getAttribute('aria-label'), min: r.getAttribute('aria-valuemin'), maks: r.getAttribute('aria-valuemax'), simdiki: r.getAttribute('aria-valuenow'), metin: r.getAttribute('aria-valuetext') }; });
+    await page.focus('#v'); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(150);
+    const ok = await page.evaluate(() => ({ olay: window.inst.values.length, oynuyor: window.inst.playing, aria_now: document.querySelector('.frk-ring').getAttribute('aria-valuenow') }));
+    await page.keyboard.press('Home'); await page.waitForTimeout(100);
+    const ev2 = await page.evaluate(() => ({ olay: window.inst.values.length, aria_now: document.querySelector('.frk-ring').getAttribute('aria-valuenow') }));
+    await page.evaluate(() => document.activeElement.blur()); await page.keyboard.press('Space'); const b1 = await page.evaluate(() => window.inst.playing); await page.keyboard.press('Space'); const b2 = await page.evaluate(() => window.inst.playing);
+    await page.keyboard.press('r'); await page.waitForTimeout(120);
+    const r = await page.evaluate(() => ({ t: +document.getElementById('stage').dataset.t, oynuyor: window.inst.playing }));
+    await page.evaluate(() => window.inst.pause()); await page.focus('#t'); await page.evaluate(() => window.inst.seek(0));
+    await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowRight');
+    const slider = await page.evaluate(() => +document.getElementById('stage').dataset.t);
+    out.klavye = { tab_sirasi: odak, aria, deger_kaydirici_oklari: ok, deger_home_tusu: ev2, bosluk_ilk_oynuyor: b1, bosluk_ikinci_oynuyor: b2, r_bastan: r, kaydirici_oklari_t: slider };
+    await ctx.close();
+  }
   {
     const { ctx, page } = await open({ reducedMotion: 'reduce' });
     await page.waitForTimeout(150);
@@ -256,6 +321,11 @@ try {
     if (name === 'statusOrb') {            // hareket tercihinde durum seçimi anında, geçişsiz sabit poz
       await page.click('[data-set=thinking]'); await page.waitForTimeout(150);
       out.reduced_motion.durum_secimi = await page.evaluate(() => ({ durum: window.inst.state, oynuyor: window.inst.playing, etiket: document.querySelector('.frk-orb').getAttribute('aria-label') }));
+    }
+    if (name === 'ilerlemeHalkasi') {      // hareket tercihinde değer değişimi anında, geçişsiz
+      await page.evaluate(() => { document.getElementById('v').value = 35; document.getElementById('v').dispatchEvent(new Event('change', { bubbles: true })); });
+      await page.waitForTimeout(150);
+      out.reduced_motion.deger_degisimi = await page.evaluate(() => ({ deger: Math.round(window.inst.value), oynuyor: window.inst.playing, aria_now: document.querySelector('.frk-ring').getAttribute('aria-valuenow') }));
     }
     await ctx.close();
     const n = await open({ reducedMotion: 'no-preference' });

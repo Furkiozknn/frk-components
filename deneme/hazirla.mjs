@@ -23,6 +23,7 @@ const PARCALAR = {
   'rope-swing': { g: 'ropeSwing', w: 1920, h: 1080, t0: 0.3, opts: '{ seed: 1, locale: L, duration: 6 }' },
   'status-orb': { g: 'statusOrb', w: 1080, h: 1080, t0: 0, opts: "{ seed: 1, locale: L, label: true, duration: 5, states: [[0, 'listening'], [1, 'thinking'], [2, 'searching'], [3, 'done']] }" },
   'katki-isi': { g: 'katkiIsi', w: 1080, h: 1080, t0: 0, opts: '{ seed: 1, locale: L, duration: 4.5 }' },
+  'ilerleme-halkasi': { g: 'ilerlemeHalkasi', w: 1080, h: 1080, t0: 0, opts: '{ seed: 1, locale: L, value: 72, duration: 3 }' },
 };
 
 function sayfa(ad, p) {

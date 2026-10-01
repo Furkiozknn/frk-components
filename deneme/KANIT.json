@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:53:35.158Z",
+  "olculdu": "2026-10-01T22:11:03.217Z",
   "sure_sn": 5,
   "fps": 30,
   "zamanlar": [
@@ -219,6 +219,49 @@
         "isci1": {
           "kod": 0,
           "sn": 12.7
+        },
+        "kare_sayisi": [
+          150,
+          150
+        ],
+        "ayni_kare_sayisi": 150
+      }
+    },
+    "ilerleme-halkasi": {
+      "tuval": "1080x1080",
+      "A_duz_chromium": {
+        "ileri_ters_esit": true,
+        "ileri_karisik_esit": true,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 7,
+        "zaman_sayisi": 7,
+        "sayfa_hatalari": []
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "1.2": {
+          "bayt_esit": true,
+          "boyut_duz": 299754,
+          "boyut_hf": 299754
+        },
+        "2.5": {
+          "bayt_esit": true,
+          "boyut_duz": 322587,
+          "boyut_hf": 322587
+        },
+        "4.8": {
+          "bayt_esit": true,
+          "boyut_duz": 323180,
+          "boyut_hf": 323180
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 64.6
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 33.4
         },
         "kare_sayisi": [
           150,

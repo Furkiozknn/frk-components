@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:47:14.577Z",
+  "olculdu": "2026-10-01T22:06:33.876Z",
   "hedef": "D:/Repolar/frk-components/components/rope-swing/demo.html",
   "bilesen": "ropeSwing",
   "boyut": {
@@ -17,8 +17,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 48,
-    "lcp_ms": 92,
+    "fcp_ms": 32,
+    "lcp_ms": 52,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -70,23 +70,25 @@
     ]
   },
   "performans": {
+    "canli_kare_sayisi": 362,
+    "beklenen_kare_60hz": 360,
+    "kare_araligi_ort_ms": 16.66,
+    "kare_araligi_p95_ms": 17.9,
+    "kare_araligi_maks_ms": 18.7,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi.",
     "seek_js_ms": {
-      "ort": 0.07,
+      "ort": 0.067,
       "medyan": 0.1,
       "p95": 0.2,
       "maks": 0.9
     },
     "seek_artı_canvas_bosaltma_ms": {
-      "ort": 0.395,
-      "medyan": 0.3,
-      "p95": 0.8,
-      "maks": 2
-    },
-    "canli_kare_sayisi": 354,
-    "kare_araligi_ort_ms": 16.62,
-    "kare_araligi_p95_ms": 17.8,
-    "hedef_kare_ms": 16.7,
-    "not": "Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi."
+      "ort": 0.376,
+      "medyan": 0.4,
+      "p95": 0.6,
+      "maks": 1.1
+    }
   },
   "erisilebilirlik": {
     "arac": "axe-core 4.13.0",
@@ -132,7 +134,7 @@
       ],
       "playing": true,
       "hooked": true,
-      "t": 0.333
+      "t": 0.35
     },
     "bosluk_birakildi": {
       "inputs": [

@@ -56,6 +56,7 @@ const klavyeOk = (p) => {
   if (k.oynat_enter) return !!(k.oynat_enter[2] && k.r_bastan_oynatir && k.kaydirici_oynatmayi_durdurur && k.tab_sirasi.slice(0, 5).every((x) => x !== 'BODY'));
   if (k.bosluk_basili) return !!(k.bosluk_basili.hooked && !k.bosluk_birakildi.hooked && k.p_ikinci_basis_oynuyor);
   if (k.durum_dugmesi_enter) return !!(k.durum_dugmesi_enter.durum === 'searching' && k.sayi_tusu_4 && k.sayi_tusu_4.durum === 'done' && k.r_bastan && k.r_bastan.oynuyor && k.bosluk_ikinci_oynuyor);
+  if (k.deger_kaydirici_oklari) return !!(k.deger_kaydirici_oklari.olay >= 1 && k.deger_home_tusu && k.deger_home_tusu.aria_now === '0' && k.r_bastan && k.r_bastan.oynuyor && k.bosluk_ikinci_oynuyor);
   return null;                                                // bu parçanın klavye biçimi için kural tanımlı değil
 };
 const klavyeGecti = sayi((p) => klavyeOk(p) === true), klavyeBilinmez = sayi((p) => klavyeOk(p) === null), klavyeKaldi = sayi((p) => klavyeOk(p) === false);
@@ -67,7 +68,8 @@ if (cm) {
     const x = cm.parcalar[ad][e]; top++;
     if (x.determinizm.piksel_ileri_ters_karisik_esit && x.determinizm.durum_ileri_ters_karisik_esit && x.axe.every((a) => a.ihlal === 0) && x.konsol_hatasi.length === 0 && x.reduced_motion.son_kare_gosterildi && x.reduced_motion.animasyon_yok) ok++;
   }
-  cmOz = ok + '/' + top + ' parça × motor kombinasyonu temiz (' + Object.values(cm.motorlar).join(', ') + '; Playwright, Windows, başsız; WebKit Safari değildir)';
+  const disarda = P.map((p) => p.ad).filter((ad) => !cm.parcalar[ad]);
+  cmOz = ok + '/' + top + ' parça × motor kombinasyonu temiz' + (disarda.length ? ' (' + disarda.join(', ') + ' bu koşuda yok)' : '') + ' (' + Object.values(cm.motorlar).join(', ') + '; Playwright, Windows, başsız; WebKit Safari değildir)';
 }
 const kanit = okuJson(join(kok, 'deneme', 'KANIT.json'));
 let kanitOz = 'ölçülmedi (deneme/KANIT.json yok)', hfParca = 0;

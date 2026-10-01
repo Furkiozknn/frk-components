@@ -70,9 +70,9 @@ Hepsi `deneme/araclar/olc-parca.mjs` koşusundan, `olcum.json` dosyasında. Baş
 | `demo.html` | 7.393 bayt / bytes |
 | Determinizm / Determinism | 9 zaman noktası × ileri, ters, karışık sıra: ekran görüntüleri ve durum JSON'u aynı; aynı tohum aynı, farklı tohum farklı kare / 9 times × forward, reverse, shuffled: identical screenshots and state JSON; same seed same, different seed differs |
 | Canlı oyun ↔ kayıt / live play ↔ record | Oyuncu girdisiyle (6 olay) oynanan koşunun 6 karesi, kaydedilen girdiyle yeniden oynatılınca aynı / 6 frames of a live run (6 events) are identical when replayed from the recorded input |
-| `seek` maliyeti / cost | JS: ort. 0,07 ms, p95 0,2 ms, en çok 0,9 ms (240 çağrı). JS + canvas boşaltma (`getImageData`): ort. 0,395 ms, medyan 0,3 ms, p95 0,8 ms, en çok 2,0 ms / JS: avg 0.07 ms, p95 0.2 ms, max 0.9 ms (240 calls); JS + canvas flush: avg 0.395 ms, median 0.3 ms, p95 0.8 ms, max 2.0 ms |
-| Canlı kare aralığı / live frame gap | ort. 16,62 ms, p95 17,8 ms, 354 kare (hedef 16,7) / avg 16.62 ms, p95 17.8 ms, 354 frames |
-| İlk boyama / first paint | FCP 48 ms, LCP 92 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | JS: ort. 0,07 ms, p95 0,2 ms, en çok 0,9 ms (240 çağrı); JS + canvas boşaltma (`getImageData`): ort. 0,38 ms, medyan 0,4 ms, p95 0,6 ms, en çok 1,1 ms / `seek` JS time: avg 0.07 ms, p95 0.2 ms, max 0.9 ms (240 calls); `seek` + canvas flush (`getImageData`): avg 0.38 ms, median 0.4 ms, p95 0.6 ms, max 1.1 ms |
+| Canlı kare aralığı / live frame gap | 362 kare (360 beklenen), ort. 16,66 ms, p95 17,9 ms, en uzun aralık 18,7 ms (hedef 16,7) / 362 frames (360 expected), avg 16.66 ms, p95 17.9 ms, longest gap 18.7 ms (target 16.7) |
+| İlk boyama / first paint | FCP 32 ms, LCP 52 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 3, 6 / 0 violations at t = 0, 3, 6 |
 | Klavye / keyboard | Tab sırası oyun alanı → oynat → baştan → otopilot → kendin oyna → dil → kaydırıcı; Boşluk basılı = kanca takıldı, bırakınca bırakıldı; `P` oynat/duraklat, `Esc` duraklat / Tab order play area → play → restart → autopilot → play yourself → language → slider; Space held hooks, release unhooks; `P` toggles, `Esc` pauses |
 | Fare / pointer | Canvas'ta basılı tutunca girdi kaydı ve oynatma başlar (Playwright faresiyle) / holding on the canvas records input and starts playing (Playwright mouse) |

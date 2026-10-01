@@ -9,7 +9,7 @@ import { kilitAl } from './araclar/kilit.mjs';
 
 const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HF = process.env.HYPERFRAMES_CLI || join(homedir(), '.claude/plugins/cache/hyperframes/hyperframes/0.8.85/skills/hyperframes/scripts/plugin-cli.mjs');
-const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi'];
+const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi'];
 const parcalar = process.argv[2] === 'hepsi' ? TUM : [process.argv[2]];
 const adimlar = process.argv[3] === 'tumu' ? ['check', 'snapshot', 'render'] : [process.argv[3]];
 

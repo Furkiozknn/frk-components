@@ -18,7 +18,7 @@ const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const req = createRequire(import.meta.url);
 const { chromium } = req(req.resolve('playwright', { paths: [execFileSync('npm', ['root', '-g'], { encoding: 'utf8', shell: true }).trim()] }));
 const HF = join(homedir(), '.claude/plugins/cache/hyperframes/hyperframes/0.8.85/skills/hyperframes/scripts/plugin-cli.mjs');
-const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi'];
+const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi'];
 const parcalar = process.argv.slice(2).length ? process.argv.slice(2) : TUM;
 const TIMES = [0, 0.4, 1.2, 2.5, 3.3, 4.1, 4.8];       // saniye; SURE = 5
 const sha = (b) => createHash('sha256').update(b).digest('hex').slice(0, 16);

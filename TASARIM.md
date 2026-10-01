@@ -11,7 +11,7 @@ index.html · README.md · OLCUM.md · DURUM.md · DURUM-b1.md · LICENSE (MIT)
 ```
 
 - `<parca>.js` tek dosya, kütüphanesiz, ilk satırda `SPDX-License-Identifier: MIT`; CSS'i kendi içinden enjekte eder; yazı tipi dosyası gömmez (demo yükler).
-- Parçalar: `odometer`, `prompt-terminal`, `rope-swing`, `status-orb`, `katki-isi`. Global ad `FRKComponents.<camelCase>`.
+- Parçalar: `odometer`, `prompt-terminal`, `rope-swing`, `status-orb`, `katki-isi`, `ilerleme-halkasi` (+ `kod-diff` yolda). Global ad `FRKComponents.<camelCase>`.
 - RECETE.md ham prompt kaydını (düzenlenmeden), adımları, kararları, yol boyunca bulunan hataları ve sınırları taşır.
 
 ## 2. Ortak arayüz
@@ -26,7 +26,7 @@ index.html · README.md · OLCUM.md · DURUM.md · DURUM-b1.md · LICENSE (MIT)
 - `play()` zamanı rAF'in verdiği damgadan alır; rAF'e `global['requestAnimationFrame']` ile dolaylı erişilir (HyperFrames satır içi betikte doğrudan çağrıyı hata sayar).
 - `prefers-reduced-motion: reduce`: `play()` animasyon yerine son kareyi (status-orb: durumun sabit pozunu) gösterir; `seek` ortamdan bağımsız. Kullanıcı girdisi (klavye, dokunma, durum seçimi) oyunu/göstergeyi yine başlatır.
 - Çekirdek DOM'suz olabilir ve Node'da yüklenir (`module.exports`): rope-swing `createSim`, yalnız `+ − × ÷ √`.
-- Kayıt modeli: oyuncu/uygulama girdisi `[[adım|t, değer], …]` olarak kaydedilir, ilk girdi kaydın geri kalanını siler (devralma); kayıt başka örnekte `opts`'a verilince aynı kareleri üretir.
+- Kayıt modeli: oyuncu/uygulama girdisi (`inputs`, `states`, `values`) olarak kaydedilir; olaylar "`t`'de şuna git" biçiminde, geçmişi değiştirmeyecek şekilde (anahtar kare değil olay), ilk girdi kaydın geri kalanını siler (devralma); kayıt başka örnekte `opts`'a verilince aynı kareleri üretir.
 - Erişilebilirlik: kök `role` + `aria-label`; hareketli parçalar `aria-hidden`; olaylar görünmez `role="status"` bölgesine (kare başına değil, olay başına) yazılır; WCAG 2.2.2 için duraklatma (`P`/`Esc` veya düğme).
 
 ## 3. Canvas parçaları
