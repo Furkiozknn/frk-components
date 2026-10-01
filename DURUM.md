@@ -1,34 +1,32 @@
 # Durum — genel özet (yazar: YEDEK, terminal oturumu)
 
-Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`.
+Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `LICENSE`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`, HyperFrames sonucu: `deneme/SONUC.md`.
 
-## 02.10.2026 00:55 [YEDEK]
+## 02.10.2026 00:57 [YEDEK]
 
-**Bitti** (hepsi GitHub'da, private `Furkiozknn/frk-components`, `main` ile senkron)
-- `TASARIM.md` (b1 ≤80 satıra indirecek), Parça 1 `odometer`, Parça 2 `prompt-terminal`, Parça 5 `katki-isi`: her biri tek JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json`.
-- Kök `index.html` (FRK-OS; masaüstü 1280 ve mobil 390'da yatay taşma yok, axe 0 ihlal, konsol hatası yok), `README.md` (TR+EN), `OLCUM.md` (`araclar/olcum-md.mjs` ile `olcum.json`'lardan üretilir), `.gitignore`.
-- `rope-swing` (b1, hazır ve ölçülmüş) commit'lendi, vitrine 16:9 kart eklendi; vitrinde mobil kaydırma için yalnız `tema.css`'te canvas `touch-action:pan-y` (bileşen dosyasına dokunulmadı).
+**YONLENDIRME.md'deki bütün maddeler bitti** (02.10 00:05 sürümü; o tarihten sonra değişmedi). Hepsi GitHub'da, private `Furkiozknn/frk-components`, `main` ile senkron.
+
+**Parçalar (5/5, hepsi vitrinde):** `odometer`, `prompt-terminal`, `katki-isi` (YEDEK); `rope-swing`, `status-orb` (b1). Her biri tek JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json`. Kök: `index.html` (FRK-OS, mobil), `README.md`, `OLCUM.md` (olcum.json'lardan üretilir), `LICENSE` (MIT, kanca deposundaki metin), `TASARIM.md` (58 satır, b1).
 
 **Ölçümler** (başsız Chromium 153, bu makine, masaüstü; tablo `OLCUM.md`'de, zamanlama değerleri koşudan koşuya oynar)
-- odometer: JS 7.206 bayt (gzip 2.923); prompt-terminal: 9.904 (3.810); katki-isi: 9.452 (3.728). Üçünde axe 0 ihlal, DOM ve piksel determinizmi geçti, `Math.random`/`Date.now`/`performance.now`/`new Date` yok.
-- Kapatılan boşluklar: odometrede eksi ve ondalık değerler (10 durumun hepsi doğru), prompt-terminal'de özel `script` (15 adım, uzun satır, son satır kutu içinde).
-- katki-isi `seek` sıçraması giderildi: 140 ayrı `roundRect` yerine toplu yol; en çok 55–96 ms → 0,7 ms, ort. 0,65 → 0,119 ms.
-- **Ölçülmedi:** gerçek telefon, Safari, Firefox; HyperFrames render (b1'de).
+- Beş parçada da axe 0 ihlal, konsol hatası yok, `Math.random`/`Date.now`/`performance.now`/`new Date` kaynakta yok, reduced-motion'da son kare.
+- JS boyutu 8,2–15,6 KB (hedef ≤ 50 KB). `seek` ortalaması 0,016–0,92 ms; hiçbir parçada kare bütçesi (16,7 ms) aşılmıyor.
+- Piksel determinizmi: odometre, prompt-terminal, katki-isi için 7 zaman noktası (son faz dahil) × 4 farklı önceki durum bayt bayt aynı; rope-swing ve status-orb için b1'in betiği (durum JSON'u + piksel) aynı.
 
-**Yol boyunca düzeltilen hatalar:** odometrede son hane `t = duration`'da hedefe oturmuyordu (ölçüm `0`'ı `10` okuyunca bulundu); iki bileşende `performance.now()` doğrudan okunuyordu (b1 buldu, rAF damgasına çevrildi); ölçüm betiğinde üç test hatası (klavye durumu, reduced-motion yuvarlama, canvas pikseli karşılaştırmada yoktu); katki-isi'nde canvas sıçraması (yukarıda).
+**HyperFrames (b1, `deneme/SONUC.md`):** beş parça × TR/EN = 10 render (150 kare, 30 fps), `lint` 0 ve `check` 0 bulgu; determinizm kanıtı 5/5 parçada tam: düz Chromium'da ileri/ters/karışık aynı, HyperFrames snapshot'ı ile düz Chromium bayt eşit (3/3), 1 işçi ↔ 2 işçi render'ın 150/150 karesi aynı. Render videoları `deneme/<parça>/out/` içinde (commit'te).
 
-**b1 özeti** (`DURUM-b1.md`'den): `rope-swing` ölçülmüş WIP (JS 15.170 bayt, kendi ölçüm betiği `deneme/araclar/`); `status-orb`, `deneme/` HyperFrames render'ları ve `TASARIM.md` (≤80 satır) sırada.
+**Yol boyunca bulunan ve düzeltilen hatalar**
+- odometre: son hane `t = duration`'da hedefe oturmuyordu; oturma darbesi `transform: scale()` yüzünden pikselde önceki kareye bağlıydı (b1'in HyperFrames kanıtı buldu, `font-size` darbesiyle giderildi); rakam sütunu bir rakama dar kalıyordu (`check` buldu).
+- katki-isi: 140 ayrı `roundRect` çağrısı `seek`'te 55–96 ms sıçrama yapıyordu, toplu yolla 0,7 ms.
+- canvas/DOM metninde `unicode-range` alt kümeleri tembel yükleniyordu (`İ ş ü` ilk çizimde yedek yazı tipiyle çıkabiliyordu); metin önceden yükleniyor.
+- vitrinde rope-swing satırı `NaN ms` / "tutarsız" yazıyordu (farklı `olcum.json` biçimi); düzeltildi.
+- `performance.now()` doğrudan okunuyordu; rAF zaman damgasına çevrildi.
+- Ölçüm betiğinde birkaç test hatası (klavye durumu, reduced-motion yuvarlama, canvas pikseli karşılaştırmada yoktu, son faz zamanları denenmiyordu).
 
-**Vitrin düzeltmesi (00:20):** `index.html` rope-swing kartında ölçüm satırı `NaN ms` ve "tutarsız" yazıyordu: kart yalnız benim `olcum.json` anahtarlarımı okuyordu, rope-swing'in biçimi farklıydı. İki biçimi de okuyacak şekilde düzeltildi ve dört kartın satırları tarayıcıda doğrulandı. Ayrıca görünmeyen kartlar artık son kareyle bekliyor, ekrana girince baştan oynuyor.
+**Devam eden:** b1 Firefox 155 ve WebKit 26.6 ile çapraz motor koşusu yapıyor (kilit onda); sonucu gelince `OLCUM.md` ve README'ye işlenecek.
 
-**Kare bütçesi (çözüldü):** `status-orb` `seek` JS ort. 4,711 / en çok 41,6 ms idi; b1 parçacıkları 10 saydamlık kümesinde tek yolda çizince 0,87 / 2,8 ms oldu (`OLCUM.md`'deki otomatik uyarı kalktı). b1 ayrıca kendi ölçüm betiğinde `getImageData` döngülerinin birbirine sızan 600 ms'lik sahte uç değerini buldu ve düzeltti. `katki-isi` betiğim `getImageData` kullanmıyor; orada sıçrama tek başına düz `fillRect` deneyinde de görüldü ve toplu yolla 0,7 ms'ye indi. 2200 parçacıkla zayıf cihaz ölçülmedi.
+**Ölçülmedi:** gerçek telefon/dokunmatik cihaz, düşük güçlü cihaz, HyperFrames'te donanım GPU modu, Linux/macOS, 5 sn'den uzun render, ses. `deneme/<parça>/` türev kopyaları (gitignore'da) SPDX başlığı eklenmeden önceki `odometer.js`/`prompt-terminal.js`/`katki-isi.js` ile üretildi; fark yalnız bir yorum satırı.
 
-**Bitti (vitrin):** beş parça da `index.html`'de (görünmeyen kartlar son kareyle bekliyor, ekrana girince baştan oynuyor); `status-orb` b1'den hazır geldi, commit'lendi.
+**Sıradaki:** çapraz motor sonucunu işlemek. Yeni parça açmak YONLENDIRME'de yok: b1 `ilerleme-halkasi` (yüzde dolan halka) önerdi, karar gözetim oturumunun.
 
-**HyperFrames (b1, 00:30 itibarıyla):** `deneme/<parça>/out/` altında beş parça × TR/EN = 10 `.mp4` üretilmiş (toplam ~14 MB), `kos.mjs` hâlâ çalışıyor ve işlem kilidini tutuyor; bu dosyaları ben henüz açıp doğrulamadım. `odometer` için `b1`'in `check` raporu 1 yerleşim hatası (rakam sütunu 4 px dar) + 9 uyarı verdi; `odometer.js`'te sütunu en geniş rakama göre ölçen düzeltme yazıldı ama henüz Chromium'la doğrulanmadı ve commit edilmedi.
-
-**Çözüldü (odometre piksel determinizmi):** b1'in `deneme/KANIT.json`'ı odometrede `t = 3,3 sn`'de (oturma darbesi) farklı önceki karelerden gelinince farklı piksel gösterdi (PSNR 55,48 dB, DOM aynı). Yazı tipi hipotezim yanlıştı. Dört varyant denendi (5 önceki durum × 10 zaman): darbeyi `transform: scale()` yerine satırın `font-size` yüzdesiyle yapmak 0 fark verdi, maskeyi kaldırmak daha kötüydü. Uygulandı; `olc.mjs` artık son faz dahil 7 zaman noktasını 4 farklı önceki durumdan deniyor ve üç parçada da fark yok. Aynı turda: odometre sütunu en geniş rakama göre ölçülüyor (b1'in `check` yerleşim hatası), `katki-isi` canvas metni ve `prompt-terminal` metni için yazı tipi alt kümeleri önceden yükleniyor (Türkçe `İ/ş/ü` ilk çizimde yedek yazı tipiyle çıkabiliyordu). b1'den `deneme/odometer` (ve metin kullanan öbür parçalar) için `hazirla` + `check` + `kanit` + render'ı yenilemesi istendi; eski render'lar eski `odometer.js` ile alınmıştı.
-
-**Sıradaki:** b1'in `deneme/` HyperFrames render'ı bitince sonuçları (render süresi, kare karşılaştırması, ya da neden olmadığı) `DURUM.md`'ye ve README'ye işlemek; `TASARIM.md` yeni sürümü gelince ayrı commit; `OLCUM.md` yenileme. Render sırasında Chromium açılmıyor.
-
-**Takılma yok.** Ağır işler `.agir-is.kilit` ile sıralanıyor.
+**Takılma yok.**
