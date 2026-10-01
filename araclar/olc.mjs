@@ -161,7 +161,16 @@ if (name === 'kodDiff') {
     if (new Set(hs).size > 1) farkli.push(+t.toFixed(3));
   }
   const cokenSatir = await page.evaluate(() => { window.inst.seek(window.inst.duration); return Array.from(document.querySelectorAll('.frk-kd-r')).filter((r) => r.getBoundingClientRect().height < 0.5).length; });
-  out.kod_diff = { varsayilan_mod_son_kare: son, apply_modu: { piksel_farkli_olan_t: farkli, son_karede_cokmus_satir: cokenSatir, sure_sn: +dur.toFixed(3) } };
+  const ozel = await page.evaluate(() => {
+    const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
+    const diff = [{ k: 'ctx', text: 'a' }, { k: 'del', text: 'x' }, { k: 'add', text: 'y '.repeat(60).trim() }, { k: 'add', text: '' }, { k: 'ctx', text: 'b' }];
+    const i = FRKComponents.kodDiff.mount(d, { diff, title: 'ozel.js', locale: 'en' }); const sure = i.duration; i.seek(i.duration);
+    const kutu = d.getBoundingClientRect(), satirlar = Array.from(d.querySelectorAll('.frk-kd-r')), uzun = satirlar[2].querySelector('.frk-kd-c');
+    const r = { satir_sayisi: satirlar.length, sayac: d.querySelector('.frk-kd-bar b').textContent.trim(), baslik: d.querySelector('.frk-kd-bar span').textContent,
+      aria_basi: d.getAttribute('aria-label').slice(0, 44), uzun_satir_kesildi: uzun.scrollWidth > uzun.clientWidth, satirlar_kutu_icinde: satirlar.every((x) => x.getBoundingClientRect().right <= kutu.right + 0.5), sure_sn: +sure.toFixed(3) };
+    i.destroy(); d.remove(); return r;
+  });
+  out.kod_diff = { ozel_diff: ozel, varsayilan_mod_son_kare: son, apply_modu: { piksel_farkli_olan_t: farkli, son_karede_cokmus_satir: cokenSatir, sure_sn: +dur.toFixed(3) } };
   await ctx.close();
 }
 

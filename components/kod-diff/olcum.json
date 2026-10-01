@@ -1,10 +1,10 @@
 {
-  "olculdu": "2026-10-01T22:08:16.579Z",
+  "olculdu": "2026-10-01T22:33:40.087Z",
   "hedef": "D:/Repolar/frk-components/components/kod-diff/demo.html",
   "bilesen": "kodDiff",
   "boyut": {
-    "js_bayt": 12601,
-    "js_gzip_bayt": 4671,
+    "js_bayt": 12655,
+    "js_gzip_bayt": 4688,
     "demo_html_bayt": 7366,
     "hedef_bayt": 51200
   },
@@ -16,8 +16,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 40,
-    "lcp_ms": 72,
+    "fcp_ms": 144,
+    "lcp_ms": 252,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -46,6 +46,15 @@
   },
   "konsol_hatasi": [],
   "kod_diff": {
+    "ozel_diff": {
+      "satir_sayisi": 5,
+      "sayac": "+2 −1",
+      "baslik": "ozel.js",
+      "aria_basi": "ozel.js: 2 lines added, 1 line removed. Remo",
+      "uzun_satir_kesildi": true,
+      "satirlar_kutu_icinde": true,
+      "sure_sn": 4.283
+    },
     "varsayilan_mod_son_kare": {
       "satir_sayisi": 11,
       "sayac_metni": "+4 −1",
@@ -58,11 +67,11 @@
     }
   },
   "performans": {
-    "seek_ort_ms": 0.02,
-    "seek_max_ms": 0.4,
+    "seek_ort_ms": 0.024,
+    "seek_max_ms": 1.1,
     "canli_kare_sayisi": 318,
-    "kare_araligi_ort_ms": 16.67,
-    "kare_araligi_p95_ms": 17.9,
+    "kare_araligi_ort_ms": 16.65,
+    "kare_araligi_p95_ms": 18,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },

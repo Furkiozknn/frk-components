@@ -58,14 +58,15 @@ Renk ve yazı tipi: `--frk-kd-bg`, `--frk-kd-fg`, `--frk-kd-dim`, `--frk-kd-add`
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
-| `kod-diff.js` | 12.601 bayt, gzip 4.671 bayt (hedef ≤ 51.200) / 12,601 bytes, gzip 4,671 (target ≤ 51,200) |
+| `kod-diff.js` | 12.655 bayt, gzip 4.688 bayt (hedef ≤ 51.200) / 12,655 bytes, gzip 4,688 (target ≤ 51,200) |
 | `demo.html` | 7.366 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM aynı; 7 zaman noktasında (son faz dahil), her biri 4 farklı önceki durumdan gelinince alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM; screenshots at 7 times (incl. the final phase), each reached from 4 different previous states, are byte-identical; same seed same, different seed differs |
 | `apply` modu / mode | Aynı piksel karşılaştırması `apply` modunda da aynı (7 zaman, 4 önceki durum); son karede 1 satır çökmüş, süre 5,432 sn (varsayılan modda 5,282 sn) / the same pixel comparison passes in `apply` mode; 1 row collapsed on the final frame, length 5.432 s (5.282 s in the default mode) |
+| Özel `diff` / custom `diff` | 5 satırlık özel değişiklik (biri 119 karakterlik uzun satır, biri boş satır): son karede 5 satır, sayaç "+2 −1", başlık "ozel.js", uzun satır sağdan kesiliyor, hiçbir satır kutudan taşmıyor; EN `aria-label` tekil/çoğul doğru / a 5-line custom change (one 119-character line, one empty line): 5 rows on the final frame, counter "+2 −1", the long line is clipped on the right and no row overflows the box; the EN `aria-label` has correct singular/plural |
 | Son kare / Final frame | 11 satır, sayaç "+4 −1"; `aria-label` "src/hero.js dosyasında 4 satır eklendi, 1 satır silindi. Ekl…" / 11 rows, counter "+4 −1" |
-| `seek` maliyeti / cost | ort. 0,02 ms, en çok 0,4 ms (600 çağrı) / avg 0.02 ms, max 0.4 ms (600 calls) |
-| Canlı kare aralığı / live frame gap | ort. 16,67 ms, p95 17,9 ms, 318 kare (hedef 16,7) / avg 16.67 ms, p95 17.9 ms, 318 frames |
-| İlk boyama / first paint | FCP 40 ms, LCP 72 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | ort. 0,024 ms, en çok 1,1 ms (600 çağrı) / avg 0.024 ms, max 1.1 ms (600 calls) |
+| Canlı kare aralığı / live frame gap | ort. 16,65 ms, p95 18 ms, 318 kare (hedef 16,7) / avg 16.65 ms, p95 18 ms, 318 frames |
+| İlk boyama / first paint | FCP 144 ms, LCP 252 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | 390 px | Chromium mobil emülasyonu: yatay taşma yok, en küçük dokunma hedefi 44 px, axe 0 ihlal / Chromium mobile emulation: no horizontal overflow, smallest touch target 44 px, axe 0 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → tohum → mod; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → seed → mode; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause |
@@ -74,7 +75,7 @@ Renk ve yazı tipi: `--frk-kd-bg`, `--frk-kd-fg`, `--frk-kd-dim`, `--frk-kd-add`
 ## Sınırlar / Limits
 
 - Yalnız Chromium'da ölçüldü (Firefox/WebKit çapraz motor koşusu bu parçayı kapsamıyor). / Measured in Chromium only (the cross-engine run does not cover this part).
-- Satırlar kaydırılmaz ve kırılmaz: `cols` sütundan uzun satır sağdan kesilir. Özel `diff` yolu (kendi satırların) ölçüm koşusunda denenmedi; yalnız varsayılan örnek denendi. / Lines do not wrap: a line longer than `cols` is clipped on the right. The custom-`diff` path was not covered by the run; only the default sample was.
+- Satırlar kaydırılmaz ve kırılmaz: `cols` sütundan uzun satır sağdan kesilir. Özel `diff` yolu tek bir 5 satırlık örnekle denendi; başka dil ve yapıdaki kodlar denenmedi. / The custom-`diff` path was tried with one 5-line example; other languages or structures were not.
 - Söz dizimi renklendirmesi yoktur. / There is no syntax highlighting.
 - HyperFrames'te render **denenmedi** (`deneme/` altında bu parça için kompozisyon yok). / HyperFrames render was **not tried** (there is no composition for this part under `deneme/`).
 

@@ -8,7 +8,7 @@ Ortam: Chromium 153.0.8010.12, başsız, bu makine (Windows 11, masaüstü gör�
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | ilerleme-halkasi | 10.665 | 4.164 | 48 | 96 | 0,07 / 0,4 | 16,66 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
 | katki-isi | 9.966 | 3.950 | 32 | 72 | 0,138 / 1,3 | 16,56 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
-| kod-diff | 12.601 | 4.671 | 40 | 72 | 0,02 / 0,4 | 16,67 / 17,9 | 0 | evet | evet | evet | evet | evet | 0 |
+| kod-diff | 12.655 | 4.688 | 144 | 252 | 0,024 / 1,1 | 16,65 / 18 | 0 | evet | evet | evet | evet | evet | 0 |
 | odometer | 8.236 | 3.322 | 108 | 180 | 0,026 / 1,1 | 16,67 / 17,6 | 0 | evet | evet | evet | evet | evet | 0 |
 | prompt-terminal | 10.102 | 3.907 | 36 | 56 | 0,015 / 0,2 | 16,64 / 17,7 | 0 | evet | evet | evet | evet | evet | 0 |
 | rope-swing | 15.605 | 5.725 | 32 | 52 | 0,067 / 0,9 | 16,66 / 17,9 | 0 | evet | evet | evet | evet | evet | 0 |
@@ -26,12 +26,13 @@ Kaynak: deneme/CAPRAZ-MOTOR.json (b1 oturumunun betiği deneme/araclar/capraz-mo
 |---|---|---|---|
 | ilerleme-halkasi | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 37,1–38,8 dB | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR hesaplanamadı (kare boyutu 480x480 ↔ 480x482) |
 | katki-isi | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 39,6–42,7 dB | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 28,9–33,6 dB |
+| kod-diff | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 23,8–26,7 dB | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 24,4–27,2 dB |
 | odometer | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 24,5–27,7 dB | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 25,2–27,8 dB |
 | prompt-terminal | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 23,6–34,5 dB | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>PSNR 17,6–34 dB |
 | rope-swing | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>durum JSON Chromium ile aynı<br>PSNR 42,4–50,4 dB | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>durum JSON Chromium ile aynı<br>PSNR hesaplanamadı (kare boyutu 648x365 ↔ 648x367) |
 | status-orb | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>durum JSON Chromium ile aynı<br>PSNR 49,1–51,4 dB | determinizm evet<br>axe 0<br>konsol hatası 0<br>reduced-motion evet<br>durum JSON Chromium ile aynı<br>PSNR hesaplanamadı (kare boyutu 480x480 ↔ 480x482) |
 
-Determinizm her motorun kendi içindedir (8 zaman noktası, ileri/ters/karışık sırada piksel ve durum aynı). Motorlar arası piksel eşitliği beklenmez ve yoktur (yazı tipi ve kenar yumuşatma farkı); PSNR yalnız farkın büyüklüğünü gösterir. Kare boyutu iki motorda 2 px farklı çıktığında PSNR hesaplanamadı. **Bu koşuda yok:** kod-diff (çapraz motor koşusuna alınmadı).
+Determinizm her motorun kendi içindedir (8 zaman noktası, ileri/ters/karışık sırada piksel ve durum aynı). Motorlar arası piksel eşitliği beklenmez ve yoktur (yazı tipi ve kenar yumuşatma farkı); PSNR yalnız farkın büyüklüğünü gösterir. Kare boyutu iki motorda 2 px farklı çıktığında PSNR hesaplanamadı.
 
 ## Yöntem
 

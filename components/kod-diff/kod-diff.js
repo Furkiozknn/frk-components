@@ -33,7 +33,7 @@
   ];
   const T = {
     tr: { title: 'src/hero.js · örnek diff', label: (f, a, d, body) => f + ' dosyasında ' + a + ' satır eklendi, ' + d + ' satır silindi. ' + body, add: 'Eklenen: ', del: 'Silinen: ' },
-    en: { title: 'src/hero.js · sample diff', label: (f, a, d, body) => f + ': ' + a + ' lines added, ' + d + ' lines removed. ' + body, add: 'Added: ', del: 'Removed: ' },
+    en: { title: 'src/hero.js · sample diff', label: (f, a, d, body) => f + ': ' + a + (a === 1 ? ' line' : ' lines') + ' added, ' + d + (d === 1 ? ' line' : ' lines') + ' removed. ' + body, add: 'Added: ', del: 'Removed: ' },
   };
 
   const CSS =

@@ -41,6 +41,7 @@ Başka prompt yok: kod bu yönlendirmeden, önceki parçalardan ve `TASARIM.md` 
 ## Yol boyunca bulunan hatalar
 
 1. **DOM metni geçmişe bağlıydı.** İlk ölçümde piksel karşılaştırması geçti ama `dom_ileri_geri_karisik_esit` `false` çıktı: satırların `style` özniteliği tek tek özellik atanarak yazılıyordu ve özelliklerin sırası ilk yazılış sırasına bağlı kalıyordu (aynı değerler, farklı metin). Stil, satır başına tek seferde ve sabit sırayla `cssText` olarak yazılıyor; ölçüm yeniden koşuldu, DOM ve piksel eşit.
+2. **İngilizce etikette "1 lines removed".** Özel `diff` denemesinde `aria-label` tekil sayıyı çoğul yazıyordu; tekil/çoğul ayrıldı.
 
 ## Kullanım
 
@@ -71,5 +72,5 @@ FRKComponents.kodDiff.mount(el, { diff: [
 ## Sınırlar
 
 - Ölçümler başsız Chromium 153, bu makine, masaüstü. Telefon ve Safari **ölçülmedi**; çapraz motor (Firefox/WebKit) koşusu bu parçayı kapsamıyor.
-- Özel `diff` yolu ölçüm koşusunda denenmedi; yalnız varsayılan örnek (`diff` ve `apply` modları) denendi.
+- Özel `diff` yolu tek bir 5 satırlık örnekle denendi (uzun satır kesiliyor, kutudan taşan satır yok); varsayılan örnek iki modda denendi. Başka dil ve yapıdaki kodlar denenmedi.
 - HyperFrames'te render **bu parça için denenmedi**; `deneme/` altı `b1` oturumunun işi.
