@@ -9,6 +9,7 @@ const dizin = join(kok, 'components');
 const tr = (x, d = 3) => new Intl.NumberFormat('tr', { maximumFractionDigits: d }).format(x);
 const kb = (b) => tr(b / 1024, 1);
 const rows = [];
+const uyari = [];
 for (const ad of readdirSync(dizin).sort()) {
   const f = join(dizin, ad, 'olcum.json');
   if (!existsSync(f)) { rows.push({ ad, yok: true }); continue; }
@@ -29,6 +30,7 @@ for (const r of rows) {
   const klavye = k.oynat_enter
     ? k.oynat_enter[2] && k.r_bastan_oynatir && k.kaydirici_oynatmayi_durdurur && k.tab_sirasi.slice(0, 5).every((x) => x !== 'BODY')
     : k.bosluk_basili ? k.bosluk_basili.hooked && !k.bosluk_birakildi.hooked && k.p_ikinci_basis_oynuyor : null;
+  if (sMax > 16.7) uyari.push(`- \`${r.ad}\`: seek en çok ${tr(sMax, 1)} ms; tek kare bütçesi (16,7 ms) aşılıyor${p.seek_js_ms?.p95 != null ? ` (p95 ${tr(p.seek_js_ms.p95, 1)} ms)` : ''}. Ortalama kare aralığı yine de ${tr(p.kare_araligi_ort_ms, 2)} ms.`);
   tablo.push(`| ${r.ad} | ${tr(m.boyut.js_bayt, 0)} | ${tr(m.boyut.js_gzip_bayt, 0)} | ${tr(m.ilk_boyama.fcp_ms, 0)} | ${tr(m.ilk_boyama.lcp_ms, 0)} | ${tr(sAvg)} / ${tr(sMax, 1)} | ${tr(p.kare_araligi_ort_ms, 2)} / ${tr(p.kare_araligi_p95_ms, 1)} | ${axe} | ${ok(dom)} | ${ok(pix.every(Boolean))} | ${ok(d.tohum_ayni_ayni && d.tohum_farkli_farkli)} | ${ok(m.reduced_motion.son_kare_gosterildi && m.reduced_motion.animasyon_yok)} | ${klavye === null ? 'bkz. olcum.json' : ok(klavye)} | ${m.konsol_hatasi.length} |`);
 }
 const tarayici = [...new Set(rows.filter((r) => r.m).map((r) => r.m.tarayici))].join(', ');
@@ -40,7 +42,7 @@ Ortam: ${tarayici}, başsız, bu makine (Windows 11, masaüstü görünüm 900×
 
 ${tablo.join('\n')}
 
-Notlar: \`rope-swing\` canvas olduğundan "DOM determinizmi" sütunu onda oyun durumunun (JSON) ileri/ters/karışık karşılaştırmasıdır, "seek" sütunu yalnız JS tarafıdır (canvas boşaltma ayrıca \`olcum.json\`'da); ölçümü \`b1\` oturumunun kendi betiğiyle alınmıştır.
+Notlar: \`rope-swing\` ve \`status-orb\` canvas olduklarından "DOM determinizmi" sütunu onlarda oyun/durum kaydının (JSON) ileri/ters/karışık karşılaştırmasıdır, "seek" sütunu yalnız JS tarafıdır (canvas boşaltma ayrıca \`olcum.json\`'da); ölçümleri \`b1\` oturumunun kendi betiğiyle alınmıştır.${uyari.length ? '\n\n**Kare bütçesi uyarıları:**\n' + uyari.join('\n') : ''}
 
 Hedefler (TASARIM.md §6): JS ≤ 51.200 bayt, LCP ≤ 2500 ms, ortalama kare ≤ 16,7 ms, axe ihlali 0.
 

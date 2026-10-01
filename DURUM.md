@@ -2,7 +2,7 @@
 
 Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`.
 
-## 02.10.2026 00:20 [YEDEK]
+## 02.10.2026 00:30 [YEDEK]
 
 **Bitti** (hepsi GitHub'da, private `Furkiozknn/frk-components`, `main` ile senkron)
 - `TASARIM.md` (b1 ≤80 satıra indirecek), Parça 1 `odometer`, Parça 2 `prompt-terminal`, Parça 5 `katki-isi`: her biri tek JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json`.
@@ -21,6 +21,8 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 
 **Vitrin düzeltmesi (00:20):** `index.html` rope-swing kartında ölçüm satırı `NaN ms` ve "tutarsız" yazıyordu: kart yalnız benim `olcum.json` anahtarlarımı okuyordu, rope-swing'in biçimi farklıydı. İki biçimi de okuyacak şekilde düzeltildi ve dört kartın satırları tarayıcıda doğrulandı. Ayrıca görünmeyen kartlar artık son kareyle bekliyor, ekrana girince baştan oynuyor.
 
-**Sıradaki:** `status-orb` b1'de WIP (JS, demo, olcum.json var; README/RECETE yok) ve WIP olarak commit'lendi; b1 "hazır" deyince `status-orb` kartını index'e ekleyip push; `OLCUM.md` yenileme; `TASARIM.md` yeni sürümü gelince ayrı commit. Beklerken: `index.html` ilk-kare davranışı (görünmeyen kartlar `t = 0` karesinde bekliyor) gözden geçirilebilir.
+**Kare bütçesi uyarısı (`OLCUM.md` üretici otomatik yazıyor):** `status-orb` `seek` JS ort. 4,711 ms, en çok 41,6 ms (p95 37,3 ms): tek karede 16,7 ms bütçesi aşılıyor, canlı kare aralığı ortalaması yine 16,57 ms. `katki-isi`'nde aynı belirti çizim çağrılarını tek yolda toplayınca 55–96 ms → 0,7 ms'ye indi; b1'e bildirildi, karar onun. 2200 parçacık zayıf cihazda ölçülmedi.
+
+**Sıradaki:** `status-orb` (b1, hazır, ölçülmüş) commit'lendi ve vitrine kart olarak eklendi (5 kart; masaüstü ve 390 px'te yatay taşma yok, axe 0, konsol hatası yok); `OLCUM.md` yenileme; `TASARIM.md` yeni sürümü gelince ayrı commit. Beklerken: `index.html` ilk-kare davranışı (görünmeyen kartlar `t = 0` karesinde bekliyor) gözden geçirilebilir.
 
 **Takılma yok.** Ağır işler `.agir-is.kilit` ile sıralanıyor.

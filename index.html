@@ -29,6 +29,7 @@
 <script src="components/prompt-terminal/prompt-terminal.js"></script>
 <script src="components/katki-isi/katki-isi.js"></script>
 <script src="components/rope-swing/rope-swing.js"></script>
+<script src="components/status-orb/status-orb.js"></script>
 <script>
 (function () {
   // Yeni parça = bu listeye bir satır. js: dosya, g: FRKComponents altındaki ad, o: mount seçenekleri.
@@ -36,14 +37,15 @@
     { id: 'odometer', g: 'odometer', dir: 'components/odometer', js: 'odometer.js', o: (l) => ({ value: 167829, locale: l }) },
     { id: 'prompt-terminal', g: 'promptTerminal', dir: 'components/prompt-terminal', js: 'prompt-terminal.js', o: (l) => ({ locale: l }) },
     { id: 'rope-swing', g: 'ropeSwing', dir: 'components/rope-swing', js: 'rope-swing.js', ar: '16/9', o: (l) => ({ locale: l }) },
+    { id: 'status-orb', g: 'statusOrb', dir: 'components/status-orb', js: 'status-orb.js', o: (l) => ({ locale: l }) },
     { id: 'katki-isi', g: 'katkiIsi', dir: 'components/katki-isi', js: 'katki-isi.js', o: (l) => ({ locale: l }) },
   ];
   const T = {
     tr: {
       tag: '// frk-components · kamuya kapalı depo',
       lead: 'Tek dosya, kütüphanesiz, kare kare sarılabilir arayüz parçaları. Aynı dosya canlı demo, HyperFrames video sahnesi ve kopyalanabilir kod olarak çalışır. Aşağıdaki kartlar parçaların kendisidir, görüntü değil.',
-      name: { odometer: 'Odometre', 'prompt-terminal': 'Prompt terminal', 'katki-isi': 'Katkı ısısı', 'rope-swing': 'Kanca ipi' },
-      desc: { odometer: 'Haneleri soldan sağa sırayla duran sayaç.', 'prompt-terminal': 'Komutun harf harf yazıldığı, çıktının aktığı terminal. Senaryo örnektir.', 'katki-isi': 'Zamanla dolan katkı ısı haritası. Veri örnek veridir.', 'rope-swing': 'Boşluk ya da dokunuşla kancayı tut, bırakınca fırla. Otopilot kendi başına oynar.' },
+      name: { odometer: 'Odometre', 'prompt-terminal': 'Prompt terminal', 'katki-isi': 'Katkı ısısı', 'rope-swing': 'Kanca ipi', 'status-orb': 'Durum küresi' },
+      desc: { odometer: 'Haneleri soldan sağa sırayla duran sayaç.', 'prompt-terminal': 'Komutun harf harf yazıldığı, çıktının aktığı terminal. Senaryo örnektir.', 'katki-isi': 'Zamanla dolan katkı ısı haritası. Veri örnek veridir.', 'rope-swing': 'Boşluk ya da dokunuşla kancayı tut, bırakınca fırla. Otopilot kendi başına oynar.', 'status-orb': 'Dört durumlu parçacık küresi: dinliyor, düşünüyor, arıyor, bitti. Tohumlu ve deterministik.' },
       demo: 'Canlı demo', code: 'Kod', recipe: 'Reçete', replay: 'Baştan oynat',
       noMeas: 'olcum.json okunamadı. Dosya doğrudan (file://) açıldıysa tarayıcı okumayı engeller; bir HTTP sunucusundan açın.',
       size: 'Boyut', kb: 'KB', gz: 'gzip', seek: 'seek maliyeti', ms: 'ms', axe: 'axe-core ihlali', det: 'Determinizm', detOk: 'ileri, geri, karışık sıra aynı kare', detNo: 'tutarsız',
@@ -53,8 +55,8 @@
     en: {
       tag: '// frk-components · private repo',
       lead: 'Single-file, dependency-free UI parts that can be wrapped frame by frame. The same file works as a live demo, a HyperFrames video scene and copyable code. The cards below are the parts themselves, not images.',
-      name: { odometer: 'Odometer', 'prompt-terminal': 'Prompt terminal', 'katki-isi': 'Contribution heat', 'rope-swing': 'Rope swing' },
-      desc: { odometer: 'A counter whose digits stop one by one, left to right.', 'prompt-terminal': 'A terminal where the command types out and the output streams. The script is a sample.', 'katki-isi': 'A contribution heat map that fills over time. The data is sample data.', 'rope-swing': 'Hold Space or touch to hook, release to fly. The autopilot plays on its own.' },
+      name: { odometer: 'Odometer', 'prompt-terminal': 'Prompt terminal', 'katki-isi': 'Contribution heat', 'rope-swing': 'Rope swing', 'status-orb': 'Status orb' },
+      desc: { odometer: 'A counter whose digits stop one by one, left to right.', 'prompt-terminal': 'A terminal where the command types out and the output streams. The script is a sample.', 'katki-isi': 'A contribution heat map that fills over time. The data is sample data.', 'rope-swing': 'Hold Space or touch to hook, release to fly. The autopilot plays on its own.', 'status-orb': 'A particle orb with four states: listening, thinking, searching, done. Seeded and deterministic.' },
       demo: 'Live demo', code: 'Code', recipe: 'Recipe', replay: 'Play again',
       noMeas: 'olcum.json could not be read. If the page was opened directly (file://) the browser blocks it; open it from an HTTP server.',
       size: 'Size', kb: 'KB', gz: 'gzip', seek: 'seek cost', ms: 'ms', axe: 'axe-core violations', det: 'Determinism', detOk: 'same frame forward, reverse, shuffled', detNo: 'inconsistent',
