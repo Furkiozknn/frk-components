@@ -109,7 +109,7 @@ S('**Video uyumu**',
   'Ölçek: ' + hfParca + ' ↔ 405 öğe. Rakip raporu katalog öğesinde ölçüm/yapım kaydı alanı olmadığını söylüyor; kare determinizmi kanıtı araştırılmadı: ölçülmedi. Şema uyumu bizde yok; kataloğa PR ikinci aşamada, Furki\'ye sorulur. Aynı dosya hem canlı demo hem render olarak çalışıyor.');
 S('**"Nasıl yapıldı" katmanı**',
   'Rauno Freiberg: $249, 23 bölüm, indirilebilir kaynak. Emil Kowalski: animations.dev (13.000+ tamamlayan beyanı, 15 AI skill/prompt), skills deposu 42.665★. Codrops: makale + demo + kod.',
-  sayi((p) => p.receteVar) + '/' + N + ' parçada RECETE.md, ' + sayi((p) => p.promptKaydi) + '/' + N + ' tanesinde "Prompt kaydı" bölümü; ücretsiz, depoda. Prompt kaydı, oturumdaki ham girdilerdir (başlatan mesaj ve YONLENDIRME.md'deki ilgili madde); ayrı bir sohbet dökümü değildir. Yolda bulunan hataları anlatan bölüm: ' + sayi((p) => p.hataBolumu) + '/' + N + '.',
+  sayi((p) => p.receteVar) + '/' + N + ' parçada RECETE.md, ' + sayi((p) => p.promptKaydi) + '/' + N + ' tanesinde "Prompt kaydı" bölümü; ücretsiz, depoda. Prompt kaydı, oturumdaki ham girdilerdir (başlatan mesaj ve YONLENDIRME.md içindeki ilgili madde); ayrı bir sohbet dökümü değildir. Yolda bulunan hataları anlatan bölüm: ' + sayi((p) => p.hataBolumu) + '/' + N + '.',
   'Kapsam ve öğretici değer kıyası **ölçülmedi** (rakip içerikleri taranmadı, kalite sayıya dökülmedi). Fark yalnız: bizde her parçanın kendi yapım kaydı ücretsiz ve parçanın yanında.');
 S('**Dil (TR/EN)**',
   'Yok: Türkçe vitrin bulunamadı; incelenen tüm ürün ve fiyat sayfaları yalnız İngilizce.',
