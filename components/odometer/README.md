@@ -50,19 +50,21 @@ Hepsi `araclar/olc.mjs` koşusundan, `olcum.json` dosyasında; zamanlama değerl
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
-| `odometer.js` | 8.236 bayt, gzip 3.322 bayt (hedef ≤ 51.200) / 8,236 bytes, gzip 3,322 (target ≤ 51,200) |
+| `odometer.js` | 8.532 bayt, gzip 3.461 bayt (hedef ≤ 51.200) / 8,532 bytes, gzip 3,461 (target ≤ 51,200) |
 | `demo.html` | 6.702 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM aynı; 7 zaman noktasında (son faz dahil), her biri 4 farklı önceki durumdan (başa, ortaya, süre sonrasına, sona yakın bir ana atlayarak) gelinince alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM; screenshots at 7 times (incl. the final phase), each reached from 4 different previous states (jumping to the start, the middle, past the end and near the end), are byte-identical; same seed same, different seed differs |
+| Çok bileşenli sayfa / multi-component page | `b1`'in 7 bileşenli HyperFrames tanıtım sayfasında (iki odometre örneği dahil) 7 zaman noktası × 7 farklı önceki durum: ekran görüntüsü bayt bayt aynı / on `b1`'s 7-component HyperFrames promo page (two odometer instances included), 7 times × 7 different previous states: byte-identical screenshots |
 | Son değer / Final value | 10 durum (0, 7, 10, 167.829 tr/en, 999.999, 1,234,567, eksi ve ondalık: -5,5 · 1,234.56 · 0,05): görünen hane dizisi `aria-label` ile aynı, son karede ölçek 1 / 10 cases (incl. negative and fraction values): visible digits equal `aria-label`, scale 1 on the final frame |
-| `seek` maliyeti / cost | ort. 0,021 ms, en çok 0,7 ms (600 çağrı) / avg 0.021 ms, max 0.7 ms (600 calls) |
-| Canlı kare aralığı / live frame gap | ort. 16,61 ms, p95 17,7 ms, 145 kare (hedef 16,7) / avg 16.61 ms, p95 17.7 ms, 145 frames |
-| İlk boyama / first paint | FCP 124 ms, LCP 204 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | ort. 0,035 ms, en çok 0,6 ms (600 çağrı) / avg 0.035 ms, max 0.6 ms (600 calls) |
+| Canlı kare aralığı / live frame gap | ort. 16,59 ms, p95 17,9 ms, 145 kare (hedef 16,7) / avg 16.59 ms, p95 17.9 ms, 145 frames |
+| İlk boyama / first paint | FCP 184 ms, LCP 184 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → değer; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları ileri-geri sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → value; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause playback |
 | `prefers-reduced-motion` | Açılışta son kare (`t = 2.4`), 600 ms sonra değişmiyor; normalde oynuyor / final frame on load, unchanged 600 ms later; plays normally otherwise |
 
 ## Sınırlar / Limits
 
+- Basamakların üst/alt kenar solması hücre saydamlığıyla yapılır (`mask-image` ve `will-change` yok); saydam zeminde de çalışır. / The top/bottom fade of the digits uses per-cell opacity (no `mask-image` or `will-change`); it works on transparent backgrounds too.
 - Yalnız Chromium'da ölçüldü; `mask-image` ve `ResizeObserver` kullanılıyor, eski tarayıcılar ölçülmedi. / Measured in Chromium only; `mask-image` and `ResizeObserver` are used, older browsers not measured.
 - Rakamlar Latin (`-u-nu-latn`); Arapça-Hint rakamları için hane şeridi yok. / Latin digits only.
 - Eksi işareti, ayraçlar, önek ve sonek sabit durur; ondalık haneler döner. / Sign, separators, prefix and suffix stay static; fraction digits spin.

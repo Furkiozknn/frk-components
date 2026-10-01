@@ -25,8 +25,8 @@
     'font-variant-numeric:tabular-nums;line-height:1;overflow:hidden}' +
     '.frk-odo-row{display:inline-flex;align-items:flex-start;white-space:nowrap}' +
     '.frk-odo-col{display:inline-block;width:var(--frk-odo-w,1ch);height:' + LH + 'em;overflow:hidden;text-align:center;' +
-    '-webkit-mask-image:linear-gradient(#0000,#000 10%,#000 90%,#0000);mask-image:linear-gradient(#0000,#000 10%,#000 90%,#0000)}' +
-    '.frk-odo-strip{display:block;will-change:transform}' +
+    '}' +
+    '.frk-odo-strip{display:block}' +
     '.frk-odo-strip>i{display:block;height:' + LH + 'em;line-height:' + LH + 'em;font-style:normal}' +
     '.frk-odo-sep{display:inline-block;height:' + LH + 'em;line-height:' + LH + 'em;padding:0 .04em}';
 
@@ -85,12 +85,13 @@
       const strip = document.createElement('span');
       strip.className = 'frk-odo-strip';
       strip.setAttribute('data-layout-ignore', '');   // ekran dışı rakamlar bilerek taşar (HyperFrames yerleşim denetimi)
-      for (let i = 0; i <= 10; i++) strip.appendChild(Object.assign(document.createElement('i'), { textContent: i % 10 }));
+      const cells = [];
+      for (let i = 0; i <= 10; i++) { const ce = Object.assign(document.createElement('i'), { textContent: i % 10 }); strip.appendChild(ce); cells.push(ce); }
       col.appendChild(strip);
       row.appendChild(col);
       k++;
       cols.push({
-        strip,
+        strip, cells,
         digit: +c,
         stop: spin * (0.55 + 0.45 * (k / nd) - rnd() * 0.04),   // soldan sağa, yaklaşık sırayla durur; hiçbiri spin'i aşmaz
         turns: 1 + Math.floor(rnd() * 2),                       // 1–2 tam tur
@@ -134,7 +135,12 @@
         const p = clamp01(t / c.stop);
         const travel = 10 * c.turns + c.digit;
         const pos = p >= 1 ? c.digit : (easeOut(p) * travel) % 10;
-        c.strip.style.transform = 'translate3d(0,' + (-pos * LH).toFixed(4) + 'em,0)';
+        c.strip.style.transform = 'translateY(' + (-pos * LH).toFixed(4) + 'em)';
+        // Kenar solması maske yerine hücre saydamlığıyla: maske/katman çok bileşenli sayfada raster'ı geçmişe bağlıyordu
+        for (let n = 0; n <= 10; n++) {
+          const o = Math.abs(n - pos), v = (o >= 1 ? 0 : o <= 0.15 ? 1 : 1 - (o - 0.15) / 0.85).toFixed(2);
+          if (c.cells[n]._v !== v) { c.cells[n]._v = v; c.cells[n].style.opacity = v; }
+        }
       }
       const q = clamp01((t - lastStop) / SETTLE);
       const sc = t >= lastStop ? 1 + 0.08 * (1 - easeOut(q)) : 1;

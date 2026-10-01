@@ -1,16 +1,6 @@
 {
-  "olculdu": "2026-10-01T22:11:03.217Z",
-  "sure_sn": 5,
+  "olculdu": "2026-10-01T22:42:14.988Z",
   "fps": 30,
-  "zamanlar": [
-    0,
-    0.4,
-    1.2,
-    2.5,
-    3.3,
-    4.1,
-    4.8
-  ],
   "parcalar": {
     "odometer": {
       "tuval": "1080x1080",
@@ -268,6 +258,110 @@
           150
         ],
         "ayni_kare_sayisi": 150
+      }
+    },
+    "kod-diff": {
+      "tuval": "1080x1080",
+      "A_duz_chromium": {
+        "ileri_ters_esit": true,
+        "ileri_karisik_esit": true,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 6,
+        "zaman_sayisi": 7,
+        "sayfa_hatalari": []
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "1.2": {
+          "bayt_esit": true,
+          "boyut_duz": 48724,
+          "boyut_hf": 48724
+        },
+        "2.5": {
+          "bayt_esit": true,
+          "boyut_duz": 50880,
+          "boyut_hf": 50880
+        },
+        "4.8": {
+          "bayt_esit": true,
+          "boyut_duz": 67143,
+          "boyut_hf": 67143
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 20.3
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 14.2
+        },
+        "kare_sayisi": [
+          150,
+          150
+        ],
+        "ayni_kare_sayisi": 150
+      }
+    },
+    "vitrin-tanitim": {
+      "tuval": "1080x1920",
+      "zamanlar": [
+        0.3,
+        2,
+        4.5,
+        8,
+        12.5,
+        19,
+        23,
+        26,
+        29.5
+      ],
+      "A_duz_chromium": {
+        "ileri_ters_esit": false,
+        "ileri_karisik_esit": false,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 9,
+        "zaman_sayisi": 9,
+        "sayfa_hatalari": []
+      },
+      "A2_farkli_zamanlar": {
+        "0.3": {
+          "onceki_t_ileri": 0.3,
+          "onceki_t_ters": 2,
+          "psnr_db": null
+        }
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "0.4": {
+          "bayt_esit": false,
+          "boyut_duz": 81239,
+          "boyut_hf": 81151
+        },
+        "15.8": {
+          "bayt_esit": true,
+          "boyut_duz": 327844,
+          "boyut_hf": 327844
+        },
+        "29.8": {
+          "bayt_esit": false,
+          "boyut_duz": 106331,
+          "boyut_hf": 101056
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 67.7
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 74.7
+        },
+        "kare_sayisi": [
+          900,
+          900
+        ],
+        "ayni_kare_sayisi": 900
       }
     }
   }

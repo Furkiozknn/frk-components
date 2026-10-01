@@ -9,7 +9,7 @@ Ortam: Chromium 153.0.8010.12, başsız, bu makine (Windows 11, masaüstü gör�
 | ilerleme-halkasi | 10.665 | 4.164 | 48 | 96 | 0,07 / 0,4 | 16,66 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
 | katki-isi | 9.966 | 3.950 | 32 | 72 | 0,138 / 1,3 | 16,56 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
 | kod-diff | 12.655 | 4.688 | 144 | 252 | 0,024 / 1,1 | 16,65 / 18 | 0 | evet | evet | evet | evet | evet | 0 |
-| odometer | 8.236 | 3.322 | 108 | 180 | 0,026 / 1,1 | 16,67 / 17,6 | 0 | evet | evet | evet | evet | evet | 0 |
+| odometer | 8.532 | 3.461 | 184 | 184 | 0,035 / 0,6 | 16,59 / 17,9 | 0 | evet | evet | evet | evet | evet | 0 |
 | prompt-terminal | 10.102 | 3.907 | 36 | 56 | 0,015 / 0,2 | 16,64 / 17,7 | 0 | evet | evet | evet | evet | evet | 0 |
 | rope-swing | 15.605 | 5.725 | 32 | 52 | 0,067 / 0,9 | 16,66 / 17,9 | 0 | evet | evet | evet | evet | evet | 0 |
 | status-orb | 11.864 | 4.671 | 28 | 68 | 0,85 / 3 | 16,67 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |

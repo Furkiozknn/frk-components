@@ -1,0 +1,18 @@
+◆  Capturing 12 frames at [0.4s, 1s, 2.2s, 4.5s, 8s, 12.5s, 15.8s, 19.4s, 22.4s, 25.9s, 28.6s, 29.8s] from vitrin-tanitim
+
+   Fonts: 4 loaded
+
+◇  12 snapshots saved to D:\Repolar\frk-components\deneme\vitrin-tanitim\snapshots
+   snapshots\frame-00-at-0.4s.png
+   snapshots\frame-01-at-1s.png
+   snapshots\frame-02-at-2.2s.png
+   snapshots\frame-03-at-4.5s.png
+   snapshots\frame-04-at-8s.png
+   snapshots\frame-05-at-12.5s.png
+   snapshots\frame-06-at-15.8s.png
+   snapshots\frame-07-at-19.4s.png
+   snapshots\frame-08-at-22.4s.png
+   snapshots\frame-09-at-25.9s.png
+   snapshots\frame-10-at-28.6s.png
+   snapshots\frame-11-at-29.8s.png
+   contact-sheet-1..2.jpg (grid view for AI review)

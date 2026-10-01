@@ -101,7 +101,7 @@ if (name === 'odometer') {
   out.deger_dogrulugu = await page.evaluate(() => {
     const read = (d) => Array.from(d.querySelectorAll('.frk-odo-row > *')).map((n) => {
       if (n.classList.contains('frk-odo-sep')) return n.textContent;
-      const m = /translate3d\(0px?,\s*(-?[\d.]+)em/.exec(n.firstChild.style.transform); return String(Math.round(Math.abs(m ? +m[1] : 0) / 1.1)); }).join('');
+      const m = /translate(?:3d\(0px?,\s*|Y\()(-?[\d.]+)em/.exec(n.firstChild.style.transform); return String(Math.round(Math.abs(m ? +m[1] : 0) / 1.1)); }).join('');
     const cases = [[0, 'tr'], [7, 'tr'], [10, 'en'], [167829, 'tr'], [167829, 'en'], [999999, 'tr'], [1234567, 'en'], [-5.5, 'tr', 1], [1234.56, 'en', 2], [0.05, 'tr', 2]];
     return cases.map(([v, loc, dec]) => {
       const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);

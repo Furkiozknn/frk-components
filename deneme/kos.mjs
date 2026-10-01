@@ -9,7 +9,7 @@ import { kilitAl } from './araclar/kilit.mjs';
 
 const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HF = process.env.HYPERFRAMES_CLI || join(homedir(), '.claude/plugins/cache/hyperframes/hyperframes/0.8.85/skills/hyperframes/scripts/plugin-cli.mjs');
-const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi'];
+const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi', 'kod-diff'];
 const parcalar = process.argv[2] === 'hepsi' ? TUM : [process.argv[2]];
 const adimlar = process.argv[3] === 'tumu' ? ['check', 'snapshot', 'render'] : [process.argv[3]];
 
@@ -30,12 +30,12 @@ try {
       mkdirSync(join(kok, 'deneme', p, 'out'), { recursive: true });
       let r;
       if (a === 'check') {
-        r = hf(p, ['check', '--json', '--at', '0.5,1.5,2.5,3.5,4.5', '--no-browser-gpu'], 'check');
+        r = hf(p, ['check', '--json', '--at', process.env.KOS_CHECK_AT || '0.5,1.5,2.5,3.5,4.5', '--no-browser-gpu'], 'check');
         let ozet = '';
         try { const j = JSON.parse(r.cikti); ozet = JSON.stringify(j.summary || j.ozet || { anahtarlar: Object.keys(j) }); } catch { ozet = r.cikti.slice(-300).replace(/\s+/g, ' '); }
         console.log(`[${p}] check kod=${r.kod} ${r.sn} sn ${ozet.slice(0, 400)}`);
       } else if (a === 'snapshot') {
-        r = hf(p, ['snapshot', '.', '--at', '0.2,1.2,2.5,3.7,4.8', '--no-end', '--describe', 'false', '--no-browser-gpu', '-o', 'snapshots'], 'snapshot');
+        r = hf(p, ['snapshot', '.', '--at', process.env.KOS_SNAP_AT || '0.2,1.2,2.5,3.7,4.8', '--no-end', '--describe', 'false', '--no-browser-gpu', '-o', 'snapshots'], 'snapshot');
         console.log(`[${p}] snapshot kod=${r.kod} ${r.sn} sn`);
       } else if (a === 'render' || a === 'render-en') {
         const dil = a === 'render-en' ? 'en' : 'tr';

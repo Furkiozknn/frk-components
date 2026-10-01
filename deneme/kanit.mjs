@@ -7,7 +7,7 @@
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
@@ -18,12 +18,12 @@ const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const req = createRequire(import.meta.url);
 const { chromium } = req(req.resolve('playwright', { paths: [execFileSync('npm', ['root', '-g'], { encoding: 'utf8', shell: true }).trim()] }));
 const HF = join(homedir(), '.claude/plugins/cache/hyperframes/hyperframes/0.8.85/skills/hyperframes/scripts/plugin-cli.mjs');
-const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi'];
+const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi', 'kod-diff'];
 const parcalar = process.argv.slice(2).length ? process.argv.slice(2) : TUM;
-const TIMES = [0, 0.4, 1.2, 2.5, 3.3, 4.1, 4.8];       // saniye; SURE = 5
+const TIMES = process.env.KANIT_TIMES ? process.env.KANIT_TIMES.split(',').map(Number) : [0, 0.4, 1.2, 2.5, 3.3, 4.1, 4.8];   // saniye; 5 sn'lik kompozisyonlar için varsayılan, uzun olanlar için KANIT_TIMES
 const sha = (b) => createHash('sha256').update(b).digest('hex').slice(0, 16);
 const onceki = existsSync(join(kok, 'deneme', 'KANIT.json')) ? JSON.parse(readFileSync(join(kok, 'deneme', 'KANIT.json'), 'utf8')) : null;
-const sonuc = { olculdu: new Date().toISOString(), sure_sn: 5, fps: 30, zamanlar: TIMES, parcalar: onceki ? onceki.parcalar : {} };
+const sonuc = { olculdu: new Date().toISOString(), fps: 30, parcalar: onceki ? onceki.parcalar : {} };
 
 function render(p, workers, cikti) {
   const cwd = join(kok, 'deneme', p);
@@ -43,7 +43,7 @@ try {
     const d = join(kok, 'deneme', p);
     const html = readFileSync(join(d, 'index.html'), 'utf8');
     const w = +/data-width="(\d+)"/.exec(html)[1], h = +/data-height="(\d+)"/.exec(html)[1], id = /data-composition-id="([^"]+)"/.exec(html)[1];
-    const o = { tuval: `${w}x${h}` };
+    const o = { tuval: `${w}x${h}`, zamanlar: TIMES };
 
     // A) düz Chromium'da totalTime(t, false) ile üç sıra
     const ctx = await browser.newContext({ viewport: { width: w, height: h } });
@@ -81,10 +81,11 @@ try {
       }
     }
 
-    // B) HyperFrames snapshot karesi ↔ düz Chromium karesi (snapshots/ içinde 0.2, 1.2, 2.5, 3.7, 4.8 sn)
-    const snap = { '1.2': 'frame-01-at-1.2s.png', '2.5': 'frame-02-at-2.5s.png', '4.8': 'frame-04-at-4.8s.png' };
+    // B) HyperFrames snapshot karesi ↔ düz Chromium karesi (snapshots/ içindeki karelerden ilk, orta ve son)
+    const kareler = readdirSync(join(d, 'snapshots')).map((f) => /^frame-\d+-at-([\d.]+)s\.png$/.exec(f)).filter(Boolean).map((m) => ({ t: m[1], dosya: m[0] })).sort((x, y) => x.t - y.t);
+    const secili = kareler.length > 3 ? [kareler[0], kareler[kareler.length >> 1], kareler[kareler.length - 1]] : kareler;
     o.B_snapshot_ile_karsilastirma = {};
-    for (const [t, dosya] of Object.entries(snap)) {
+    for (const { t, dosya } of secili) {
       await page.evaluate(([k, x]) => { window.__timelines[k].totalTime(x, false); }, [id, +t]);
       const dz = await page.locator('#root').screenshot();
       const hfpng = readFileSync(join(d, 'snapshots', dosya));

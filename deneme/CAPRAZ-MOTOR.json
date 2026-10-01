@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T22:12:55.891Z",
+  "olculdu": "2026-10-01T22:20:22.812Z",
   "not": "Playwright, Windows, başsız. WebKit burada Playwright'ın Windows yapısıdır, Safari değildir.",
   "motorlar": {
     "chromium": "chromium 153.0.8010.12",
@@ -692,6 +692,118 @@
         "kare_boyutu_chromium_ve_motor": [
           "480x480",
           "480x482"
+        ]
+      }
+    },
+    "kod-diff": {
+      "chromium": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 7
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2.64,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 5.28,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        }
+      },
+      "firefox": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 7
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2.64,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 5.28,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          26.7,
+          26.7,
+          26.4,
+          26,
+          25.3,
+          24.7,
+          23.9,
+          23.8
+        ]
+      },
+      "webkit": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 7
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2.64,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 5.28,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          27.2,
+          27.2,
+          26.9,
+          26.8,
+          25.9,
+          25.3,
+          24.4,
+          24.4
         ]
       }
     }

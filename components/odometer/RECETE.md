@@ -50,6 +50,7 @@ Başka prompt yok: kod bu iki girdiden, `TASARIM.md` sözleşmesi ve yukarıdaki
 - **Yazı boyutu `fit()` ile.** Kutuya göre ölçülüyor; yalnız yerleşim, zamanla ilgisi yok. Yazı tipi geç yüklenirse `document.fonts.ready` sonrası yeniden ölçülür.
 - **`prefers-reduced-motion`.** Yalnız `play()` etkilenir: animasyon yerine son kare. `seek(t)` ortamdan bağımsız kalır, çünkü video yakalama ona dayanıyor.
 - **Erişilebilirlik.** Kutu `role="img"` ve son değer `aria-label`; dönen şeritler `aria-hidden`. Ekran okuyucu 40 rakam okumuyor.
+- **Kenar solması hücre saydamlığıyla, maske ve katman yok.** Şerit hücrelerinin saydamlığı konuma göre hesaplanır (hizada 1, yarım kaymada ~0,6, bir hücre uzakta 0). `mask-image`, `translate3d` ve `will-change` kaldırıldı: bunlar ayrı bir render yüzeyi yaratıp, çok bileşenli sayfada raster sonucunu önceki kareye bağlıyordu (aşağıda hata 6). Saydam zeminde de çalışır; zemin rengine bağımlı gradient katmanı yok.
 
 ## Yol boyunca bulunan hatalar
 
@@ -59,6 +60,8 @@ Başka prompt yok: kod bu iki girdiden, `TASARIM.md` sözleşmesi ve yukarıdaki
 
 4. **Oturma darbesi pikselde sıraya bağlıydı.** `b1` oturumunun HyperFrames kanıtında (`deneme/KANIT.json`) odometre, `t = 3,3 sn`'de (darbe aralığı) farklı önceki karelerden gelinince farklı piksel verdi: 55,48 dB PSNR, gözle görünmez ama bayt bayt aynı değil. DOM aynıydı; fark, satırdaki `transform: scale()` ile `mask-image` birleşiminin raster önbelleğinden geliyordu. Benim ölçümüm bunu kaçırmıştı çünkü yalnız üç ortadaki zamanı denemişti. Aynı sayfada dört varyant denendi (5 farklı önceki durum × 10 zaman noktası): mevcut hâlde `t = 0`'da bile fark vardı, maskeyi kaldırmak daha da kötüleştirdi (5 zaman noktasında fark), darbeyi `transform` yerine satırın `font-size` yüzdesiyle yapmak 0 fark verdi. Darbe `font-size`'a taşındı; ölçüm betiği artık son faz dahil 7 zaman noktasını 4 farklı önceki durumdan deniyor.
 5. **Sütun bir rakama dar kalıyordu.** `b1`'in HyperFrames yerleşim denetimi (`check`) League Gothic'te "2" rakamının `1ch`'tan 4 px geniş olduğunu buldu. Sütun genişliği artık 0–9 rakamlarının en genişine göre ölçülüyor; ekran dışı şerit rakamları için `data-layout-ignore` eklendi.
+
+6. **Çok bileşenli sayfada piksel yine geçmişe bağlıydı.** `b1`'in 7 bileşenli HyperFrames tanıtım sayfasında (odometre iki sahnede) aynı `t`'ye farklı yollardan gelince DOM durumu bayt bayt aynı, piksel farklı çıktı; render'larda 1 işçi ↔ 2 işçi 281/900 kare farklıydı (PSNR 52,8 dB üstü, görünmez). Tek başına 5 sn'lik odometre kompozisyonunda ve benim tek/üç bileşenli deneme sayfamda fark çıkmamıştı. Aynı sayfada dört varyant denendi (7 zaman × 7 önceki durum): mevcut hâl 4 zamanda farklıydı; `translate3d`→`translateY` ve `will-change` kaldırmak 1 zamana indirdi; `mask-image`'ı da kaldırmak 0 fark verdi; maskeyi kaldırıp solmayı hücre saydamlığıyla yapmak da 0 fark verdi ve görünümü korudu. Sonuncusu uygulandı. `b1` farklı bir çözüm de önerdi (zemin rengine bağlı iki gradient katmanı); saydam zemini bozacağı için seçilmedi. Ders: raster determinizmini tek bileşenli sayfada denemek yetmez; birden çok bileşenli gerçek kompozisyonda denenmeli.
 
 ## Kullanım
 

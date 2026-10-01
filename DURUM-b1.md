@@ -2,7 +2,7 @@
 
 Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.md`, bu dosya. Git'i YEDEK kullanır.
 
-## 02.10.2026 ~02:05
+## 02.10.2026 ~03:30
 
 **Bitti**
 - Parça 3 `rope-swing`, parça 4 `status-orb`, parça 6 `ilerleme-halkasi`: JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json` (ilk ikisi vitrinde; halka kart bekliyor).
@@ -17,11 +17,15 @@ Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.m
 
 **Yol boyunca bulunan hatalar:** HyperFrames `check` odometrede layout hatası (rakam sütunu 4 px dar; düzeltildi); canvas metninde `unicode-range` alt kümeleri tembel yükleniyordu (`İ ş ü` ilk çizimde yedek yazıyla; `document.fonts.load(font, metin)` ile düzeltildi); ölçüm betiğimde `getImageData` ilk çağrıda önceki kuyruğu boşaltıp 600 ms'lik sahte uç değer üretiyordu (düzeltildi); status-orb'da çok sayıda ayrı `fillRect` komut tamponu sıçraması yapıyordu (tek yolda çizim: seek 4,7 → 0,9 ms).
 
-**Ölçülmedi:** gerçek telefon/dokunmatik, Safari, Firefox; HyperFrames'te donanım GPU modu, Linux/macOS, 5 sn'den uzun render, ses; `duration: Infinity` (status-orb).
+**Ölçülmedi:** gerçek telefon/dokunmatik, gerçek Safari/iOS (Firefox 155 ve WebKit 26.6 Playwright'ta ölçüldü); HyperFrames'te donanım GPU modu, Linux/macOS, 5 sn'den uzun render, ses; `duration: Infinity` (status-orb).
 
 **Çapraz motor** (Chromium 153, Firefox 155.0, WebKit 26.6; Playwright, Windows, başsız; WebKit Safari değil): 3 motor × 6 parça = 18 kombinasyonun hepsinde kendi içinde determinizm, axe 0, konsol hatası yok, reduced-motion; rope-swing fizik durumu üç motorda bit düzeyinde aynı. Ayrıntı `deneme/SONUC.md`, `deneme/CAPRAZ-MOTOR.json`.
 
-**Sıradaki:** `deneme/vitrin-tanitim/` (30 sn, 1080×1920, TR+EN, altı parça sırayla).
+**İkinci tur — bitti:** çapraz motor 3 motor × 7 parça = 21/21; `ilerleme-halkasi` (parça 6) ve `kod-diff` hatta eklendi (7/7 parça: check 0 bulgu, TR+EN render, A/B/C aynı); `deneme/vitrin-tanitim/`: 30 sn, 1080×1920, TR+EN, yedi parça sırayla, 900 kare, `check` 0 bulgu; render TR 6,7 MB, EN 6,9 MB (`out/`).
+
+**Açık bulgu (vitrin-tanitim):** çok bileşenli sayfada kare determinizmi tam değil: giriş sahnesindeki odometre aynı `t`'ye farklı yoldan gelince piksel farklı (DOM aynı); 1 ↔ 2 işçili render'da 619–900/900 kare aynı, farklı kareler ≥ 52,8 dB. Sebep odometrenin katmanları (`translate3d`, `will-change`, `mask-image`); YEDEK'e iletildi, bileşen düzelince videoyu yeniden render edip kanıtlayacağım. Ayrıntı `deneme/SONUC.md` "vitrin-tanitim".
+
+**Sıradaki:** YEDEK'in odometre düzeltmesi → vitrin-tanitim yeniden render + `KANIT.json`.
 
 **Not:** `deneme/*/out/*-w1.mp4` ve `*-w2.mp4` ara render çıktıları (kanıt betiğinin ürettiği, `kanit.mjs` ile yeniden üretilir) her koşudan sonra silindi.
 

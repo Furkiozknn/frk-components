@@ -11,7 +11,7 @@ index.html · README.md · OLCUM.md · DURUM.md · DURUM-b1.md · LICENSE (MIT)
 ```
 
 - `<parca>.js` tek dosya, kütüphanesiz, ilk satırda `SPDX-License-Identifier: MIT`; CSS'i kendi içinden enjekte eder; yazı tipi dosyası gömmez (demo yükler).
-- Parçalar: `odometer`, `prompt-terminal`, `rope-swing`, `status-orb`, `katki-isi`, `ilerleme-halkasi` (+ `kod-diff` yolda). Global ad `FRKComponents.<camelCase>`.
+- Parçalar: `odometer`, `prompt-terminal`, `rope-swing`, `status-orb`, `katki-isi`, `ilerleme-halkasi`, `kod-diff`. Global ad `FRKComponents.<camelCase>`.
 - RECETE.md ham prompt kaydını (düzenlenmeden), adımları, kararları, yol boyunca bulunan hataları ve sınırları taşır.
 
 ## 2. Ortak arayüz

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="tr" data-composition-variables='[{"id":"locale","type":"enum","label":"Dil","default":"tr","options":[{"value":"tr","label":"TR"},{"value":"en","label":"EN"}]}]'>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>frk-components — tanıtım</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+<style>
+@font-face{font-family:"League Gothic";src:url(fonts/league-gothic-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"League Gothic";src:url(fonts/league-gothic-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"JetBrains Mono";src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";src:url(fonts/jetbrains-mono-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+html,body{margin:0;height:100%;background:#0e0d0b}
+#root{position:relative;width:100%;height:100%;overflow:hidden;background:#0e0d0b;color:#f1ece2;font-family:"JetBrains Mono",monospace}
+#grid{position:absolute;inset:0;background-image:linear-gradient(rgba(241,236,226,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(241,236,226,.045) 1px,transparent 1px);background-size:60px 60px}
+#hud{position:absolute;left:96px;width:798px;top:120px;display:flex;justify-content:space-between;font-size:26px;color:#b9b4a8;letter-spacing:.08em;white-space:nowrap}
+#hud i{font-style:normal;color:#ffc21a}
+#prog{position:absolute;left:96px;width:798px;top:1790px;height:6px;background:#1a1712}
+#progfill{height:100%;width:0;background:#ffc21a}
+.sahne{position:absolute;inset:0;opacity:0;visibility:hidden}
+#s0{opacity:1;visibility:visible}
+.etiket{position:absolute;left:96px;top:236px;background:#ffc21a;color:#0e0d0b;padding:6px 16px;font-size:28px;letter-spacing:.1em;white-space:nowrap;opacity:0}
+.baslik{position:absolute;left:96px;top:290px;width:800px;font:400 130px/1 "League Gothic",Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;color:#f1ece2;white-space:nowrap;opacity:0}
+.hook .baslik{top:860px;font-size:150px}
+.kutu{position:absolute}
+.not{position:absolute;left:96px;top:1260px;width:798px;font-size:36px;line-height:1.35;color:#f1ece2;opacity:0}
+.say{position:absolute;left:96px;top:1420px;width:798px;font-size:26px;line-height:1.5;color:#b9b4a8;white-space:pre-line;opacity:0}
+.hook .not{top:1060px}
+.kap .baslik{top:520px;font-size:200px}
+.kap .not{top:760px}
+.kap .say{top:900px}
+#imza{position:absolute;left:96px;top:1560px;font-size:30px;letter-spacing:.1em;color:#ffc21a;opacity:0}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="vitrin-tanitim" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+<div id="grid"></div>
+<div id="hud"><span data-m="hudSol"></span><span id="tc">00:00</span></div>
+<div id="prog"><div id="progfill"></div></div>
+<div class="sahne hook" id="s0">
+<div class="etiket" data-m="hookEtiket"></div>
+<div class="kutu" id="k0" style="left:60px;top:300px;width:960px;height:540px"></div>
+<div class="baslik" data-m="hookBaslik"></div>
+<div class="not" data-m="hookNot"></div>
+</div>
+<div class="sahne" id="s1">
+<div class="etiket" data-m="p0.etiket"></div>
+<div class="baslik" data-m="p0.baslik"></div>
+<div class="kutu" id="k1" style="left:60px;top:540px;width:960px;height:520px"></div>
+<div class="not" data-m="p0.not"></div>
+<div class="say" data-m="p0.say"></div>
+</div>
+<div class="sahne" id="s2">
+<div class="etiket" data-m="p1.etiket"></div>
+<div class="baslik" data-m="p1.baslik"></div>
+<div class="kutu" id="k2" style="left:60px;top:450px;width:960px;height:760px"></div>
+<div class="not" data-m="p1.not"></div>
+<div class="say" data-m="p1.say"></div>
+</div>
+<div class="sahne" id="s3">
+<div class="etiket" data-m="p2.etiket"></div>
+<div class="baslik" data-m="p2.baslik"></div>
+<div class="kutu" id="k3" style="left:60px;top:550px;width:960px;height:540px"></div>
+<div class="not" data-m="p2.not"></div>
+<div class="say" data-m="p2.say"></div>
+</div>
+<div class="sahne" id="s4">
+<div class="etiket" data-m="p3.etiket"></div>
+<div class="baslik" data-m="p3.baslik"></div>
+<div class="kutu" id="k4" style="left:140px;top:430px;width:800px;height:800px"></div>
+<div class="not" data-m="p3.not"></div>
+<div class="say" data-m="p3.say"></div>
+</div>
+<div class="sahne" id="s5">
+<div class="etiket" data-m="p4.etiket"></div>
+<div class="baslik" data-m="p4.baslik"></div>
+<div class="kutu" id="k5" style="left:60px;top:520px;width:960px;height:600px"></div>
+<div class="not" data-m="p4.not"></div>
+<div class="say" data-m="p4.say"></div>
+</div>
+<div class="sahne" id="s6">
+<div class="etiket" data-m="p5.etiket"></div>
+<div class="baslik" data-m="p5.baslik"></div>
+<div class="kutu" id="k6" style="left:140px;top:430px;width:800px;height:800px"></div>
+<div class="not" data-m="p5.not"></div>
+<div class="say" data-m="p5.say"></div>
+</div>
+<div class="sahne" id="s7">
+<div class="etiket" data-m="p6.etiket"></div>
+<div class="baslik" data-m="p6.baslik"></div>
+<div class="kutu" id="k7" style="left:60px;top:450px;width:960px;height:760px"></div>
+<div class="not" data-m="p6.not"></div>
+<div class="say" data-m="p6.say"></div>
+</div>
+<div class="sahne kap" id="s8">
+<div class="etiket" data-m="kapEtiket"></div>
+<div class="baslik" data-m="kapBaslik"></div>
+<div class="not" data-m="kapNot"></div>
+<div class="say" data-m="kapSay"></div>
+<div id="imza" data-m="imza"></div>
+</div>
+</div>
+<script src="odometer.js"></script>
+<script src="prompt-terminal.js"></script>
+<script src="rope-swing.js"></script>
+<script src="status-orb.js"></script>
+<script src="katki-isi.js"></script>
+<script src="ilerleme-halkasi.js"></script>
+<script src="kod-diff.js"></script>
+<script>
+(function () {
+  var DATA = {"tr":{"hudSol":"frk-components","hookEtiket":"CLAUDE CODE İLE","hookBaslik":"FRK-COMPONENTS","hookNot":"7 arayüz parçası. Dokunulabilir, kare kare sarılır.","kapEtiket":"AYNI DOSYA, ÜÇ İŞ","kapBaslik":"TEK DOSYA","kapNot":"Canlı demo · video sahnesi · kopyalanabilir kod.","kapSay":"3 motor × 7 parça: 21/21 geçti\n5 sn'lik parça kompozisyonları, 1 ve 2 işçili render: 7/7 parçada her kare aynı","imza":"FURKİ ÖZKAN · FRK-OS // 2026","p0.etiket":"// 01 · odometer","p0.baslik":"ODOMETRE","p0.not":"Haneler soldan sağa sırayla durur.","p0.say":"8.532 bayt · seek 0,04 ms · axe 0 ihlal","p1.etiket":"// 02 · prompt-terminal","p1.baslik":"PROMPT TERMİNALİ","p1.not":"Komut harf harf yazılır, çıktı satır satır akar.","p1.say":"10.102 bayt · seek 0,01 ms · axe 0 ihlal","p2.etiket":"// 03 · rope-swing","p2.baslik":"KANCA İPİ","p2.not":"Kancayı tut, sallan, bırak: oyun kayıttan oynar.","p2.say":"15.605 bayt · seek 0,07 ms · axe 0 ihlal","p3.etiket":"// 04 · status-orb","p3.baslik":"DURUM KÜRESİ","p3.not":"Dinliyor, düşünüyor, arıyor, bitti.","p3.say":"11.864 bayt · seek 0,85 ms · axe 0 ihlal","p4.etiket":"// 05 · katki-isi","p4.baslik":"KATKI ISISI","p4.not":"Zamanla dolan katkı ızgarası (örnek veri).","p4.say":"9.966 bayt · seek 0,14 ms · axe 0 ihlal","p5.etiket":"// 06 · ilerleme-halkasi","p5.baslik":"İLERLEME HALKASI","p5.not":"Yüzde dolan halka.","p5.say":"10.665 bayt · seek 0,07 ms · axe 0 ihlal","p6.etiket":"// 07 · kod-diff","p6.baslik":"KOD DIFF","p6.not":"Eklenen satır yazılır, silinen üstü çizilir.","p6.say":"12.655 bayt · seek 0,02 ms · axe 0 ihlal"},"en":{"hudSol":"frk-components","hookEtiket":"BUILT WITH CLAUDE CODE","hookBaslik":"FRK-COMPONENTS","hookNot":"7 UI parts. Touchable, and they wind frame by frame.","kapEtiket":"ONE FILE, THREE JOBS","kapBaslik":"ONE FILE","kapNot":"Live demo · video scene · copyable code.","kapSay":"3 engines × 7 parts: 21/21 passed\n5 s part compositions, 1 vs 2 render workers: every frame identical in 7/7 parts","imza":"FURKİ ÖZKAN · FRK-OS // 2026","p0.etiket":"// 01 · odometer","p0.baslik":"ODOMETER","p0.not":"Digits stop one by one, left to right.","p0.say":"8,532 bytes · seek 0.04 ms · axe 0 violations","p1.etiket":"// 02 · prompt-terminal","p1.baslik":"PROMPT TERMINAL","p1.not":"The command types out, the output streams in.","p1.say":"10,102 bytes · seek 0.01 ms · axe 0 violations","p2.etiket":"// 03 · rope-swing","p2.baslik":"ROPE SWING","p2.not":"Hold, swing, release: the game plays from a recording.","p2.say":"15,605 bytes · seek 0.07 ms · axe 0 violations","p3.etiket":"// 04 · status-orb","p3.baslik":"STATUS ORB","p3.not":"Listening, thinking, searching, done.","p3.say":"11,864 bytes · seek 0.85 ms · axe 0 violations","p4.etiket":"// 05 · katki-isi","p4.baslik":"CONTRIBUTION HEAT","p4.not":"A contribution grid that fills over time (sample data).","p4.say":"9,966 bytes · seek 0.14 ms · axe 0 violations","p5.etiket":"// 06 · ilerleme-halkasi","p5.baslik":"PROGRESS RING","p5.not":"A ring that fills to a percentage.","p5.say":"10,665 bytes · seek 0.07 ms · axe 0 violations","p6.etiket":"// 07 · kod-diff","p6.baslik":"CODE DIFF","p6.not":"Added lines type out, removed lines get struck through.","p6.say":"12,655 bytes · seek 0.02 ms · axe 0 violations"}};
+  var hf = window.__hyperframes, V = (hf && hf.getVariables && hf.getVariables()) || {};
+  var L = V.locale === 'en' ? 'en' : 'tr', T = DATA[L];
+  var m = document.querySelectorAll('[data-m]');
+  for (var i = 0; i < m.length; i++) m[i].textContent = T[m[i].getAttribute('data-m')] || '';
+
+  var C = [
+    { id: 'k0', g: 'odometer', bas: 0, ofs: 0.15, opts: { seed: 3, value: 7, locale: L, duration: 1.5 } },
+    { id: 'k1', g: 'odometer', bas: 2.6, ofs: 0.25, opts: { seed: 1, value: 167829, locale: L, duration: 2.2 } },
+    { id: 'k2', g: 'promptTerminal', bas: 6, ofs: 0.2, opts: { seed: 1, locale: L, duration: 3 } },
+    { id: 'k3', g: 'ropeSwing', bas: 9.6, ofs: -1.2, opts: { seed: 1, locale: L, duration: 6 } },
+    { id: 'k4', g: 'statusOrb', bas: 14, ofs: 0, opts: { seed: 1, locale: L, label: true, duration: 3.6, states: [[0, 'listening'], [0.9, 'thinking'], [1.8, 'searching'], [2.7, 'done']] } },
+    { id: 'k5', g: 'katkiIsi', bas: 17.6, ofs: 0.2, opts: { seed: 1, locale: L, duration: 2.8 } },
+    { id: 'k6', g: 'ilerlemeHalkasi', bas: 21, ofs: 0.2, opts: { seed: 1, locale: L, value: 72, duration: 2.2 } },
+    { id: 'k7', g: 'kodDiff', bas: 24.2, ofs: 0.2, opts: { seed: 1, locale: L, duration: 3 } }
+  ];
+  for (var c = 0; c < C.length; c++) { C[c].inst = FRKComponents[C[c].g].mount(document.getElementById(C[c].id), C[c].opts); C[c].son = -1; }
+
+  var tc = document.getElementById('tc'), fill = document.getElementById('progfill');
+  function guncelle(t) {
+    for (var i = 0; i < C.length; i++) {
+      var s = C[i], l = Math.min(Math.max(t - s.bas - s.ofs, 0), s.inst.duration);
+      if (l !== s.son) { s.inst.seek(l); s.son = l; }
+    }
+    var sn = Math.floor(t), mm = ('0' + Math.floor(sn / 60)).slice(-2), ss = ('0' + (sn % 60)).slice(-2);
+    tc.textContent = mm + ':' + ss;
+    fill.style.width = (t / 30 * 100).toFixed(3) + '%';
+  }
+  guncelle(0);
+
+  window.__timelines = window.__timelines || {};
+  if (window.gsap) {                                      // GSAP yoksa (çevrimdışı açılış) kayıt atlanır; sahneler ilk karede kalır
+    gsap.config({ force3D: false });                    // 3B dönüşüm ↔ 2B geçişi katman/raster geçmişi yaratıyordu
+    var P = { t: 0 }, tl = gsap.timeline({ paused: true });
+    var SC = [
+      { id: 's0', bas: 0, bit: 2.6, ilk: true, ogeler: ['#s0 .etiket', '#s0 .baslik', '#s0 .not'] },
+      { id: 's1', bas: 2.6, bit: 6.0, ogeler: ['#s1 .etiket', '#s1 .baslik', '#s1 .not', '#s1 .say'] },
+      { id: 's2', bas: 6, bit: 9.6, ogeler: ['#s2 .etiket', '#s2 .baslik', '#s2 .not', '#s2 .say'] },
+      { id: 's3', bas: 9.6, bit: 14.0, ogeler: ['#s3 .etiket', '#s3 .baslik', '#s3 .not', '#s3 .say'] },
+      { id: 's4', bas: 14, bit: 17.6, ogeler: ['#s4 .etiket', '#s4 .baslik', '#s4 .not', '#s4 .say'] },
+      { id: 's5', bas: 17.6, bit: 21.0, ogeler: ['#s5 .etiket', '#s5 .baslik', '#s5 .not', '#s5 .say'] },
+      { id: 's6', bas: 21, bit: 24.2, ogeler: ['#s6 .etiket', '#s6 .baslik', '#s6 .not', '#s6 .say'] },
+      { id: 's7', bas: 24.2, bit: 27.8, ogeler: ['#s7 .etiket', '#s7 .baslik', '#s7 .not', '#s7 .say'] },
+      { id: 's8', bas: 27.8, bit: 30, son: true, ogeler: ['#s8 .etiket', '#s8 .baslik', '#s8 .not', '#s8 .say', '#imza'] }
+    ];
+    SC.forEach(function (s) {
+      var el = document.getElementById(s.id);
+      if (!s.ilk) tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2, ease: 'none', immediateRender: false }, s.bas);
+      if (!s.son) tl.fromTo(el, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.2, ease: 'none', immediateRender: false }, s.bit - 0.2);
+      s.ogeler.forEach(function (sel, k) {
+        tl.fromTo(sel, { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out', immediateRender: false }, s.bas + 0.12 + k * 0.12);
+      });
+    });
+    tl.fromTo(P, { t: 0 }, { t: 30, duration: 30, ease: 'none', onUpdate: function () { guncelle(P.t); } }, 0);
+    window.__timelines['vitrin-tanitim'] = tl;
+  }
+})();
+</script>
+</body>
+</html>
