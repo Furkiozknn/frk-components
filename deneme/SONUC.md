@@ -71,16 +71,17 @@ Bu tablo, odometre düzeltildikten sonraki koşudan. İlk koşuda odometre A'da 
 
 Motorlar arası piksel eşitliği iddia edilmez: yazı tipi rasterı, kenar yumuşatma ve metin motoru farklı. Chromium'a göre PSNR (aynı boyutlu karelerde): odometer 24,5–27,8 dB, prompt-terminal 17,6–34,5 dB, katki-isi 28,9–42,7 dB, rope-swing Firefox 42,4–50,4 dB, status-orb Firefox 49,1–51,4 dB, ilerleme-halkasi Firefox 37,1–38,8 dB, kod-diff Firefox 23,8–26,7 dB ve WebKit 24,4–27,2 dB. WebKit'te rope-swing, status-orb ve ilerleme-halkasi karelerinin yüksekliği 2 px farklı çıktı (648×365 ↔ 648×367, 480×480 ↔ 480×482), PSNR hesaplanamadı.
 
-## vitrin-tanitim (30 sn, çok bileşenli) — açık bulgu
+## vitrin-tanitim (30 sn, çok bileşenli)
 
-`deneme/vitrin-tanitim/`: yedi parçayı sırayla gösteren 30 sn'lik, 1080×1920 TR+EN tanıtım (900 kare, 30 fps, H.264); her sahnede bileşen kendi dosyasıyla `seek` edilir. `lint` ve `check` 19 örnek anda 0 bulgu verdi; render TR ~61 sn / 6,7 MB, EN ~60 sn / 6,9 MB. Altyazı sayıları parçaların `olcum.json`'larından, kapanış sayıları bu klasördeki kanıt dosyalarından üretim sırasında okunur.
+`deneme/vitrin-tanitim/`: yedi parçayı sırayla gösteren 30 sn'lik, 1080×1920 TR+EN tanıtım (900 kare, 30 fps, H.264); giriş sahnesinde "7"ye sayan bir odometre, sonra her parça kendi sahnesinde kendi dosyasıyla `seek` edilir. `lint` ve `check` 19 örnek anda 0 bulgu; render TR 67,2 sn / 6,84 MB, EN 73,7 sn / 7,01 MB. Altyazı sayıları (bayt, `seek`, axe) parçaların `olcum.json`'larından, kapanış sayıları (21/21, 7/7) `CAPRAZ-MOTOR.json` ve `KANIT.json`'dan üretim sırasında okunur.
 
-Beş saniyelik tek bileşenli kompozisyonların tersine, bu çok bileşenli sayfada kare determinizmi **tam değil**:
+Kanıt (`KANIT.json`, `KANIT_TIMES` ile 9 zaman: 0,3 · 2 · 4,5 · 8 · 12,5 · 19 · 23 · 26 · 29,5 sn):
 
-- **A (düz Chromium, 9 zaman × ileri/ters/karışık):** 9 zamanın 7'sinde tüm sıralar bayt bayt aynı; yalnız giriş sahnesinde ("7" sayan odometre, t = 0,3 ve 2,0 sn) geliş yoluna göre farklı. Aynı anda ilgili öğenin DOM durumu (satır içi stiller, `data-t`) birebir aynı: fark piksel düzeyinde, yani raster/katman geçmişinden.
-- **C (aynı render'ı iki kez):** 1 ↔ 2 işçili render'larda 900 karenin 619–900'ü aynı (koşudan koşuya değişiyor; bir koşuda 900/900, bir koşuda 281 kare farklı). Aynı 1 işçili render'ı iki kez almak da bir koşuda 168 kare farklı verdi (kare 82–249, odometre + terminalin ilk saniyeleri). Farklı karelerin PSNR'ı 52,8–70,4 dB: göze görünmez, ama bayt eşitliği değil.
-- **Sebep (türev kopyada denendi):** odometrenin `translate3d` + `will-change: transform` ve kolonlardaki `mask-image` katmanları geçmişe bağlı raster üretiyor. Türev kopyada `translateY`'ye geçmek ve `will-change`'i kaldırmak farkı azalttı; `mask-image`'ı da kaldırınca giriş sahnesinde dört sıranın hepsi aynı çıktı. Bu bulgu bileşen sahibine iletildi; bileşen düzeltilince videonun yeniden render edilip kanıtlanması gerekiyor.
-- GSAP `autoAlpha` (görünürlük) ve `force3D: false` ayrı ayrı denendi: tek başlarına farkı gidermedi, ama zararsız olduğu için kompozisyonda kaldı.
+- **A (düz Chromium, ileri / ters / karışık / ileri2):** 9 zamanın hepsinde tüm sıralar bayt bayt aynı.
+- **B (HyperFrames snapshot ↔ düz Chromium):** 3/3 bayt eşit.
+- **C (1 ↔ 2 işçili render):** 900/900 kare aynı. Aynı 1 işçili render'ı iki kez almak da 0/900 kare fark verdi ve teslim edilen (2 işçili) `out/vitrin-tanitim-tr.mp4` ile de 0/900.
+
+**İlk sürümde bu tam değildi ve sebebi bulundu.** Odometre eski haliyle çok bileşenli sayfada geçmişe bağlı piksel veriyordu: giriş sahnesindeki örnek aynı `t`'ye farklı yoldan gelince DOM durumu (satır içi stiller, `data-t`) birebir aynı olduğu halde piksel farklıydı (t = 0,3 sn'de dört geliş yolu dört hash); render'da 1 ↔ 2 işçi 619–900/900 kare aynı, aynı 1 işçili render iki kez alınınca bir koşuda 168 kare farklıydı (PSNR ≥ 52,8 dB). Sebep, odometrenin render yüzeyi/katman yaratan üç ayrıntısıydı: kolonlarda `mask-image`, `translate3d` ve `will-change: transform`. Türev kopyada bu üçü tek tek ve birlikte denendi: yalnız üçü birden kalkınca dört sıranın hepsi aynı çıktı. Bileşen sahibi `mask`'ı hücre saydamlığıyla, `translate3d`'yi `translateY`'yle değiştirip `will-change`'i kaldırdı (`odometer.js` 8.532 bayt); yukarıdaki tablo bu sürümle. GSAP `autoAlpha` ve `force3D: false` ayrı ayrı denendi: tek başlarına farkı gidermedi, zararsız olduğu için kompozisyonda kaldı. Kanıt betiğinde de bir hata vardı: "karışık" sıra 9 zamanın yalnız 7'sini içeriyordu, bu yüzden A'da yapay bir "eşit değil" çıkıyordu; sıra artık tüm zamanları kapsıyor.
 
 ## Ölçülmedi / sınırlar
 

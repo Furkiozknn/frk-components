@@ -21,12 +21,10 @@ Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.m
 
 **Çapraz motor** (Chromium 153, Firefox 155.0, WebKit 26.6; Playwright, Windows, başsız; WebKit Safari değil): 3 motor × 6 parça = 18 kombinasyonun hepsinde kendi içinde determinizm, axe 0, konsol hatası yok, reduced-motion; rope-swing fizik durumu üç motorda bit düzeyinde aynı. Ayrıntı `deneme/SONUC.md`, `deneme/CAPRAZ-MOTOR.json`.
 
-**İkinci tur — bitti:** çapraz motor 3 motor × 7 parça = 21/21; `ilerleme-halkasi` (parça 6) ve `kod-diff` hatta eklendi (7/7 parça: check 0 bulgu, TR+EN render, A/B/C aynı); `deneme/vitrin-tanitim/`: 30 sn, 1080×1920, TR+EN, yedi parça sırayla, 900 kare, `check` 0 bulgu; render TR 6,7 MB, EN 6,9 MB (`out/`).
+**İkinci tur — bitti:** çapraz motor 3 motor × 7 parça = 21/21; `ilerleme-halkasi` (parça 6) ve `kod-diff` hatta eklendi (7/7 parça: check 0 bulgu, TR+EN render, A/B/C aynı); `deneme/vitrin-tanitim/`: 30 sn, 1080×1920, TR+EN, yedi parça sırayla, 900 kare, `check` 0 bulgu; render TR 6,84 MB, EN 7,01 MB (`out/`).
 
-**Açık bulgu (vitrin-tanitim):** çok bileşenli sayfada kare determinizmi tam değil: giriş sahnesindeki odometre aynı `t`'ye farklı yoldan gelince piksel farklı (DOM aynı); 1 ↔ 2 işçili render'da 619–900/900 kare aynı, farklı kareler ≥ 52,8 dB. Sebep odometrenin katmanları (`translate3d`, `will-change`, `mask-image`); YEDEK'e iletildi, bileşen düzelince videoyu yeniden render edip kanıtlayacağım. Ayrıntı `deneme/SONUC.md` "vitrin-tanitim".
+**vitrin-tanitim bulgusu kapandı:** çok bileşenli sayfada odometrenin katmanları (`mask-image`, `translate3d`, `will-change`) geçmişe bağlı piksel veriyordu; YEDEK düzeltti (`odometer.js` 8.532 bayt). Yeniden render ve kanıt: A 9 zaman × 4 sıra aynı, B 3/3, C 900/900; aynı 1 işçili render iki kez 0/900 fark. Videolar: `deneme/vitrin-tanitim/out/vitrin-tanitim-tr.mp4` (6,84 MB), `-en.mp4` (7,01 MB). Ayrıntı `deneme/SONUC.md`.
 
-**Sıradaki:** YEDEK'in odometre düzeltmesi → vitrin-tanitim yeniden render + `KANIT.json`.
-
-**Not:** `deneme/*/out/*-w1.mp4` ve `*-w2.mp4` ara render çıktıları (kanıt betiğinin ürettiği, `kanit.mjs` ile yeniden üretilir) her koşudan sonra silindi.
+**Sıradaki:** yeni bir iş bekliyorum; YONLENDIRME'ye göre ikinci tur b1 maddeleri bitti.
 
 **Takılma yok.**

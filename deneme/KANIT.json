@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T22:42:14.988Z",
+  "olculdu": "2026-10-01T22:54:14.795Z",
   "fps": 30,
   "parcalar": {
     "odometer": {
@@ -317,25 +317,18 @@
         29.5
       ],
       "A_duz_chromium": {
-        "ileri_ters_esit": false,
-        "ileri_karisik_esit": false,
+        "ileri_ters_esit": true,
+        "ileri_karisik_esit": true,
         "ayni_t_tekrar_esit": true,
         "farkli_kare_sayisi": 9,
         "zaman_sayisi": 9,
         "sayfa_hatalari": []
       },
-      "A2_farkli_zamanlar": {
-        "0.3": {
-          "onceki_t_ileri": 0.3,
-          "onceki_t_ters": 2,
-          "psnr_db": null
-        }
-      },
       "B_snapshot_ile_karsilastirma": {
         "0.4": {
-          "bayt_esit": false,
-          "boyut_duz": 81239,
-          "boyut_hf": 81151
+          "bayt_esit": true,
+          "boyut_duz": 80251,
+          "boyut_hf": 80251
         },
         "15.8": {
           "bayt_esit": true,
@@ -343,19 +336,19 @@
           "boyut_hf": 327844
         },
         "29.8": {
-          "bayt_esit": false,
+          "bayt_esit": true,
           "boyut_duz": 106331,
-          "boyut_hf": 101056
+          "boyut_hf": 106331
         }
       },
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 67.7
+          "sn": 62.9
         },
         "isci1": {
           "kod": 0,
-          "sn": 74.7
+          "sn": 65.3
         },
         "kare_sayisi": [
           900,

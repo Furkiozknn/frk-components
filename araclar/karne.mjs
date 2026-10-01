@@ -74,7 +74,7 @@ if (cm) {
 const kanit = okuJson(join(kok, 'deneme', 'KANIT.json'));
 let kanitOz = 'ölçülmedi (deneme/KANIT.json yok)', hfParca = 0;
 if (kanit) {
-  const ks = Object.entries(kanit.parcalar);
+  const ks = Object.entries(kanit.parcalar).filter(([ad]) => P.some((p) => p.ad === ad));      // yalnız bileşenler; çok bileşenli tanıtım sayfası ayrıca
   hfParca = ks.length;
   const a = ks.filter(([, v]) => v.A_duz_chromium.ileri_ters_esit && v.A_duz_chromium.ileri_karisik_esit && v.A_duz_chromium.ayni_t_tekrar_esit).length;
   const b = ks.filter(([, v]) => Object.values(v.B_snapshot_ile_karsilastirma).every((x) => x.bayt_esit)).length;
@@ -82,6 +82,17 @@ if (kanit) {
   kanitOz = hfParca + ' parçada: A (düz Chromium, ileri/ters/karışık/tekrar aynı) ' + a + '/' + hfParca + '; B (HyperFrames snapshot ↔ düz Chromium bayt eşitliği) ' + b + '/' + hfParca + '; C (1 işçi ↔ 2 işçi render, ' + (c[0] ? c[0][1].C_iki_render.kare_sayisi[0] : '?') + ' kare) ' + c.length + '/' + hfParca;
 }
 const videoSayi = P.reduce((s, p) => s + p.video, 0);
+let tanitimOz = 'ölçülmedi';
+{
+  const vt = kanit && kanit.parcalar['vitrin-tanitim'];
+  const mp4 = ['tr', 'en'].filter((l) => existsSync(join(kok, 'deneme', 'vitrin-tanitim', 'out', 'vitrin-tanitim-' + l + '.mp4'))).length;
+  if (vt) {
+    const a = vt.A_duz_chromium.ileri_ters_esit && vt.A_duz_chromium.ileri_karisik_esit && vt.A_duz_chromium.ayni_t_tekrar_esit;
+    const b = Object.values(vt.B_snapshot_ile_karsilastirma).filter((x) => x.bayt_esit).length + '/' + Object.keys(vt.B_snapshot_ile_karsilastirma).length;
+    const c = vt.C_iki_render.ayni_kare_sayisi + '/' + vt.C_iki_render.kare_sayisi[0];
+    tanitimOz = 'çok bileşenli tanıtım sayfası (deneme/vitrin-tanitim, ' + vt.tuval + ', tüm parçalar bir arada, ' + mp4 + ' video TR+EN): A ' + (a ? 'aynı' : 'FARKLI') + '; B ' + b + '; C (1 ↔ 2 işçi) ' + c + ' kare aynı';
+  }
+}
 
 const durum = (ok, kismen) => (ok ? 'karşılandı' : kismen ? 'kısmen' : 'karşılanmadı');
 const satirlar = [];
@@ -107,7 +118,7 @@ S('**Erişilebilirlik**',
   'Rakipte ölçülmüş sonuç bulunamadı (rapor: 9 README taraması); bizde ölçülmüş. Bu, rakibin erişilebilir olmadığı anlamına gelmez, ölçmediğimiz anlamına gelir.');
 S('**Video uyumu**',
   'HyperFrames kataloğu: 405 öğe, registry-item.json (dimensions, duration, preview.video, params). React Bits: Background Studio\'da video dışa aktarma. Ship Notes: gerçek zamanlı fizik, uyumsuz.',
-  hfParca + ' parçanın HyperFrames kompozisyonu, ' + videoSayi + ' render (TR+EN, 30 fps, 150 kare); b1 raporu: lint ve check 0 bulgu. Kare determinizmi kanıtı (deneme/KANIT.json): ' + kanitOz + '. HeyGen registry-item.json şemasına uyum: **yok** (yazılmadı). Kaynak taramasında yasak çağrı (' + bt + 'Math.random' + bt + ', ' + bt + 'Date.now' + bt + ', ' + bt + 'performance.now' + bt + ', ' + bt + 'new Date' + bt + ') yok: ' + yasakYok + '/' + N + '.',
+  hfParca + ' parçanın HyperFrames kompozisyonu, ' + videoSayi + ' render (TR+EN, 30 fps, 150 kare); b1 raporu: lint ve check 0 bulgu. Kare determinizmi kanıtı (deneme/KANIT.json): ' + kanitOz + '. Ayrıca ' + tanitimOz + '. HeyGen registry-item.json şemasına uyum: **yok** (yazılmadı). Kaynak taramasında yasak çağrı (' + bt + 'Math.random' + bt + ', ' + bt + 'Date.now' + bt + ', ' + bt + 'performance.now' + bt + ', ' + bt + 'new Date' + bt + ') yok: ' + yasakYok + '/' + N + '.',
   'Ölçek: ' + hfParca + ' ↔ 405 öğe. Rakip raporu katalog öğesinde ölçüm/yapım kaydı alanı olmadığını söylüyor; kare determinizmi kanıtı araştırılmadı: ölçülmedi. Şema uyumu bizde yok; kataloğa PR ikinci aşamada, Furki\'ye sorulur. Aynı dosya hem canlı demo hem render olarak çalışıyor.');
 S('**"Nasıl yapıldı" katmanı**',
   'Rauno Freiberg: $249, 23 bölüm, indirilebilir kaynak. Emil Kowalski: animations.dev (13.000+ tamamlayan beyanı, 15 AI skill/prompt), skills deposu 42.665★. Codrops: makale + demo + kod.',

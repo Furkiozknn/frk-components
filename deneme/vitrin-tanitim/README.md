@@ -43,5 +43,5 @@ node deneme/kos.mjs vitrin-tanitim render-en     # EN
 ## Sınırlar / Limits
 
 - Ses yok, geçiş efekti yok: yalnız solma ve metin girişleri. / No audio, no transition effects: fades and text entrances only.
-- Kompozisyonda yedi bileşen aynı sayfada; her biri yalnız kendi sahnesinde `seek` edilir. Çok bileşenli sayfada piksel düzeyinde geçmiş bağımlılığı gözlendi (`deneme/SONUC.md` "vitrin-tanitim"). / Seven components live in one page; each is seeked only in its own scene. Pixel-level history dependence was observed in a multi-component page.
+- Kompozisyonda yedi bileşen aynı sayfada; her biri yalnız kendi sahnesinde `seek` edilir. Kare determinizmi bu sayfada da kanıtlandı: 9 zaman × 4 sıra aynı, HyperFrames snapshot'ıyla bayt eşit, 1 ↔ 2 işçili render 900/900 kare aynı (`deneme/SONUC.md` "vitrin-tanitim"; ilk sürümdeki odometre kaynaklı fark orada anlatılıyor). / Seven components live in one page; each is seeked only in its own scene. Frame determinism is proven on this page too: 9 times × 4 orders identical, byte-equal to the HyperFrames snapshot, 900/900 identical frames across 1 vs 2 render workers.
 - Yayınlama yok; sosyal medya paylaşımı bu klasörün konusu değil. / Nothing is published.

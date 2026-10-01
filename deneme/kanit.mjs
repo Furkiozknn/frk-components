@@ -55,7 +55,7 @@ try {
     await page.waitForFunction((k) => !!(window.__timelines && window.__timelines[k]), id, { timeout: 15000, polling: 100 });
     await page.waitForTimeout(300);
     const grab = async (t) => { await page.evaluate(([k, x]) => { window.__timelines[k].totalTime(x, false); }, [id, t]); return sha(await page.locator('#root').screenshot()); };
-    const sirala = { ileri: TIMES, ters: [...TIMES].reverse(), karisik: [TIMES[3], TIMES[0], TIMES[6], TIMES[1], TIMES[5], TIMES[2], TIMES[4]] };
+    const sirala = { ileri: TIMES, ters: [...TIMES].reverse(), karisik: TIMES.map((_, i) => TIMES[(i * 5 + 3) % TIMES.length]) };   // 5 ile n aralarında asal olduğunda tüm zamanları kapsayan sabit bir karışık sıra
     const hash = {};
     for (const [ad, liste] of Object.entries(sirala)) { hash[ad] = {}; for (const t of liste) hash[ad][t] = await grab(t); }
     o.A_duz_chromium = {

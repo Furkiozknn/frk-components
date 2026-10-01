@@ -17,6 +17,11 @@
 
 Hepsini bir arada görmek için `index.html`'i bir HTTP sunucusundan açın (ör. `python -m http.server`); kartlardaki ölçüm satırları `olcum.json` dosyalarını `fetch` ile okur, doğrudan `file://` açılışında tarayıcı bunu engeller. / To see them together, open `index.html` from an HTTP server; the measurement rows `fetch` the `olcum.json` files, which browsers block under `file://`.
 
+## Video / Video
+
+**TR** — Her parçanın 5 sn'lik HyperFrames kompozisyonu ve TR+EN render'ı `deneme/<parça>/` altındadır; yedi parçanın hepsi bir arada 30 sn'lik, 1080×1920 bir tanıtım videosu da vardır: [`deneme/vitrin-tanitim/out/vitrin-tanitim-tr.mp4`](deneme/vitrin-tanitim/out/vitrin-tanitim-tr.mp4), [`-en.mp4`](deneme/vitrin-tanitim/out/vitrin-tanitim-en.mp4). Kare determinizmi kanıtı ve yöntem: [`deneme/SONUC.md`](deneme/SONUC.md). Videolar yayınlanmamıştır; yalnız depoda durur.
+**EN** — Each part has a 5 s HyperFrames composition and TR+EN renders under `deneme/<part>/`; there is also a 30 s, 1080×1920 promo video with all seven parts together (links above). Frame-determinism proof and method: [`deneme/SONUC.md`](deneme/SONUC.md). The videos are not published; they live in the repo only.
+
 ## Ortak sözleşme / Shared contract
 
 ```js
