@@ -2,7 +2,7 @@
 
 Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`.
 
-## 02.10.2026 00:30 [YEDEK]
+## 02.10.2026 00:20 [YEDEK]
 
 **Bitti** (hepsi GitHub'da, private `Furkiozknn/frk-components`, `main` ile senkron)
 - `TASARIM.md` (b1 ≤80 satıra indirecek), Parça 1 `odometer`, Parça 2 `prompt-terminal`, Parça 5 `katki-isi`: her biri tek JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json`.
@@ -19,6 +19,8 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 
 **b1 özeti** (`DURUM-b1.md`'den): `rope-swing` ölçülmüş WIP (JS 15.170 bayt, kendi ölçüm betiği `deneme/araclar/`); `status-orb`, `deneme/` HyperFrames render'ları ve `TASARIM.md` (≤80 satır) sırada.
 
-**Sıradaki:** b1 "hazır" deyince `status-orb` kartını index'e ekleyip push; `OLCUM.md` yenileme; `TASARIM.md` yeni sürümü gelince ayrı commit. Beklerken: `index.html` ilk-kare davranışı (görünmeyen kartlar `t = 0` karesinde bekliyor) gözden geçirilebilir.
+**Vitrin düzeltmesi (00:20):** `index.html` rope-swing kartında ölçüm satırı `NaN ms` ve "tutarsız" yazıyordu: kart yalnız benim `olcum.json` anahtarlarımı okuyordu, rope-swing'in biçimi farklıydı. İki biçimi de okuyacak şekilde düzeltildi ve dört kartın satırları tarayıcıda doğrulandı. Ayrıca görünmeyen kartlar artık son kareyle bekliyor, ekrana girince baştan oynuyor.
+
+**Sıradaki:** `status-orb` b1'de WIP (JS, demo, olcum.json var; README/RECETE yok) ve WIP olarak commit'lendi; b1 "hazır" deyince `status-orb` kartını index'e ekleyip push; `OLCUM.md` yenileme; `TASARIM.md` yeni sürümü gelince ayrı commit. Beklerken: `index.html` ilk-kare davranışı (görünmeyen kartlar `t = 0` karesinde bekliyor) gözden geçirilebilir.
 
 **Takılma yok.** Ağır işler `.agir-is.kilit` ile sıralanıyor.

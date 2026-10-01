@@ -122,6 +122,31 @@ try {
     await ctx.close();
   }
 
+  // 3c) Durum kaydı ↔ yeniden oynatma (status-orb): uygulamanın seçtiği durumlar kaydedilir, başka örnekte aynı kareleri verir
+  if (name === 'statusOrb') {
+    const { ctx, page } = await open();
+    out.durum_kaydi_tekrari = await page.evaluate(() => {
+      const mod = FRKComponents.statusOrb;
+      const mk = (o) => { const d = document.createElement('div'); d.style.cssText = 'width:480px;height:480px;position:absolute;left:0;top:0;opacity:0'; document.body.appendChild(d); return { d, i: mod.mount(d, o) }; };
+      const px = (x) => x.d.querySelector('canvas').toDataURL();
+      const A = mk({ states: [[0, 'listening']] });
+      const plan = [[1.0, 'thinking'], [2.2, 'searching'], [3.3, 'done']];
+      const canli = [];
+      for (const [t, nm] of plan) { A.i.seek(t); canli.push(px(A)); A.i.setState(nm); A.i.pause(); }
+      const kayit = A.i.states;
+      const B = mk({ states: kayit });
+      const hash = (x, t) => { x.i.seek(t); return px(x); };
+      const canliEsit = plan.map(([t], k) => hash(B, t) === canli[k]);
+      const ts = [0, 0.9, 1.2, 1.6, 2.3, 2.9, 3.4, 4.5, 6];
+      const esit = ts.map((t) => hash(A, t) === hash(B, t));
+      B.i.seek(0.5); const a = px(B); B.i.setLevel(1); B.i.pause(); const b = px(B); B.i.setLevel(0.5); B.i.pause(); const c = px(B);
+      const r = { kayit: kayit, canli_kare_tekrarda_ayni: canliEsit, zamanlar: ts, son_kareler_esit: esit, seviye_kareyi_degistirir: a !== b, seviye_geri_alinca_ayni: a === c };
+      A.i.destroy(); B.i.destroy(); A.d.remove(); B.d.remove();
+      return r;
+    });
+    await ctx.close();
+  }
+
   // 4) Kare maliyeti: seek (JS) ve seek + canvas boşaltma (getImageData ile ham kare maliyeti); ayrıca canlı rAF aralıkları
   {
     const { ctx, page } = await open();
@@ -198,6 +223,24 @@ try {
       fare_basili: fare, otopilot_dugmesi: otopilot, kaydirici_oklari_t: slider };
     await ctx.close();
   }
+  if (name === 'statusOrb') {
+    const { ctx, page } = await open();
+    await page.evaluate(() => { window.inst.pause(); window.inst.seek(0); });
+    const odak = [];
+    for (let i = 0; i < 9; i++) { await page.keyboard.press('Tab'); odak.push(await page.evaluate(() => document.activeElement.dataset.set || document.activeElement.id || document.activeElement.tagName)); }
+    await page.focus('[data-set=searching]'); await page.keyboard.press('Enter');
+    const enter = await page.evaluate(() => ({ durum: window.inst.state, basili: document.querySelector('[data-set=searching]').getAttribute('aria-pressed'), etiket: document.querySelector('.frk-orb').getAttribute('aria-label'), oynuyor: window.inst.playing }));
+    await page.evaluate(() => document.activeElement.blur()); await page.keyboard.press('4'); await page.waitForTimeout(150);
+    const sayi4 = await page.evaluate(() => ({ durum: window.inst.state, etiket: document.querySelector('.frk-orb').getAttribute('aria-label'), canli_bolge: document.querySelector('.frk-orb [role=status]').textContent }));
+    await page.keyboard.press('Space'); const bosluk1 = await page.evaluate(() => window.inst.playing); await page.keyboard.press('Space'); const bosluk2 = await page.evaluate(() => window.inst.playing);
+    await page.keyboard.press('r'); await page.waitForTimeout(120);
+    const r = await page.evaluate(() => ({ t: +document.getElementById('stage').dataset.t, oynuyor: window.inst.playing }));
+    await page.evaluate(() => window.inst.pause()); await page.focus('#t'); await page.evaluate(() => window.inst.seek(0));
+    await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowRight');
+    const slider = await page.evaluate(() => +document.getElementById('stage').dataset.t);
+    out.klavye = { tab_sirasi: odak, durum_dugmesi_enter: enter, sayi_tusu_4: sayi4, bosluk_ilk_oynuyor: bosluk1, bosluk_ikinci_oynuyor: bosluk2, r_bastan: r, kaydirici_oklari_t: slider };
+    await ctx.close();
+  }
   {
     const { ctx, page } = await open({ reducedMotion: 'reduce' });
     await page.waitForTimeout(150);
@@ -208,6 +251,10 @@ try {
     if (name === 'ropeSwing') {            // kullanıcı eylemi (Boşluk) hareket tercihinde de oyunu başlatır
       await page.click('#own'); await page.keyboard.down('Space'); await page.waitForTimeout(300); await page.keyboard.up('Space');
       out.reduced_motion.kullanici_girdisi_oyunu_baslatir = await page.evaluate(() => +document.getElementById('stage').dataset.t > 0.1 && window.inst.inputs.length > 0);
+    }
+    if (name === 'statusOrb') {            // hareket tercihinde durum seçimi anında, geçişsiz sabit poz
+      await page.click('[data-set=thinking]'); await page.waitForTimeout(150);
+      out.reduced_motion.durum_secimi = await page.evaluate(() => ({ durum: window.inst.state, oynuyor: window.inst.playing, etiket: document.querySelector('.frk-orb').getAttribute('aria-label') }));
     }
     await ctx.close();
     const n = await open({ reducedMotion: 'no-preference' });

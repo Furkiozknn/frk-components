@@ -1,0 +1,179 @@
+{
+  "olculdu": "2026-10-01T21:15:22.419Z",
+  "hedef": "D:/Repolar/frk-components/components/status-orb/demo.html",
+  "bilesen": "statusOrb",
+  "boyut": {
+    "js_bayt": 10900,
+    "js_gzip_bayt": 4236,
+    "demo_html_bayt": 8339,
+    "hedef_bayt": 51200
+  },
+  "yasak_cagri_taramasi": {
+    "Math.random": false,
+    "Date.now": false,
+    "performance.now": false,
+    "new Date": false,
+    "requestAnimationFrame(": false
+  },
+  "tarayici": "Chromium 153.0.8010.12",
+  "ilk_boyama": {
+    "fcp_ms": 36,
+    "lcp_ms": 88,
+    "hedef_lcp_ms": 2500
+  },
+  "determinizm": {
+    "zamanlar": [
+      0,
+      0.37,
+      1,
+      1.234,
+      2.5,
+      3.1,
+      4.2,
+      4.86,
+      6
+    ],
+    "piksel_ileri_ters_karisik_esit": true,
+    "durum_ileri_ters_karisik_esit": true,
+    "farkli_kare_sayisi": 9,
+    "tohum_ayni_ayni": true,
+    "tohum_farkli_farkli": true
+  },
+  "konsol_hatasi": [],
+  "durum_kaydi_tekrari": {
+    "kayit": [
+      [
+        0,
+        "listening"
+      ],
+      [
+        1,
+        "thinking"
+      ],
+      [
+        2.2,
+        "searching"
+      ],
+      [
+        3.3,
+        "done"
+      ]
+    ],
+    "canli_kare_tekrarda_ayni": [
+      true,
+      true,
+      true
+    ],
+    "zamanlar": [
+      0,
+      0.9,
+      1.2,
+      1.6,
+      2.3,
+      2.9,
+      3.4,
+      4.5,
+      6
+    ],
+    "son_kareler_esit": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "seviye_kareyi_degistirir": true,
+    "seviye_geri_alinca_ayni": true
+  },
+  "performans": {
+    "seek_js_ms": {
+      "ort": 4.711,
+      "medyan": 1,
+      "p95": 37.3,
+      "maks": 41.6
+    },
+    "seek_artı_canvas_bosaltma_ms": {
+      "ort": 4.885,
+      "medyan": 4.8,
+      "p95": 5.6,
+      "maks": 13.1
+    },
+    "canli_kare_sayisi": 225,
+    "kare_araligi_ort_ms": 16.57,
+    "kare_araligi_p95_ms": 17.6,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi."
+  },
+  "erisilebilirlik": {
+    "arac": "axe-core 4.13.0",
+    "taramalar": [
+      {
+        "t": 0,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 3,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 6,
+        "ihlal": 0,
+        "kurallar": []
+      }
+    ]
+  },
+  "klavye": {
+    "tab_sirasi": [
+      "listening",
+      "thinking",
+      "searching",
+      "done",
+      "play",
+      "replay",
+      "lang",
+      "t",
+      "lv"
+    ],
+    "durum_dugmesi_enter": {
+      "durum": "searching",
+      "basili": "true",
+      "etiket": "Asistan: arıyor",
+      "oynuyor": true
+    },
+    "sayi_tusu_4": {
+      "durum": "done",
+      "etiket": "Asistan: bitti",
+      "canli_bolge": "Asistan: bitti"
+    },
+    "bosluk_ilk_oynuyor": false,
+    "bosluk_ikinci_oynuyor": true,
+    "r_bastan": {
+      "t": 0.117,
+      "oynuyor": true
+    },
+    "kaydirici_oklari_t": 0.02
+  },
+  "reduced_motion": {
+    "t_150ms": 6,
+    "t_750ms": 6,
+    "son_kare_gosterildi": true,
+    "animasyon_yok": true,
+    "durum_secimi": {
+      "durum": "thinking",
+      "oynuyor": false,
+      "etiket": "Asistan: düşünüyor"
+    },
+    "normalde_oynuyor": true
+  },
+  "mobil_390": {
+    "tasma_yok": true,
+    "sahne_genislik_px": 358,
+    "dokunma_hedefi_min_px": 44
+  }
+}
