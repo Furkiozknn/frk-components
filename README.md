@@ -33,6 +33,18 @@ inst.destroy();
 - `prefers-reduced-motion: reduce` altında `play()` animasyon yerine son kareyi gösterir; `seek` ortamdan bağımsız kalır. / Under `prefers-reduced-motion: reduce`, `play()` shows the final frame; `seek` stays environment-independent.
 - Erişilebilirlik: kutu `role="img"` ve son durum `aria-label`; hareketli çizim `aria-hidden`. / Host is `role="img"` with the final state as `aria-label`; the moving drawing is `aria-hidden`.
 
+<!-- galeri:başla -->
+## Galeri / Gallery (390 px)
+
+**TR** — Her parçanın demo sayfası 390 × 844 px mobil görünümde (Chromium'un mobil emülasyonu, dokunmatik, 2x yoğunluk; **gerçek telefon değil**). Kare, her parçanın süresinin %60'ında alınır. `node araclar/galeri.mjs` ile yeniden üretilir.
+**EN** — Each part's demo page at 390 × 844 px (Chromium mobile emulation, touch, 2x density; **not a real phone**), captured at 60 % of each part's duration. Regenerate with `node araclar/galeri.mjs`.
+
+<table>
+<tr><td align="center" valign="top"><a href="components/ilerleme-halkasi/demo.html"><img src="assets/galeri/ilerleme-halkasi-390.png" width="180" alt="İlerleme halkası / Progress ring, 390 px mobil görünüm"></a><br><sub>İlerleme halkası / Progress ring<br>t = 1,44 sn</sub></td><td align="center" valign="top"><a href="components/katki-isi/demo.html"><img src="assets/galeri/katki-isi-390.png" width="180" alt="Katkı ısısı / Contribution heat, 390 px mobil görünüm"></a><br><sub>Katkı ısısı / Contribution heat<br>t = 2,4 sn</sub></td><td align="center" valign="top"><a href="components/kod-diff/demo.html"><img src="assets/galeri/kod-diff-390.png" width="180" alt="Kod diff / Code diff, 390 px mobil görünüm"></a><br><sub>Kod diff / Code diff<br>t = 3,17 sn</sub></td><td align="center" valign="top"><a href="components/odometer/demo.html"><img src="assets/galeri/odometer-390.png" width="180" alt="Odometre / Odometer, 390 px mobil görünüm"></a><br><sub>Odometre / Odometer<br>t = 1,44 sn</sub></td></tr>
+<tr><td align="center" valign="top"><a href="components/prompt-terminal/demo.html"><img src="assets/galeri/prompt-terminal-390.png" width="180" alt="Prompt terminal, 390 px mobil görünüm"></a><br><sub>Prompt terminal<br>t = 4,49 sn</sub></td><td align="center" valign="top"><a href="components/rope-swing/demo.html"><img src="assets/galeri/rope-swing-390.png" width="180" alt="Kanca ipi / Rope swing, 390 px mobil görünüm"></a><br><sub>Kanca ipi / Rope swing<br>t = 3,6 sn</sub></td><td align="center" valign="top"><a href="components/status-orb/demo.html"><img src="assets/galeri/status-orb-390.png" width="180" alt="Durum küresi / Status orb, 390 px mobil görünüm"></a><br><sub>Durum küresi / Status orb<br>t = 3,6 sn</sub></td></tr>
+</table>
+<!-- galeri:bitti -->
+
 ## Ölçüm / Measuring
 
 ```
