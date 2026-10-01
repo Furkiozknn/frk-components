@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:56:26.716Z",
+  "olculdu": "2026-10-01T22:02:41.181Z",
   "hedef": "D:/Repolar/frk-components/components/prompt-terminal/demo.html",
   "bilesen": "promptTerminal",
   "boyut": {
@@ -76,11 +76,11 @@
     }
   },
   "performans": {
-    "seek_ort_ms": 0.017,
+    "seek_ort_ms": 0.015,
     "seek_max_ms": 0.2,
     "canli_kare_sayisi": 450,
-    "kare_araligi_ort_ms": 16.65,
-    "kare_araligi_p95_ms": 17.9,
+    "kare_araligi_ort_ms": 16.64,
+    "kare_araligi_p95_ms": 17.7,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },
@@ -133,5 +133,12 @@
     "son_kare_gosterildi": true,
     "animasyon_yok": true,
     "normalde_oynuyor": true
+  },
+  "mobil_390": {
+    "tasma_yok": true,
+    "sahne_genislik_px": 358,
+    "dokunma_hedefi_min_px": 44,
+    "axe_ihlal": 0,
+    "not": "Chromium mobil emülasyonu; gerçek telefon ölçülmedi"
   }
 }

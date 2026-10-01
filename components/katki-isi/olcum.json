@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:56:40.800Z",
+  "olculdu": "2026-10-01T22:02:55.599Z",
   "hedef": "D:/Repolar/frk-components/components/katki-isi/demo.html",
   "bilesen": "katkiIsi",
   "boyut": {
@@ -53,11 +53,11 @@
     "beklenen_toplam": 21
   },
   "performans": {
-    "seek_ort_ms": 0.132,
-    "seek_max_ms": 1.2,
+    "seek_ort_ms": 0.138,
+    "seek_max_ms": 1.3,
     "canli_kare_sayisi": 217,
-    "kare_araligi_ort_ms": 16.58,
-    "kare_araligi_p95_ms": 17.7,
+    "kare_araligi_ort_ms": 16.56,
+    "kare_araligi_p95_ms": 17.8,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },
@@ -110,5 +110,12 @@
     "son_kare_gosterildi": true,
     "animasyon_yok": true,
     "normalde_oynuyor": true
+  },
+  "mobil_390": {
+    "tasma_yok": true,
+    "sahne_genislik_px": 358,
+    "dokunma_hedefi_min_px": 44,
+    "axe_ihlal": 0,
+    "not": "Chromium mobil emülasyonu; gerçek telefon ölçülmedi"
   }
 }

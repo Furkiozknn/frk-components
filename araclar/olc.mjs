@@ -224,6 +224,20 @@ await p2.waitForTimeout(400);
 out.reduced_motion.normalde_oynuyor = await p2.evaluate(() => { const t = +document.getElementById('stage').dataset.t; return t > 0 && t < window.inst.duration; });
 await c2.close();
 
+// 9) 390 px mobil görünüm: Chromium'un mobil emülasyonu (dokunmatik, 2x yoğunluk); gerçek telefon DEĞİL
+{
+  const { ctx, page } = await open({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, hasTouch: true, isMobile: true });
+  await page.evaluate(axeSrc);
+  const g = await page.evaluate(() => {
+    const st = document.getElementById('stage').getBoundingClientRect();
+    const hedef = Array.from(document.querySelectorAll('button,input,select,a')).map((e) => e.getBoundingClientRect()).filter((r) => r.width > 0 && r.height > 0).map((r) => Math.min(r.width, r.height));
+    return { tasma_yok: document.documentElement.scrollWidth <= window.innerWidth, sahne_genislik_px: Math.round(st.width), dokunma_hedefi_min_px: Math.floor(Math.min(...hedef)) };
+  });
+  const ax = await page.evaluate(() => axe.run(document, { resultTypes: ['violations'] }));
+  out.mobil_390 = { ...g, axe_ihlal: ax.violations.length, not: 'Chromium mobil emülasyonu; gerçek telefon ölçülmedi' };
+  await ctx.close();
+}
+
 await browser.close();
 const hedef = join(dir, 'olcum.json');
 writeFileSync(hedef, JSON.stringify(out, null, 2) + '\n');

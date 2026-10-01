@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:56:16.986Z",
+  "olculdu": "2026-10-01T22:02:30.309Z",
   "hedef": "D:/Repolar/frk-components/components/odometer/demo.html",
   "bilesen": "odometer",
   "boyut": {
@@ -16,8 +16,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 124,
-    "lcp_ms": 204,
+    "fcp_ms": 108,
+    "lcp_ms": 180,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -138,11 +138,11 @@
     }
   ],
   "performans": {
-    "seek_ort_ms": 0.021,
-    "seek_max_ms": 0.7,
+    "seek_ort_ms": 0.026,
+    "seek_max_ms": 1.1,
     "canli_kare_sayisi": 145,
-    "kare_araligi_ort_ms": 16.61,
-    "kare_araligi_p95_ms": 17.7,
+    "kare_araligi_ort_ms": 16.67,
+    "kare_araligi_p95_ms": 17.6,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },
@@ -195,5 +195,12 @@
     "son_kare_gosterildi": true,
     "animasyon_yok": true,
     "normalde_oynuyor": true
+  },
+  "mobil_390": {
+    "tasma_yok": true,
+    "sahne_genislik_px": 358,
+    "dokunma_hedefi_min_px": 44,
+    "axe_ihlal": 0,
+    "not": "Chromium mobil emülasyonu; gerçek telefon ölçülmedi"
   }
 }
