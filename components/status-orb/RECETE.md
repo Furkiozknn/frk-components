@@ -38,7 +38,7 @@ Başka prompt yok. Paket yapısı ve ölçüm istekleri için `YONLENDIRME.md` 2
 1. Signal Orb'un README'sini ve önizleme görselini oku: dört durum, `level` ile dinleme şeklinin değişmesi, reduced-motion'da sabit şekil.
 2. Şekilleri seç: dinliyor = dalgalanan çift halka, düşünüyor = Lissajous düğümü, arıyor = dışa akan spiral, bitti = halka + onay işareti. Her biri `(parçacık parametresi s, t) → (x, y)` çözümsel fonksiyonu; integrasyon yok.
 3. Geçiş: durum listesi `[[t, ad], ...]`; `t` anında etkin durumun ağırlığı `smoothstep((t − t_k) / 0,7)`, önceki durumun ağırlığı `1 − o`; konum, etkin durumların ağırlıklı ortalaması. Hepsi `t`'nin saf fonksiyonu.
-4. Çizim: 2200 parçacık, `lighter` birleştirme, tek `fillStyle` + parçacık başına `globalAlpha`, hafif radyal parıltı; renk, durum renklerinin ağırlıklı karışımı.
+4. Çizim: 2200 parçacık, `lighter` birleştirme, parçacıklar 10 saydamlık kümesine ayrılıp küme başına tek yolda çizilir (aşağıdaki hata 3), hafif radyal parıltı; renk, durum renklerinin ağırlıklı karışımı.
 5. Uygulama arayüzü: `setState(ad)` kaydı o ana kadar korur, sonrasını siler (rope-swing'deki devralma ile aynı model); `setLevel(v)`.
 6. `demo.html`: odometre/rope-swing demosunun düzeni (FRK-OS kimliği, TR/EN, kaydırıcı) + dört durum düğmesi (`aria-pressed`) + seviye kaydırıcısı.
 7. `deneme/araclar/olc-parca.mjs`: Playwright + axe-core ölçümü; çıktı `olcum.json`.
@@ -63,7 +63,8 @@ node deneme/araclar/olc-parca.mjs components/status-orb/demo.html
 
 1. **Demo düğmeleri ile bileşen aynı `data-state` adını kullanıyordu.** İlk ölçümde `querySelector('[data-state=searching]')` bileşenin ev sahibi öğesini döndürdü (`aria-pressed` `null` göründü). Gerçek bir hata değil ama tuzak: demo düğmeleri `data-set`'e taşındı.
 2. **İlk görüntüde parçacıklar sönüktü.** 1400 parçacık/küçük boyutla şekiller seyrekti; sayı 2200'e, boyut ve alfa artırıldı. Aynı değişiklikte parçacık başına `rgba(...)` dizesi üretmek bırakıldı (tek `fillStyle` + `globalAlpha`).
-3. **Yalnız JS süresi yanıltıcı çıktı.** `seek` sürelerinin medyanı 1 ms ama p95'i 37 ms: canvas komut tamponu dolunca boşalıyor. Kare maliyeti için `getImageData(0,0,1,1)` ile boşaltılmış ölçüm esas alındı (ort. 4,89 ms, p95 5,6 ms).
+3. **İlk sürümde `seek` süresi iki modluydu.** 2200 ayrı `fillRect` çağrısıyla JS süresinin medyanı 1 ms ama p95'i 37 ms'ti: canvas komut tamponu dolunca boşalıyor. Yan oturum aynı belirtiyi `katki-isi`'nde buldu ve ayrı bir mikro deneyle çok sayıda ayrı çizim çağrısının sebep olduğunu gösterdi. Parçacıklar saydamlık kümelerine (10 küme) göre tek yolda (`beginPath` + `rect` + tek `fill`) çizilince `seek` JS süresi ort. 0,87 ms, p95 1,5 ms oldu; boşaltmalı kare maliyeti medyan 3,4 ms.
+4. **Ölçüm betiği ilk boşaltmada 600 ms'lik uç değer gösterdi.** `getImageData` ilk çağrıda, ilk döngünün kuyruğa aldığı 240 karenin komutlarını birden işliyordu. Döngüler arasına ölçüm dışı bir boşaltma eklendi; uç değer kayboldu (en çok 6,0 ms).
 
 ## Kullanım
 
@@ -87,6 +88,6 @@ FRKComponents.statusOrb.mount(baskaEl, { states: kayit }).seek(2.5);
 ## Sınırlar
 
 - Ölçümler başsız Chromium 153, bu makine, masaüstü. Telefon, Safari ve Firefox **ölçülmedi**.
-- Kare maliyeti GPU'suz olabilecek ortamda ~5 ms; zayıf cihazlarda `n` düşürülmeli (ölçülmedi).
+- Kare maliyeti GPU'suz olabilecek ortamda ~3,4 ms; zayıf cihazlarda `n` düşürülmeli (ölçülmedi).
 - `duration: Infinity` ile sürekli çalışan gösterge tasarlandı ama denenmedi.
 - HyperFrames'te render **bu dosyada denenmedi**; sonuç `deneme/` altında ayrıca yazılacak.

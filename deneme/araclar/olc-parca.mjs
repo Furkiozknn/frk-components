@@ -155,6 +155,7 @@ try {
       const el = document.getElementById('stage'), cv = el.querySelector('canvas'), g = cv.getContext('2d');
       const N = 240, js = [], tam = [];     // bu ölçüm betiğidir, bileşen kodu değil
       for (let i = 0; i < N; i++) { const t0 = performance.now(); inst.seek((i / N) * inst.duration); js.push(performance.now() - t0); }
+      g.getImageData(0, 0, 1, 1);          // ilk döngünün kuyruğa aldığı komutları ölçüm dışında boşalt
       for (let i = 0; i < N; i++) { const t0 = performance.now(); inst.seek((i / N) * inst.duration); el.getBoundingClientRect(); g.getImageData(0, 0, 1, 1); tam.push(performance.now() - t0); }
       const st = (a) => { const s = [...a].sort((x, y) => x - y); return { ort: +(a.reduce((x, y) => x + y, 0) / a.length).toFixed(3), medyan: +s[s.length >> 1].toFixed(3), p95: +s[Math.floor(s.length * 0.95)].toFixed(3), maks: +s[s.length - 1].toFixed(3) }; };
       inst.seek(0);

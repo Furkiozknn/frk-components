@@ -1,10 +1,10 @@
 {
-  "olculdu": "2026-10-01T21:15:22.419Z",
+  "olculdu": "2026-10-01T21:19:56.258Z",
   "hedef": "D:/Repolar/frk-components/components/status-orb/demo.html",
   "bilesen": "statusOrb",
   "boyut": {
-    "js_bayt": 10900,
-    "js_gzip_bayt": 4236,
+    "js_bayt": 11523,
+    "js_gzip_bayt": 4489,
     "demo_html_bayt": 8339,
     "hedef_bayt": 51200
   },
@@ -18,7 +18,7 @@
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
     "fcp_ms": 36,
-    "lcp_ms": 88,
+    "lcp_ms": 80,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -91,20 +91,20 @@
   },
   "performans": {
     "seek_js_ms": {
-      "ort": 4.711,
-      "medyan": 1,
-      "p95": 37.3,
-      "maks": 41.6
+      "ort": 0.87,
+      "medyan": 0.8,
+      "p95": 1.5,
+      "maks": 2.8
     },
     "seek_artı_canvas_bosaltma_ms": {
-      "ort": 4.885,
-      "medyan": 4.8,
-      "p95": 5.6,
-      "maks": 13.1
+      "ort": 3.421,
+      "medyan": 3.4,
+      "p95": 3.9,
+      "maks": 6
     },
-    "canli_kare_sayisi": 225,
-    "kare_araligi_ort_ms": 16.57,
-    "kare_araligi_p95_ms": 17.6,
+    "canli_kare_sayisi": 266,
+    "kare_araligi_ort_ms": 16.59,
+    "kare_araligi_p95_ms": 17.8,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi."
   },

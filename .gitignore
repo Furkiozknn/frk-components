@@ -1,3 +1,7 @@
 araclar/node_modules/
 .claude/
 .agir-is.kilit
+deneme/*/*.js
+deneme/*/fonts/
+deneme/*/snapshots/
+deneme/*/_cache/

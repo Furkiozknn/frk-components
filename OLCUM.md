@@ -9,13 +9,10 @@ Ortam: Chromium 153.0.8010.12, başsız, bu makine (Windows 11, masaüstü gör�
 | katki-isi | 9.452 | 3.728 | 48 | 100 | 0,119 / 0,7 | 16,57 / 17,7 | 0 | evet | evet | evet | evet | evet | 0 |
 | odometer | 7.206 | 2.923 | 80 | 200 | 0,029 / 0,3 | 16,52 / 17,7 | 0 | evet | evet | evet | evet | evet | 0 |
 | prompt-terminal | 9.904 | 3.810 | 32 | 52 | 0,013 / 0,1 | 16,65 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
-| rope-swing | 15.172 | 5.531 | 44 | 80 | 0,123 / 1,5 | 16,6 / 18 | 0 | evet | evet | evet | evet | evet | 0 |
-| status-orb | 10.900 | 4.236 | 36 | 88 | 4,711 / 41,6 | 16,57 / 17,6 | 0 | evet | evet | evet | evet | bkz. olcum.json | 0 |
+| rope-swing | 15.172 | 5.531 | 28 | 52 | 0,067 / 0,8 | 16,62 / 17,7 | 0 | evet | evet | evet | evet | evet | 0 |
+| status-orb | 11.523 | 4.489 | 36 | 80 | 0,87 / 2,8 | 16,59 / 17,8 | 0 | evet | evet | evet | evet | bkz. olcum.json | 0 |
 
 Notlar: `rope-swing` ve `status-orb` canvas olduklarından "DOM determinizmi" sütunu onlarda oyun/durum kaydının (JSON) ileri/ters/karışık karşılaştırmasıdır, "seek" sütunu yalnız JS tarafıdır (canvas boşaltma ayrıca `olcum.json`'da); ölçümleri `b1` oturumunun kendi betiğiyle alınmıştır.
-
-**Kare bütçesi uyarıları:**
-- `status-orb`: seek en çok 41,6 ms; tek kare bütçesi (16,7 ms) aşılıyor (p95 37,3 ms). Ortalama kare aralığı yine de 16,57 ms.
 
 Hedefler (TASARIM.md §6): JS ≤ 51.200 bayt, LCP ≤ 2500 ms, ortalama kare ≤ 16,7 ms, axe ihlali 0.
 

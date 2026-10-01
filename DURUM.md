@@ -2,7 +2,7 @@
 
 Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`.
 
-## 02.10.2026 00:30 [YEDEK]
+## 02.10.2026 00:40 [YEDEK]
 
 **Bitti** (hepsi GitHub'da, private `Furkiozknn/frk-components`, `main` ile senkron)
 - `TASARIM.md` (b1 ≤80 satıra indirecek), Parça 1 `odometer`, Parça 2 `prompt-terminal`, Parça 5 `katki-isi`: her biri tek JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json`.
@@ -21,7 +21,7 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 
 **Vitrin düzeltmesi (00:20):** `index.html` rope-swing kartında ölçüm satırı `NaN ms` ve "tutarsız" yazıyordu: kart yalnız benim `olcum.json` anahtarlarımı okuyordu, rope-swing'in biçimi farklıydı. İki biçimi de okuyacak şekilde düzeltildi ve dört kartın satırları tarayıcıda doğrulandı. Ayrıca görünmeyen kartlar artık son kareyle bekliyor, ekrana girince baştan oynuyor.
 
-**Kare bütçesi uyarısı (`OLCUM.md` üretici otomatik yazıyor):** `status-orb` `seek` JS ort. 4,711 ms, en çok 41,6 ms (p95 37,3 ms): tek karede 16,7 ms bütçesi aşılıyor, canlı kare aralığı ortalaması yine 16,57 ms. `katki-isi`'nde aynı belirti çizim çağrılarını tek yolda toplayınca 55–96 ms → 0,7 ms'ye indi; b1'e bildirildi, karar onun. 2200 parçacık zayıf cihazda ölçülmedi.
+**Kare bütçesi (çözüldü):** `status-orb` `seek` JS ort. 4,711 / en çok 41,6 ms idi; b1 parçacıkları 10 saydamlık kümesinde tek yolda çizince 0,87 / 2,8 ms oldu (`OLCUM.md`'deki otomatik uyarı kalktı). b1 ayrıca kendi ölçüm betiğinde `getImageData` döngülerinin birbirine sızan 600 ms'lik sahte uç değerini buldu ve düzeltti. `katki-isi` betiğim `getImageData` kullanmıyor; orada sıçrama tek başına düz `fillRect` deneyinde de görüldü ve toplu yolla 0,7 ms'ye indi. 2200 parçacıkla zayıf cihaz ölçülmedi.
 
 **Bitti (vitrin):** beş parça da `index.html`'de (görünmeyen kartlar son kareyle bekliyor, ekrana girince baştan oynuyor); `status-orb` b1'den hazır geldi, commit'lendi.
 

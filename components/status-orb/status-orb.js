@@ -15,6 +15,7 @@
   const REEL = [[0, 'listening'], [1.5, 'thinking'], [3, 'searching'], [4.5, 'done']];
   const SR = 'position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';
   const TAU = Math.PI * 2;
+  const BUCKETS = 10;                       // parçacık saydamlığı kümesi sayısı
 
   const smooth = (x) => { x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); };
 
@@ -78,6 +79,7 @@
     let level = opts.level == null ? 0.5 : opts.level;
     let states = (opts.states || REEL).map((e) => e.slice());
     const rnd = prng(opts.seed == null ? 1 : opts.seed);
+    const bk = Array.from({ length: BUCKETS }, () => []);
     const P = { s: new Float32Array(n), ph: new Float32Array(n), rx: new Float32Array(n), ry: new Float32Array(n), w: new Float32Array(n) };
     for (let i = 0; i < n; i++) { P.s[i] = (i + 0.5) / n; P.ph[i] = rnd() * TAU; P.rx[i] = rnd() * 2 - 1; P.ry[i] = rnd() * 2 - 1; P.w[i] = 0.6 + rnd() * 0.9; }
 
@@ -121,12 +123,20 @@
       ctx.globalCompositeOperation = 'lighter';
       ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
       const R = 380, act = NAMES.filter((nm) => w[nm] > 0.001);
+      for (let q = 0; q < BUCKETS; q++) bk[q].length = 0;
       for (let i = 0; i < n; i++) {
         let x = 0, y = 0;
         for (const nm of act) { const p = POS[nm](P.s[i], P.ph[i], P.rx[i], P.ry[i], t, level, i); x += w[nm] * p[0]; y += w[nm] * p[1]; }
-        ctx.globalAlpha = 0.3 + 0.65 * (0.5 + 0.5 * Math.sin(P.ph[i] + 2 * t * P.w[i]));
-        const sz = 2.2 + 1.2 * P.w[i];
-        ctx.fillRect(500 + x * R - sz / 2, 500 + y * R - sz / 2, sz, sz);
+        const q = Math.min(BUCKETS - 1, ((0.5 + 0.5 * Math.sin(P.ph[i] + 2 * t * P.w[i])) * BUCKETS) | 0);
+        bk[q].push(500 + x * R, 500 + y * R, 2.2 + 1.2 * P.w[i]);
+      }
+      for (let q = 0; q < BUCKETS; q++) {                      // aynı saydamlıktakiler tek yolda: çok sayıda ayrı çizim çağrısından kaçınır
+        const c = bk[q];
+        if (!c.length) continue;
+        ctx.globalAlpha = 0.3 + 0.65 * (q + 0.5) / BUCKETS;
+        ctx.beginPath();
+        for (let j = 0; j < c.length; j += 3) ctx.rect(c[j] - c[j + 2] / 2, c[j + 1] - c[j + 2] / 2, c[j + 2], c[j + 2]);
+        ctx.fill();
       }
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
