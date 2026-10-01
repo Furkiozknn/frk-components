@@ -1,0 +1,159 @@
+{
+  "olculdu": "2026-10-01T20:57:35.286Z",
+  "hedef": "D:/Repolar/frk-components/components/odometer/demo.html",
+  "boyut": {
+    "js_bayt": 7206,
+    "js_gzip_bayt": 2923,
+    "demo_html_bayt": 6702,
+    "hedef_bayt": 51200
+  },
+  "yasak_cagri_taramasi": {
+    "Math.random": false,
+    "Date.now": false,
+    "performance.now": false,
+    "new Date": false
+  },
+  "tarayici": "Chromium 153.0.8010.12",
+  "ilk_boyama": {
+    "fcp_ms": 88,
+    "lcp_ms": 188,
+    "hedef_lcp_ms": 2500
+  },
+  "determinizm": {
+    "zamanlar": [
+      0,
+      0.37,
+      1,
+      1.234,
+      1.9,
+      2.4,
+      3
+    ],
+    "dom_ileri_geri_karisik_esit": true,
+    "piksel_ayni_t_iki_cizim_esit": [
+      true,
+      true,
+      true
+    ],
+    "tohum_ayni_ayni": true,
+    "tohum_farkli_farkli": true
+  },
+  "konsol_hatasi": [],
+  "deger_dogrulugu": [
+    {
+      "deger": 0,
+      "locale": "tr",
+      "beklenen": "0",
+      "gorunen": "0",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 7,
+      "locale": "tr",
+      "beklenen": "7",
+      "gorunen": "7",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 10,
+      "locale": "en",
+      "beklenen": "10",
+      "gorunen": "10",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 167829,
+      "locale": "tr",
+      "beklenen": "167.829",
+      "gorunen": "167.829",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 167829,
+      "locale": "en",
+      "beklenen": "167,829",
+      "gorunen": "167,829",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 999999,
+      "locale": "tr",
+      "beklenen": "999.999",
+      "gorunen": "999.999",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 1234567,
+      "locale": "en",
+      "beklenen": "1,234,567",
+      "gorunen": "1,234,567",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    }
+  ],
+  "performans": {
+    "seek_ort_ms": 0.034,
+    "seek_max_ms": 0.4,
+    "canli_kare_sayisi": 146,
+    "kare_araligi_ort_ms": 16.6,
+    "kare_araligi_p95_ms": 17.7,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
+  },
+  "erisilebilirlik": {
+    "arac": "axe-core 4.13.0",
+    "taramalar": [
+      {
+        "t": 0,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 1.2,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 2.4,
+        "ihlal": 0,
+        "kurallar": []
+      }
+    ]
+  },
+  "klavye": {
+    "tab_sirasi": [
+      "play",
+      "replay",
+      "lang",
+      "t",
+      "v",
+      "BODY"
+    ],
+    "oynat_enter": [
+      "Duraklat",
+      "Oynat",
+      true
+    ],
+    "oynat_space_dugmede": "Duraklat",
+    "govdede_space": [
+      "Oynat",
+      true
+    ],
+    "r_bastan_oynatir": true,
+    "kaydirici_oklari_t": 0.24,
+    "kaydirici_oynatmayi_durdurur": true
+  },
+  "reduced_motion": {
+    "t_150ms": 2.4,
+    "t_750ms": 2.4,
+    "son_kare_gosterildi": true,
+    "animasyon_yok": true,
+    "normalde_oynuyor": true
+  }
+}
