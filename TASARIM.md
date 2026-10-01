@@ -47,7 +47,7 @@ index.html · README.md · OLCUM.md · DURUM.md · DURUM-b1.md · LICENSE (MIT)
 - `window.__timelines = window.__timelines || {}` ve `if (window.gsap)` korumasıyla düz tarayıcıda da açılır. `onUpdate` render'da her seek'te tetiklenir (`totalTime(t,false)`); hareket bulanıklığı açılmaz.
 - `data-duration` yarı açık aralıktır (son kare `D−1/fps`): animasyon `D`'den önce biter. TR/EN: `data-composition-variables` + `--variables-file`.
 - Komutlar eklentinin `plugin-cli.mjs`'iyle (`npx hyperframes` değil), proje klasöründen, işçi ≤ 2, ağır işler `.agir-is.kilit` ile sıralı.
-- Kanıt (`deneme/kanit.mjs`): üç sıralı `totalTime`, HyperFrames snapshot ↔ düz Chromium bayt eşitliği, 1 ↔ 2 işçili render kare MD5'i.
+- Kanıt (`deneme/kanit.mjs`): üç sıralı `totalTime`, HyperFrames snapshot ↔ düz Chromium bayt eşitliği, 1 ↔ 2 işçili render kare MD5'i. Bileşen değişince önce `hazirla.mjs`: türev kopya bileşenden farklıysa `kos.mjs`/`kanit.mjs` durur (`araclar/bayat.mjs`).
 
 ## 6. Ölçüm (`olcum.json`)
 

@@ -1,9 +1,18 @@
 {
-  "olculdu": "2026-10-01T22:54:14.795Z",
+  "olculdu": "2026-10-01T23:14:05.996Z",
   "fps": 30,
   "parcalar": {
     "odometer": {
       "tuval": "1080x1080",
+      "zamanlar": [
+        0,
+        0.4,
+        1.2,
+        2.5,
+        3.3,
+        4.1,
+        4.8
+      ],
       "A_duz_chromium": {
         "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
@@ -13,30 +22,30 @@
         "sayfa_hatalari": []
       },
       "B_snapshot_ile_karsilastirma": {
-        "1.2": {
+        "0.2": {
           "bayt_esit": true,
-          "boyut_duz": 34555,
-          "boyut_hf": 34555
+          "boyut_duz": 29523,
+          "boyut_hf": 29523
         },
         "2.5": {
           "bayt_esit": true,
-          "boyut_duz": 34506,
-          "boyut_hf": 34506
+          "boyut_duz": 29955,
+          "boyut_hf": 29955
         },
         "4.8": {
           "bayt_esit": true,
-          "boyut_duz": 33998,
-          "boyut_hf": 33998
+          "boyut_duz": 29477,
+          "boyut_hf": 29477
         }
       },
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 11.6
+          "sn": 15
         },
         "isci1": {
           "kod": 0,
-          "sn": 12.9
+          "sn": 15.8
         },
         "kare_sayisi": [
           150,
@@ -47,6 +56,15 @@
     },
     "prompt-terminal": {
       "tuval": "1080x1080",
+      "zamanlar": [
+        0,
+        0.4,
+        1.2,
+        2.5,
+        3.3,
+        4.1,
+        4.8
+      ],
       "A_duz_chromium": {
         "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
@@ -56,10 +74,10 @@
         "sayfa_hatalari": []
       },
       "B_snapshot_ile_karsilastirma": {
-        "1.2": {
+        "0.2": {
           "bayt_esit": true,
-          "boyut_duz": 22207,
-          "boyut_hf": 22207
+          "boyut_duz": 12491,
+          "boyut_hf": 12491
         },
         "2.5": {
           "bayt_esit": true,
@@ -75,11 +93,11 @@
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 11.1
+          "sn": 11.2
         },
         "isci1": {
           "kod": 0,
-          "sn": 12.2
+          "sn": 12.5
         },
         "kare_sayisi": [
           150,
@@ -90,6 +108,15 @@
     },
     "rope-swing": {
       "tuval": "1920x1080",
+      "zamanlar": [
+        0,
+        0.4,
+        1.2,
+        2.5,
+        3.3,
+        4.1,
+        4.8
+      ],
       "A_duz_chromium": {
         "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
@@ -99,10 +126,10 @@
         "sayfa_hatalari": []
       },
       "B_snapshot_ile_karsilastirma": {
-        "1.2": {
+        "0.2": {
           "bayt_esit": true,
-          "boyut_duz": 31539,
-          "boyut_hf": 31539
+          "boyut_duz": 28536,
+          "boyut_hf": 28536
         },
         "2.5": {
           "bayt_esit": true,
@@ -118,11 +145,11 @@
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 11.4
+          "sn": 12.6
         },
         "isci1": {
           "kod": 0,
-          "sn": 14.1
+          "sn": 15.2
         },
         "kare_sayisi": [
           150,
@@ -133,6 +160,15 @@
     },
     "status-orb": {
       "tuval": "1080x1080",
+      "zamanlar": [
+        0,
+        0.4,
+        1.2,
+        2.5,
+        3.3,
+        4.1,
+        4.8
+      ],
       "A_duz_chromium": {
         "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
@@ -142,10 +178,10 @@
         "sayfa_hatalari": []
       },
       "B_snapshot_ile_karsilastirma": {
-        "1.2": {
+        "0.2": {
           "bayt_esit": true,
-          "boyut_duz": 400711,
-          "boyut_hf": 400711
+          "boyut_duz": 368918,
+          "boyut_hf": 368918
         },
         "2.5": {
           "bayt_esit": true,
@@ -161,11 +197,11 @@
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 12.2
+          "sn": 13.3
         },
         "isci1": {
           "kod": 0,
-          "sn": 13.2
+          "sn": 14.1
         },
         "kare_sayisi": [
           150,
@@ -176,6 +212,15 @@
     },
     "katki-isi": {
       "tuval": "1080x1080",
+      "zamanlar": [
+        0,
+        0.4,
+        1.2,
+        2.5,
+        3.3,
+        4.1,
+        4.8
+      ],
       "A_duz_chromium": {
         "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
@@ -185,10 +230,10 @@
         "sayfa_hatalari": []
       },
       "B_snapshot_ile_karsilastirma": {
-        "1.2": {
+        "0.2": {
           "bayt_esit": true,
-          "boyut_duz": 32944,
-          "boyut_hf": 32944
+          "boyut_duz": 26792,
+          "boyut_hf": 26792
         },
         "2.5": {
           "bayt_esit": true,
@@ -204,11 +249,11 @@
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 11.1
+          "sn": 11.4
         },
         "isci1": {
           "kod": 0,
-          "sn": 12.7
+          "sn": 13.1
         },
         "kare_sayisi": [
           150,
@@ -219,6 +264,15 @@
     },
     "ilerleme-halkasi": {
       "tuval": "1080x1080",
+      "zamanlar": [
+        0,
+        0.4,
+        1.2,
+        2.5,
+        3.3,
+        4.1,
+        4.8
+      ],
       "A_duz_chromium": {
         "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
@@ -228,10 +282,10 @@
         "sayfa_hatalari": []
       },
       "B_snapshot_ile_karsilastirma": {
-        "1.2": {
+        "0.2": {
           "bayt_esit": true,
-          "boyut_duz": 299754,
-          "boyut_hf": 299754
+          "boyut_duz": 212879,
+          "boyut_hf": 212879
         },
         "2.5": {
           "bayt_esit": true,
@@ -247,11 +301,11 @@
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 64.6
+          "sn": 10.9
         },
         "isci1": {
           "kod": 0,
-          "sn": 33.4
+          "sn": 12.7
         },
         "kare_sayisi": [
           150,
@@ -262,6 +316,15 @@
     },
     "kod-diff": {
       "tuval": "1080x1080",
+      "zamanlar": [
+        0,
+        0.4,
+        1.2,
+        2.5,
+        3.3,
+        4.1,
+        4.8
+      ],
       "A_duz_chromium": {
         "ileri_ters_esit": true,
         "ileri_karisik_esit": true,
@@ -271,10 +334,10 @@
         "sayfa_hatalari": []
       },
       "B_snapshot_ile_karsilastirma": {
-        "1.2": {
+        "0.2": {
           "bayt_esit": true,
-          "boyut_duz": 48724,
-          "boyut_hf": 48724
+          "boyut_duz": 40967,
+          "boyut_hf": 40967
         },
         "2.5": {
           "bayt_esit": true,
@@ -290,11 +353,11 @@
       "C_iki_render": {
         "isci2": {
           "kod": 0,
-          "sn": 20.3
+          "sn": 11
         },
         "isci1": {
           "kod": 0,
-          "sn": 14.2
+          "sn": 12.6
         },
         "kare_sayisi": [
           150,

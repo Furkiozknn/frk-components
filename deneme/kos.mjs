@@ -6,12 +6,14 @@ import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { kilitAl } from './araclar/kilit.mjs';
+import { bayatsaDur } from './araclar/bayat.mjs';
 
 const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HF = process.env.HYPERFRAMES_CLI || join(homedir(), '.claude/plugins/cache/hyperframes/hyperframes/0.8.85/skills/hyperframes/scripts/plugin-cli.mjs');
 const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi', 'kod-diff'];
 const parcalar = process.argv[2] === 'hepsi' ? TUM : [process.argv[2]];
 const adimlar = process.argv[3] === 'tumu' ? ['check', 'snapshot', 'render'] : [process.argv[3]];
+bayatsaDur(kok, parcalar);
 
 function hf(parca, args, ad) {
   const cwd = join(kok, 'deneme', parca);

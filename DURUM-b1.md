@@ -25,6 +25,8 @@ Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.m
 
 **vitrin-tanitim bulgusu kapandı:** çok bileşenli sayfada odometrenin katmanları (`mask-image`, `translate3d`, `will-change`) geçmişe bağlı piksel veriyordu; YEDEK düzeltti (`odometer.js` 8.532 bayt). Yeniden render ve kanıt: A 9 zaman × 4 sıra aynı, B 3/3, C 900/900; aynı 1 işçili render iki kez 0/900 fark. Videolar: `deneme/vitrin-tanitim/out/vitrin-tanitim-tr.mp4` (6,84 MB), `-en.mp4` (7,01 MB). Ayrıntı `deneme/SONUC.md`.
 
-**Sıradaki:** yeni bir iş bekliyorum; YONLENDIRME'ye göre ikinci tur b1 maddeleri bitti.
+**Bayat kanıt yenilendi (02:05–02:20):** odometer V3'ten sonra `deneme/odometer/` türev kopyası eski kalmıştı (8.236 B ↔ 8.532 B): odometer'ın 5 sn'lik render'ı, KANIT girdisi ve çapraz motor PSNR'ı eski bileşenle ölçülmüştü (kod-diff'te fark yalnız EN `aria-label` metniydi). Kopyalar tazelendi; 7 parçanın hepsi için `kanit` (A aynı, B 3/3 bayt eşit, C 150/150), odometer ve kod-diff için `check` 0 bulgu ve TR/EN render, ardından 7 × 3 çapraz motor (21/21) yeniden koşuldu. Değişen tek sayı odometer PSNR'ı: Firefox 25,7–27,5, WebKit 26,0–28,4 dB (`OLCUM.md` 30. satırda eski 24,5–27,7 / 25,2–27,8 yazıyor; YEDEK'e bildirildi). Tanıtım videosu etkilenmedi: `index.html` bayt bayt aynı çıktı, video zaten güncel odometreyle render edilmişti. Yeni: `deneme/araclar/bayat.mjs` (`kos.mjs`/`kanit.mjs` türev kopya bayatsa çıkış kodu 2 ile durur), `kanit.mjs` ara render'ları geçici klasöre yazar (depoda `*-w1/-w2.mp4` kalmaz).
+
+**Sıradaki:** yeni yönlendirme beklemek; ikinci tur b1 maddeleri bitti, kanıtlar güncel bileşenlerle eşit.
 
 **Takılma yok.**

@@ -3,7 +3,7 @@
    30fps · standard · 2 workers
 
 [?25l│
-◒  Checking browser[1G[J◐  Checking browser[1G[J◇  Browser: cache
+◒  Checking browser[1G[J◐  Checking browser[1G[J◓  Checking browser[1G[J◑  Checking browser[1G[J◇  Browser: cache
 [?25h  █░░░░░░░░░░░░░░░░░░░░░░░░  5%  Compiling composition
   ██░░░░░░░░░░░░░░░░░░░░░░░  10%  Extracting video frames
   █████░░░░░░░░░░░░░░░░░░░░  20%  Processing audio tracks
@@ -16,76 +16,78 @@
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps {"canonicalFps":30,"source":"render-options","rawFpsSource":"render-options","rawFps":30}
 [HyperFrames] render runtime fps {"canonicalFps":30,"source":"render-options","rawFpsSource":"render-options","rawFps":30}
-[initSession:screenshot] page.goto complete (519ms)
-[initSession:screenshot] GSAP proxy flush complete (527ms)
-[initSession:screenshot] pollHfReady complete (533ms)
-[initSession:screenshot] page.goto complete (527ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (538ms)
-[initSession:screenshot] applyVideoMetadataHints complete (538ms)
-[initSession:screenshot] media + fonts + tailwind ready (542ms)
-[initSession:screenshot] GSAP proxy flush complete (538ms)
-[initSession:screenshot] pollHfReady complete (545ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (548ms)
-[initSession:screenshot] applyVideoMetadataHints complete (548ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (558ms)
+[initSession:screenshot] page.goto complete (721ms)
+[initSession:screenshot] GSAP proxy flush complete (737ms)
+[initSession:screenshot] pollHfReady complete (744ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (749ms)
+[initSession:screenshot] applyVideoMetadataHints complete (750ms)
+[initSession:screenshot] page.goto complete (754ms)
+[initSession:screenshot] media + fonts + tailwind ready (766ms)
+[initSession:screenshot] GSAP proxy flush complete (765ms)
+[initSession:screenshot] pollHfReady complete (767ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (772ms)
+[initSession:screenshot] applyVideoMetadataHints complete (772ms)
+[initSession:screenshot] media + fonts + tailwind ready (776ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (788ms)
   ██████░░░░░░░░░░░░░░░░░░░  25%  Starting browsers (1/2 ready)
-[initSession:screenshot] media + fonts + tailwind ready (554ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (562ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (793ms)
   ██████░░░░░░░░░░░░░░░░░░░  25%  Capturing frame 1/150 (2 workers)
-  ███████░░░░░░░░░░░░░░░░░░  29%  Capturing frame 12/150 (2 workers)
-  ████████░░░░░░░░░░░░░░░░░  32%  Capturing frame 22/150 (2 workers)
-  ████████░░░░░░░░░░░░░░░░░  35%  Capturing frame 33/150 (2 workers)
-  █████████░░░░░░░░░░░░░░░░  38%  Capturing frame 43/150 (2 workers)
-  ██████████░░░░░░░░░░░░░░░  41%  Capturing frame 53/150 (2 workers)
-  ███████████░░░░░░░░░░░░░░  44%  Capturing frame 64/150 (2 workers)
-  ████████████░░░░░░░░░░░░░  48%  Capturing frame 75/150 (2 workers)
-  ████████████░░░░░░░░░░░░░  51%  Capturing frame 85/150 (2 workers)
-  █████████████░░░░░░░░░░░░  53%  Capturing frame 94/150 (2 workers)
-  ██████████████░░░░░░░░░░░  56%  Capturing frame 103/150 (2 workers)
-  ██████████████░░░░░░░░░░░  58%  Capturing frame 111/150 (2 workers)
-  ███████████████░░░░░░░░░░  61%  Capturing frame 120/150 (2 workers)
-  ████████████████░░░░░░░░░  64%  Capturing frame 131/150 (2 workers)
-  ████████████████░░░░░░░░░  67%  Capturing frame 141/150 (2 workers)
+  ██████░░░░░░░░░░░░░░░░░░░  27%  Capturing frame 7/150 (2 workers)
+  ███████░░░░░░░░░░░░░░░░░░  30%  Capturing frame 15/150 (2 workers)
+  ████████░░░░░░░░░░░░░░░░░  32%  Capturing frame 23/150 (2 workers)
+  ████████░░░░░░░░░░░░░░░░░  35%  Capturing frame 32/150 (2 workers)
+  █████████░░░░░░░░░░░░░░░░  37%  Capturing frame 40/150 (2 workers)
+  █████████░░░░░░░░░░░░░░░░  39%  Capturing frame 48/150 (2 workers)
+  ██████████░░░░░░░░░░░░░░░  43%  Capturing frame 59/150 (2 workers)
+  ███████████░░░░░░░░░░░░░░  45%  Capturing frame 68/150 (2 workers)
+  ████████████░░░░░░░░░░░░░  48%  Capturing frame 77/150 (2 workers)
+  ████████████░░░░░░░░░░░░░  51%  Capturing frame 86/150 (2 workers)
+  █████████████░░░░░░░░░░░░  54%  Capturing frame 95/150 (2 workers)
+  ██████████████░░░░░░░░░░░  57%  Capturing frame 105/150 (2 workers)
+  ███████████████░░░░░░░░░░  60%  Capturing frame 115/150 (2 workers)
+  ███████████████░░░░░░░░░░  63%  Capturing frame 125/150 (2 workers)
+  ████████████████░░░░░░░░░  66%  Capturing frame 135/150 (2 workers)
+  █████████████████░░░░░░░░  68%  Capturing frame 144/150 (2 workers)
   █████████████████░░░░░░░░  70%  Capturing frame 150/150 (2 workers)
   ██████████████████░░░░░░░  75%  Encoding video
   ██████████████████████░░░  90%  Assembling final video
   █████████████████████████  100%  Render complete
 
 ◇  D:\Repolar\frk-components\deneme\odometer\out\odometer-en.mp4
-   1.0 MB · 5.0s video · rendered in 8.0s
-   screenshot capture · software gpu · compile 0.2s · extract 0.0s · audio 0.0s · probe 0.1s · setup 0.0s · capture 6.2s · encode 1.3s · assemble 0.1s
-[INFO] [Render] Pipeline started {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","platform":"win32","arch":"x64","nodeVersion":"v24.19.0","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"pipeline","status":"checkpoint","elapsedMs":5,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":2}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"compile","status":"start","elapsedMs":7,"needsAlpha":false}
+   1.1 MB · 5.0s video · rendered in 9.8s
+   screenshot capture · software gpu · compile 0.3s · extract 0.0s · audio 0.0s · probe 0.1s · setup 0.0s · capture 7.5s · encode 1.7s · assemble 0.1s
+[INFO] [Render] Pipeline started {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","platform":"win32","arch":"x64","nodeVersion":"v24.19.0","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"pipeline","status":"checkpoint","elapsedMs":6,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":2}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"compile","status":"start","elapsedMs":9,"needsAlpha":false}
 [INFO] [Compiler] Inlined CDN script: https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js
 [INFO] [Compiler] Embedded local font file: fonts/league-gothic-latin-400-normal.woff2 (10 KB → data URI)
 [INFO] [Compiler] Embedded local font file: fonts/league-gothic-latin-ext-400-normal.woff2 (7 KB → data URI)
 [INFO] [Compiler] Embedded local font file: fonts/jetbrains-mono-latin-400-normal.woff2 (21 KB → data URI)
 [INFO] [Compiler] Embedded local font file: fonts/jetbrains-mono-latin-ext-400-normal.woff2 (7 KB → data URI)
-[INFO] Compiled composition metadata {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","entryFile":"index.html","staticDuration":5,"width":1080,"height":1080,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"compile","status":"end","elapsedMs":138,"durationMs":131,"needsAlpha":false}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"compile","status":"checkpoint","elapsedMs":139,"message":"composition metadata resolved","width":1080,"height":1080,"videoCount":0,"audioCount":0,"imageCount":0,"deviceScaleFactor":1,"forceScreenshot":true,"compositionHash":"32752128857a06f9"}
-[INFO] [Render] Low-memory render profile active — screenshot capture, auto-worker calibration skipped. Override with --no-low-memory-mode or PRODUCER_LOW_MEMORY_MODE=false. {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","totalMemMb":8025,"thresholdMb":8192}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"browser_probe","status":"start","elapsedMs":139,"forceScreenshot":true,"stagePhase":"calibrating"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"browser_probe","status":"end","elapsedMs":210,"durationMs":71,"forceScreenshot":true,"stagePhase":"calibrating"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"browser_probe","status":"checkpoint","elapsedMs":211,"message":"duration resolved","durationSeconds":5,"totalFrames":150,"compositionHash":"32752128857a06f9","beginFrameStalled":false}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"video_extract","status":"start","elapsedMs":211,"videoCount":0}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"video_extract","status":"end","elapsedMs":212,"durationMs":1,"videoCount":0}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"video_extract","status":"checkpoint","elapsedMs":213,"message":"frames resolved","videoCount":0,"extractedVideoCount":0,"totalFramesExtracted":0,"maxFramesPerVideo":0,"avgFramesPerExtractedVideo":null,"vfrPreflightCount":null,"vfrPreflightMs":null,"cacheHits":null,"cacheMisses":null,"transientRetries":null,"minVideoFrameCoverageRatio":null,"authoredTimedClipCount":1}
-[INFO] [Render] No HDR sources detected — rendering SDR {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"hdr_detection","status":"checkpoint","elapsedMs":214,"message":"resolved","requestedHdrMode":"auto","effectiveHdr":"sdr","nativeHdrVideoCount":0,"nativeHdrImageCount":0}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"audio_process","status":"start","elapsedMs":214,"audioCount":0}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"audio_process","status":"end","elapsedMs":214,"durationMs":0,"audioCount":0}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"file_server","status":"start","elapsedMs":215,"reused":false}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"file_server","status":"end","elapsedMs":221,"durationMs":6}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"capture_calibration","status":"checkpoint","elapsedMs":226,"message":"skipped","requestedWorkers":2,"totalFrames":150,"htmlInCanvasDetected":false,"lowMemoryMode":true,"deInversionEligible":false,"deParallelRouterEligible":false}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"worker_resolution","status":"checkpoint","elapsedMs":227,"message":"resolved","workerCount":2}
-[INFO] streaming-encode gate {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","enabled":false,"reason":"multi_worker","configFlag":true,"durationCapEnabled":false,"outputFormat":"mp4","workerCount":2,"durationSeconds":5,"maxDurationSeconds":240}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"capture_strategy","status":"checkpoint","elapsedMs":228,"message":"resolved","workerCount":2,"forceScreenshot":true,"captureBeyondViewport":null,"useStreamingEncode":false,"useLayeredComposite":false,"usePageSideCompositing":false,"hasHdrContent":false,"hasShaderTransitions":false,"isPngSequence":false}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"capture_disk","status":"start","elapsedMs":229,"stagePhase":"capturing","needsAlpha":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":0,"captureMode":"screenshot","captureOperation":"captureScreenshot"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"capture_disk","status":"end","elapsedMs":6419,"durationMs":6190,"stagePhase":"capturing","needsAlpha":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"encode","status":"start","elapsedMs":6419,"stagePhase":"capturing","hasAudio":false,"isPngSequence":false,"isGif":false,"chunkedEncode":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"encode","status":"end","elapsedMs":7736,"durationMs":1317,"stagePhase":"capturing","hasAudio":false,"isPngSequence":false,"isGif":false,"chunkedEncode":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"assemble","status":"start","elapsedMs":7737,"stagePhase":"capturing","hasAudio":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"assemble","status":"end","elapsedMs":7840,"durationMs":103,"stagePhase":"capturing","hasAudio":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
-[INFO] [Render:trace] {"renderJobId":"c610c1a9-25b6-41cc-ba97-dbbf5b6399df","phase":"pipeline","status":"checkpoint","elapsedMs":7930,"message":"artifact validated","totalElapsedMs":7926}
+[INFO] Compiled composition metadata {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","entryFile":"index.html","staticDuration":5,"width":1080,"height":1080,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"compile","status":"end","elapsedMs":164,"durationMs":155,"needsAlpha":false}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"compile","status":"checkpoint","elapsedMs":166,"message":"composition metadata resolved","width":1080,"height":1080,"videoCount":0,"audioCount":0,"imageCount":0,"deviceScaleFactor":1,"forceScreenshot":true,"compositionHash":"32752128857a06f9"}
+[INFO] [Render] Low-memory render profile active — screenshot capture, auto-worker calibration skipped. Override with --no-low-memory-mode or PRODUCER_LOW_MEMORY_MODE=false. {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","totalMemMb":8025,"thresholdMb":8192}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"browser_probe","status":"start","elapsedMs":167,"forceScreenshot":true,"stagePhase":"calibrating"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"browser_probe","status":"end","elapsedMs":280,"durationMs":112,"forceScreenshot":true,"stagePhase":"calibrating"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"browser_probe","status":"checkpoint","elapsedMs":282,"message":"duration resolved","durationSeconds":5,"totalFrames":150,"compositionHash":"32752128857a06f9","beginFrameStalled":false}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"video_extract","status":"start","elapsedMs":282,"videoCount":0}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"video_extract","status":"end","elapsedMs":284,"durationMs":2,"videoCount":0}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"video_extract","status":"checkpoint","elapsedMs":285,"message":"frames resolved","videoCount":0,"extractedVideoCount":0,"totalFramesExtracted":0,"maxFramesPerVideo":0,"avgFramesPerExtractedVideo":null,"vfrPreflightCount":null,"vfrPreflightMs":null,"cacheHits":null,"cacheMisses":null,"transientRetries":null,"minVideoFrameCoverageRatio":null,"authoredTimedClipCount":1}
+[INFO] [Render] No HDR sources detected — rendering SDR {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"hdr_detection","status":"checkpoint","elapsedMs":286,"message":"resolved","requestedHdrMode":"auto","effectiveHdr":"sdr","nativeHdrVideoCount":0,"nativeHdrImageCount":0}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"audio_process","status":"start","elapsedMs":286,"audioCount":0}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"audio_process","status":"end","elapsedMs":286,"durationMs":0,"audioCount":0}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"file_server","status":"start","elapsedMs":286,"reused":false}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"file_server","status":"end","elapsedMs":294,"durationMs":7}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"capture_calibration","status":"checkpoint","elapsedMs":300,"message":"skipped","requestedWorkers":2,"totalFrames":150,"htmlInCanvasDetected":false,"lowMemoryMode":true,"deInversionEligible":false,"deParallelRouterEligible":false}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"worker_resolution","status":"checkpoint","elapsedMs":301,"message":"resolved","workerCount":2}
+[INFO] streaming-encode gate {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","enabled":false,"reason":"multi_worker","configFlag":true,"durationCapEnabled":false,"outputFormat":"mp4","workerCount":2,"durationSeconds":5,"maxDurationSeconds":240}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"capture_strategy","status":"checkpoint","elapsedMs":302,"message":"resolved","workerCount":2,"forceScreenshot":true,"captureBeyondViewport":null,"useStreamingEncode":false,"useLayeredComposite":false,"usePageSideCompositing":false,"hasHdrContent":false,"hasShaderTransitions":false,"isPngSequence":false}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"capture_disk","status":"start","elapsedMs":302,"stagePhase":"capturing","needsAlpha":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":0,"captureMode":"screenshot","captureOperation":"captureScreenshot"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"capture_disk","status":"end","elapsedMs":7832,"durationMs":7530,"stagePhase":"capturing","needsAlpha":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"encode","status":"start","elapsedMs":7832,"stagePhase":"capturing","hasAudio":false,"isPngSequence":false,"isGif":false,"chunkedEncode":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"encode","status":"end","elapsedMs":9579,"durationMs":1746,"stagePhase":"capturing","hasAudio":false,"isPngSequence":false,"isGif":false,"chunkedEncode":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"assemble","status":"start","elapsedMs":9581,"stagePhase":"capturing","hasAudio":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"assemble","status":"end","elapsedMs":9703,"durationMs":122,"stagePhase":"capturing","hasAudio":false,"workerCount":2,"forceScreenshot":true,"totalFrames":150,"framesCompleted":150,"captureMode":"screenshot","captureOperation":"encode"}
+[INFO] [Render:trace] {"renderJobId":"d8e39bd4-04dc-406b-9671-66315a4b24bf","phase":"pipeline","status":"checkpoint","elapsedMs":9797,"message":"artifact validated","totalElapsedMs":9793}

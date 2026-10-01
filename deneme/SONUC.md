@@ -20,13 +20,13 @@ window.__timelines['odometer'] = gsap.timeline({ paused: true })
 
 | Parça | Tuval | `lint` | `check` (lint / runtime / layout / motion / contrast) | render TR | render EN |
 |---|---|---|---|---|---|
-| odometer | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 9,1 sn, 1,03 MB | 7,9 sn, 1,03 MB |
+| odometer | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 14,0 sn, 1,13 MB | 14,0 sn, 1,13 MB |
 | prompt-terminal | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 7,1 sn, 0,33 MB | 8,0 sn, 0,31 MB |
 | rope-swing | 1920×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 8,4 sn, 0,75 MB | 8,5 sn, 0,76 MB |
 | status-orb | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 9,7 sn, 4,49 MB | 9,2 sn, 4,50 MB |
 | katki-isi | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 7,2 sn, 0,30 MB | 7,8 sn, 0,33 MB |
 | ilerleme-halkasi | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 10,3 sn, 0,56 MB | 9,0 sn, 0,56 MB |
-| kod-diff | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 11,4 sn, 0,16 MB | 8,5 sn, 0,16 MB |
+| kod-diff | 1080×1080 | 0 | 0 / 0 / 0 / 0 / 0 | 13,9 sn, 0,16 MB | 15,1 sn, 0,16 MB |
 
 `check` kontrast denetimi yalnız DOM metnine bakar: odometre 5/5, prompt-terminal 25/25 örnek geçti. Canvas parçalarda (rope-swing, status-orb, katki-isi) denetlenecek DOM metni yok; orada 0/0, "geçti" değil "görmedi" demek. rope-swing ve status-orb canvas metin renklerinin zemin `#0e0d0b` üstündeki WCAG oranı ayrıca hesaplandı: `#b9b4a8` HUD 9,40:1, `#f1ece2` 16,50:1, `#ffc21a` 12,01:1, `#19d3e6` 10,64:1, `#ff7a1a` 7,45:1, `#ff4d6d` 6,04:1 (hepsi ≥ 4,5:1). katki-isi'nin canvas renkleri ayrıca hesaplanmadı.
 
@@ -37,7 +37,7 @@ Hepsi H.264, 30 fps, 150 kare, 5,000 sn (`ffprobe`). Render süresi = HyperFrame
 Üç ayrı soru, hepsi kare karşılaştırmasıyla:
 
 - **A. Aynı `t`, farklı geliş yolu.** Kompozisyon düz Chromium'da açılır; HyperFrames'in yaptığı gibi `tl.totalTime(t, false)` ile 7 zamana (0, 0,4, 1,2, 2,5, 3,3, 4,1, 4,8 sn) ileri, ters ve karışık sırada gidilir; kök öğenin ekran görüntüleri SHA-256 ile karşılaştırılır.
-- **B. HyperFrames karesi ↔ düz Chromium karesi.** `snapshot` PNG'si ile aynı `t`'nin düz Chromium PNG'si bayt bayt karşılaştırılır (1,2 / 2,5 / 4,8 sn).
+- **B. HyperFrames karesi ↔ düz Chromium karesi.** `snapshot` PNG'si ile aynı `t`'nin düz Chromium PNG'si bayt bayt karşılaştırılır (0,2 / 2,5 / 4,8 sn).
 - **C. İki render.** Aynı kompozisyon `--workers 2` ve `--workers 1` ile render edilir; çözülmüş 150 karenin MD5'leri karşılaştırılır.
 
 | Parça | A: ileri = ters | A: ileri = karışık | A: aynı `t` tekrar | B: bayt eşit | C: aynı kare |
@@ -49,6 +49,8 @@ Hepsi H.264, 30 fps, 150 kare, 5,000 sn (`ffprobe`). Render süresi = HyperFrame
 | katki-isi | evet | evet | evet | 3/3 | 150/150 |
 | ilerleme-halkasi | evet | evet | evet | 3/3 | 150/150 |
 | kod-diff | evet | evet | evet | 3/3 | 150/150 |
+
+**Bayat kopya bulgusu.** Odometre V3'e geçince (`odometer.js` 8.532 bayt) `deneme/odometer/` içindeki türev kopya 8.236 baytlık eski sürümde kaldı: yukarıdaki odometer satırı, 5 sn'lik render'ı ve çapraz motor PSNR'ları eski bileşenle ölçülmüştü (kod-diff'te fark yalnız EN `aria-label` tekil/çoğul metniydi, piksel etkisi yok). Kopyalar `hazirla.mjs` ile tazelendi; odometer ve kod-diff için `check` (0 bulgu), render (TR+EN) ve `kanit`, ardından beş parça için `kanit` ve 7 parça × 3 motor çapraz koşu yeniden alındı. Sonuç: kanıtın hepsi yine tam (A aynı, B 3/3, C 150/150); çapraz motorda 21/21 yine geçti, yalnız odometer PSNR'ı değişti (24,5–27,8 → 25,7–28,4 dB); odometer render'ı 1,03 MB'tan 1,13 MB'a çıktı (V3'ün çizimi farklı). Odometer ve kod-diff'te 1 ve 2 işçili render'ların MP4 dosyaları kare MD5'inin ötesinde bayt bayt aynı çıktı (`cmp`). Bir daha sessizce bayat kalmasın diye `kos.mjs` ve `kanit.mjs` artık türev kopya bileşenden farklıysa çıkış kodu 2 ile durup `hazirla.mjs`'i istiyor (`araclar/bayat.mjs`); `kanit.mjs` 1 ve 2 işçili ara render'ları da depoya değil geçici klasöre yazıyor.
 
 Bu tablo, odometre düzeltildikten sonraki koşudan. İlk koşuda odometre A'da 1/7 zamanda (yalnız `t = 3,3` sn, oturma darbesi aralığı) geliş yoluna bağlı çıkmıştı: 2,5 → 3,3 ile 4,1 → 3,3 farklı piksel veriyordu (PSNR 55,48 dB, sub-piksel kenar yumuşatma), bir C koşusunda 149/150 kare aynıydı (fark 2. karede, 93 dB). `will-change: transform` kaldırmak ve `translate3d` yerine `translateY` kullanmak farkı gidermedi; bileşen sahibi oturma darbesini `row`'daki `transform: scale()` yerine `font-size` yüzdesiyle yapınca fark kayboldu. Bu, kare karşılaştırmasının bir bileşende gerçek bir geçmiş bağımlılığı yakaladığı örnek.
 
@@ -69,7 +71,7 @@ Bu tablo, odometre düzeltildikten sonraki koşudan. İlk koşuda odometre A'da 
 - `prefers-reduced-motion: reduce`: açılışta son kare, 600 ms sonra değişmiyor.
 - rope-swing fizik durumu (konum, hız, kanca, sayaçlar; 8 zamanda tam hassasiyetli JSON) Firefox ve WebKit'te Chromium ile **bit düzeyinde aynı**; çekirdek yalnız `+ − × ÷ √` kullandığı için beklenen buydu, şimdi üç motorda ölçüldü. status-orb durum adları da aynı.
 
-Motorlar arası piksel eşitliği iddia edilmez: yazı tipi rasterı, kenar yumuşatma ve metin motoru farklı. Chromium'a göre PSNR (aynı boyutlu karelerde): odometer 24,5–27,8 dB, prompt-terminal 17,6–34,5 dB, katki-isi 28,9–42,7 dB, rope-swing Firefox 42,4–50,4 dB, status-orb Firefox 49,1–51,4 dB, ilerleme-halkasi Firefox 37,1–38,8 dB, kod-diff Firefox 23,8–26,7 dB ve WebKit 24,4–27,2 dB. WebKit'te rope-swing, status-orb ve ilerleme-halkasi karelerinin yüksekliği 2 px farklı çıktı (648×365 ↔ 648×367, 480×480 ↔ 480×482), PSNR hesaplanamadı.
+Motorlar arası piksel eşitliği iddia edilmez: yazı tipi rasterı, kenar yumuşatma ve metin motoru farklı. Chromium'a göre PSNR (aynı boyutlu karelerde): odometer 25,7–28,4 dB, prompt-terminal 17,6–34,5 dB, katki-isi 28,9–42,7 dB, rope-swing Firefox 42,4–50,4 dB, status-orb Firefox 49,1–51,4 dB, ilerleme-halkasi Firefox 37,1–38,8 dB, kod-diff Firefox 23,8–26,7 dB ve WebKit 24,4–27,2 dB. WebKit'te rope-swing, status-orb ve ilerleme-halkasi karelerinin yüksekliği 2 px farklı çıktı (648×365 ↔ 648×367, 480×480 ↔ 480×482), PSNR hesaplanamadı.
 
 ## vitrin-tanitim (30 sn, çok bileşenli)
 

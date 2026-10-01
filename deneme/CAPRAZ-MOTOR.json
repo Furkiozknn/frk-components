@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T22:20:22.812Z",
+  "olculdu": "2026-10-01T23:07:49.595Z",
   "not": "Playwright, Windows, başsız. WebKit burada Playwright'ın Windows yapısıdır, Safari değildir.",
   "motorlar": {
     "chromium": "chromium 153.0.8010.12",
@@ -68,14 +68,14 @@
           "animasyon_yok": true
         },
         "psnr_chromium_ile_db": [
-          24.5,
-          25,
-          25.2,
-          24.9,
-          25.2,
-          25.1,
-          27.7,
-          25.3
+          25.8,
+          26.9,
+          27.5,
+          26.9,
+          26.7,
+          26.4,
+          25.7,
+          26.4
         ]
       },
       "webkit": {
@@ -108,14 +108,14 @@
           "animasyon_yok": true
         },
         "psnr_chromium_ile_db": [
+          26.1,
+          26.7,
+          27.3,
+          28.4,
+          27.9,
           26,
-          25.5,
-          25.8,
-          26.2,
-          26.5,
-          25.2,
-          27.8,
-          25.5
+          27.6,
+          26
         ]
       }
     },

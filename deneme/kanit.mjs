@@ -13,6 +13,7 @@ import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { kilitAl } from './araclar/kilit.mjs';
+import { bayatsaDur } from './araclar/bayat.mjs';
 
 const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const req = createRequire(import.meta.url);
@@ -20,6 +21,7 @@ const { chromium } = req(req.resolve('playwright', { paths: [execFileSync('npm',
 const HF = join(homedir(), '.claude/plugins/cache/hyperframes/hyperframes/0.8.85/skills/hyperframes/scripts/plugin-cli.mjs');
 const TUM = ['odometer', 'prompt-terminal', 'rope-swing', 'status-orb', 'katki-isi', 'ilerleme-halkasi', 'kod-diff'];
 const parcalar = process.argv.slice(2).length ? process.argv.slice(2) : TUM;
+bayatsaDur(kok, parcalar);
 const TIMES = process.env.KANIT_TIMES ? process.env.KANIT_TIMES.split(',').map(Number) : [0, 0.4, 1.2, 2.5, 3.3, 4.1, 4.8];   // saniye; 5 sn'lik kompozisyonlar için varsayılan, uzun olanlar için KANIT_TIMES
 const sha = (b) => createHash('sha256').update(b).digest('hex').slice(0, 16);
 const onceki = existsSync(join(kok, 'deneme', 'KANIT.json')) ? JSON.parse(readFileSync(join(kok, 'deneme', 'KANIT.json'), 'utf8')) : null;
@@ -94,10 +96,10 @@ try {
     await ctx.close();
 
     // C) iki işçi sayısıyla iki render: çözülmüş karelerin MD5'i
-    mkdirSync(join(d, 'out'), { recursive: true });
-    const r2 = render(p, 2, 'out/' + p + '-tr-w2.mp4');
-    const r1 = render(p, 1, 'out/' + p + '-tr-w1.mp4');
-    const m2 = kareMd5(join(d, 'out', p + '-tr-w2.mp4')), m1 = kareMd5(join(d, 'out', p + '-tr-w1.mp4'));
+    const gecici = (n) => join(tmpdir(), `kanit-${p}-${n}.mp4`);   // depoda ara dosya kalmasın
+    const r2 = render(p, 2, gecici('w2'));
+    const r1 = render(p, 1, gecici('w1'));
+    const m2 = kareMd5(gecici('w2')), m1 = kareMd5(gecici('w1'));
     o.C_iki_render = { isci2: r2, isci1: r1, kare_sayisi: [m2.length, m1.length], ayni_kare_sayisi: m2.filter((x, i) => x === m1[i]).length };
     sonuc.parcalar[p] = o;
     console.log(p, JSON.stringify({ A: o.A_duz_chromium, B: o.B_snapshot_ile_karsilastirma, C: o.C_iki_render }));
