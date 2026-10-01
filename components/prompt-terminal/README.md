@@ -61,9 +61,10 @@ Renk ve yazı tipi: `--frk-pt-bg`, `--frk-pt-fg`, `--frk-pt-accent`, `--frk-pt-d
 | `demo.html` | 6.803 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM aynı; 3 karede ara kareler çizilerek iki kez alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM; 3 frames re-drawn after other frames give byte-identical screenshots; same seed same, different seed differs |
 | Son kare / Final frame | TR (7,476 sn) ve EN (7,35 sn) varsayılan senaryolarında son karede görünen 6 satır `aria-label` metniyle aynı; `duration: 5` verilince süre 5 sn ve metin yine tam / the 6 visible rows on the final frame equal the `aria-label` text for TR (7.476 s) and EN (7.35 s); with `duration: 5` the length is 5 s and the text is still complete |
-| `seek` maliyeti / cost | ort. 0,014 ms, en çok 0,2 ms (600 çağrı) / avg 0.014 ms, max 0.2 ms (600 calls) |
-| Canlı kare aralığı / live frame gap | ort. 16,66 ms, p95 17,9 ms, 450 kare (hedef 16,7) / avg 16.66 ms, p95 17.9 ms, 450 frames |
-| İlk boyama / first paint | FCP 32 ms, LCP 44 ms (hedef ≤ 2500) |
+| Özel senaryo / custom script | 15 adım, biri 119 karakterlik uzun satır: son karede 15 satırın tamamı var, son satır kutunun içinde, süre 9,265 sn / 15 steps incl. one 119-character line: all 15 rows present on the final frame, the last row is inside the box, length 9.265 s |
+| `seek` maliyeti / cost | ort. 0,013 ms, en çok 0,1 ms (600 çağrı) / avg 0.013 ms, max 0.1 ms (600 calls) |
+| Canlı kare aralığı / live frame gap | ort. 16,65 ms, p95 17,8 ms, 450 kare (hedef 16,7) / avg 16.65 ms, p95 17.8 ms, 450 frames |
+| İlk boyama / first paint | FCP 32 ms, LCP 52 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → tohum; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → seed; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause |
 | `prefers-reduced-motion` | Açılışta son kare (`t = 7,476`), 600 ms sonra değişmiyor; normalde oynuyor / final frame on load, unchanged 600 ms later; plays normally otherwise |
@@ -72,6 +73,5 @@ Renk ve yazı tipi: `--frk-pt-bg`, `--frk-pt-fg`, `--frk-pt-accent`, `--frk-pt-d
 
 - Yalnız Chromium'da ölçüldü; eski tarayıcılar ve Safari/Firefox ölçülmedi. / Measured in Chromium only.
 - Kendi `script`'inle uzun satırlar kaydırılmaz, alt alta sarılır ve üstten taşan satırlar kesilir; son satırlar hep görünür. / With a custom `script`, long lines wrap and lines overflowing at the top are clipped; the newest lines always stay visible.
-- Özel `script` yolu ölçüm koşusunda denenmedi; yalnız varsayılan senaryolar ve `duration` ölçeği denendi. / The custom-`script` path was not covered by the run; only the default scripts and the `duration` scale were.
 
 Yazı tipi dosyası (JetBrains Mono) SIL Open Font License altındadır; `demo.html` onu `../../assets/fonts/` altından yükler. / The JetBrains Mono font file is under the SIL Open Font License.

@@ -57,5 +57,4 @@ inst.seek(2.5);
 ## Sınırlar
 
 - Ölçümler başsız Chromium 153, bu makine, masaüstü. Telefon, Safari ve Firefox **ölçülmedi**.
-- Özel `script` yolu ölçüm koşusunda denenmedi.
 - HyperFrames'te render **bu dosyada denenmedi**; `deneme/` altı `b1` oturumunun işi.

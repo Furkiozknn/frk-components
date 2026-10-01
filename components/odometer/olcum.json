@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:08:35.558Z",
+  "olculdu": "2026-10-01T21:13:26.398Z",
   "hedef": "D:/Repolar/frk-components/components/odometer/demo.html",
   "bilesen": "odometer",
   "boyut": {
@@ -16,8 +16,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 48,
-    "lcp_ms": 108,
+    "fcp_ms": 80,
+    "lcp_ms": 200,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -44,6 +44,7 @@
     {
       "deger": 0,
       "locale": "tr",
+      "ondalik": 0,
       "beklenen": "0",
       "gorunen": "0",
       "dogru": true,
@@ -52,6 +53,7 @@
     {
       "deger": 7,
       "locale": "tr",
+      "ondalik": 0,
       "beklenen": "7",
       "gorunen": "7",
       "dogru": true,
@@ -60,6 +62,7 @@
     {
       "deger": 10,
       "locale": "en",
+      "ondalik": 0,
       "beklenen": "10",
       "gorunen": "10",
       "dogru": true,
@@ -68,6 +71,7 @@
     {
       "deger": 167829,
       "locale": "tr",
+      "ondalik": 0,
       "beklenen": "167.829",
       "gorunen": "167.829",
       "dogru": true,
@@ -76,6 +80,7 @@
     {
       "deger": 167829,
       "locale": "en",
+      "ondalik": 0,
       "beklenen": "167,829",
       "gorunen": "167,829",
       "dogru": true,
@@ -84,6 +89,7 @@
     {
       "deger": 999999,
       "locale": "tr",
+      "ondalik": 0,
       "beklenen": "999.999",
       "gorunen": "999.999",
       "dogru": true,
@@ -92,18 +98,46 @@
     {
       "deger": 1234567,
       "locale": "en",
+      "ondalik": 0,
       "beklenen": "1,234,567",
       "gorunen": "1,234,567",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": -5.5,
+      "locale": "tr",
+      "ondalik": 1,
+      "beklenen": "-5,5",
+      "gorunen": "-5,5",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 1234.56,
+      "locale": "en",
+      "ondalik": 2,
+      "beklenen": "1,234.56",
+      "gorunen": "1,234.56",
+      "dogru": true,
+      "son_kare_olcek_1": true
+    },
+    {
+      "deger": 0.05,
+      "locale": "tr",
+      "ondalik": 2,
+      "beklenen": "0,05",
+      "gorunen": "0,05",
       "dogru": true,
       "son_kare_olcek_1": true
     }
   ],
   "performans": {
-    "seek_ort_ms": 0.021,
-    "seek_max_ms": 0.2,
+    "seek_ort_ms": 0.029,
+    "seek_max_ms": 0.3,
     "canli_kare_sayisi": 146,
-    "kare_araligi_ort_ms": 16.66,
-    "kare_araligi_p95_ms": 18.3,
+    "kare_araligi_ort_ms": 16.52,
+    "kare_araligi_p95_ms": 17.7,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },
@@ -147,7 +181,7 @@
       true
     ],
     "r_bastan_oynatir": true,
-    "kaydirici_oklari_t": 0.24,
+    "kaydirici_oklari_t": 0.25,
     "kaydirici_oynatmayi_durdurur": true
   },
   "reduced_motion": {

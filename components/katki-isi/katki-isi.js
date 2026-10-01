@@ -74,7 +74,8 @@
     let cur = 0, raf = 0, ended = false, destroyed = false, W = 0, H = 0;
     const emit = (name, detail) => el.dispatchEvent(new CustomEvent('frk:' + name, { detail: detail }));
 
-    function box(x, y, w, h, r) { if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fill(); } else ctx.fillRect(x, y, w, h); }
+    function rr(x, y, w, h, r) { if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h); }
+    function box(x, y, w, h, r) { ctx.beginPath(); rr(x, y, w, h, r); ctx.fill(); }
 
     // Saf çizim: yalnız t'ye ve sabit veriye bağlı.
     function draw(t) {
@@ -103,18 +104,28 @@
       ctx.font = Math.round(30 * u) + 'px "JetBrains Mono",ui-monospace,Consolas,monospace';
       ctx.fillStyle = '#b9b4a8';
       ctx.fillText(tx.unit, x0 + nw + 20 * u, ny);
-      // ızgara
+      // ızgara: boş zemin tek yol, oturmuş hücreler düzeye göre tek yol, yalnız geçişteki hücreler tek tek
       const gy = y0 + 28 * u + 24 * u + 190 * u + 40 * u, off = (pitch - cell) / 2;
-      for (let i = 0; i < data.length; i++) {
-        const cx = x0 + Math.floor(i / 7) * pitch + off, cy = gy + (i % 7) * pitch + off;
-        ctx.fillStyle = LEVELS[0];
-        box(cx, cy, cell, cell, cell * 0.2);
-        if (lvl[i] === 0) continue;
-        const p = clamp01((t - start[i]) / POP);
-        if (p <= 0) continue;
-        const s = easeBack(p) * cell, k = (cell - s) / 2;
+      const px = (i) => x0 + Math.floor(i / 7) * pitch + off, py = (i) => gy + (i % 7) * pitch + off;
+      ctx.fillStyle = LEVELS[0];
+      ctx.beginPath();
+      for (let i = 0; i < data.length; i++) rr(px(i), py(i), cell, cell, cell * 0.2);
+      ctx.fill();
+      const moving = [];
+      for (let L = 1; L < 5; L++) {
+        ctx.beginPath();
+        let any = false;
+        for (let i = 0; i < data.length; i++) {
+          if (lvl[i] !== L) continue;
+          const p = clamp01((t - start[i]) / POP);
+          if (p >= 1) { rr(px(i), py(i), cell, cell, cell * 0.2); any = true; } else if (p > 0) moving.push(i);
+        }
+        if (any) { ctx.fillStyle = LEVELS[L]; ctx.fill(); }
+      }
+      for (let m = 0; m < moving.length; m++) {
+        const i = moving[m], p = clamp01((t - start[i]) / POP), sz = easeBack(p) * cell, k = (cell - sz) / 2;
         ctx.fillStyle = mix(rgb[0], rgb[lvl[i]], p);
-        box(cx + k, cy + k, s, s, s * 0.2);
+        box(px(i) + k, py(i) + k, sz, sz, sz * 0.2);
       }
       // gösterge
       const ly = gy + gh + 40 * u, lh = 28 * u, sq = 24 * u;

@@ -53,10 +53,10 @@ Hepsi `araclar/olc.mjs` koşusundan, `olcum.json` dosyasında; zamanlama değerl
 | `odometer.js` | 7.206 bayt, gzip 2.923 bayt (hedef ≤ 51.200) / 7,206 bytes, gzip 2,923 (target ≤ 51,200) |
 | `demo.html` | 6.702 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM aynı; 3 karede ara kareler çizilerek iki kez alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM; 3 frames re-drawn after other frames give byte-identical screenshots; same seed same, different seed differs |
-| Son değer / Final value | 7 durum (0, 7, 10, 167.829 tr/en, 999.999, 1,234,567): görünen hane dizisi `aria-label` ile aynı, son karede ölçek 1 / 7 cases: visible digits equal `aria-label`, scale 1 on the final frame |
-| `seek` maliyeti / cost | ort. 0,021 ms, en çok 0,2 ms (600 çağrı) / avg 0.021 ms, max 0.2 ms (600 calls) |
-| Canlı kare aralığı / live frame gap | ort. 16,66 ms, p95 18,3 ms, 146 kare (hedef 16,7) / avg 16.66 ms, p95 18.3 ms, 146 frames |
-| İlk boyama / first paint | FCP 48 ms, LCP 108 ms (hedef ≤ 2500) |
+| Son değer / Final value | 10 durum (0, 7, 10, 167.829 tr/en, 999.999, 1,234,567, eksi ve ondalık: -5,5 · 1,234.56 · 0,05): görünen hane dizisi `aria-label` ile aynı, son karede ölçek 1 / 10 cases (incl. negative and fraction values): visible digits equal `aria-label`, scale 1 on the final frame |
+| `seek` maliyeti / cost | ort. 0,029 ms, en çok 0,3 ms (600 çağrı) / avg 0.029 ms, max 0.3 ms (600 calls) |
+| Canlı kare aralığı / live frame gap | ort. 16,52 ms, p95 17,7 ms, 146 kare (hedef 16,7) / avg 16.52 ms, p95 17.7 ms, 146 frames |
+| İlk boyama / first paint | FCP 80 ms, LCP 200 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → değer; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları ileri-geri sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → value; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause playback |
 | `prefers-reduced-motion` | Açılışta son kare (`t = 2.4`), 600 ms sonra değişmiyor; normalde oynuyor / final frame on load, unchanged 600 ms later; plays normally otherwise |
@@ -66,6 +66,5 @@ Hepsi `araclar/olc.mjs` koşusundan, `olcum.json` dosyasında; zamanlama değerl
 - Yalnız Chromium'da ölçüldü; `mask-image` ve `ResizeObserver` kullanılıyor, eski tarayıcılar ölçülmedi. / Measured in Chromium only; `mask-image` and `ResizeObserver` are used, older browsers not measured.
 - Rakamlar Latin (`-u-nu-latn`); Arapça-Hint rakamları için hane şeridi yok. / Latin digits only.
 - Eksi işareti, ayraçlar, önek ve sonek sabit durur; ondalık haneler döner. / Sign, separators, prefix and suffix stay static; fraction digits spin.
-- Negatif sayı ve ondalık yolu `olc.mjs` koşusunda denenmedi. / Negative and fraction paths are not covered by the `olc.mjs` run.
 
 Yazı tipi dosyaları (League Gothic, JetBrains Mono) SIL Open Font License altındadır; `demo.html` onları `../../assets/fonts/` altından yükler. / The League Gothic and JetBrains Mono files are under the SIL Open Font License.

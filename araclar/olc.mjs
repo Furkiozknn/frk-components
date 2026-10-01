@@ -98,11 +98,11 @@ if (name === 'odometer') {
     const read = (d) => Array.from(d.querySelectorAll('.frk-odo-row > *')).map((n) => {
       if (n.classList.contains('frk-odo-sep')) return n.textContent;
       const m = /translate3d\(0px?,\s*(-?[\d.]+)em/.exec(n.firstChild.style.transform); return String(Math.round(Math.abs(m ? +m[1] : 0) / 1.1)); }).join('');
-    const cases = [[0, 'tr'], [7, 'tr'], [10, 'en'], [167829, 'tr'], [167829, 'en'], [999999, 'tr'], [1234567, 'en']];
-    return cases.map(([v, loc]) => {
+    const cases = [[0, 'tr'], [7, 'tr'], [10, 'en'], [167829, 'tr'], [167829, 'en'], [999999, 'tr'], [1234567, 'en'], [-5.5, 'tr', 1], [1234.56, 'en', 2], [0.05, 'tr', 2]];
+    return cases.map(([v, loc, dec]) => {
       const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
-      const i = FRKComponents.odometer.mount(d, { value: v, locale: loc }); i.seek(i.duration);
-      const r = { deger: v, locale: loc, beklenen: d.getAttribute('aria-label'), gorunen: read(d) }; r.dogru = r.beklenen === r.gorunen; r.son_kare_olcek_1 = +/scale\(([\d.]+)\)/.exec(d.querySelector('.frk-odo-row').style.transform)[1] === 1;
+      const i = FRKComponents.odometer.mount(d, { value: v, locale: loc, decimals: dec || 0 }); i.seek(i.duration);
+      const r = { deger: v, locale: loc, ondalik: dec || 0, beklenen: d.getAttribute('aria-label'), gorunen: read(d) }; r.dogru = r.beklenen === r.gorunen; r.son_kare_olcek_1 = +/scale\(([\d.]+)\)/.exec(d.querySelector('.frk-odo-row').style.transform)[1] === 1;
       i.destroy(); d.remove(); return r; });
   });
   await ctx.close();
@@ -118,7 +118,14 @@ if (name === 'promptTerminal') {
       const beklenen = d.getAttribute('aria-label').replace(/^› /, '').replace(/\. › /g, '. ');
       const r = { locale: loc, sure_sn: +i.duration.toFixed(3), dogru: rows === beklenen, satir_sayisi: d.querySelectorAll('.frk-pt-l').length };
       i.destroy(); d.remove(); return r; };
-    return [kos('tr'), kos('en'), Object.assign(kos('tr', { duration: 5 }), { istenen_sure_sn: 5 })];
+    const ozel = [{ k: 'cmd', text: 'özel komut: uzun bir satırla birlikte' }, { k: 'think', text: 'Düşünüyor…', done: 'Düşünüldü', dur: 0.6 }]
+      .concat(Array.from({ length: 12 }, (_, n) => ({ k: 'out', text: n === 5 ? 'çok uzun satır '.repeat(8).trim() : 'satır ' + (n + 1), dim: n % 2 === 1 })), [{ k: 'out', text: 'son satır', accent: true }]);
+    const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
+    const i = FRKComponents.promptTerminal.mount(d, { script: ozel }); i.seek(i.duration);
+    const rows = Array.from(d.querySelectorAll('.frk-pt-l')); const last = rows[rows.length - 1].getBoundingClientRect(), box = d.getBoundingClientRect();
+    const ozelSonuc = { adim_sayisi: ozel.length, satir_sayisi: rows.length, son_satir_metni: rows[rows.length - 1].textContent, son_satir_kutu_icinde: last.bottom <= box.bottom + 0.5 && last.top >= box.top, sure_sn: +i.duration.toFixed(3) };
+    i.destroy(); d.remove();
+    return { varsayilan: [kos('tr'), kos('en'), Object.assign(kos('tr', { duration: 5 }), { istenen_sure_sn: 5 })], ozel_script: ozelSonuc };
   });
   await ctx.close();
 }

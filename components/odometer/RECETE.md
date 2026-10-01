@@ -75,5 +75,4 @@ inst.seek(1.2);
 ## Sınırlar
 
 - Ölçümler başsız Chromium 153, bu makine, masaüstü. Telefon, Safari ve Firefox **ölçülmedi**.
-- Negatif sayı ve ondalık yolu ölçüm koşusunda denenmedi.
 - HyperFrames'te render **bu dosyada denenmedi**; sonuç `deneme/` altında ayrıca yazılacak.

@@ -49,13 +49,13 @@ Kutunun boyutu önceden verilmiş olmalı (kare ya da yatay); çizim kutuya gör
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
-| `katki-isi.js` | 8.827 bayt, gzip 3.529 bayt (hedef ≤ 51.200) / 8,827 bytes, gzip 3,529 (target ≤ 51,200) |
+| `katki-isi.js` | 9.452 bayt, gzip 3.728 bayt (hedef ≤ 51.200) / 9,452 bytes, gzip 3,728 (target ≤ 51,200) |
 | `demo.html` | 6.845 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM ve canvas pikselleri (`toDataURL`) aynı; 3 karede ara kareler çizilerek iki kez alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM and canvas pixels (`toDataURL`); 3 frames re-drawn after other frames give byte-identical screenshots; same seed same, different seed differs |
 | Örnek veri etiketi / sample notice | Veri verilmezse TR ve EN `aria-label` "Örnek veri" / "Sample data" ile başlar; veri verilince başlamaz; verilen verinin toplamı 21 (beklenen 21) / without `data` the TR and EN `aria-label` start with the notice; with `data` it does not; total of the given data 21 (expected 21) |
-| `seek` maliyeti / cost | ort. 0,651 ms; en çok 55,2 ms (600 çağrıda tek seferlik sıçrama, nedeni araştırılmadı) / avg 0.651 ms; max 55.2 ms (a one-off spike in 600 calls, cause not investigated) |
-| Canlı kare aralığı / live frame gap | ort. 16,57 ms, p95 17,6 ms, 219 kare (hedef 16,7) / avg 16.57 ms, p95 17.6 ms, 219 frames |
-| İlk boyama / first paint | FCP 40 ms, LCP 92 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | ort. 0,119 ms, en çok 0,7 ms (600 çağrı). Hücreler tek yolda toplu çizilmeden önce ort. 0,65–1,07 ms ve en çok 55–96 ms'ydi (üç koşu) / avg 0.119 ms, max 0.7 ms (600 calls). Before batching the cells into shared paths it was avg 0.65–1.07 ms and max 55–96 ms (three runs) |
+| Canlı kare aralığı / live frame gap | ort. 16,57 ms, p95 17,7 ms, 217 kare (hedef 16,7) / avg 16.57 ms, p95 17.7 ms, 217 frames |
+| İlk boyama / first paint | FCP 48 ms, LCP 100 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → tohum; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → seed; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause |
 | `prefers-reduced-motion` | Açılışta son kare (`t = 4`), 600 ms sonra değişmiyor; normalde oynuyor / final frame on load, unchanged 600 ms later; plays normally otherwise |

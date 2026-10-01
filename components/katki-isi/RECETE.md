@@ -33,7 +33,7 @@ Başka prompt yok: kod bu yönlendirmeden, önceki iki parçadan ve `TASARIM.md`
 
 ## Yol boyunca bulunan hatalar
 
-Ölçümde bileşen hatası çıkmadı. Ölçüm betiğinde bir eksik kapatıldı: DOM karşılaştırması `innerHTML` okuyordu, canvas pikselini taşımıyordu; artık `toDataURL` de karşılaştırılıyor. Değişiklikten sonra odometre ve prompt-terminal ölçümleri yeniden koşuldu; sonuçlar aynı, yalnız zamanlama değerleri koşudan koşuya oynadı.
+İlk ölçümde `seek` ortalaması 0,65 ms ama en çok 55,2 ms çıktı; üç yeniden koşuda en çok 62–96 ms, her 600 çağrıda 5 sıçrama (> 5 ms). Aynı canvas üzerinde yalnız düz `fillRect`'le yapılan deneyde de 18,8 ms'lik sıçrama görüldü; 140 ayrı `roundRect` + `fill` ise ortalamayı 7 kat artırıp sıçramayı ~90 ms'ye çıkardı. Çözüm: boş zemin tek yolda, oturmuş hücreler düzeye göre en çok 4 yolda, yalnız geçişteki hücreler tek tek çizildi (görüntü aynı kaldı). Sonuç: ort. 0,119 ms, en çok 0,7 ms. Ölçüm betiğinde de bir eksik kapatıldı: DOM karşılaştırması `innerHTML` okuyordu, canvas pikselini taşımıyordu; artık `toDataURL` de karşılaştırılıyor. Değişiklikten sonra odometre ve prompt-terminal ölçümleri yeniden koşuldu; sonuçlar aynı, yalnız zamanlama değerleri koşudan koşuya oynadı.
 
 ## Kullanım
 
@@ -53,5 +53,4 @@ inst.seek(2);
 ## Sınırlar
 
 - Ölçümler başsız Chromium 153, bu makine, masaüstü. Telefon, Safari ve Firefox **ölçülmedi**.
-- `seek` en çok 55,2 ms: 600 çağrıda tek seferlik sıçrama; nedeni araştırılmadı.
 - HyperFrames'te render **bu dosyada denenmedi**; `deneme/` altı `b1` oturumunun işi.

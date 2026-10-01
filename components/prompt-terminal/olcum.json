@@ -1,5 +1,5 @@
 {
-  "olculdu": "2026-10-01T21:08:43.148Z",
+  "olculdu": "2026-10-01T21:13:34.925Z",
   "hedef": "D:/Repolar/frk-components/components/prompt-terminal/demo.html",
   "bilesen": "promptTerminal",
   "boyut": {
@@ -17,7 +17,7 @@
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
     "fcp_ms": 32,
-    "lcp_ms": 44,
+    "lcp_ms": 52,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -40,33 +40,42 @@
     "tohum_farkli_farkli": true
   },
   "konsol_hatasi": [],
-  "son_kare_metni": [
-    {
-      "locale": "tr",
-      "sure_sn": 7.476,
-      "dogru": true,
-      "satir_sayisi": 6
-    },
-    {
-      "locale": "en",
-      "sure_sn": 7.35,
-      "dogru": true,
-      "satir_sayisi": 6
-    },
-    {
-      "locale": "tr",
-      "sure_sn": 5,
-      "dogru": true,
-      "satir_sayisi": 6,
-      "istenen_sure_sn": 5
+  "son_kare_metni": {
+    "varsayilan": [
+      {
+        "locale": "tr",
+        "sure_sn": 7.476,
+        "dogru": true,
+        "satir_sayisi": 6
+      },
+      {
+        "locale": "en",
+        "sure_sn": 7.35,
+        "dogru": true,
+        "satir_sayisi": 6
+      },
+      {
+        "locale": "tr",
+        "sure_sn": 5,
+        "dogru": true,
+        "satir_sayisi": 6,
+        "istenen_sure_sn": 5
+      }
+    ],
+    "ozel_script": {
+      "adim_sayisi": 15,
+      "satir_sayisi": 15,
+      "son_satir_metni": "• son satır",
+      "son_satir_kutu_icinde": true,
+      "sure_sn": 9.265
     }
-  ],
+  },
   "performans": {
-    "seek_ort_ms": 0.014,
-    "seek_max_ms": 0.2,
+    "seek_ort_ms": 0.013,
+    "seek_max_ms": 0.1,
     "canli_kare_sayisi": 450,
-    "kare_araligi_ort_ms": 16.66,
-    "kare_araligi_p95_ms": 17.9,
+    "kare_araligi_ort_ms": 16.65,
+    "kare_araligi_p95_ms": 17.8,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },
