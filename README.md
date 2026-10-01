@@ -40,7 +40,7 @@ node araclar/olc.mjs components/odometer/demo.html   # olcum.json yazar / writes
 node araclar/olcum-md.mjs                            # OLCUM.md tablosu / the OLCUM.md table
 ```
 
-Playwright global kurulumdan alınır (`npm root -g`). Sonuçlar [`OLCUM.md`](OLCUM.md) içinde; **gerçek telefon, Safari ve Firefox ölçülmedi**. / Playwright is taken from the global install. Results are in [`OLCUM.md`](OLCUM.md); **real phones, Safari and Firefox were not measured**.
+Playwright global kurulumdan alınır (`npm root -g`). Sonuçlar [`OLCUM.md`](OLCUM.md) içinde (Firefox 155 ve WebKit 26.6 çapraz motor koşusu dahil); rakip analizindeki ölçütlere karşı durum [`KARNE.md`](KARNE.md) içinde. **Gerçek telefon, gerçek Safari/iOS ve Android Chrome ölçülmedi.** / Playwright is taken from the global install. Results are in [`OLCUM.md`](OLCUM.md) (incl. a Firefox 155 and WebKit 26.6 cross-engine run); the standing against the competitor analysis' criteria is in [`KARNE.md`](KARNE.md). **Real phones, real Safari/iOS and Android Chrome were not measured.**
 
 ## Kimlik ve lisanslar / Identity and licences
 
