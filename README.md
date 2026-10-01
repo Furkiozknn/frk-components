@@ -9,9 +9,9 @@
 |---|---|---|
 | [`odometer`](components/odometer) | Haneleri soldan sağa sırayla duran sayaç / counter whose digits stop one by one | hazır, ölçüldü / done, measured |
 | [`prompt-terminal`](components/prompt-terminal) | Komutun harf harf yazıldığı, çıktının aktığı terminal (örnek senaryo) / terminal with typing and streaming output (sample script) | hazır, ölçüldü / done, measured |
-| `rope-swing` | Kanca ipi / hook rope | hazırlanıyor / in progress |
-| `status-orb` | Durum küresi / status orb | hazırlanıyor / in progress |
-| `katki-isi` | Zamanla dolan katkı ısı haritası (örnek veri) / contribution heat map that fills over time (sample data) | planlandı / planned |
+| [`rope-swing`](components/rope-swing) | Kanca ipi: otopilotlu, Boşluk/dokunuşla oynanan canvas oyunu / rope swing: autopilot-driven canvas game, playable with Space or touch | hazır, ölçüldü / done, measured |
+| [`status-orb`](components/status-orb) | Dört durumlu (dinliyor, düşünüyor, arıyor, bitti) deterministik parçacık küresi / deterministic particle orb with four states | hazır, ölçüldü / done, measured |
+| [`katki-isi`](components/katki-isi) | Zamanla dolan katkı ısı haritası; veri örnek veridir / contribution heat map that fills over time; the data is sample data | hazır, ölçüldü / done, measured |
 
 Hepsini bir arada görmek için `index.html`'i bir HTTP sunucusundan açın (ör. `python -m http.server`); kartlardaki ölçüm satırları `olcum.json` dosyalarını `fetch` ile okur, doğrudan `file://` açılışında tarayıcı bunu engeller. / To see them together, open `index.html` from an HTTP server; the measurement rows `fetch` the `olcum.json` files, which browsers block under `file://`.
 
