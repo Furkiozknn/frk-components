@@ -1,10 +1,10 @@
 {
-  "olculdu": "2026-10-01T21:13:34.925Z",
+  "olculdu": "2026-10-01T21:49:05.529Z",
   "hedef": "D:/Repolar/frk-components/components/prompt-terminal/demo.html",
   "bilesen": "promptTerminal",
   "boyut": {
-    "js_bayt": 9904,
-    "js_gzip_bayt": 3810,
+    "js_bayt": 10068,
+    "js_gzip_bayt": 3878,
     "demo_html_bayt": 6803,
     "hedef_bayt": 51200
   },
@@ -16,8 +16,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 32,
-    "lcp_ms": 52,
+    "fcp_ms": 36,
+    "lcp_ms": 44,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -34,8 +34,13 @@
     "piksel_ayni_t_iki_cizim_esit": [
       true,
       true,
+      true,
+      true,
+      true,
+      true,
       true
     ],
+    "piksel_farkli_olan_t": [],
     "tohum_ayni_ayni": true,
     "tohum_farkli_farkli": true
   },
@@ -71,10 +76,10 @@
     }
   },
   "performans": {
-    "seek_ort_ms": 0.013,
-    "seek_max_ms": 0.1,
+    "seek_ort_ms": 0.016,
+    "seek_max_ms": 0.2,
     "canli_kare_sayisi": 450,
-    "kare_araligi_ort_ms": 16.65,
+    "kare_araligi_ort_ms": 16.67,
     "kare_araligi_p95_ms": 17.8,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."

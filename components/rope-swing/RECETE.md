@@ -63,12 +63,14 @@ node deneme/araclar/olc-parca.mjs components/rope-swing/demo.html
 
 ## Kararlar
 
-- **Saf `seek(t)` = kaydı baştan oynat.** Oyun doğası gereği geçmişe bağlı; bu yüzden seek geçmişi saklamak yerine girdi kaydını sabit adımla yeniden simüle ediyor. 6 sn × 120 = 720 adım ucuz (ölçülen: seek ort. 0,067 ms); önbellek yalnız ileri giderken devam eder.
+- **Saf `seek(t)` = kaydı baştan oynat.** Oyun doğası gereği geçmişe bağlı; bu yüzden seek geçmişi saklamak yerine girdi kaydını sabit adımla yeniden simüle ediyor. 6 sn × 120 = 720 adım ucuz (ölçülen: seek ort. 0,07 ms); önbellek yalnız ileri giderken devam eder.
 - **Sabit adım + yalnız temel aritmetik.** `Math.hypot`, `sin`, `cos` yok; kalan tek işlev `Math.sqrt`. Amaç motorlar arası aynı kare; ancak ECMAScript `Math.sqrt` için tam yuvarlama garantisi vermiyor ve motorların donanım karekökü kullandığı varsayımı Chromium dışında **denenmedi**.
 - **Kanca basılı tutunca otomatik takılır.** Kanca'daki "basış tamponu" benzeri bir etki: menzilde yukarıda nokta yokken basılı tutarsan, nokta menzile girdiği adımda takılır. Otopilot arama uzayını küçültüyor, oyuncuya da tolerans veriyor.
 - **Girdi kaydı JSON.** `inst.inputs` başka bir örnekte `opts.inputs` ile birebir aynı kareleri verir (ölçüldü: 6 canlı kare tekrarda aynı). Video sahnesi için tek gereken bu liste.
 - **Tohum yalnız yıldızlarda.** Fizik tohumdan bağımsız; böylece otopilot kaydı her tohumda geçerli.
 - **`requestAnimationFrame`'e dolaylı erişim.** HyperFrames lint'i kompozisyon betiğinde doğrudan çağrıyı hata sayıyor; `global['requestAnimationFrame']` ile erişildi. Bu yol yalnız kullanıcı düğmesi/girdisiyle çalışır, render'da hiç yürütülmez. Saat okunmuyor: zaman rAF damgasından.
+- **Canvas metni için yazı tipi alt kümeleri önceden yüklenir.** `document.fonts.load(font)` yalnız boşluk karakterinin alt kümesini yükler; "BİTTİ"deki `İ` latin-ext'te olduğu için ilk çizimde yedek yazı tipiyle çıkıp sonra değişiyordu. Çizilecek bütün metinle (`document.fonts.load(font, metin)`) önceden yükleniyor.
+- **HyperFrames işaretleri.** Yalnız ekran okuyucu için gizlenen yardımcı metinler `data-layout-ignore`, tam kenarlı canvas `data-layout-allow-overflow` taşır: HyperFrames yerleşim denetimi aksi halde gizli metni "kırpılmış metin" sayıyor.
 - **Erişilebilirlik.** Oyun alanı `role="application"` + etiket + ipucu (`aria-describedby`); canvas gizli; kanca/bırakma/bitiş olayları `role="status"` bölgesine yazılıyor (kare başına değil, olay başına). `P`/`Esc` duraklatır (WCAG 2.2.2). Reduced-motion'da `play()` son kareyi gösterir; kullanıcı girdisi oyunu yine başlatır.
 
 ## Yol boyunca bulunan hatalar
@@ -78,6 +80,8 @@ node deneme/araclar/olc-parca.mjs components/rope-swing/demo.html
 3. **Bot bitişe ekranın altından varıyordu.** Bitiş `y = 379` çıkmıştı (sahne 360 px). Bota "bitişte `y ≤ 320`" şartı konuldu; yeni kayıt `y = 314`'te bitiyor.
 4. **Bot saçma titreşim üretiyordu.** Bırakıp 1 adım sonra yeniden basan diziler (`[923, 0], [924, 1]`) çıktı. Arama en az 6 adım bekletecek şekilde kısıtlandı.
 5. **`Esc` aç/kapa yapıyordu.** Ölçüm betiğindeki tuş testini yazarken fark edildi; `Esc` yalnız duraklatır, `P` aç/kapa.
+6. **"BİTTİ" ilk görünüşte yedek yazı tipiyle çiziliyordu.** HyperFrames kompozisyonunu düz Chromium'da ileri/ters/karışık sırada gezen kanıt betiği bunu "ilk ziyaret farklı, sonrakiler aynı" diye gösterdi; sebep tembel yüklenen `unicode-range` alt kümesiydi. Düzeltme yukarıdaki yazı tipi ön yüklemesi; sonra dört sıralamanın hepsi aynı, HyperFrames karesiyle bayt eşit.
+7. **HyperFrames `check` ilk koşuda 4 hata verdi** (gizli ipucu ve durum bölgesi "kırpılmış metin", canvas "çakışma"). İşaretler (`data-layout-*`) eklenince 0 bulgu.
 
 ## Kullanım
 
@@ -105,4 +109,4 @@ FRKComponents.ropeSwing.mount(baskaEl, { inputs: kayit }).seek(2.5);
 - Ölçümler başsız Chromium 153, bu makine, masaüstü. Telefon, gerçek dokunmatik, Safari ve Firefox **ölçülmedi**.
 - Oynanış hissi ve zorluk ölçülmedi; otopilot bir bot, insan testi yok.
 - Kontrol noktası, kırılgan/hareketli nokta, rüzgâr ve halat kısaltma/uzatma yok.
-- HyperFrames'te render **bu dosyada denenmedi**; sonuç `deneme/` altında ayrıca yazılacak.
+- HyperFrames: 5 sn'lik 1920×1080 kompozisyon `deneme/rope-swing/` altında; `check` 0 bulgu, TR+EN render, aynı `t` aynı kare kanıtı `deneme/SONUC.md` ve `deneme/KANIT.json`'da. Canvas metni HyperFrames kontrast denetiminin dışında kalır.

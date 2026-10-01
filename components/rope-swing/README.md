@@ -66,13 +66,13 @@ Hepsi `deneme/araclar/olc-parca.mjs` koşusundan, `olcum.json` dosyasında. Baş
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
-| `rope-swing.js` | 15.172 bayt, gzip 5.531 bayt (hedef ≤ 51.200) / 15,172 bytes, gzip 5,531 (target ≤ 51,200) |
+| `rope-swing.js` | 15.605 bayt, gzip 5.725 bayt (hedef ≤ 51.200) / 15,605 bytes, gzip 5,725 (target ≤ 51,200) |
 | `demo.html` | 7.393 bayt / bytes |
 | Determinizm / Determinism | 9 zaman noktası × ileri, ters, karışık sıra: ekran görüntüleri ve durum JSON'u aynı; aynı tohum aynı, farklı tohum farklı kare / 9 times × forward, reverse, shuffled: identical screenshots and state JSON; same seed same, different seed differs |
 | Canlı oyun ↔ kayıt / live play ↔ record | Oyuncu girdisiyle (6 olay) oynanan koşunun 6 karesi, kaydedilen girdiyle yeniden oynatılınca aynı / 6 frames of a live run (6 events) are identical when replayed from the recorded input |
-| `seek` maliyeti / cost | JS: ort. 0,067 ms, p95 0,2 ms, en çok 0,8 ms (240 çağrı). JS + canvas boşaltma (`getImageData`): ort. 0,351 ms, medyan 0,3 ms, p95 0,5 ms, en çok 1,2 ms / JS: avg 0.067 ms, p95 0.2 ms, max 0.8 ms (240 calls); JS + canvas flush: avg 0.351 ms, median 0.3 ms, p95 0.5 ms, max 1.2 ms |
-| Canlı kare aralığı / live frame gap | ort. 16,62 ms, p95 17,7 ms, 355 kare (hedef 16,7) / avg 16.62 ms, p95 17.7 ms, 355 frames |
-| İlk boyama / first paint | FCP 28 ms, LCP 52 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | JS: ort. 0,07 ms, p95 0,2 ms, en çok 0,9 ms (240 çağrı). JS + canvas boşaltma (`getImageData`): ort. 0,395 ms, medyan 0,3 ms, p95 0,8 ms, en çok 2,0 ms / JS: avg 0.07 ms, p95 0.2 ms, max 0.9 ms (240 calls); JS + canvas flush: avg 0.395 ms, median 0.3 ms, p95 0.8 ms, max 2.0 ms |
+| Canlı kare aralığı / live frame gap | ort. 16,62 ms, p95 17,8 ms, 354 kare (hedef 16,7) / avg 16.62 ms, p95 17.8 ms, 354 frames |
+| İlk boyama / first paint | FCP 48 ms, LCP 92 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 3, 6 / 0 violations at t = 0, 3, 6 |
 | Klavye / keyboard | Tab sırası oyun alanı → oynat → baştan → otopilot → kendin oyna → dil → kaydırıcı; Boşluk basılı = kanca takıldı, bırakınca bırakıldı; `P` oynat/duraklat, `Esc` duraklat / Tab order play area → play → restart → autopilot → play yourself → language → slider; Space held hooks, release unhooks; `P` toggles, `Esc` pauses |
 | Fare / pointer | Canvas'ta basılı tutunca girdi kaydı ve oynatma başlar (Playwright faresiyle) / holding on the canvas records input and starts playing (Playwright mouse) |
@@ -85,6 +85,6 @@ Hepsi `deneme/araclar/olc-parca.mjs` koşusundan, `olcum.json` dosyasında. Baş
 - Oynanış hissi ve zorluk **ölçülmedi**: otopilot bir bot, insan testi yapılmadı. / Game feel and difficulty are **not measured**: the autopilot is a bot, no human test.
 - Fizik `sin`/`cos`/`hypot` kullanmaz, yalnız `+ − × ÷` ve `Math.sqrt`; ama `Math.sqrt` için tam yuvarlama şartname garantisi yok, Safari/Firefox'ta bit düzeyinde aynılık **denenmedi**. / The physics avoids `sin`/`cos`/`hypot` and uses only `+ − × ÷` and `Math.sqrt`; the spec does not guarantee correctly rounded `Math.sqrt`, and bit-level equality in Safari/Firefox was **not tested**.
 - Düşen oyuncu başa döner, süre durmaz; kontrol noktası, kırılgan/hareketli nokta ve rüzgâr yok. / A fallen player respawns at the start and time keeps running; no checkpoints, breakable/moving points or wind.
-- HyperFrames'te render `deneme/` altında ayrıca yazılacak. / HyperFrames rendering will be reported separately under `deneme/`.
+- HyperFrames: 5 sn'lik 1920×1080 kompozisyon (`deneme/rope-swing/`), `check` 0 bulgu, TR+EN render (0,75 MB); aynı `t` aynı kare düz Chromium'da ileri/ters/karışık sırada ve 1 ↔ 2 işçili render'da bayt bayt aynı çıktı (`deneme/SONUC.md`, `deneme/KANIT.json`). Canvas içindeki metni HyperFrames kontrast denetimi görmez; renk oranları ayrıca hesaplandı. / HyperFrames: a 5 s 1920×1080 composition (`deneme/rope-swing/`), `check` clean, TR+EN renders (0.75 MB); the same `t` gives the same frame in plain Chromium across forward/reverse/shuffled orders and across 1 vs 2 render workers, byte for byte. HyperFrames' contrast audit cannot see text drawn on a canvas; the colour ratios were computed separately.
 
 MIT lisanslı (`SPDX-License-Identifier: MIT`). Yazı tipi dosyaları (League Gothic, JetBrains Mono) SIL Open Font License altındadır; `demo.html` onları `../../assets/fonts/` altından yükler. / MIT licensed. The font files are under the SIL Open Font License.

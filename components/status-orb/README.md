@@ -63,12 +63,12 @@ Hepsi `deneme/araclar/olc-parca.mjs` koşusundan, `olcum.json` dosyasında. Baş
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
-| `status-orb.js` | 11.523 bayt, gzip 4.489 bayt (hedef ≤ 51.200) / 11,523 bytes, gzip 4,489 (target ≤ 51,200) |
+| `status-orb.js` | 11.864 bayt, gzip 4.671 bayt (hedef ≤ 51.200) / 11,864 bytes, gzip 4,671 (target ≤ 51,200) |
 | `demo.html` | 8.339 bayt / bytes |
 | Determinizm / Determinism | 9 zaman noktası × ileri, ters, karışık sıra: ekran görüntüleri ve durum aynı; 9 karenin 9'u birbirinden farklı; aynı tohum aynı, farklı tohum farklı kare / 9 times × forward, reverse, shuffled: identical screenshots and state; all 9 frames differ from each other; same seed same, different seed differs |
 | Durum kaydı ↔ tekrar / state record ↔ replay | Uygulamanın 3 durum seçtiği koşunun 3 canlı karesi, kayıtla yeniden oynatılınca aynı; 9 zaman noktasında kayıttan kurulan örnek canlı örnekle aynı; `level` kareyi değiştirir, geri alınca aynı kare / 3 live frames of a run with 3 state picks are identical when replayed from the record; a record-built instance matches the live one at 9 times; `level` changes the frame and reverting restores it |
-| Kare maliyeti / frame cost | `seek` JS süresi: ort. 0,87 ms, p95 1,5 ms, en çok 2,8 ms; `seek` + canvas boşaltma (`getImageData`, 240 çağrı): ort. 3,42 ms, medyan 3,4 ms, p95 3,9 ms, en çok 6,0 ms / `seek` JS time: avg 0.87 ms, p95 1.5 ms, max 2.8 ms; `seek` + canvas flush (`getImageData`, 240 calls): avg 3.42 ms, median 3.4 ms, p95 3.9 ms, max 6.0 ms |
-| Canlı kare aralığı / live frame gap | ort. 16,59 ms, p95 17,8 ms, 266 kare (hedef 16,7) / avg 16.59 ms, p95 17.8 ms, 266 frames |
+| Kare maliyeti / frame cost | `seek` JS süresi: ort. 0,92 ms, p95 1,4 ms, en çok 3,1 ms; `seek` + canvas boşaltma (`getImageData`, 240 çağrı): ort. 3,63 ms, medyan 3,5 ms, p95 4,5 ms, en çok 7,1 ms / `seek` JS time: avg 0.92 ms, p95 1.4 ms, max 3.1 ms; `seek` + canvas flush (`getImageData`, 240 calls): avg 3.63 ms, median 3.5 ms, p95 4.5 ms, max 7.1 ms |
+| Canlı kare aralığı / live frame gap | ort. 16,56 ms, p95 17,9 ms, 260 kare (hedef 16,7) / avg 16.56 ms, p95 17.9 ms, 260 frames |
 | İlk boyama / first paint | FCP 36 ms, LCP 80 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 3, 6 / 0 violations at t = 0, 3, 6 |
 | Klavye / keyboard | Tab sırası dinliyor → düşünüyor → arıyor → bitti → oynat → baştan → dil → kaydırıcı → seviye; Enter durum düğmesini seçer ve `aria-pressed` günceller; `4` tuşu "bitti"yi seçer ve etiket/canlı bölge "Asistan: bitti" olur; Boşluk oynat/duraklat; `R` baştan / Tab order listening → thinking → searching → done → play → restart → language → slider → level; Enter picks a state and updates `aria-pressed`; key `4` picks "done" and the label/live region become "Assistant: done"; Space toggles; `R` restarts |
@@ -77,10 +77,10 @@ Hepsi `deneme/araclar/olc-parca.mjs` koşusundan, `olcum.json` dosyasında. Baş
 
 ## Sınırlar / Limits
 
-- Yalnız Chromium'da ölçüldü; kare maliyeti GPU'suz olabilecek başsız tarayıcıda, telefon **ölçülmedi**. 2200 parçacıklı `lighter` birleştirme bu ortamda kare başına ~3,4 ms tutuyor; zayıf cihazda `n` düşürülmeli (ölçülmedi). / Chromium only; frame cost was measured in a headless browser that may lack a GPU, phone **not measured**. 2200 particles with `lighter` blending cost ~3.4 ms per frame here; lower `n` on weak devices (not measured).
+- Yalnız Chromium'da ölçüldü; kare maliyeti GPU'suz olabilecek başsız tarayıcıda, telefon **ölçülmedi**. 2200 parçacıklı `lighter` birleştirme bu ortamda kare başına ~3,6 ms tutuyor; zayıf cihazda `n` düşürülmeli (ölçülmedi). / Chromium only; frame cost was measured in a headless browser that may lack a GPU, phone **not measured**. 2200 particles with `lighter` blending cost ~3.6 ms per frame here; lower `n` on weak devices (not measured).
 - Ship Notes'un Signal Orb'u WebGL ile 12.000 parçacık ve başka şekiller kullanır; bu parça onun kodunu kullanmaz. Yalnız herkese açık README'si, önizleme görseli ve durum adları incelendi. / Ship Notes' Signal Orb uses WebGL with 12,000 particles and different shapes; this component uses none of its code: only its public README, preview image and the state names were looked at.
 - Ses girişi, yapay zekâ çağrısı ya da arama yapılmaz; hangi durumun gösterileceğine uygulama karar verir. / No audio input, AI call or search; the application decides which state to show.
 - `duration: Infinity` ile sürekli çalışan gösterge (`play()` hiç bitmez) tasarlandı ama **denenmedi**. / A continuously running indicator via `duration: Infinity` is designed but **not tested**.
-- HyperFrames'te render `deneme/` altında ayrıca yazılacak. / HyperFrames rendering will be reported separately under `deneme/`.
+- HyperFrames: 5 sn'lik 1080×1080 kompozisyon (`deneme/status-orb/`), `check` 0 bulgu, TR+EN render (4,49 MB); aynı `t` aynı kare düz Chromium'da ileri/ters/karışık sırada ve 1 ↔ 2 işçili render'da bayt bayt aynı çıktı (`deneme/SONUC.md`, `deneme/KANIT.json`). Canvas içindeki etiketi HyperFrames kontrast denetimi görmez; renk oranları ayrıca hesaplandı. / HyperFrames: a 5 s 1080×1080 composition (`deneme/status-orb/`), `check` clean, TR+EN renders (4.49 MB); the same `t` gives the same frame in plain Chromium across forward/reverse/shuffled orders and across 1 vs 2 render workers, byte for byte. HyperFrames' contrast audit cannot see text drawn on a canvas; the colour ratios were computed separately.
 
 MIT lisanslı (`SPDX-License-Identifier: MIT`). Yazı tipi dosyaları (League Gothic, JetBrains Mono) SIL Open Font License altındadır; `demo.html` onları `../../assets/fonts/` altından yükler. / MIT licensed. The font files are under the SIL Open Font License.

@@ -92,7 +92,7 @@
     cv.setAttribute('aria-hidden', 'true');
     cv.style.cssText = 'display:block;width:100%;height:100%';
     const live = document.createElement('div');
-    live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite'); live.style.cssText = SR;
+    live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite'); live.style.cssText = SR; live.setAttribute('data-layout-ignore', '');   // yalnız ekran okuyucu için; HyperFrames yerleşim denetiminde yok sayılır
     root.append(cv, live);
     el.appendChild(root);
     const ctx = cv.getContext('2d');
@@ -204,7 +204,10 @@
 
     const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(fit) : null;
     if (ro) ro.observe(el);
-    if (opts.label && document.fonts && document.fonts.load) document.fonts.load('26px "JetBrains Mono"').then(() => draw(cur, weightsAt(states, cur).w), function () {});
+    if (opts.label && document.fonts && document.fonts.load) {   // etiketteki Türkçe harfler latin-ext alt kümesinde: tüm etiketler önceden yüklenir
+      const text = [TXT.tr, TXT.en].map((d) => Object.keys(d).map((x) => d[x]).join(' ')).join(' ');
+      document.fonts.load('26px "JetBrains Mono"', text).then(() => draw(cur, weightsAt(states, cur).w), function () {});
+    }
 
     function destroy() { destroyed = true; pause(); if (ro) ro.disconnect(); el.textContent = ''; el.removeAttribute('data-t'); el.removeAttribute('data-state'); }
 

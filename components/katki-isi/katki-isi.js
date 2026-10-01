@@ -152,6 +152,12 @@
     resize();
     const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(resize) : null;
     if (ro) ro.observe(el);
+    if (document.fonts && document.fonts.load) {
+      // Canvas metni unicode-range alt kümelerini kendiliğinden beklemez: çizilecek metni açıkça yükle, sonra yeniden çiz.
+      const mono = '24px "JetBrains Mono"', gothic = '190px "League Gothic"';
+      const labels = tx.title + tx.sample + tx.unit + tx.less + tx.more + '// ';
+      Promise.all([document.fonts.load(mono, labels), document.fonts.load(gothic, '0123456789.,-')]).then(() => draw(cur), () => {});
+    }
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => draw(cur));
 
     function seek(t) {

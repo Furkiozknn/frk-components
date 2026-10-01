@@ -5,6 +5,7 @@ import { execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
+import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 
@@ -69,13 +70,16 @@ const open = async (ctxOpts = {}) => {
   for (const t of [1.234, 0.37, 3.0, 0, 1.9, 1.0, 2.4]) { await seek(t); karisik[t] = await dom(); }
   const dom_esit = times.every((t) => ileri[t] === geri[t] && ileri[t] === karisik[t]);
 
-  // Piksel: aynı t, arada başka kareler çizilerek iki kez
+  // Piksel: aynı t, farklı önceki durumlardan gelinerek (başa, ortaya, süre sonrasına atlayıp) ekran görüntüsü aynı mı?
+  // Raster önbelleği sıraya bağlı olabilir; son faz (oturma darbesi, geç dolan hücreler) dahil.
   const stage = page.locator('#stage');
-  const pix = [];
-  for (const t of [0.6, 1.0, 1.7]) {
-    await seek(t); const a = await stage.screenshot();
-    await seek(2.4); await seek(0.1); await seek(t); const b = await stage.screenshot();
-    pix.push(a.equals(b));
+  const dur = await page.evaluate(() => window.inst.duration);
+  const pix = [], pixFark = [];
+  for (const t of [0, 0.6, 1.0, 1.7, dur * 0.9, dur * 0.95, dur]) {
+    const hs = [];
+    for (const prev of [0.1, dur * 0.5, dur + 0.5, dur * 0.97]) { await seek(prev); await seek(t); hs.push(createHash('sha256').update(await stage.screenshot()).digest('hex')); }
+    const esit = hs.every((h) => h === hs[0]);
+    pix.push(esit); if (!esit) pixFark.push(+t.toFixed(3));
   }
   // Tohum: aynı tohum aynı kare, farklı tohum (orta zamanda) farklı kare
   const seedDom = await page.evaluate((nm) => {
@@ -85,7 +89,7 @@ const open = async (ctxOpts = {}) => {
   }, name);
   out.determinizm = {
     zamanlar: times, dom_ileri_geri_karisik_esit: dom_esit,
-    piksel_ayni_t_iki_cizim_esit: pix, tohum_ayni_ayni: seedDom.ayniTohum, tohum_farkli_farkli: seedDom.farkliTohum,
+    piksel_ayni_t_iki_cizim_esit: pix, piksel_farkli_olan_t: pixFark, tohum_ayni_ayni: seedDom.ayniTohum, tohum_farkli_farkli: seedDom.farkliTohum,
   };
   out.konsol_hatasi = errors;
   await ctx.close();
@@ -102,7 +106,7 @@ if (name === 'odometer') {
     return cases.map(([v, loc, dec]) => {
       const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
       const i = FRKComponents.odometer.mount(d, { value: v, locale: loc, decimals: dec || 0 }); i.seek(i.duration);
-      const r = { deger: v, locale: loc, ondalik: dec || 0, beklenen: d.getAttribute('aria-label'), gorunen: read(d) }; r.dogru = r.beklenen === r.gorunen; r.son_kare_olcek_1 = +/scale\(([\d.]+)\)/.exec(d.querySelector('.frk-odo-row').style.transform)[1] === 1;
+      const r = { deger: v, locale: loc, ondalik: dec || 0, beklenen: d.getAttribute('aria-label'), gorunen: read(d) }; r.dogru = r.beklenen === r.gorunen; r.son_kare_olcek_1 = parseFloat(d.querySelector('.frk-odo-row').style.fontSize) === 100;
       i.destroy(); d.remove(); return r; });
   });
   await ctx.close();

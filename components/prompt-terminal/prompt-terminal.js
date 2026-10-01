@@ -122,6 +122,7 @@
     // Yazı boyutu: `cols` sütun genişliğe sığsın (yalnız yerleşim, zamandan bağımsız)
     function fit() { root.style.fontSize = Math.max(8, el.clientWidth / (cols * 0.6 + 1.8)).toFixed(2) + 'px'; }
     fit();
+    if (document.fonts && document.fonts.load) document.fonts.load('16px ' + getComputedStyle(root).fontFamily, prompt + transcript + '•…—').catch(() => {});
     const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(fit) : null;
     if (ro) ro.observe(el);
 

@@ -50,7 +50,7 @@ Hedefler (TASARIM.md §6): JS ≤ 51.200 bayt, LCP ≤ 2500 ms, ortalama kare �
 
 - **Boyut:** \`fs\` ile ham bayt ve gzip (seviye 9). Yalnız \`.js\` dosyası; \`demo.html\` ve yazı tipleri dışarıda.
 - **İlk boyama:** \`demo.html\` \`file://\` ile açılır, \`first-contentful-paint\` ve \`largest-contentful-paint\`.
-- **Determinizm:** 7 zaman noktası ileri, geri ve karışık sırayla \`seek\` edilir, \`#stage\` DOM'u karşılaştırılır; üç karede araya başka kareler çizilerek ekran görüntüsü iki kez alınır ve bayt bayt karşılaştırılır; aynı tohumla iki mount aynı, farklı tohumla farklı kare üretmeli.
+- **Determinizm:** 7 zaman noktası ileri, geri ve karışık sırayla \`seek\` edilir, \`#stage\` DOM'u (canvas varsa \`toDataURL\` ile pikseli) karşılaştırılır; son faz dahil 7 zaman noktasında ekran görüntüsü 4 farklı önceki durumdan (başa, ortaya, süre sonrasına, sona yakın bir ana atlayarak) gelinerek alınır ve bayt bayt karşılaştırılır; aynı tohumla iki mount aynı, farklı tohumla farklı kare üretmeli.
 - **Kare maliyeti:** 600 \`seek\` çağrısının ortalama ve en yüksek süresi; \`play()\` ile tam bir oynatmada \`frk:tick\` aralıkları.
 - **Erişilebilirlik:** axe-core 4.13.0, \`t = 0\`, \`1,2\`, \`2,4\` karelerinde.
 - **Klavye:** gerçek tuş basışlarıyla: Tab sırası, Enter/Boşluk, \`R\`, kaydırıcı okları.

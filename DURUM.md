@@ -2,7 +2,7 @@
 
 Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`.
 
-## 02.10.2026 00:45 [YEDEK]
+## 02.10.2026 00:55 [YEDEK]
 
 **Bitti** (hepsi GitHub'da, private `Furkiozknn/frk-components`, `main` ile senkron)
 - `TASARIM.md` (b1 ≤80 satıra indirecek), Parça 1 `odometer`, Parça 2 `prompt-terminal`, Parça 5 `katki-isi`: her biri tek JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json`.
@@ -27,7 +27,7 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 
 **HyperFrames (b1, 00:30 itibarıyla):** `deneme/<parça>/out/` altında beş parça × TR/EN = 10 `.mp4` üretilmiş (toplam ~14 MB), `kos.mjs` hâlâ çalışıyor ve işlem kilidini tutuyor; bu dosyaları ben henüz açıp doğrulamadım. `odometer` için `b1`'in `check` raporu 1 yerleşim hatası (rakam sütunu 4 px dar) + 9 uyarı verdi; `odometer.js`'te sütunu en geniş rakama göre ölçen düzeltme yazıldı ama henüz Chromium'la doğrulanmadı ve commit edilmedi.
 
-**Açık bulgu (00:45):** b1'in `deneme/KANIT.json` dosyasında odometre için düz Chromium'da `ileri_ters_esit: false` görünüyor (ileri/karışık sıra ve aynı `t` tekrarı eşit; HyperFrames snapshot'ı ile bayt eşitliği ve iki render'ın 150/150 karesi eşit). Benim `olc.mjs` ölçümüm aynı sıralamaları geçiyor ama yazı tipi yüklendikten sonra yakalıyor. Hipotez: `fit()` yazı tipi yüklenince yeniden ölçüp yazı boyutunu değiştiriyor ve ilk kare bundan önce çekilmiş; doğrulanmadı. b1'e hangi `t` değerlerinin farklı olduğunu istedim; kilit boşalınca kendi testimi yazı tipini beklemeden de koşturacağım. Kanıtlanana kadar odometre determinizmi için "geçti" iddiası yalnız yazı tipi yüklendikten sonraki koşu için geçerli.
+**Çözüldü (odometre piksel determinizmi):** b1'in `deneme/KANIT.json`'ı odometrede `t = 3,3 sn`'de (oturma darbesi) farklı önceki karelerden gelinince farklı piksel gösterdi (PSNR 55,48 dB, DOM aynı). Yazı tipi hipotezim yanlıştı. Dört varyant denendi (5 önceki durum × 10 zaman): darbeyi `transform: scale()` yerine satırın `font-size` yüzdesiyle yapmak 0 fark verdi, maskeyi kaldırmak daha kötüydü. Uygulandı; `olc.mjs` artık son faz dahil 7 zaman noktasını 4 farklı önceki durumdan deniyor ve üç parçada da fark yok. Aynı turda: odometre sütunu en geniş rakama göre ölçülüyor (b1'in `check` yerleşim hatası), `katki-isi` canvas metni ve `prompt-terminal` metni için yazı tipi alt kümeleri önceden yükleniyor (Türkçe `İ/ş/ü` ilk çizimde yedek yazı tipiyle çıkabiliyordu). b1'den `deneme/odometer` (ve metin kullanan öbür parçalar) için `hazirla` + `check` + `kanit` + render'ı yenilemesi istendi; eski render'lar eski `odometer.js` ile alınmıştı.
 
 **Sıradaki:** b1'in `deneme/` HyperFrames render'ı bitince sonuçları (render süresi, kare karşılaştırması, ya da neden olmadığı) `DURUM.md`'ye ve README'ye işlemek; `TASARIM.md` yeni sürümü gelince ayrı commit; `OLCUM.md` yenileme. Render sırasında Chromium açılmıyor.
 

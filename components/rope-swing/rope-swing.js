@@ -132,12 +132,12 @@
     root.setAttribute('aria-describedby', id);
     root.style.cssText = 'position:relative;width:100%;height:100%;outline-offset:2px';
     const cv = document.createElement('canvas');
-    cv.setAttribute('aria-hidden', 'true');
+    cv.setAttribute('aria-hidden', 'true'); cv.setAttribute('data-layout-allow-overflow', '');   // HyperFrames yerleşim denetimi: tam kenarlı çizim bilerek
     cv.style.cssText = 'display:block;width:100%;height:100%;touch-action:none';
     const hint = document.createElement('div');
-    hint.id = id; hint.style.cssText = SR; hint.textContent = L.hint;
+    hint.id = id; hint.style.cssText = SR; hint.textContent = L.hint; hint.setAttribute('data-layout-ignore', '');
     const live = document.createElement('div');
-    live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite'); live.style.cssText = SR;
+    live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite'); live.style.cssText = SR; live.setAttribute('data-layout-ignore', '');
     root.append(cv, hint, live);
     el.appendChild(root);
     const ctx = cv.getContext('2d');
@@ -287,8 +287,9 @@
 
     const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(fit) : null;
     if (ro) ro.observe(el);
-    if (document.fonts && document.fonts.load) {
-      Promise.all([document.fonts.load('12px "JetBrains Mono"'), document.fonts.load('56px "League Gothic"')]).then(draw, function () {});
+    if (document.fonts && document.fonts.load) {               // canvas metni için gereken yazı tipi alt kümeleri (İ latin-ext'te) önceden yüklenir
+      const num = ' 0123456789.', all = (k) => TXT.tr[k] + TXT.en[k];
+      Promise.all([document.fonts.load('12px "JetBrains Mono"', all('hooks') + num + 's'), document.fonts.load('56px "League Gothic"', all('done') + num + 's')]).then(draw, function () {});
     }
 
     function destroy() {

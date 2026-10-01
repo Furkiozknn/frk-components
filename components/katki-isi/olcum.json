@@ -1,10 +1,10 @@
 {
-  "olculdu": "2026-10-01T21:13:47.031Z",
+  "olculdu": "2026-10-01T21:49:19.791Z",
   "hedef": "D:/Repolar/frk-components/components/katki-isi/demo.html",
   "bilesen": "katkiIsi",
   "boyut": {
-    "js_bayt": 9452,
-    "js_gzip_bayt": 3728,
+    "js_bayt": 9932,
+    "js_gzip_bayt": 3921,
     "demo_html_bayt": 6845,
     "hedef_bayt": 51200
   },
@@ -16,8 +16,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 48,
-    "lcp_ms": 100,
+    "fcp_ms": 36,
+    "lcp_ms": 72,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -34,8 +34,13 @@
     "piksel_ayni_t_iki_cizim_esit": [
       true,
       true,
+      true,
+      true,
+      true,
+      true,
       true
     ],
+    "piksel_farkli_olan_t": [],
     "tohum_ayni_ayni": true,
     "tohum_farkli_farkli": true
   },
@@ -48,11 +53,11 @@
     "beklenen_toplam": 21
   },
   "performans": {
-    "seek_ort_ms": 0.119,
+    "seek_ort_ms": 0.131,
     "seek_max_ms": 0.7,
     "canli_kare_sayisi": 217,
-    "kare_araligi_ort_ms": 16.57,
-    "kare_araligi_p95_ms": 17.7,
+    "kare_araligi_ort_ms": 16.58,
+    "kare_araligi_p95_ms": 17.8,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },

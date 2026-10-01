@@ -23,8 +23,8 @@
     'color:var(--frk-odo-color,#ffc21a);background:var(--frk-odo-bg,transparent);' +
     'font-family:var(--frk-odo-font,"League Gothic",Impact,"Arial Narrow",sans-serif);' +
     'font-variant-numeric:tabular-nums;line-height:1;overflow:hidden}' +
-    '.frk-odo-row{display:inline-flex;align-items:flex-start;white-space:nowrap;transform-origin:50% 60%}' +
-    '.frk-odo-col{display:inline-block;width:1ch;height:' + LH + 'em;overflow:hidden;text-align:center;' +
+    '.frk-odo-row{display:inline-flex;align-items:flex-start;white-space:nowrap}' +
+    '.frk-odo-col{display:inline-block;width:var(--frk-odo-w,1ch);height:' + LH + 'em;overflow:hidden;text-align:center;' +
     '-webkit-mask-image:linear-gradient(#0000,#000 10%,#000 90%,#0000);mask-image:linear-gradient(#0000,#000 10%,#000 90%,#0000)}' +
     '.frk-odo-strip{display:block;will-change:transform}' +
     '.frk-odo-strip>i{display:block;height:' + LH + 'em;line-height:' + LH + 'em;font-style:normal}' +
@@ -84,6 +84,7 @@
       col.className = 'frk-odo-col';
       const strip = document.createElement('span');
       strip.className = 'frk-odo-strip';
+      strip.setAttribute('data-layout-ignore', '');   // ekran dışı rakamlar bilerek taşar (HyperFrames yerleşim denetimi)
       for (let i = 0; i <= 10; i++) strip.appendChild(Object.assign(document.createElement('i'), { textContent: i % 10 }));
       col.appendChild(strip);
       row.appendChild(col);
@@ -99,10 +100,21 @@
 
     // Yazı boyutu: kutuya sığdır (zamandan bağımsız, yalnız yerleşim)
     function fit() {
+      const nabiz = row.style.fontSize;
+      row.style.fontSize = '';                  // oturma darbesi ölçümü bozmasın
       root.style.fontSize = '100px';
+      // Sütun genişliği en geniş rakama göre (yazı tiplerinde rakamlar eşit genişlikte olmayabilir)
+      const probe = document.createElement('span');
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+      const cells = '0123456789'.split('').map((d) => { const c = document.createElement('span'); c.textContent = d; probe.appendChild(c); return c; });
+      root.appendChild(probe);
+      const wd = Math.max.apply(null, cells.map((c) => c.getBoundingClientRect().width));
+      root.removeChild(probe);
+      if (wd > 0) row.style.setProperty('--frk-odo-w', (wd / 100).toFixed(4) + 'em');
       const w = row.scrollWidth || 1, h = row.scrollHeight || 1;
       const s = Math.min((el.clientWidth * 0.94) / w, (el.clientHeight * 0.8) / h) * 100;
       root.style.fontSize = Math.max(8, s).toFixed(2) + 'px';
+      row.style.fontSize = nabiz;
     }
     fit();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
@@ -126,7 +138,7 @@
       }
       const q = clamp01((t - lastStop) / SETTLE);
       const sc = t >= lastStop ? 1 + 0.08 * (1 - easeOut(q)) : 1;
-      row.style.transform = 'scale(' + sc.toFixed(4) + ')';
+      row.style.fontSize = (sc * 100).toFixed(2) + '%';   // transform değil: ters/ileri sırada raster önbelleği aynı pikseli verir
       el.setAttribute('data-t', t.toFixed(3));
       emit('tick', { t: t });
       const done = t >= duration;

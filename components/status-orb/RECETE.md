@@ -63,8 +63,11 @@ node deneme/araclar/olc-parca.mjs components/status-orb/demo.html
 
 1. **Demo düğmeleri ile bileşen aynı `data-state` adını kullanıyordu.** İlk ölçümde `querySelector('[data-state=searching]')` bileşenin ev sahibi öğesini döndürdü (`aria-pressed` `null` göründü). Gerçek bir hata değil ama tuzak: demo düğmeleri `data-set`'e taşındı.
 2. **İlk görüntüde parçacıklar sönüktü.** 1400 parçacık/küçük boyutla şekiller seyrekti; sayı 2200'e, boyut ve alfa artırıldı. Aynı değişiklikte parçacık başına `rgba(...)` dizesi üretmek bırakıldı (tek `fillStyle` + `globalAlpha`).
-3. **İlk sürümde `seek` süresi iki modluydu.** 2200 ayrı `fillRect` çağrısıyla JS süresinin medyanı 1 ms ama p95'i 37 ms'ti: canvas komut tamponu dolunca boşalıyor. Yan oturum aynı belirtiyi `katki-isi`'nde buldu ve ayrı bir mikro deneyle çok sayıda ayrı çizim çağrısının sebep olduğunu gösterdi. Parçacıklar saydamlık kümelerine (10 küme) göre tek yolda (`beginPath` + `rect` + tek `fill`) çizilince `seek` JS süresi ort. 0,87 ms, p95 1,5 ms oldu; boşaltmalı kare maliyeti medyan 3,4 ms.
-4. **Ölçüm betiği ilk boşaltmada 600 ms'lik uç değer gösterdi.** `getImageData` ilk çağrıda, ilk döngünün kuyruğa aldığı 240 karenin komutlarını birden işliyordu. Döngüler arasına ölçüm dışı bir boşaltma eklendi; uç değer kayboldu (en çok 6,0 ms).
+3. **İlk sürümde `seek` süresi iki modluydu.** 2200 ayrı `fillRect` çağrısıyla JS süresinin medyanı 1 ms ama p95'i 37 ms'ti: canvas komut tamponu dolunca boşalıyor. Yan oturum aynı belirtiyi `katki-isi`'nde buldu ve ayrı bir mikro deneyle çok sayıda ayrı çizim çağrısının sebep olduğunu gösterdi. Parçacıklar saydamlık kümelerine (10 küme) göre tek yolda (`beginPath` + `rect` + tek `fill`) çizilince `seek` JS süresi ort. 0,92 ms, p95 1,4 ms oldu; boşaltmalı kare maliyeti medyan 3,5 ms.
+4. **Ölçüm betiği ilk boşaltmada 600 ms'lik uç değer gösterdi.** `getImageData` ilk çağrıda, ilk döngünün kuyruğa aldığı 240 karenin komutlarını birden işliyordu. Döngüler arasına ölçüm dışı bir boşaltma eklendi; uç değer kayboldu (en çok 7,1 ms).
+
+5. **Etiketteki Türkçe harfler ilk çizimde yedek yazı tipiyle çıkıyordu.** `label: true` iken canvas'a yazılan "düşünüyor", "arıyor" `ş ü ı` harfleri latin-ext alt kümesindedir ve `document.fonts.load(font)` yalnız boşluğun alt kümesini yükler. HyperFrames kompozisyonunu düz Chromium'da ileri/ters/karışık sırada gezen kanıt betiği "ilk ziyaret farklı, sonrakiler aynı" diye gösterdi. Bütün etiketlerle `document.fonts.load(font, metin)` yapılınca dört sıralama aynı oldu, HyperFrames karesiyle bayt eşit.
+6. **HyperFrames `check` ilk koşuda 1 hata verdi** (gizli durum bölgesi "kırpılmış metin"); öğeye `data-layout-ignore` eklenince 0 bulgu.
 
 ## Kullanım
 
@@ -88,6 +91,6 @@ FRKComponents.statusOrb.mount(baskaEl, { states: kayit }).seek(2.5);
 ## Sınırlar
 
 - Ölçümler başsız Chromium 153, bu makine, masaüstü. Telefon, Safari ve Firefox **ölçülmedi**.
-- Kare maliyeti GPU'suz olabilecek ortamda ~3,4 ms; zayıf cihazlarda `n` düşürülmeli (ölçülmedi).
+- Kare maliyeti GPU'suz olabilecek ortamda ~3,6 ms; zayıf cihazlarda `n` düşürülmeli (ölçülmedi).
 - `duration: Infinity` ile sürekli çalışan gösterge tasarlandı ama denenmedi.
-- HyperFrames'te render **bu dosyada denenmedi**; sonuç `deneme/` altında ayrıca yazılacak.
+- HyperFrames: 5 sn'lik 1080×1080 kompozisyon `deneme/status-orb/` altında; `check` 0 bulgu, TR+EN render, aynı `t` aynı kare kanıtı `deneme/SONUC.md` ve `deneme/KANIT.json`'da. Canvas etiketi HyperFrames kontrast denetiminin dışında kalır.

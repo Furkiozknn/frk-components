@@ -1,0 +1,11 @@
+◆  Capturing 5 frames at [0.2s, 1.2s, 2.5s, 3.7s, 4.8s] from status-orb
+
+   Fonts: 2 loaded, 2 unused
+
+◇  5 snapshots saved to D:\Repolar\frk-components\deneme\status-orb\snapshots
+   snapshots\frame-00-at-0.2s.png
+   snapshots\frame-01-at-1.2s.png
+   snapshots\frame-02-at-2.5s.png
+   snapshots\frame-03-at-3.7s.png
+   snapshots\frame-04-at-4.8s.png
+   contact-sheet.jpg (grid view for AI review)

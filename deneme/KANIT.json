@@ -1,0 +1,239 @@
+{
+  "olculdu": "2026-10-01T21:45:51.038Z",
+  "sure_sn": 5,
+  "fps": 30,
+  "zamanlar": [
+    0,
+    0.4,
+    1.2,
+    2.5,
+    3.3,
+    4.1,
+    4.8
+  ],
+  "parcalar": {
+    "odometer": {
+      "tuval": "1080x1080",
+      "A_duz_chromium": {
+        "ileri_ters_esit": false,
+        "ileri_karisik_esit": true,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 6,
+        "zaman_sayisi": 7,
+        "sayfa_hatalari": []
+      },
+      "A2_farkli_zamanlar": {
+        "3.3": {
+          "onceki_t_ileri": 2.5,
+          "onceki_t_ters": 4.1,
+          "psnr_db": 55.484459,
+          "mse_ort": null
+        }
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "1.2": {
+          "bayt_esit": true,
+          "boyut_duz": 33913,
+          "boyut_hf": 33913
+        },
+        "2.5": {
+          "bayt_esit": true,
+          "boyut_duz": 34438,
+          "boyut_hf": 34438
+        },
+        "4.8": {
+          "bayt_esit": true,
+          "boyut_duz": 33915,
+          "boyut_hf": 33915
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 14.6
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 14.1
+        },
+        "kare_sayisi": [
+          150,
+          150
+        ],
+        "ayni_kare_sayisi": 149
+      }
+    },
+    "prompt-terminal": {
+      "tuval": "1080x1080",
+      "A_duz_chromium": {
+        "ileri_ters_esit": true,
+        "ileri_karisik_esit": true,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 7,
+        "zaman_sayisi": 7,
+        "sayfa_hatalari": []
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "1.2": {
+          "bayt_esit": true,
+          "boyut_duz": 22207,
+          "boyut_hf": 22207
+        },
+        "2.5": {
+          "bayt_esit": true,
+          "boyut_duz": 29007,
+          "boyut_hf": 29007
+        },
+        "4.8": {
+          "bayt_esit": true,
+          "boyut_duz": 59611,
+          "boyut_hf": 59611
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 10.4
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 12.6
+        },
+        "kare_sayisi": [
+          150,
+          150
+        ],
+        "ayni_kare_sayisi": 150
+      }
+    },
+    "rope-swing": {
+      "tuval": "1920x1080",
+      "A_duz_chromium": {
+        "ileri_ters_esit": true,
+        "ileri_karisik_esit": true,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 7,
+        "zaman_sayisi": 7,
+        "sayfa_hatalari": []
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "1.2": {
+          "bayt_esit": true,
+          "boyut_duz": 31539,
+          "boyut_hf": 31539
+        },
+        "2.5": {
+          "bayt_esit": true,
+          "boyut_duz": 30640,
+          "boyut_hf": 30640
+        },
+        "4.8": {
+          "bayt_esit": true,
+          "boyut_duz": 37767,
+          "boyut_hf": 37767
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 11.4
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 14.1
+        },
+        "kare_sayisi": [
+          150,
+          150
+        ],
+        "ayni_kare_sayisi": 150
+      }
+    },
+    "status-orb": {
+      "tuval": "1080x1080",
+      "A_duz_chromium": {
+        "ileri_ters_esit": true,
+        "ileri_karisik_esit": true,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 7,
+        "zaman_sayisi": 7,
+        "sayfa_hatalari": []
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "1.2": {
+          "bayt_esit": true,
+          "boyut_duz": 400711,
+          "boyut_hf": 400711
+        },
+        "2.5": {
+          "bayt_esit": true,
+          "boyut_duz": 398853,
+          "boyut_hf": 398853
+        },
+        "4.8": {
+          "bayt_esit": true,
+          "boyut_duz": 383645,
+          "boyut_hf": 383645
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 12.2
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 13.2
+        },
+        "kare_sayisi": [
+          150,
+          150
+        ],
+        "ayni_kare_sayisi": 150
+      }
+    },
+    "katki-isi": {
+      "tuval": "1080x1080",
+      "A_duz_chromium": {
+        "ileri_ters_esit": true,
+        "ileri_karisik_esit": true,
+        "ayni_t_tekrar_esit": true,
+        "farkli_kare_sayisi": 6,
+        "zaman_sayisi": 7,
+        "sayfa_hatalari": []
+      },
+      "B_snapshot_ile_karsilastirma": {
+        "1.2": {
+          "bayt_esit": true,
+          "boyut_duz": 32944,
+          "boyut_hf": 32944
+        },
+        "2.5": {
+          "bayt_esit": true,
+          "boyut_duz": 34813,
+          "boyut_hf": 34813
+        },
+        "4.8": {
+          "bayt_esit": true,
+          "boyut_duz": 33951,
+          "boyut_hf": 33951
+        }
+      },
+      "C_iki_render": {
+        "isci2": {
+          "kod": 0,
+          "sn": 11.1
+        },
+        "isci1": {
+          "kod": 0,
+          "sn": 12.8
+        },
+        "kare_sayisi": [
+          150,
+          150
+        ],
+        "ayni_kare_sayisi": 150
+      }
+    }
+  }
+}
