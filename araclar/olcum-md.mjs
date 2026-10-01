@@ -33,6 +33,30 @@ for (const r of rows) {
   if (sMax > 16.7) uyari.push(`- \`${r.ad}\`: seek en çok ${tr(sMax, 1)} ms; tek kare bütçesi (16,7 ms) aşılıyor${p.seek_js_ms?.p95 != null ? ` (p95 ${tr(p.seek_js_ms.p95, 1)} ms)` : ''}. Ortalama kare aralığı yine de ${tr(p.kare_araligi_ort_ms, 2)} ms.`);
   tablo.push(`| ${r.ad} | ${tr(m.boyut.js_bayt, 0)} | ${tr(m.boyut.js_gzip_bayt, 0)} | ${tr(m.ilk_boyama.fcp_ms, 0)} | ${tr(m.ilk_boyama.lcp_ms, 0)} | ${tr(sAvg)} / ${tr(sMax, 1)} | ${tr(p.kare_araligi_ort_ms, 2)} / ${tr(p.kare_araligi_p95_ms, 1)} | ${axe} | ${ok(dom)} | ${ok(pix.every(Boolean))} | ${ok(d.tohum_ayni_ayni && d.tohum_farkli_farkli)} | ${ok(m.reduced_motion.son_kare_gosterildi && m.reduced_motion.animasyon_yok)} | ${klavye === null ? 'bkz. olcum.json' : ok(klavye)} | ${m.konsol_hatasi.length} |`);
 }
+// Çapraz motor bölümü: deneme/CAPRAZ-MOTOR.json (b1'in betiği) varsa
+let capraz = '';
+const cmYol = join(kok, 'deneme', 'CAPRAZ-MOTOR.json');
+if (existsSync(cmYol)) {
+  const cm = JSON.parse(readFileSync(cmYol, 'utf8'));
+  const motorlar = Object.keys(cm.motorlar);
+  const hucre = (x, m) => {
+    const d = x.determinizm, det = d.piksel_ileri_ters_karisik_esit && d.durum_ileri_ters_karisik_esit;
+    const axe = x.axe.reduce((a, b) => a + b.ihlal, 0), rm = x.reduced_motion.son_kare_gosterildi && x.reduced_motion.animasyon_yok;
+    const bits = ['determinizm ' + (det ? 'evet' : 'HAYIR'), 'axe ' + axe, 'konsol hatası ' + x.konsol_hatasi.length, 'reduced-motion ' + (rm ? 'evet' : 'HAYIR')];
+    if (x.durum_json_chromium_ile_ayni != null) bits.push('durum JSON Chromium ile ' + (x.durum_json_chromium_ile_ayni ? 'aynı' : 'FARKLI'));
+    if (x.psnr_chromium_ile_db) {
+      const v = x.psnr_chromium_ile_db.filter((n) => n != null);
+      bits.push(v.length ? 'PSNR ' + tr(Math.min(...v), 1) + '–' + tr(Math.max(...v), 1) + ' dB' : 'PSNR hesaplanamadı' + (x.kare_boyutu_chromium_ve_motor ? ' (kare boyutu ' + x.kare_boyutu_chromium_ve_motor.join(' ↔ ') + ')' : ''));
+    }
+    return bits.join('<br>');
+  };
+  const sat = ['| Parça | ' + motorlar.map((m) => cm.motorlar[m]).join(' | ') + ' |', '|---|' + motorlar.map(() => '---').join('|') + '|'];
+  Object.keys(cm.parcalar).sort().forEach((ad) => sat.push('| ' + ad + ' | ' + motorlar.map((m) => hucre(cm.parcalar[ad][m], m)).join(' | ') + ' |'));
+  capraz = '## Çapraz motor (Chromium · Firefox · WebKit)\n\n' +
+    'Kaynak: deneme/CAPRAZ-MOTOR.json (b1 oturumunun betiği deneme/araclar/capraz-motor.mjs). ' + motorlar.map((m) => cm.motorlar[m]).join(', ') + '; Playwright, Windows, başsız. **WebKit burada Playwright\'ın Windows yapısıdır, Safari değildir.** Gerçek Safari/iOS, Android Chrome ve gerçek dokunmatik cihaz **ölçülmedi**.\n\n' +
+    sat.join('\n') + '\n\n' +
+    'Determinizm her motorun kendi içindedir (8 zaman noktası, ileri/ters/karışık sırada piksel ve durum aynı). Motorlar arası piksel eşitliği beklenmez ve yoktur (yazı tipi ve kenar yumuşatma farkı); PSNR yalnız farkın büyüklüğünü gösterir. rope-swing ve status-orb için PSNR, kare boyutu iki motorda 2 px farklı çıktığı yerde hesaplanamadı.\n\n';
+}
 const tarayici = [...new Set(rows.filter((r) => r.m).map((r) => r.m.tarayici))].join(', ');
 const md = `# Ölçümler
 
@@ -46,7 +70,7 @@ Notlar: \`rope-swing\` ve \`status-orb\` canvas olduklarından "DOM determinizmi
 
 Hedefler (TASARIM.md §6): JS ≤ 51.200 bayt, LCP ≤ 2500 ms, ortalama kare ≤ 16,7 ms, axe ihlali 0.
 
-## Yöntem
+${capraz}## Yöntem
 
 - **Boyut:** \`fs\` ile ham bayt ve gzip (seviye 9). Yalnız \`.js\` dosyası; \`demo.html\` ve yazı tipleri dışarıda.
 - **İlk boyama:** \`demo.html\` \`file://\` ile açılır, \`first-contentful-paint\` ve \`largest-contentful-paint\`.

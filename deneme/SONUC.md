@@ -56,9 +56,20 @@ Bu tablo, odometre düzeltildikten sonraki koşudan. İlk koşuda odometre A'da 
 4. **Düz tarayıcıda açılış.** HyperFrames `window.__timelines` kayıt nesnesini kendisi kurar; düz tarayıcıda kurmaz, bu yüzden köprüden önce `window.__timelines = window.__timelines || {}` gerekti. `html, body { height: 100% }` olmadan kök öğe 0 yükseklikte kalıyor.
 5. **`lint` harici yerel JS'i taramıyor.** `odometer.js` içindeki doğrudan `requestAnimationFrame(` çağrısı `lint` hatası vermedi; yine de rope-swing ve status-orb dolaylı erişim (`global['requestAnimationFrame']`) kullanıyor, çünkü kompozisyona satır içi gömülürse HyperFrames bunu hata sayar.
 
+## Çapraz motor (`CAPRAZ-MOTOR.json`)
+
+`araclar/capraz-motor.mjs` her parçanın `demo.html`'ini Playwright'ın üç motorunda açar: Chromium 153.0.8010.12, Firefox 155.0, WebKit 26.6 (Playwright'ın Windows yapısı; **Safari değildir**). Başsız, bu makine, masaüstü. Üç motor × beş parça = 15 kombinasyonun hepsinde:
+
+- Kendi içinde determinizm: 8 zaman noktası × ileri / ters / karışık sırada ekran görüntüleri ve durum aynı.
+- axe-core: 3 karede 0 ihlal. Konsol/sayfa hatası yok.
+- `prefers-reduced-motion: reduce`: açılışta son kare, 600 ms sonra değişmiyor.
+- rope-swing fizik durumu (konum, hız, kanca, sayaçlar; 8 zamanda tam hassasiyetli JSON) Firefox ve WebKit'te Chromium ile **bit düzeyinde aynı**; çekirdek yalnız `+ − × ÷ √` kullandığı için beklenen buydu, şimdi üç motorda ölçüldü. status-orb durum adları da aynı.
+
+Motorlar arası piksel eşitliği iddia edilmez: yazı tipi rasterı, kenar yumuşatma ve metin motoru farklı. Chromium'a göre PSNR (aynı boyutlu karelerde): odometer 24,5–27,8 dB, prompt-terminal 17,6–34,5 dB, katki-isi 28,9–42,7 dB, rope-swing Firefox 42,4–50,4 dB, status-orb Firefox 49,1–51,4 dB. WebKit'te rope-swing ve status-orb karelerinin yüksekliği 2 px farklı çıktı (648×365 ↔ 648×367, 480×480 ↔ 480×482), PSNR hesaplanamadı.
+
 ## Ölçülmedi / sınırlar
 
-- Yalnız bu makinede (Windows, GPU'suz yazılım yakalama, düşük bellek profili) koşuldu; Linux/macOS ve donanım GPU modu denenmedi.
+- Yalnız bu makinede (Windows, GPU'suz yazılım yakalama, düşük bellek profili) koşuldu; Linux/macOS ve donanım GPU modu denenmedi. Gerçek Safari/iOS, Android Chrome ve gerçek dokunmatik cihaz ölçülmedi.
 - Yalnız 5 sn'lik kompozisyonlar; uzun render, ses, hareket bulanıklığı (`--motion-blur`; açılırsa örnekleme seek'leri olayları bastırır ve köprü sessizce çalışmaz) denenmedi.
 - GSAP CDN'den geliyor: ilk render ağ (ya da önbellek) ister. GSAP'siz yol (`data-no-timeline` + `hf-seek` olayı) yalnız kod okumayla incelendi, denenmedi.
 - `check`/render sonuçları o günün bileşen dosyalarıyla; bileşen değişirse `node deneme/hazirla.mjs && node deneme/kos.mjs hepsi tumu` yeniden koşulmalı.

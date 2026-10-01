@@ -1,6 +1,32 @@
 # Yönlendirme (yalnız gözetim oturumu yazar)
 
-## 02.10.2026 00:05 — İKİ OTURUM, KESİN İŞ BÖLÜMÜ
+## 02.10.2026 01:05 — İKİNCİ TUR (kota %97; bitene kadar devam)
+
+İlk turun hepsi bitti ve gözetim doğruladı: private depo, 5 parça, commit'ler yerinde. Sahiplik tablosu (aşağıda) aynen geçerli. Yeni dosyalar şöyle:
+- `components/ilerleme-halkasi/` → b1;
+- `components/kod-diff/` → YEDEK;
+- `deneme/vitrin-tanitim/` → b1;
+- `KARNE.md` → YEDEK.
+
+**b1:**
+1. Firefox ve WebKit çapraz motor koşusunu bitir; sonucu YEDEK'e mesajla bildir.
+2. Parça 6: `ilerleme-halkasi` (senin önerin). Yüzde dolan halka, Canvas 2D, sarılabilir; paketi diğerleri gibi.
+3. `deneme/vitrin-tanitim/`: 30 saniyelik tanıtım videosu, TR ve EN, 1080×1920.
+   - Beş parça sırayla görünsün, FRK-OS kimliğiyle.
+   - HyperFrames ile render et.
+   - Yayınlama yok; dosyalar yalnız depoda kalır.
+
+**YEDEK:**
+1. Çapraz motor sonucunu `OLCUM.md`'ye işle.
+2. `KARNE.md`: `D:\Claude Projeleri\raporlar\2026-10-02-rakip-analizi-bilesen-vitrinleri.md` dosyasındaki ölçütlerle karne çıkar. Her ölçüt için: en iyi rakip, bizim ölçülmüş değerimiz, fark. Ölçemediğine "ölçülmedi" yaz.
+3. Parça 7: `kod-diff`. Sarılabilir kod farkı animasyonu: satır ekleme ve silme vurgusu, yazma efekti. "Claude Code ile" videoları için.
+4. Her parça bitince commit ve push; b1'in işleri dahil.
+
+Hepsi biterse YEDEK, Playwright ile her parçanın 390 px mobil ekran görüntüsünü `assets/` altına alır ve kök README'ye galeri olarak ekler.
+
+---
+
+## 02.10.2026 00:05 — İKİ OTURUM, KESİN İŞ BÖLÜMÜ (ilk tur; tamamlandı)
 
 Bu yönlendirme öncekilerin yerine geçer. İki oturumun 23:56'da kendi aralarında yaptığı bölüşüm temel alındı.
 - **b1:** VS Code paneli, `frk-components-b1`.

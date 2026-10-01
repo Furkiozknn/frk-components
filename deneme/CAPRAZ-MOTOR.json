@@ -1,0 +1,583 @@
+{
+  "olculdu": "2026-10-01T21:58:32.629Z",
+  "not": "Playwright, Windows, başsız. WebKit burada Playwright'ın Windows yapısıdır, Safari değildir.",
+  "motorlar": {
+    "chromium": "chromium 153.0.8010.12",
+    "firefox": "firefox 155.0",
+    "webkit": "webkit 26.6"
+  },
+  "parcalar": {
+    "odometer": {
+      "chromium": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 1.2,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2.4,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        }
+      },
+      "firefox": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 1.2,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2.4,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          24.5,
+          25,
+          25.2,
+          24.9,
+          25.2,
+          25.1,
+          27.7,
+          25.3
+        ]
+      },
+      "webkit": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 1.2,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2.4,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          26,
+          25.5,
+          25.8,
+          26.2,
+          26.5,
+          25.2,
+          27.8,
+          25.5
+        ]
+      }
+    },
+    "prompt-terminal": {
+      "chromium": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3.74,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 7.48,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        }
+      },
+      "firefox": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3.74,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 7.48,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          34.5,
+          34.2,
+          31.9,
+          30,
+          30.2,
+          27.4,
+          23.6,
+          23.6
+        ]
+      },
+      "webkit": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3.74,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 7.48,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          34,
+          31.2,
+          25.5,
+          22.1,
+          22.2,
+          19.3,
+          17.6,
+          17.6
+        ]
+      }
+    },
+    "rope-swing": {
+      "chromium": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 7
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 6,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        }
+      },
+      "firefox": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 7
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 6,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "durum_json_chromium_ile_ayni": true,
+        "psnr_chromium_ile_db": [
+          49.6,
+          49.9,
+          49.6,
+          50.3,
+          49.9,
+          50.4,
+          42.4,
+          42.4
+        ]
+      },
+      "webkit": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 7
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 6,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "durum_json_chromium_ile_ayni": true,
+        "psnr_chromium_ile_db": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "kare_boyutu_chromium_ve_motor": [
+          "648x365",
+          "648x367"
+        ]
+      }
+    },
+    "status-orb": {
+      "chromium": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 6,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        }
+      },
+      "firefox": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 6,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "durum_json_chromium_ile_ayni": true,
+        "psnr_chromium_ile_db": [
+          50.1,
+          50.1,
+          49.1,
+          50.9,
+          51.4,
+          50.8,
+          50.8,
+          50.8
+        ]
+      },
+      "webkit": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 3,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 6,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "durum_json_chromium_ile_ayni": true,
+        "psnr_chromium_ile_db": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "kare_boyutu_chromium_ve_motor": [
+          "480x480",
+          "480x482"
+        ]
+      }
+    },
+    "katki-isi": {
+      "chromium": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 4,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        }
+      },
+      "firefox": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 4,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          42.7,
+          42.1,
+          41.9,
+          40.5,
+          42.4,
+          40.7,
+          39.6,
+          39.6
+        ]
+      },
+      "webkit": {
+        "determinizm": {
+          "zaman_sayisi": 8,
+          "piksel_ileri_ters_karisik_esit": true,
+          "durum_ileri_ters_karisik_esit": true,
+          "farkli_kare_sayisi": 8
+        },
+        "axe": [
+          {
+            "t": 0,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 2,
+            "ihlal": 0,
+            "kurallar": []
+          },
+          {
+            "t": 4,
+            "ihlal": 0,
+            "kurallar": []
+          }
+        ],
+        "konsol_hatasi": [],
+        "reduced_motion": {
+          "son_kare_gosterildi": true,
+          "animasyon_yok": true
+        },
+        "psnr_chromium_ile_db": [
+          33.6,
+          32.8,
+          31.9,
+          31,
+          30.6,
+          29.3,
+          28.9,
+          28.9
+        ]
+      }
+    }
+  }
+}
