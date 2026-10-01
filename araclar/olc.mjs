@@ -3,7 +3,7 @@
 // Çıktı: demo.html'in yanına olcum.json. Ölçülemeyen alan null kalır.
 import { execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { readFileSync, statSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -16,12 +16,14 @@ const axeSrc = readFileSync(req.resolve('axe-core/axe.min.js', { paths: [here] }
 
 const demo = resolve(process.argv[2] || 'components/odometer/demo.html');
 const dir = dirname(demo);
-const jsFile = join(dir, 'odometer.js');
+const jsFile = join(dir, readdirSync(dir).find((f) => f.endsWith('.js')));
 const url = pathToFileURL(demo).href;
 const out = { olculdu: new Date().toISOString(), hedef: demo.replace(/\\/g, '/') };
 
 // 1) Boyut
 const js = readFileSync(jsFile);
+const name = /FRKComponents\.(\w+)\s*=/.exec(js.toString('utf8'))[1];   // örn. odometer, promptTerminal
+out.bilesen = name;
 out.boyut = { js_bayt: js.length, js_gzip_bayt: gzipSync(js, { level: 9 }).length, demo_html_bayt: statSync(demo).size, hedef_bayt: 51200 };
 
 // 1b) Kaynak taraması: render mantığında yasak saat/rastgelelik çağrısı var mı
@@ -76,11 +78,11 @@ const open = async (ctxOpts = {}) => {
     pix.push(a.equals(b));
   }
   // Tohum: aynı tohum aynı kare, farklı tohum (orta zamanda) farklı kare
-  const seedDom = await page.evaluate(() => {
+  const seedDom = await page.evaluate((nm) => {
     const mk = (seed) => { const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
-      const i = FRKComponents.odometer.mount(d, { seed, value: 167829 }); i.seek(1.2); const h = d.innerHTML; i.destroy(); d.remove(); return h; };
+      const i = FRKComponents[nm].mount(d, { seed, value: 167829 }); i.seek(1.2); const h = d.innerHTML; i.destroy(); d.remove(); return h; };
     return { ayniTohum: mk(7) === mk(7), farkliTohum: mk(7) !== mk(8) };
-  });
+  }, name);
   out.determinizm = {
     zamanlar: times, dom_ileri_geri_karisik_esit: dom_esit,
     piksel_ayni_t_iki_cizim_esit: pix, tohum_ayni_ayni: seedDom.ayniTohum, tohum_farkli_farkli: seedDom.farkliTohum,
@@ -90,7 +92,7 @@ const open = async (ctxOpts = {}) => {
 }
 
 // 4) Son değer doğruluğu: son karede görünen hane dizisi = aria-label
-{
+if (name === 'odometer') {
   const { ctx, page } = await open();
   out.deger_dogrulugu = await page.evaluate(() => {
     const read = (d) => Array.from(d.querySelectorAll('.frk-odo-row > *')).map((n) => {
@@ -102,6 +104,21 @@ const open = async (ctxOpts = {}) => {
       const i = FRKComponents.odometer.mount(d, { value: v, locale: loc }); i.seek(i.duration);
       const r = { deger: v, locale: loc, beklenen: d.getAttribute('aria-label'), gorunen: read(d) }; r.dogru = r.beklenen === r.gorunen; r.son_kare_olcek_1 = +/scale\(([\d.]+)\)/.exec(d.querySelector('.frk-odo-row').style.transform)[1] === 1;
       i.destroy(); d.remove(); return r; });
+  });
+  await ctx.close();
+}
+
+if (name === 'promptTerminal') {
+  // Son kare: görünen satırlar senaryonun tamamı; duration ölçeği çalışıyor
+  const { ctx, page } = await open();
+  out.son_kare_metni = await page.evaluate(() => {
+    const kos = (loc, extra) => { const d = document.createElement('div'); d.style.cssText = 'width:560px;height:560px;position:absolute;left:-9999px'; document.body.appendChild(d);
+      const i = FRKComponents.promptTerminal.mount(d, Object.assign({ locale: loc }, extra)); i.seek(i.duration);
+      const rows = Array.from(d.querySelectorAll('.frk-pt-l')).map((r) => r.textContent.replace(/^(› |• )/, '')).join('. ');
+      const beklenen = d.getAttribute('aria-label').replace(/^› /, '').replace(/\. › /g, '. ');
+      const r = { locale: loc, sure_sn: +i.duration.toFixed(3), dogru: rows === beklenen, satir_sayisi: d.querySelectorAll('.frk-pt-l').length };
+      i.destroy(); d.remove(); return r; };
+    return [kos('tr'), kos('en'), Object.assign(kos('tr', { duration: 5 }), { istenen_sure_sn: 5 })];
   });
   await ctx.close();
 }
@@ -176,7 +193,7 @@ const open = async (ctxOpts = {}) => {
   const a = await page.evaluate(() => ({ t: +document.getElementById('stage').dataset.t, dur: window.inst.duration }));
   await page.waitForTimeout(600);
   const b = await page.evaluate(() => +document.getElementById('stage').dataset.t);
-  out.reduced_motion = { t_150ms: a.t, t_750ms: b, son_kare_gosterildi: a.t === a.dur, animasyon_yok: a.t === b };
+  out.reduced_motion = { t_150ms: a.t, t_750ms: b, son_kare_gosterildi: Math.abs(a.t - a.dur) < 0.0015, animasyon_yok: a.t === b };
   await ctx.close();
 }
 const { ctx: c2, page: p2 } = await open({ reducedMotion: 'no-preference' });

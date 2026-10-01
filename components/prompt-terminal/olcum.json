@@ -1,0 +1,123 @@
+{
+  "olculdu": "2026-10-01T21:02:00.489Z",
+  "hedef": "D:/Repolar/frk-components/components/prompt-terminal/demo.html",
+  "bilesen": "promptTerminal",
+  "boyut": {
+    "js_bayt": 9904,
+    "js_gzip_bayt": 3810,
+    "demo_html_bayt": 6803,
+    "hedef_bayt": 51200
+  },
+  "yasak_cagri_taramasi": {
+    "Math.random": false,
+    "Date.now": false,
+    "performance.now": false,
+    "new Date": false
+  },
+  "tarayici": "Chromium 153.0.8010.12",
+  "ilk_boyama": {
+    "fcp_ms": 40,
+    "lcp_ms": 60,
+    "hedef_lcp_ms": 2500
+  },
+  "determinizm": {
+    "zamanlar": [
+      0,
+      0.37,
+      1,
+      1.234,
+      1.9,
+      2.4,
+      3
+    ],
+    "dom_ileri_geri_karisik_esit": true,
+    "piksel_ayni_t_iki_cizim_esit": [
+      true,
+      true,
+      true
+    ],
+    "tohum_ayni_ayni": true,
+    "tohum_farkli_farkli": true
+  },
+  "konsol_hatasi": [],
+  "son_kare_metni": [
+    {
+      "locale": "tr",
+      "sure_sn": 7.476,
+      "dogru": true,
+      "satir_sayisi": 6
+    },
+    {
+      "locale": "en",
+      "sure_sn": 7.35,
+      "dogru": true,
+      "satir_sayisi": 6
+    },
+    {
+      "locale": "tr",
+      "sure_sn": 5,
+      "dogru": true,
+      "satir_sayisi": 6,
+      "istenen_sure_sn": 5
+    }
+  ],
+  "performans": {
+    "seek_ort_ms": 0.02,
+    "seek_max_ms": 0.5,
+    "canli_kare_sayisi": 449,
+    "kare_araligi_ort_ms": 16.68,
+    "kare_araligi_p95_ms": 17.8,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
+  },
+  "erisilebilirlik": {
+    "arac": "axe-core 4.13.0",
+    "taramalar": [
+      {
+        "t": 0,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 1.2,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 2.4,
+        "ihlal": 0,
+        "kurallar": []
+      }
+    ]
+  },
+  "klavye": {
+    "tab_sirasi": [
+      "play",
+      "replay",
+      "lang",
+      "t",
+      "v",
+      "BODY"
+    ],
+    "oynat_enter": [
+      "Duraklat",
+      "Oynat",
+      true
+    ],
+    "oynat_space_dugmede": "Duraklat",
+    "govdede_space": [
+      "Oynat",
+      true
+    ],
+    "r_bastan_oynatir": true,
+    "kaydirici_oklari_t": 0.24,
+    "kaydirici_oynatmayi_durdurur": true
+  },
+  "reduced_motion": {
+    "t_150ms": 7.476,
+    "t_750ms": 7.476,
+    "son_kare_gosterildi": true,
+    "animasyon_yok": true,
+    "normalde_oynuyor": true
+  }
+}
