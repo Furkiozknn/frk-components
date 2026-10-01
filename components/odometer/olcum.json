@@ -1,10 +1,10 @@
 {
-  "olculdu": "2026-10-01T21:50:05.783Z",
+  "olculdu": "2026-10-01T21:56:16.986Z",
   "hedef": "D:/Repolar/frk-components/components/odometer/demo.html",
   "bilesen": "odometer",
   "boyut": {
-    "js_bayt": 8202,
-    "js_gzip_bayt": 3290,
+    "js_bayt": 8236,
+    "js_gzip_bayt": 3322,
     "demo_html_bayt": 6702,
     "hedef_bayt": 51200
   },
@@ -16,8 +16,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 72,
-    "lcp_ms": 148,
+    "fcp_ms": 124,
+    "lcp_ms": 204,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -139,10 +139,10 @@
   ],
   "performans": {
     "seek_ort_ms": 0.021,
-    "seek_max_ms": 0.2,
-    "canli_kare_sayisi": 146,
+    "seek_max_ms": 0.7,
+    "canli_kare_sayisi": 145,
     "kare_araligi_ort_ms": 16.61,
-    "kare_araligi_p95_ms": 17.9,
+    "kare_araligi_p95_ms": 17.7,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
   },

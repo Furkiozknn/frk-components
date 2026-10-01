@@ -1,4 +1,4 @@
-/*! frk-components / katki-isi — tek dosya, kütüphanesiz. Kullanım: FRKComponents.katkiIsi.mount(el, { locale: 'tr' }) */
+/*! frk-components / katki-isi — tek dosya, kütüphanesiz · SPDX-License-Identifier: MIT · Kullanım: FRKComponents.katkiIsi.mount(el, { locale: 'tr' }) */
 (function (global) {
   'use strict';
 

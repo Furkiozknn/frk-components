@@ -6,9 +6,9 @@ Ortam: Chromium 153.0.8010.12, başsız, bu makine (Windows 11, masaüstü gör�
 
 | Parça | JS (bayt) | gzip (bayt) | FCP (ms) | LCP (ms) | seek ort./en çok (ms) | kare aralığı ort./p95 (ms) | axe ihlali | DOM determinizmi | piksel determinizmi | tohum | reduced-motion son kare | klavye | konsol hatası |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| katki-isi | 9.932 | 3.921 | 36 | 72 | 0,131 / 0,7 | 16,58 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
-| odometer | 8.202 | 3.290 | 72 | 148 | 0,021 / 0,2 | 16,61 / 17,9 | 0 | evet | evet | evet | evet | evet | 0 |
-| prompt-terminal | 10.068 | 3.878 | 36 | 44 | 0,016 / 0,2 | 16,67 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
+| katki-isi | 9.966 | 3.950 | 32 | 72 | 0,132 / 1,2 | 16,58 / 17,7 | 0 | evet | evet | evet | evet | evet | 0 |
+| odometer | 8.236 | 3.322 | 124 | 204 | 0,021 / 0,7 | 16,61 / 17,7 | 0 | evet | evet | evet | evet | evet | 0 |
+| prompt-terminal | 10.102 | 3.907 | 36 | 56 | 0,017 / 0,2 | 16,65 / 17,9 | 0 | evet | evet | evet | evet | evet | 0 |
 | rope-swing | 15.605 | 5.725 | 48 | 92 | 0,07 / 0,9 | 16,62 / 17,8 | 0 | evet | evet | evet | evet | evet | 0 |
 | status-orb | 11.864 | 4.671 | 36 | 80 | 0,924 / 3,1 | 16,56 / 17,9 | 0 | evet | evet | evet | evet | bkz. olcum.json | 0 |
 

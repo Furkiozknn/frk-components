@@ -1,4 +1,4 @@
-/*! frk-components / odometer — tek dosya, kütüphanesiz. Kullanım: FRKComponents.odometer.mount(el, { value: 167829 }) */
+/*! frk-components / odometer — tek dosya, kütüphanesiz · SPDX-License-Identifier: MIT · Kullanım: FRKComponents.odometer.mount(el, { value: 167829 }) */
 (function (global) {
   'use strict';
 

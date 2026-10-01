@@ -50,13 +50,13 @@ Hepsi `araclar/olc.mjs` koşusundan, `olcum.json` dosyasında; zamanlama değerl
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
-| `odometer.js` | 8.202 bayt, gzip 3.290 bayt (hedef ≤ 51.200) / 8,202 bytes, gzip 3,290 (target ≤ 51,200) |
+| `odometer.js` | 8.236 bayt, gzip 3.322 bayt (hedef ≤ 51.200) / 8,236 bytes, gzip 3,322 (target ≤ 51,200) |
 | `demo.html` | 6.702 bayt / bytes |
 | Determinizm / Determinism | 7 zaman noktası × ileri, geri, karışık sıra: DOM aynı; 7 zaman noktasında (son faz dahil), her biri 4 farklı önceki durumdan (başa, ortaya, süre sonrasına, sona yakın bir ana atlayarak) gelinince alınan ekran görüntüleri bayt bayt aynı; aynı tohum aynı, farklı tohum farklı / 7 times × forward, reverse, shuffled: identical DOM; screenshots at 7 times (incl. the final phase), each reached from 4 different previous states (jumping to the start, the middle, past the end and near the end), are byte-identical; same seed same, different seed differs |
 | Son değer / Final value | 10 durum (0, 7, 10, 167.829 tr/en, 999.999, 1,234,567, eksi ve ondalık: -5,5 · 1,234.56 · 0,05): görünen hane dizisi `aria-label` ile aynı, son karede ölçek 1 / 10 cases (incl. negative and fraction values): visible digits equal `aria-label`, scale 1 on the final frame |
-| `seek` maliyeti / cost | ort. 0,021 ms, en çok 0,2 ms (600 çağrı) / avg 0.021 ms, max 0.2 ms (600 calls) |
-| Canlı kare aralığı / live frame gap | ort. 16,61 ms, p95 17,9 ms, 146 kare (hedef 16,7) / avg 16.61 ms, p95 17.9 ms, 146 frames |
-| İlk boyama / first paint | FCP 72 ms, LCP 148 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | ort. 0,021 ms, en çok 0,7 ms (600 çağrı) / avg 0.021 ms, max 0.7 ms (600 calls) |
+| Canlı kare aralığı / live frame gap | ort. 16,61 ms, p95 17,7 ms, 145 kare (hedef 16,7) / avg 16.61 ms, p95 17.7 ms, 145 frames |
+| İlk boyama / first paint | FCP 124 ms, LCP 204 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 1,2, 2,4 / 0 violations at t = 0, 1.2, 2.4 |
 | Klavye / keyboard | Tab sırası oynat → baştan → dil → kaydırıcı → değer; Enter ve Boşluk oynat/duraklatı değiştirir; R baştan; kaydırıcı okları ileri-geri sarar ve oynatmayı durdurur / Tab order play → restart → language → slider → value; Enter and Space toggle play/pause; R restarts; slider arrows scrub and pause playback |
 | `prefers-reduced-motion` | Açılışta son kare (`t = 2.4`), 600 ms sonra değişmiyor; normalde oynuyor / final frame on load, unchanged 600 ms later; plays normally otherwise |

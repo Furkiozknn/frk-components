@@ -1,4 +1,4 @@
-/*! frk-components / prompt-terminal — tek dosya, kütüphanesiz. Kullanım: FRKComponents.promptTerminal.mount(el, { locale: 'tr' }) */
+/*! frk-components / prompt-terminal — tek dosya, kütüphanesiz · SPDX-License-Identifier: MIT · Kullanım: FRKComponents.promptTerminal.mount(el, { locale: 'tr' }) */
 (function (global) {
   'use strict';
 
