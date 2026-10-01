@@ -23,6 +23,8 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 
 **Kare bütçesi uyarısı (`OLCUM.md` üretici otomatik yazıyor):** `status-orb` `seek` JS ort. 4,711 ms, en çok 41,6 ms (p95 37,3 ms): tek karede 16,7 ms bütçesi aşılıyor, canlı kare aralığı ortalaması yine 16,57 ms. `katki-isi`'nde aynı belirti çizim çağrılarını tek yolda toplayınca 55–96 ms → 0,7 ms'ye indi; b1'e bildirildi, karar onun. 2200 parçacık zayıf cihazda ölçülmedi.
 
-**Sıradaki:** `status-orb` (b1, hazır, ölçülmüş) commit'lendi ve vitrine kart olarak eklendi (5 kart; masaüstü ve 390 px'te yatay taşma yok, axe 0, konsol hatası yok); `OLCUM.md` yenileme; `TASARIM.md` yeni sürümü gelince ayrı commit. Beklerken: `index.html` ilk-kare davranışı (görünmeyen kartlar `t = 0` karesinde bekliyor) gözden geçirilebilir.
+**Bitti (vitrin):** beş parça da `index.html`'de (görünmeyen kartlar son kareyle bekliyor, ekrana girince baştan oynuyor); `status-orb` b1'den hazır geldi, commit'lendi.
+
+**Sıradaki:** b1'in `deneme/` HyperFrames render'ı bitince sonuçları (render süresi, kare karşılaştırması, ya da neden olmadığı) `DURUM.md`'ye ve README'ye işlemek; `TASARIM.md` yeni sürümü gelince ayrı commit; `OLCUM.md` yenileme. Render sırasında Chromium açılmıyor.
 
 **Takılma yok.** Ağır işler `.agir-is.kilit` ile sıralanıyor.
