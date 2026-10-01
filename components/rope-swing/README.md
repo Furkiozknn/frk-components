@@ -66,13 +66,13 @@ Hepsi `deneme/araclar/olc-parca.mjs` koşusundan, `olcum.json` dosyasında. Baş
 
 | Ölçüt / Metric | Sonuç / Result |
 |---|---|
-| `rope-swing.js` | 15.170 bayt, gzip 5.530 bayt (hedef ≤ 51.200) / 15,170 bytes, gzip 5,530 (target ≤ 51,200) |
+| `rope-swing.js` | 15.172 bayt, gzip 5.531 bayt (hedef ≤ 51.200) / 15,172 bytes, gzip 5,531 (target ≤ 51,200) |
 | `demo.html` | 7.393 bayt / bytes |
 | Determinizm / Determinism | 9 zaman noktası × ileri, ters, karışık sıra: ekran görüntüleri ve durum JSON'u aynı; aynı tohum aynı, farklı tohum farklı kare / 9 times × forward, reverse, shuffled: identical screenshots and state JSON; same seed same, different seed differs |
 | Canlı oyun ↔ kayıt / live play ↔ record | Oyuncu girdisiyle (6 olay) oynanan koşunun 6 karesi, kaydedilen girdiyle yeniden oynatılınca aynı / 6 frames of a live run (6 events) are identical when replayed from the recorded input |
-| `seek` maliyeti / cost | JS: ort. 0,075 ms, p95 0,2 ms, en çok 1,0 ms (240 çağrı). JS + canvas boşaltma (`getImageData`): ort. 0,526 ms, medyan 0,3 ms, p95 0,6 ms, en çok 39,7 ms / JS: avg 0.075 ms, p95 0.2 ms, max 1.0 ms (240 calls); JS + canvas flush: avg 0.526 ms, median 0.3 ms, p95 0.6 ms, max 39.7 ms |
-| Canlı kare aralığı / live frame gap | ort. 16,66 ms, p95 17,8 ms, 354 kare (hedef 16,7) / avg 16.66 ms, p95 17.8 ms, 354 frames |
-| İlk boyama / first paint | FCP 32 ms, LCP 60 ms (hedef ≤ 2500) |
+| `seek` maliyeti / cost | JS: ort. 0,123 ms, p95 0,2 ms, en çok 1,5 ms (240 çağrı). JS + canvas boşaltma (`getImageData`): ort. 0,947 ms, medyan 0,6 ms, p95 1,2 ms, en çok 73,9 ms (tek uç değer) / JS: avg 0.123 ms, p95 0.2 ms, max 1.5 ms (240 calls); JS + canvas flush: avg 0.947 ms, median 0.6 ms, p95 1.2 ms, max 73.9 ms (single outlier) |
+| Canlı kare aralığı / live frame gap | ort. 16,6 ms, p95 18 ms, 348 kare (hedef 16,7) / avg 16.6 ms, p95 18 ms, 348 frames |
+| İlk boyama / first paint | FCP 44 ms, LCP 80 ms (hedef ≤ 2500) |
 | axe-core 4.13.0 | 0 ihlal: t = 0, 3, 6 / 0 violations at t = 0, 3, 6 |
 | Klavye / keyboard | Tab sırası oyun alanı → oynat → baştan → otopilot → kendin oyna → dil → kaydırıcı; Boşluk basılı = kanca takıldı, bırakınca bırakıldı; `P` oynat/duraklat, `Esc` duraklat / Tab order play area → play → restart → autopilot → play yourself → language → slider; Space held hooks, release unhooks; `P` toggles, `Esc` pauses |
 | Fare / pointer | Canvas'ta basılı tutunca girdi kaydı ve oynatma başlar (Playwright faresiyle) / holding on the canvas records input and starts playing (Playwright mouse) |

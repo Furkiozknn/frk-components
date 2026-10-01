@@ -1,10 +1,10 @@
 {
-  "olculdu": "2026-10-01T21:07:45.837Z",
+  "olculdu": "2026-10-01T21:10:09.020Z",
   "hedef": "D:/Repolar/frk-components/components/rope-swing/demo.html",
   "bilesen": "ropeSwing",
   "boyut": {
-    "js_bayt": 15170,
-    "js_gzip_bayt": 5530,
+    "js_bayt": 15172,
+    "js_gzip_bayt": 5531,
     "demo_html_bayt": 7393,
     "hedef_bayt": 51200
   },
@@ -17,8 +17,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 32,
-    "lcp_ms": 60,
+    "fcp_ms": 44,
+    "lcp_ms": 80,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -71,20 +71,20 @@
   },
   "performans": {
     "seek_js_ms": {
-      "ort": 0.075,
+      "ort": 0.123,
       "medyan": 0.1,
       "p95": 0.2,
-      "maks": 1
+      "maks": 1.5
     },
     "seek_artı_canvas_bosaltma_ms": {
-      "ort": 0.526,
-      "medyan": 0.3,
-      "p95": 0.6,
-      "maks": 39.7
+      "ort": 0.947,
+      "medyan": 0.6,
+      "p95": 1.2,
+      "maks": 73.9
     },
-    "canli_kare_sayisi": 354,
-    "kare_araligi_ort_ms": 16.66,
-    "kare_araligi_p95_ms": 17.8,
+    "canli_kare_sayisi": 348,
+    "kare_araligi_ort_ms": 16.6,
+    "kare_araligi_p95_ms": 18,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi."
   },
@@ -141,7 +141,7 @@
           1
         ],
         [
-          42,
+          44,
           0
         ]
       ],

@@ -63,7 +63,7 @@ node deneme/araclar/olc-parca.mjs components/rope-swing/demo.html
 
 ## Kararlar
 
-- **Saf `seek(t)` = kaydı baştan oynat.** Oyun doğası gereği geçmişe bağlı; bu yüzden seek geçmişi saklamak yerine girdi kaydını sabit adımla yeniden simüle ediyor. 6 sn × 120 = 720 adım ucuz (ölçülen: seek ort. 0,075 ms); önbellek yalnız ileri giderken devam eder.
+- **Saf `seek(t)` = kaydı baştan oynat.** Oyun doğası gereği geçmişe bağlı; bu yüzden seek geçmişi saklamak yerine girdi kaydını sabit adımla yeniden simüle ediyor. 6 sn × 120 = 720 adım ucuz (ölçülen: seek ort. 0,123 ms); önbellek yalnız ileri giderken devam eder.
 - **Sabit adım + yalnız temel aritmetik.** `Math.hypot`, `sin`, `cos` yok; kalan tek işlev `Math.sqrt`. Amaç motorlar arası aynı kare; ancak ECMAScript `Math.sqrt` için tam yuvarlama garantisi vermiyor ve motorların donanım karekökü kullandığı varsayımı Chromium dışında **denenmedi**.
 - **Kanca basılı tutunca otomatik takılır.** Kanca'daki "basış tamponu" benzeri bir etki: menzilde yukarıda nokta yokken basılı tutarsan, nokta menzile girdiği adımda takılır. Otopilot arama uzayını küçültüyor, oyuncuya da tolerans veriyor.
 - **Girdi kaydı JSON.** `inst.inputs` başka bir örnekte `opts.inputs` ile birebir aynı kareleri verir (ölçüldü: 6 canlı kare tekrarda aynı). Video sahnesi için tek gereken bu liste.
