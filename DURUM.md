@@ -2,7 +2,7 @@
 
 Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `LICENSE`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`, HyperFrames sonucu: `deneme/SONUC.md`.
 
-## 02.10.2026 01:20 [YEDEK] — ikinci tur
+## 02.10.2026 01:10 [YEDEK] — ikinci tur
 
 **İkinci tur (YONLENDIRME 01:05):** (1) çapraz motor sonucu `OLCUM.md`'de: Chromium 153, Firefox 155, WebKit 26.6 (Playwright Windows, Safari değil), 15 parça × motor kombinasyonunun hepsinde kendi içinde determinizm, axe 0, konsol hatası yok, reduced-motion'da son kare; motorlar arası piksel eşitliği yok (PSNR yazılı). (2) `KARNE.md` (`araclar/karne.mjs` ile üretilir): rakip analizindeki 8 ölçüt × en iyi rakip × bizim ölçülmüş değerimiz × fark; ölçülemeyenler "ölçülmedi". Hedeflere karşı: boyut, bağımlılık, axe, SPDX karşılandı; 390 px (emülasyon) ve video kontratı kısmen (gerçek telefon yok, HeyGen `registry-item.json` şeması yok). (3) Parça 7 `kod-diff`: JS 12.601 bayt (gzip 4.671), `diff` ve `apply` modu, DOM ve piksel determinizmi geçti, axe 0, 390 px temiz, vitrinde 6. kart. İlk ölçümde DOM metni geçmişe bağlı çıktı (satır `style` özelliklerinin sırası); düzeltildi. (4) Kalan: b1'in `ilerleme-halkasi` ve `vitrin-tanitim` işleri bitince galeri (390 px ekran görüntüleri `assets/` + README).
 
