@@ -27,6 +27,8 @@ Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.m
 
 **Bayat kanıt yenilendi (02:05–02:20):** odometer V3'ten sonra `deneme/odometer/` türev kopyası eski kalmıştı (8.236 B ↔ 8.532 B): odometer'ın 5 sn'lik render'ı, KANIT girdisi ve çapraz motor PSNR'ı eski bileşenle ölçülmüştü (kod-diff'te fark yalnız EN `aria-label` metniydi). Kopyalar tazelendi; 7 parçanın hepsi için `kanit` (A aynı, B 3/3 bayt eşit, C 150/150), odometer ve kod-diff için `check` 0 bulgu ve TR/EN render, ardından 7 × 3 çapraz motor (21/21) yeniden koşuldu. Değişen tek sayı odometer PSNR'ı: Firefox 25,7–27,5, WebKit 26,0–28,4 dB (`OLCUM.md` 30. satırda eski 24,5–27,7 / 25,2–27,8 yazıyor; YEDEK'e bildirildi). Tanıtım videosu etkilenmedi: `index.html` bayt bayt aynı çıktı, video zaten güncel odometreyle render edilmişti. Yeni: `deneme/araclar/bayat.mjs` (`kos.mjs`/`kanit.mjs` türev kopya bayatsa çıkış kodu 2 ile durur), `kanit.mjs` ara render'ları geçici klasöre yazar (depoda `*-w1/-w2.mp4` kalmaz).
 
+**Teslim videoları güncel (02:18):** prompt-terminal, rope-swing, status-orb, katki-isi, ilerleme-halkasi taze kopyalardan yeniden render edildi; 10 videonun hepsi GitHub'daki sürümle bayt bayt aynı (kaynak değişikliği pikseli etkilememiş). GitHub: `896123e` (YEDEK, 02:16) ile 111 dosyamın hepsi yerelle aynı.
+
 **Sıradaki:** yeni yönlendirme beklemek; ikinci tur b1 maddeleri bitti, kanıtlar güncel bileşenlerle eşit.
 
 **Takılma yok.**
