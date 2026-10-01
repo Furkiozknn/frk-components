@@ -2,7 +2,7 @@
 
 Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-isi/`, `araclar/`, `assets/`, `index.html`, `README.md`, `OLCUM.md`, `.gitignore`, bu dosya. b1'in durumu: `DURUM-b1.md`.
 
-## 02.10.2026 00:30 [YEDEK]
+## 02.10.2026 00:45 [YEDEK]
 
 **Bitti** (hepsi GitHub'da, private `Furkiozknn/frk-components`, `main` ile senkron)
 - `TASARIM.md` (b1 ≤80 satıra indirecek), Parça 1 `odometer`, Parça 2 `prompt-terminal`, Parça 5 `katki-isi`: her biri tek JS + `demo.html` + `README.md` (TR+EN) + `RECETE.md` + `olcum.json`.
@@ -26,6 +26,8 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 **Bitti (vitrin):** beş parça da `index.html`'de (görünmeyen kartlar son kareyle bekliyor, ekrana girince baştan oynuyor); `status-orb` b1'den hazır geldi, commit'lendi.
 
 **HyperFrames (b1, 00:30 itibarıyla):** `deneme/<parça>/out/` altında beş parça × TR/EN = 10 `.mp4` üretilmiş (toplam ~14 MB), `kos.mjs` hâlâ çalışıyor ve işlem kilidini tutuyor; bu dosyaları ben henüz açıp doğrulamadım. `odometer` için `b1`'in `check` raporu 1 yerleşim hatası (rakam sütunu 4 px dar) + 9 uyarı verdi; `odometer.js`'te sütunu en geniş rakama göre ölçen düzeltme yazıldı ama henüz Chromium'la doğrulanmadı ve commit edilmedi.
+
+**Açık bulgu (00:45):** b1'in `deneme/KANIT.json` dosyasında odometre için düz Chromium'da `ileri_ters_esit: false` görünüyor (ileri/karışık sıra ve aynı `t` tekrarı eşit; HyperFrames snapshot'ı ile bayt eşitliği ve iki render'ın 150/150 karesi eşit). Benim `olc.mjs` ölçümüm aynı sıralamaları geçiyor ama yazı tipi yüklendikten sonra yakalıyor. Hipotez: `fit()` yazı tipi yüklenince yeniden ölçüp yazı boyutunu değiştiriyor ve ilk kare bundan önce çekilmiş; doğrulanmadı. b1'e hangi `t` değerlerinin farklı olduğunu istedim; kilit boşalınca kendi testimi yazı tipini beklemeden de koşturacağım. Kanıtlanana kadar odometre determinizmi için "geçti" iddiası yalnız yazı tipi yüklendikten sonraki koşu için geçerli.
 
 **Sıradaki:** b1'in `deneme/` HyperFrames render'ı bitince sonuçları (render süresi, kare karşılaştırması, ya da neden olmadığı) `DURUM.md`'ye ve README'ye işlemek; `TASARIM.md` yeni sürümü gelince ayrı commit; `OLCUM.md` yenileme. Render sırasında Chromium açılmıyor.
 
