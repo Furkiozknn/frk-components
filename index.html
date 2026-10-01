@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>frk-components — dokunulabilir parçalar</title>
+<meta name="description" content="Tek dosya, kütüphanesiz, kare kare sarılabilir arayüz parçaları.">
+<link rel="stylesheet" href="assets/tema.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="tag" id="tag"></p>
+      <h1>Dokunulabilir <span>parçalar</span></h1>
+      <p class="lead" id="lead"></p>
+    </div>
+    <button id="lang" type="button" aria-label="Language / Dil">TR · EN</button>
+  </header>
+
+  <main>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer id="foot"></footer>
+</div>
+
+<script src="components/odometer/odometer.js"></script>
+<script src="components/prompt-terminal/prompt-terminal.js"></script>
+<script>
+(function () {
+  // Yeni parça = bu listeye bir satır. js: dosya, g: FRKComponents altındaki ad, o: mount seçenekleri.
+  const PARCALAR = [
+    { id: 'odometer', g: 'odometer', dir: 'components/odometer', js: 'odometer.js', o: (l) => ({ value: 167829, locale: l }) },
+    { id: 'prompt-terminal', g: 'promptTerminal', dir: 'components/prompt-terminal', js: 'prompt-terminal.js', o: (l) => ({ locale: l }) },
+  ];
+  const T = {
+    tr: {
+      tag: '// frk-components · kamuya kapalı depo',
+      lead: 'Tek dosya, kütüphanesiz, kare kare sarılabilir arayüz parçaları. Aynı dosya canlı demo, HyperFrames video sahnesi ve kopyalanabilir kod olarak çalışır. Aşağıdaki kartlar parçaların kendisidir, görüntü değil.',
+      name: { odometer: 'Odometre', 'prompt-terminal': 'Prompt terminal' },
+      desc: { odometer: 'Haneleri soldan sağa sırayla duran sayaç.', 'prompt-terminal': 'Komutun harf harf yazıldığı, çıktının aktığı terminal. Senaryo örnektir.' },
+      demo: 'Canlı demo', code: 'Kod', recipe: 'Reçete', replay: 'Baştan oynat',
+      noMeas: 'olcum.json okunamadı. Dosya doğrudan (file://) açıldıysa tarayıcı okumayı engeller; bir HTTP sunucusundan açın.',
+      size: 'Boyut', kb: 'KB', gz: 'gzip', seek: 'seek maliyeti', ms: 'ms', axe: 'axe-core ihlali', det: 'Determinizm', detOk: 'ileri, geri, karışık sıra aynı kare', detNo: 'tutarsız',
+      rm: 'reduced-motion', rmOk: 'son kare gösteriliyor', rmNo: 'denetlenemedi', unmeasured: 'Telefon, Safari, Firefox: ölçülmedi',
+      foot: 'Ölçümler araclar/olc.mjs ile başsız Chromium\'da, bu makinede alındı. Telefon, Safari ve Firefox ölçülmedi. Depo kamuya kapalıdır; Pages ve npm yayını yoktur.',
+    },
+    en: {
+      tag: '// frk-components · private repo',
+      lead: 'Single-file, dependency-free UI parts that can be wrapped frame by frame. The same file works as a live demo, a HyperFrames video scene and copyable code. The cards below are the parts themselves, not images.',
+      name: { odometer: 'Odometer', 'prompt-terminal': 'Prompt terminal' },
+      desc: { odometer: 'A counter whose digits stop one by one, left to right.', 'prompt-terminal': 'A terminal where the command types out and the output streams. The script is a sample.' },
+      demo: 'Live demo', code: 'Code', recipe: 'Recipe', replay: 'Play again',
+      noMeas: 'olcum.json could not be read. If the page was opened directly (file://) the browser blocks it; open it from an HTTP server.',
+      size: 'Size', kb: 'KB', gz: 'gzip', seek: 'seek cost', ms: 'ms', axe: 'axe-core violations', det: 'Determinism', detOk: 'same frame forward, reverse, shuffled', detNo: 'inconsistent',
+      rm: 'reduced-motion', rmOk: 'final frame shown', rmNo: 'not verified', unmeasured: 'Phone, Safari, Firefox: not measured',
+      foot: 'Measured with araclar/olc.mjs in headless Chromium on this machine. Phone, Safari and Firefox were not measured. The repo is private; there is no Pages or npm release.',
+    },
+  };
+  let lang = 'tr';
+  const $ = (id) => document.getElementById(id);
+  const grid = $('grid');
+  const cards = [];
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => {
+    const c = cards.find((x) => x.stage === e.target);
+    if (!c || !c.inst) return;
+    if (e.isIntersecting) c.inst.play(); else c.inst.pause();
+  }), { threshold: 0.5 }) : null;
+
+  function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function num(x, d, min) { return new Intl.NumberFormat(lang, { minimumFractionDigits: min || 0, maximumFractionDigits: d }).format(x); }
+
+  function measLines(m, t) {
+    const ok = (a) => a && a.every(Boolean);
+    const d = m.determinizm || {};
+    const det = d.dom_ileri_geri_karisik_esit && ok(d.piksel_ayni_t_iki_cizim_esit);
+    const axe = (m.erisilebilirlik && m.erisilebilirlik.taramalar || []).reduce((s, x) => s + x.ihlal, 0);
+    return [
+      [t.size, num(m.boyut.js_bayt / 1024, 1, 1) + ' ' + t.kb + ' (' + t.gz + ' ' + num(m.boyut.js_gzip_bayt / 1024, 1, 1) + ' ' + t.kb + ')'],
+      [t.seek, num(m.performans.seek_ort_ms, 3) + ' ' + t.ms],
+      [t.axe, String(axe)],
+      [t.det, det ? t.detOk : t.detNo],
+      [t.rm, m.reduced_motion && m.reduced_motion.son_kare_gosterildi ? t.rmOk : t.rmNo],
+    ];
+  }
+
+  function build() {
+    const t = T[lang];
+    document.documentElement.lang = lang;
+    $('tag').textContent = t.tag; $('lead').textContent = t.lead; $('foot').textContent = t.foot;
+    cards.forEach((c) => { if (io) io.unobserve(c.stage); if (c.inst) c.inst.destroy(); });
+    cards.length = 0;
+    grid.textContent = '';
+    PARCALAR.forEach((p) => {
+      const card = el('article', 'card');
+      const h = el('h2'); const a = el('a', null, t.name[p.id] || p.id); a.href = p.dir + '/demo.html'; h.appendChild(a);
+      const stage = el('div', 'stage');
+      card.append(h, el('p', null, t.desc[p.id] || ''), stage);
+      const row = el('div', 'row');
+      const rb = el('button', null, '↻ ' + t.replay); rb.type = 'button';
+      row.appendChild(rb);
+      [[t.demo, p.dir + '/demo.html'], [t.code, p.dir + '/' + p.js], [t.recipe, p.dir + '/RECETE.md']].forEach(([n, href]) => { const l = el('a', null, n); l.href = href; row.appendChild(l); });
+      const meas = el('ul', 'meas');
+      card.append(row, meas);
+      grid.appendChild(card);
+
+      const api = window.FRKComponents && window.FRKComponents[p.g];
+      const c = { stage: stage, inst: null };
+      if (api) { c.inst = api.mount(stage, p.o(lang)); rb.addEventListener('click', () => { c.inst.pause(); c.inst.seek(0); c.inst.play(); }); if (io) io.observe(stage); else c.inst.play(); }
+      else { stage.appendChild(el('p', 'empty', p.js + ' ?')); rb.disabled = true; }
+      cards.push(c);
+
+      fetch(p.dir + '/olcum.json').then((r) => r.json()).then((m) => {
+        measLines(m, t).forEach(([k, v]) => { const li = el('li'); li.append(k + ': ', el('b', null, v)); meas.appendChild(li); });
+        meas.appendChild(el('li', null, t.unmeasured));
+      }).catch(() => { meas.appendChild(el('li', null, t.noMeas)); });
+    });
+  }
+
+  $('lang').addEventListener('click', () => { lang = lang === 'tr' ? 'en' : 'tr'; build(); });
+  build();
+})();
+</script>
+</body>
+</html>

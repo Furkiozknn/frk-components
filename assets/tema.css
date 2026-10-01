@@ -1,0 +1,34 @@
+/* FRK-OS kimliği — yalnız kök index.html için. Bileşen dosyaları buna bağlanmaz, kendi renklerini taşır. */
+@font-face{font-family:"League Gothic";src:url(fonts/league-gothic-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"League Gothic";src:url(fonts/league-gothic-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";src:url(fonts/jetbrains-mono-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"JetBrains Mono";src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{--bg:#0e0d0b;--panel:#1a1712;--cream:#f1ece2;--mute:#b9b4a8;--yellow:#ffc21a;--line:#3a352b}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--cream);font:16px/1.5 "JetBrains Mono",ui-monospace,Consolas,monospace;min-height:100vh}
+a{color:var(--yellow)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 56px}
+
+header.top{display:flex;gap:16px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+h1{font:400 clamp(48px,11vw,96px)/.95 "League Gothic",Impact,sans-serif;letter-spacing:.02em;margin:0;text-transform:uppercase}
+h1 span{color:var(--yellow)}
+.lead{max-width:60ch;margin:12px 0 0;color:var(--mute);font-size:14px}
+button{font:inherit;font-size:14px;color:var(--cream);background:var(--panel);border:1px solid var(--line);padding:10px 14px;min-height:44px;cursor:pointer}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:20px;margin-top:32px}
+.card{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column}
+.card h2{font:400 clamp(28px,6vw,36px)/1 "League Gothic",Impact,sans-serif;letter-spacing:.03em;text-transform:uppercase;margin:0;padding:14px 16px 0}
+.card h2 a{color:var(--cream);text-decoration:none}
+.card h2 a:hover{color:var(--yellow)}
+.card p{margin:6px 16px 0;color:var(--mute);font-size:13px}
+.stage{width:calc(100% - 32px);aspect-ratio:1/1;margin:12px 16px 0;background:var(--bg);border:1px solid var(--line);overflow:hidden}
+.row{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 16px 0;font-size:13px}
+.row button{padding:6px 12px;min-height:44px}
+.meas{margin:0;padding:12px 16px 16px;font-size:12px;color:var(--mute);list-style:none;display:grid;gap:2px}
+.meas b{color:var(--cream);font-weight:400}
+.empty{color:var(--mute);padding:16px}
+footer{margin-top:40px;color:var(--mute);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
