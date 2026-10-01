@@ -1,0 +1,181 @@
+{
+  "olculdu": "2026-10-01T21:07:45.837Z",
+  "hedef": "D:/Repolar/frk-components/components/rope-swing/demo.html",
+  "bilesen": "ropeSwing",
+  "boyut": {
+    "js_bayt": 15170,
+    "js_gzip_bayt": 5530,
+    "demo_html_bayt": 7393,
+    "hedef_bayt": 51200
+  },
+  "yasak_cagri_taramasi": {
+    "Math.random": false,
+    "Date.now": false,
+    "performance.now": false,
+    "new Date": false,
+    "requestAnimationFrame(": false
+  },
+  "tarayici": "Chromium 153.0.8010.12",
+  "ilk_boyama": {
+    "fcp_ms": 32,
+    "lcp_ms": 60,
+    "hedef_lcp_ms": 2500
+  },
+  "determinizm": {
+    "zamanlar": [
+      0,
+      0.37,
+      1,
+      1.234,
+      2.5,
+      3.1,
+      4.2,
+      4.86,
+      6
+    ],
+    "piksel_ileri_ters_karisik_esit": true,
+    "durum_ileri_ters_karisik_esit": true,
+    "farkli_kare_sayisi": 8,
+    "tohum_ayni_ayni": true,
+    "tohum_farkli_farkli": true
+  },
+  "konsol_hatasi": [],
+  "girdi_tekrari": {
+    "kayit_olay_sayisi": 6,
+    "canli_kare_tekrarda_ayni": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "zamanlar": [
+      0,
+      0.5,
+      1.1,
+      1.6,
+      2,
+      2.3,
+      3
+    ],
+    "son_kareler_esit": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "performans": {
+    "seek_js_ms": {
+      "ort": 0.075,
+      "medyan": 0.1,
+      "p95": 0.2,
+      "maks": 1
+    },
+    "seek_artı_canvas_bosaltma_ms": {
+      "ort": 0.526,
+      "medyan": 0.3,
+      "p95": 0.6,
+      "maks": 39.7
+    },
+    "canli_kare_sayisi": 354,
+    "kare_araligi_ort_ms": 16.66,
+    "kare_araligi_p95_ms": 17.8,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi."
+  },
+  "erisilebilirlik": {
+    "arac": "axe-core 4.13.0",
+    "taramalar": [
+      {
+        "t": 0,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 3,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 6,
+        "ihlal": 0,
+        "kurallar": []
+      }
+    ]
+  },
+  "klavye": {
+    "tab_sirasi": [
+      "frk-rope",
+      "play",
+      "replay",
+      "auto",
+      "own",
+      "lang",
+      "t"
+    ],
+    "oyun_alani_role_label_tabindex": [
+      "application",
+      "Kanca ipi oyunu",
+      0
+    ],
+    "bosluk_basili": {
+      "inputs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "playing": true,
+      "hooked": true,
+      "t": 0.35
+    },
+    "bosluk_birakildi": {
+      "inputs": [
+        [
+          0,
+          1
+        ],
+        [
+          42,
+          0
+        ]
+      ],
+      "hooked": false
+    },
+    "p_ilk_basis_oynuyor": false,
+    "p_ikinci_basis_oynuyor": true,
+    "esc_sonrasi_oynuyor": false,
+    "fare_basili": {
+      "inputs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "playing": true
+    },
+    "otopilot_dugmesi": {
+      "olay": 14,
+      "playing": true
+    },
+    "kaydirici_oklari_t": 0.02
+  },
+  "reduced_motion": {
+    "t_150ms": 6,
+    "t_750ms": 6,
+    "son_kare_gosterildi": true,
+    "animasyon_yok": true,
+    "kullanici_girdisi_oyunu_baslatir": true,
+    "normalde_oynuyor": true
+  },
+  "mobil_390": {
+    "tasma_yok": true,
+    "sahne_genislik_px": 358,
+    "dokunma_hedefi_min_px": 44
+  }
+}

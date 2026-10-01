@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kanca İpi — frk-components</title>
+<style>
+@font-face{font-family:"League Gothic";src:url(../../assets/fonts/league-gothic-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"League Gothic";src:url(../../assets/fonts/league-gothic-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";src:url(../../assets/fonts/jetbrains-mono-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"JetBrains Mono";src:url(../../assets/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--bg:#0e0d0b;--panel:#1a1712;--cream:#f1ece2;--mute:#b9b4a8;--yellow:#ffc21a;--line:#3a352b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--cream);font:16px/1.5 "JetBrains Mono",ui-monospace,monospace;min-height:100vh}
+main{max-width:680px;margin:0 auto;padding:24px 16px 40px}
+h1{font:400 clamp(44px,12vw,72px)/1 "League Gothic",Impact,sans-serif;letter-spacing:.02em;margin:0;text-transform:uppercase}
+h1 span{color:var(--yellow)}
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+p.lead{margin:8px 0 20px;color:var(--mute);font-size:14px}
+#stage{width:100%;aspect-ratio:16/9;display:block;background:var(--bg);border:1px solid var(--line)}
+.frk-rope:focus-visible{outline:3px solid var(--yellow)}
+.frk-demo{margin:16px 0 0;display:grid;gap:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button{font:inherit;font-size:14px;color:var(--cream);background:var(--panel);border:1px solid var(--line);padding:10px 14px;min-height:44px;cursor:pointer}
+button.main{background:var(--yellow);color:#0e0d0b;border-color:var(--yellow);font-weight:700}
+input[type=range]{flex:1;min-width:140px;accent-color:var(--yellow);height:44px}
+label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.hint{font-size:12px;color:var(--mute)}
+kbd{border:1px solid var(--line);padding:0 6px;font:inherit}
+</style>
+</head>
+<body>
+<main>
+  <p class="tag">// frk-components · parça 3</p>
+  <h1 id="h1"></h1>
+  <p class="lead" id="lead"></p>
+
+  <div id="stage"></div>
+
+  <div class="frk-demo">
+    <div class="row">
+      <button id="play" class="main" type="button"></button>
+      <button id="replay" type="button"></button>
+      <button id="auto" type="button"></button>
+      <button id="own" type="button"></button>
+      <button id="lang" type="button" aria-label="Language / Dil">TR · EN</button>
+    </div>
+    <div class="row">
+      <label for="t" id="lblT"></label>
+      <input id="t" type="range" min="0" max="6" step="0.01" value="0">
+      <output id="tout" for="t">0.00s</output>
+    </div>
+    <p class="hint" id="hint"></p>
+  </div>
+</main>
+
+<script src="rope-swing.js"></script>
+<script>
+(function () {
+  const TXT = {
+    tr: { h1: 'Kanca <span>İpi</span>', lead: 'Kancayı tut, sallan, doğru anda bırak ve fırla. Başta otopilot oynar; Boşluk ya da dokunma onu devralır. Aynı dosya canlı demo, HyperFrames sahnesi ve kopyalanabilir kod olarak çalışır.',
+      play: 'Oynat', pause: 'Duraklat', again: 'Tekrar', replay: 'Baştan', auto: 'Otopilot', own: 'Kendin oyna', t: 'Zaman',
+      hint: 'Oyun alanı odaktayken: Boşluk/Enter basılı = kanca, bırak = fırla · P/Esc duraklat · R baştan · ←/→ kaydırıcıyla ileri-geri. Dokunmatik: basılı tut = kanca, bırak = fırla.' },
+    en: { h1: 'Rope <span>Swing</span>', lead: 'Hold to hook, swing, release at the right moment and fling. An autopilot plays first; Space or touch takes over. One file works as a live demo, a HyperFrames scene and copyable code.',
+      play: 'Play', pause: 'Pause', again: 'Play again', replay: 'Restart', auto: 'Autopilot', own: 'Play yourself', t: 'Time',
+      hint: 'With the play area focused: Space/Enter held = hook, release = fling · P/Esc pause · R restart · ←/→ on the slider to scrub. Touch: hold = hook, release = fling.' }
+  };
+  const $ = (id) => document.getElementById(id);
+  const stage = $('stage'), play = $('play'), slider = $('t'), tout = $('tout');
+  let lang = 'tr';
+  window.inst = null;
+
+  function label() {
+    const T = TXT[lang], i = window.inst;
+    document.documentElement.lang = lang;
+    $('h1').innerHTML = T.h1; $('lead').textContent = T.lead; $('hint').textContent = T.hint;
+    $('lblT').textContent = T.t; $('replay').textContent = T.replay; $('auto').textContent = T.auto; $('own').textContent = T.own;
+    play.textContent = i && i.playing ? T.pause : (+slider.value >= +slider.max ? T.again : T.play);
+  }
+
+  function build() {
+    if (window.inst) window.inst.destroy();
+    const inst = window.inst = FRKComponents.ropeSwing.mount(stage, { seed: 1, locale: lang });
+    slider.max = inst.duration;
+    inst.play();                                // prefers-reduced-motion altında doğrudan son kareyi gösterir
+    label();
+  }
+
+  const root = () => stage.querySelector('.frk-rope');
+  function toggle() { if (window.inst.playing) window.inst.pause(); else window.inst.play(true); label(); }
+  function restart() { window.inst.pause(); window.inst.seek(0); window.inst.play(); label(); }
+
+  stage.addEventListener('frk:tick', (e) => { slider.value = e.detail.t; tout.textContent = Math.min(e.detail.t, +slider.max).toFixed(2) + 's'; });
+  stage.addEventListener('frk:end', label);
+  play.addEventListener('click', toggle);
+  $('replay').addEventListener('click', restart);
+  $('auto').addEventListener('click', () => { window.inst.pause(); window.inst.setInputs(null); window.inst.play(); label(); });
+  $('own').addEventListener('click', () => { window.inst.pause(); window.inst.setInputs([]); label(); root().focus(); });
+  $('lang').addEventListener('click', () => { lang = lang === 'tr' ? 'en' : 'tr'; build(); });
+  slider.addEventListener('input', () => { window.inst.pause(); window.inst.seek(+slider.value); label(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('button,input,select,textarea,[role=application]')) return;
+    if (e.key === ' ') { e.preventDefault(); if (!e.repeat) { root().focus({ preventScroll: true }); window.inst.input(1); label(); } }
+    else if (e.key === 'p' || e.key === 'P' || e.key === 'Escape') toggle();
+    else if (e.key === 'r' || e.key === 'R') restart();
+  });
+  document.addEventListener('keyup', (e) => { if (e.key === ' ' && !e.target.closest('button,input,select,textarea,[role=application]')) window.inst.input(0); });
+  build();
+})();
+</script>
+</body>
+</html>
