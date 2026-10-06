@@ -36,3 +36,6 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 **Sıradaki:** çapraz motor sonucunu işlemek. Yeni parça açmak YONLENDIRME'de yok: b1 `ilerleme-halkasi` (yüzde dolan halka) önerdi, karar gözetim oturumunun.
 
 **Takılma yok.**
+
+**YEDEK-3 (06.10, Sonnet 5.5):** `SATIS-ARASTIRMASI.md` yazıldı (67 satır): rakip Pro fiyatları birincil sayfalardan doğrulandı (Cult Pro satışı 30.09.2026'da kapandı); önerilen aralıklar hizmet $150–600, Pro paket $39–69; en uygun yol Lemon Squeezy, yedek Gumroad.
+Ölçülmeyen/doğrulanamayanlar dosyada işaretli (Stripe/PayPal Türkiye, Ko-fi Gold fiyatı, Stripe geçişi); hesap açma, ödeme ve vergi kararı Furki'de, mali müşavir listesi dosyanın sonunda.
