@@ -39,3 +39,6 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 
 **YEDEK-3 (06.10, Sonnet 5.5):** `SATIS-ARASTIRMASI.md` yazıldı (67 satır): rakip Pro fiyatları birincil sayfalardan doğrulandı (Cult Pro satışı 30.09.2026'da kapandı); önerilen aralıklar hizmet $150–600, Pro paket $39–69; en uygun yol Lemon Squeezy, yedek Gumroad.
 Ölçülmeyen/doğrulanamayanlar dosyada işaretli (Stripe/PayPal Türkiye, Ko-fi Gold fiyatı, Stripe geçişi); hesap açma, ödeme ve vergi kararı Furki'de, mali müşavir listesi dosyanın sonunda.
+
+**YEDEK-1 (06.10, Sonnet 5.5):** `JARVIS-ARASTIRMA.md` yazıldı (35 satır): `jarvis-ai` konusundaki ilk 14 depo incelendi; yalnız IRIS'te Three.js küre doğrulandı ama lisansı kod almaya izin vermiyor (özel, kişisel/eğitim). Sonda SEZGİ'ye alınacak 5 fikir var.
+Ölçülmeyenler dosyada işaretli: uyandırma motorları çoğunlukla README'den, gecikme/doğruluk ve kodun tamamı okunmadı; klonlama ya da kod çalıştırma yok.
