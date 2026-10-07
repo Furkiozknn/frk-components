@@ -65,3 +65,6 @@ Kapsam: SEZGİ ("Jarvis tarzı" konuşan küre) için iki satış modeli, Türki
 - Rakipler: https://pro.reactbits.dev/ · https://pro.magicui.design · https://ui.aceternity.com/pricing · https://www.hover.dev/pricing · https://skiper-ui.com/pricing · https://kokonutui.pro · https://pro.cult-ui.com/pricing
 - Fiverr: https://www.fiverr.com/hashim_husain/build-a-custom-ai-assistant-or-jarvis-like-voice-ai-software · https://www.fiverr.com/developer_farab/build-voice-assistant-ai-receptionist-for-your-website
 - Önceki ölçüm: `D:\Claude Projeleri\raporlar\2026-10-02-rakip-analizi-bilesen-vitrinleri.md`
+
+## Düzeltme (07.10.2026)
+Pro $39–69 ve hizmet $150–600 (Lemon Squeezy) hipotezleri **çürüdü/kanıtsız**: tek küre için ücretli talep kanıtı yok; Lemon Squeezy/Polar/Paddle/Stripe Managed Payments hizmeti yasaklıyor; Gumroad alt ödeme sınırı $10 değil $100. Güncel öneri: ücretsiz MIT çekirdek + vitrin/hizmet kapısı, satış yok. Kaynak: `D:\Claude Projeleriaporlar6-10-07-sezgi-konum-ve-fiyat-2.md`, `...-satis-odeme-ve-vergi-dogrulama.md`.

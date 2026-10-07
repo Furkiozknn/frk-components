@@ -33,3 +33,6 @@ Kaynak: `gh search repos --topic jarvis-ai --sort stars --limit 20`; ilk 14 depo
 3. **Onay bekliyor durumu.** #14 "Sor, doğrula, onayla": yazan ya da geri alınamaz eylem insan onayı bekler. `status-orb`'a dinliyor/düşünüyor/arıyor/bitti yanında bir "onay bekliyor" durumu önerilir. AGPL: kod yok, fikir.
 4. **Değiştirilebilir ses sağlayıcısı, ücretsiz varsayılan.** #6 (MIT) Edge TTS'i varsayılan, OpenAI/ElevenLabs'i isteğe bağlı yapıyor. SEZGİ: kokoro / Windows Tolga-Zira varsayılan, tek satırlık ayarla değişir.
 5. **Özgün kimlik + Türkçe.** Rakiplerde film GIF'i ve film sesi klonu var, Türkçe odaklı olan yok. SEZGİ özgün küre, Türkçe doğal ses ve Türkçe demo ile ayrışır; Marvel/Iron Man logosu, film görüntüsü ve film sesi taklidi kullanılmaz.
+
+## Düzeltme (07.10.2026)
+- Yukarıdaki "ses zarfını önceden çıkarıp `seek(t)` ile kare kare tekrarlanabilir küre sunan depo görülmedi" tespiti **yanlıştı**: Ship Notes `speaking-orb.js` (`aqualang89/shipnotes-components`, MIT) `renderAt(time,{weights,env,onsets,words,lineTime})` sunuyor. SEZGİ'nin gerçek ayrışması: Türkçe, zarf çıkarıcı (`araclar/seslendir.mjs`), yapım kaydı, üç motorda bayt kanıtı, yarı boyut. Kaynak: `D:\Claude Projeleriaporlar6-10-07-sezgi-konum-ve-fiyat-2.md`.

@@ -64,6 +64,7 @@ function ana() {
   const m = join(tmpdir(), 'sezgi-metin-' + a.ad + '.txt');
   writeFileSync(m, metin, 'utf8');                          // metin komut satırından değil UTF-8 dosyadan gider (Türkçe harfler bozulmasın)
 
+  if (a.motor === 'edge' || a.motor.startsWith('windows-')) console.error('UYARI: ' + a.motor + ' sesi yalnız iç kullanım/taslak içindir. edge-tts için yazılı ticari izin yok; Windows seslerinin yeniden dağıtım hakkı doğrulanmadı (raporlar/2026-10-07-ses-sartlari-birincil-2.md). Yayın/satış için --motor dosya + lisanslı ses (Azure S0, ElevenLabs ücretli plan, Google).');
   let ses, kelimeler = null, sesAdi = a.ses || null;
   if (a.motor.startsWith('windows-')) {
     ses = join(sesDir, a.ad + '.wav'); sesAdi = a.motor.slice(8);
