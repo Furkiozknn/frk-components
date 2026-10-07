@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEZGİ — konuşan küre</title>
+<style>
+@font-face{font-family:"League Gothic";src:url(../../assets/fonts/league-gothic-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"League Gothic";src:url(../../assets/fonts/league-gothic-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";src:url(../../assets/fonts/jetbrains-mono-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"JetBrains Mono";src:url(../../assets/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--bg:#0e0d0b;--panel:#1a1712;--cream:#f1ece2;--mute:#b9b4a8;--yellow:#ffc21a;--line:#3a352b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--cream);font:16px/1.5 "JetBrains Mono",ui-monospace,monospace;min-height:100vh}
+main{max-width:640px;margin:0 auto;padding:24px 16px 40px}
+h1{font:400 clamp(44px,12vw,72px)/1 "League Gothic",Impact,sans-serif;letter-spacing:.02em;margin:0;text-transform:uppercase}
+h1 span{color:var(--yellow)}
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+p.lead{margin:8px 0 20px;color:var(--mute);font-size:14px}
+#stage{width:100%;aspect-ratio:1/1;max-width:480px;margin:0 auto;display:block;background:var(--bg);border:1px solid var(--line)}
+#cap{text-align:center;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:10px 0 0;min-height:1.5em}
+.frk-demo{max-width:480px;margin:16px auto 0;display:grid;gap:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button{font:inherit;font-size:14px;color:var(--cream);background:var(--panel);border:1px solid var(--line);padding:10px 14px;min-height:44px;cursor:pointer}
+button.main{background:var(--yellow);color:#0e0d0b;border-color:var(--yellow);font-weight:700}
+button[aria-pressed=true]{border-color:var(--yellow);color:var(--yellow)}
+input[type=range]{flex:1;min-width:140px;accent-color:var(--yellow);height:44px}
+label,legend{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+fieldset{border:0;margin:0;padding:0}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.hint{font-size:12px;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+  <p class="tag">// frk-components · parça 4 · SEZGİ</p>
+  <h1 id="h1"></h1>
+  <p class="lead" id="lead"></p>
+
+  <div id="stage"></div>
+  <p id="cap" aria-hidden="true"></p>
+
+  <div class="frk-demo">
+    <fieldset class="row" id="modes">
+      <legend id="lgM"></legend>
+      <button type="button" data-mode="speak" aria-pressed="true"></button>
+      <button type="button" data-mode="approval" aria-pressed="false"></button>
+    </fieldset>
+    <div class="row">
+      <button id="play" class="main" type="button"></button>
+      <button id="replay" type="button"></button>
+      <button id="lang" type="button" aria-label="Language / Dil">TR · EN</button>
+    </div>
+    <div class="row">
+      <label for="t" id="lblT"></label>
+      <input id="t" type="range" min="0" max="8" step="0.01" value="0">
+      <output id="tout" for="t">0.00s</output>
+    </div>
+    <p class="hint" id="hint"></p>
+  </div>
+</main>
+
+<script src="status-orb.js"></script>
+<script src="konusma/tr.speech.js"></script>
+<script src="konusma/en.speech.js"></script>
+<script>
+(function () {
+  const TXT = {
+    tr: { h1: 'SEZGİ <span>konuşan küre</span>', lead: 'Ses bir kez zarfa çevrilir; küre her karede o zarfı zamandan okur. Aynı ses aynı kareyi verir: canlı demoda da videoda da. Kelimeler küreden çıkıp yerine oturur. Gerçek bir mikrofon ya da yapay zekâ yok: bu, hazır bir konuşma kaydının görüntüsüdür.',
+      mode: { speak: 'Konuşuyor', approval: 'Onay bekliyor' }, lgM: 'Durum', play: 'Oynat', pause: 'Duraklat', again: 'Tekrar', replay: 'Baştan', t: 'Zaman',
+      hint: 'Klavye: Boşluk oynat/duraklat · R baştan · 1–2 durum · ←/→ kaydırıcıyla ileri-geri. Ses dosyası depoda yok (assets/ses/ git dışı): varsa çalar, yoksa küre sessiz oynar. Üretmek için: node araclar/seslendir.mjs.' },
+    en: { h1: 'SEZGİ <span>speaking orb</span>', lead: 'The voice is turned into an envelope once; the orb reads it from time on every frame. Same voice, same frame: in the live demo and in a video. Words leave the orb and settle in place. There is no real microphone or AI: this shows a prepared recording.',
+      mode: { speak: 'Speaking', approval: 'Awaiting approval' }, lgM: 'State', play: 'Play', pause: 'Pause', again: 'Play again', replay: 'Restart', t: 'Time',
+      hint: 'Keyboard: Space play/pause · R restart · 1–2 state · ←/→ on the slider to scrub. The audio file is not in the repo (assets/ses/ is git-ignored): if present it plays, otherwise the orb plays silently. To make it: node araclar/seslendir.mjs.' }
+  };
+  const SES = { tr: '../../assets/ses/tr.mp3', en: '../../assets/ses/en.mp3' };
+  const $ = (id) => document.getElementById(id);
+  const stage = $('stage'), play = $('play'), slider = $('t'), tout = $('tout');
+  const btns = [...document.querySelectorAll('[data-mode]')];
+  let lang = 'tr', mode = 'speak', audio = null;
+  window.inst = null;
+
+  function label() {
+    const T = TXT[lang], i = window.inst;
+    document.documentElement.lang = lang;
+    $('h1').innerHTML = T.h1; $('lead').textContent = T.lead; $('hint').textContent = T.hint;
+    $('lgM').textContent = T.lgM; $('lblT').textContent = T.t; $('replay').textContent = T.replay;
+    btns.forEach((b) => { b.textContent = T.mode[b.dataset.mode]; b.setAttribute('aria-pressed', String(b.dataset.mode === mode)); });
+    $('cap').textContent = i ? T.mode[mode] : '';
+    play.textContent = i && i.playing ? T.pause : (+slider.value >= +slider.max ? T.again : T.play);
+  }
+
+  // Ses yalnız eşlik eder: küre ses dosyasına bakmaz, yalnız zarfa. Dosya yoksa (404) sessiz oynar.
+  function sync(play) {
+    if (!audio) return;
+    const i = window.inst, off = +slider.value - i.speakAt;
+    if (!play || off < 0 || off >= i.speechDuration) { audio.pause(); if (play && off < 0) audio.currentTime = 0; return; }
+    if (Math.abs(audio.currentTime - off) > 0.15) audio.currentTime = off;
+    const p = audio.play(); if (p && p.catch) p.catch(function () {});
+  }
+
+  function build() {
+    if (window.inst) window.inst.destroy();
+    if (audio) audio.pause();
+    audio = new Audio(SES[lang]); audio.preload = 'auto'; audio.addEventListener('error', () => { audio = null; });
+    const sp = window.SEZGI_SES[lang];
+    const opts = { seed: 1, locale: lang, label: true, speech: sp };
+    if (mode === 'approval') { opts.states = [[0, 'listening'], [0.6, 'approval']]; opts.duration = 6; delete opts.speech; }
+    const inst = window.inst = FRKComponents.statusOrb.mount(stage, opts);
+    slider.max = inst.duration;
+    inst.play();                                // prefers-reduced-motion altında sabit poz
+    sync(inst.playing);
+    label();
+  }
+
+  function toggle() { const i = window.inst; if (i.playing) { i.pause(); sync(false); } else { i.play(true); sync(true); } label(); }
+  function restart() { window.inst.pause(); window.inst.seek(0); slider.value = 0; if (audio) audio.currentTime = 0; window.inst.play(); sync(window.inst.playing); label(); }
+  function pick(m) { mode = m; build(); }
+
+  stage.addEventListener('frk:tick', (e) => { slider.value = e.detail.t; tout.textContent = Math.min(e.detail.t, +slider.max).toFixed(2) + 's'; });
+  stage.addEventListener('frk:state', label);
+  stage.addEventListener('frk:end', () => { sync(false); label(); });
+  play.addEventListener('click', toggle);
+  $('replay').addEventListener('click', restart);
+  $('lang').addEventListener('click', () => { lang = lang === 'tr' ? 'en' : 'tr'; build(); });
+  btns.forEach((b) => b.addEventListener('click', () => pick(b.dataset.mode)));
+  slider.addEventListener('input', () => { window.inst.pause(); window.inst.seek(+slider.value); sync(false); label(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('button,input,select,textarea')) return;
+    if (e.key === ' ') { e.preventDefault(); toggle(); }
+    else if (e.key === 'r' || e.key === 'R') restart();
+    else if (e.key === '1') pick('speak');
+    else if (e.key === '2') pick('approval');
+  });
+  build();
+})();
+</script>
+</body>
+</html>

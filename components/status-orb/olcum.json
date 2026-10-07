@@ -1,10 +1,10 @@
 {
-  "olculdu": "2026-10-01T22:07:54.658Z",
+  "olculdu": "2026-10-07T03:24:09.044Z",
   "hedef": "D:/Repolar/frk-components/components/status-orb/demo.html",
   "bilesen": "statusOrb",
   "boyut": {
-    "js_bayt": 11864,
-    "js_gzip_bayt": 4671,
+    "js_bayt": 18242,
+    "js_gzip_bayt": 6948,
     "demo_html_bayt": 8339,
     "hedef_bayt": 51200
   },
@@ -17,8 +17,8 @@
   },
   "tarayici": "Chromium 153.0.8010.12",
   "ilk_boyama": {
-    "fcp_ms": 28,
-    "lcp_ms": 68,
+    "fcp_ms": 140,
+    "lcp_ms": 292,
     "hedef_lcp_ms": 2500
   },
   "determinizm": {
@@ -92,22 +92,22 @@
   "performans": {
     "canli_kare_sayisi": 362,
     "beklenen_kare_60hz": 360,
-    "kare_araligi_ort_ms": 16.67,
-    "kare_araligi_p95_ms": 17.8,
-    "kare_araligi_maks_ms": 19.2,
+    "kare_araligi_ort_ms": 16.65,
+    "kare_araligi_p95_ms": 18.1,
+    "kare_araligi_maks_ms": 24.1,
     "hedef_kare_ms": 16.7,
     "not": "Başsız Chromium, bu makine, masaüstü, GPU yok olabilir. Telefon ölçülmedi.",
     "seek_js_ms": {
-      "ort": 0.85,
-      "medyan": 0.8,
-      "p95": 1.4,
-      "maks": 3
+      "ort": 2.411,
+      "medyan": 2.2,
+      "p95": 3.6,
+      "maks": 7.4
     },
     "seek_artı_canvas_bosaltma_ms": {
-      "ort": 3.612,
-      "medyan": 3.5,
-      "p95": 4.6,
-      "maks": 6.3
+      "ort": 10.859,
+      "medyan": 10.6,
+      "p95": 12.6,
+      "maks": 19.1
     }
   },
   "erisilebilirlik": {
@@ -156,7 +156,7 @@
     "bosluk_ilk_oynuyor": false,
     "bosluk_ikinci_oynuyor": true,
     "r_bastan": {
-      "t": 0.117,
+      "t": 0.217,
       "oynuyor": true
     },
     "kaydirici_oklari_t": 0.02

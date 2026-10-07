@@ -3,12 +3,14 @@
   'use strict';
 
   // Durumlar ve renkler (FRK-OS jetonları; koyu zeminde ≥ 6:1 kontrast).
-  const NAMES = ['listening', 'thinking', 'searching', 'done'];
-  const RGB = { listening: [241, 236, 226], thinking: [25, 211, 230], searching: [255, 122, 26], done: [255, 194, 26] };
+  const NAMES = ['listening', 'thinking', 'searching', 'done', 'speaking', 'approval'];
+  const RGB = { listening: [241, 236, 226], thinking: [25, 211, 230], searching: [255, 122, 26], done: [255, 194, 26], speaking: [255, 194, 26], approval: [255, 77, 109] };
   const TXT = {
-    tr: { prefix: 'Asistan', listening: 'dinliyor', thinking: 'düşünüyor', searching: 'arıyor', done: 'bitti' },
-    en: { prefix: 'Assistant', listening: 'listening', thinking: 'thinking', searching: 'searching', done: 'done' },
+    tr: { prefix: 'Asistan', listening: 'dinliyor', thinking: 'düşünüyor', searching: 'arıyor', done: 'bitti', speaking: 'konuşuyor', approval: 'onay bekliyor' },
+    en: { prefix: 'Assistant', listening: 'listening', thinking: 'thinking', searching: 'searching', done: 'done', speaking: 'speaking', approval: 'awaiting approval' },
   };
+  const CAP = { fs: 46, adv: 46 * 0.6, maxc: 31, y: 915, row: 62, fly: 0.38, shift: 0.3, cy: 410, r: 330 };   // altyazı: tek aralıklı (mono) yazı, genişlik ölçülmeden hesaplanır
+  const LEAD = 0.6, TAIL = 1.4;             // konuşma verilip durum listesi verilmezse: dinliyor → konuşuyor → bitti
   const BG = '#0e0d0b', MUTE = '#b9b4a8';
   const BLEND = 0.7;                        // durum geçişi (sn)
   const STATIC_T = 2.0;                     // reduced-motion'da sabit pozun zamanı
@@ -31,7 +33,8 @@
 
   // Zaman çizelgesi: [[t, durum], ...] → t anındaki {durum: ağırlık}. Saf: yalnız t'ye ve listeye bakar.
   function weightsAt(states, t) {
-    const w = { listening: 0, thinking: 0, searching: 0, done: 0 };
+    const w = {};
+    for (const nm of NAMES) w[nm] = 0;
     let k = -1;
     for (let i = 0; i < states.length; i++) if (states[i][0] <= t) k = i;
     if (k < 0) { w.listening = 1; return { w: w, cur: 'listening' }; }
@@ -67,7 +70,39 @@
       const a = TAU * s + 0.05 * t, r = 0.74 + 0.012 * Math.sin(8 * a + ph + t);
       return [r * Math.cos(a), r * Math.sin(a)];
     },
+    speaking(s, ph, rx, ry, t, lv, i, env) {              // halka sesle şişer: yarıçap zarfla, dalgalanma zarfla büyür
+      const a = TAU * s + 0.12 * t, shell = ((s * 977) % 1 < 0.5) ? 0 : 0.09;
+      const r = 0.46 + shell + 0.3 * env + (0.02 + 0.13 * env) * Math.sin(7 * a - 3.2 * t + ph * 0.3);
+      return [r * Math.cos(a) + rx * 0.012, r * Math.sin(a) + ry * 0.012];
+    },
+    approval(s, ph, rx, ry, t, lv, i) {                   // insan onayı bekleniyor: soluk alan halka + ortada iki dikey çubuk (duraklat)
+      if (i % 4 === 0) {
+        const p = (s * 4) % 1, x = p < 0.5 ? -0.13 : 0.13, y = -0.3 + 0.6 * ((p * 2) % 1);
+        return [x + rx * 0.01, y + ry * 0.01];
+      }
+      const a = TAU * s + 0.1 * t, r = (0.74 + 0.02 * Math.sin(3 * a + 0.8 * t + ph)) * (1 + 0.03 * Math.sin(1.6 * t));
+      return [r * Math.cos(a), r * Math.sin(a)];
+    },
   };
+
+  // Konuşma verisi: seslendir.mjs çıktısı ({fps, zarf|ham, kelimeler|words, metin}). Yalnız okunur, sıralı kelime yuvaları hesaplanır.
+  function normSpeech(sp) {
+    if (!sp) return null;
+    const z = sp.zarf || sp.ham || [], fps = sp.fps || 30;
+    const raw = sp.kelimeler || sp.words || [];
+    const words = raw.map((e) => ({ w: String(e.yazi != null ? e.yazi : e.kelime != null ? e.kelime : e.word), s: +(e.baslangic_sn != null ? e.baslangic_sn : e.start), d: +(e.sure_sn != null ? e.sure_sn : e.dur) }));
+    let line = 0, col = 0;
+    const slots = words.map((e) => {                       // açgözlü satır kaydırma: satır uzunluğu karakter sayısıyla
+      const n = e.w.length;
+      if (col > 0 && col + 1 + n > CAP.maxc) { line++; col = 0; } else if (col > 0) col++;
+      const sl = { line: line, col: col, n: n }; col += n; return sl;
+    });
+    const lens = [];
+    slots.forEach((sl) => { lens[sl.line] = sl.col + sl.n; });
+    const first = [];
+    words.forEach((e, i) => { if (first[slots[i].line] == null) first[slots[i].line] = e.s; });
+    return { fps: fps, zarf: z, len: z.length / fps, words: words, slots: slots, lens: lens, first: first, at: sp.at, text: sp.metin || words.map((e) => e.w).join(' ') };
+  }
 
   let uid = 0;
 
@@ -75,9 +110,10 @@
     opts = opts || {};
     const loc = opts.locale === 'en' ? 'en' : 'tr', L = TXT[loc];
     const n = opts.n || 2200;
-    const duration = opts.duration == null ? 6 : opts.duration;
+    const speech = normSpeech(opts.speech), words = speech && speech.words.length ? speech : null;
+    const duration = opts.duration == null ? (speech && !opts.states ? LEAD + speech.len + TAIL : 6) : opts.duration;
     let level = opts.level == null ? 0.5 : opts.level;
-    let states = (opts.states || REEL).map((e) => e.slice());
+    let states = (opts.states || (speech ? [[0, 'listening'], [LEAD, 'speaking'], [LEAD + speech.len + 0.2, 'done']] : REEL)).map((e) => e.slice());
     const rnd = prng(opts.seed == null ? 1 : opts.seed);
     const bk = Array.from({ length: BUCKETS }, () => []);
     const P = { s: new Float32Array(n), ph: new Float32Array(n), rx: new Float32Array(n), ry: new Float32Array(n), w: new Float32Array(n) };
@@ -97,9 +133,22 @@
     el.appendChild(root);
     const ctx = cv.getContext('2d');
 
-    let k = 1, ox = 0, oy = 0, cur = 0, curName = 'listening', seenName = null, prevT = 0, raf = 0, t0 = null, ended = false, destroyed = false;
-    const label = (name) => L.prefix + ': ' + L[name];
+    let k = 1, ox = 0, oy = 0, cur = 0, curName = 'listening', seenName = null, seenWord = -1, prevT = 0, raf = 0, t0 = null, ended = false, destroyed = false;
+    const label = (name) => L.prefix + ': ' + (name === 'speaking' && speech ? speech.text : L[name]);
     const emit = (name, detail) => el.dispatchEvent(new CustomEvent('frk:' + name, { detail: detail }));
+
+    // Konuşmanın zaman çizelgesindeki başı: speech.at, yoksa ilk 'speaking' girişi. Zarf bu andan okunur.
+    const speakAt = () => { if (speech && speech.at != null) return speech.at; for (const e of states) if (e[1] === 'speaking') return e[0]; return 0; };
+    // Zarf (0–1) t anında; kareler arası doğrusal. Konuşma verilmediyse elle/canlı seviye (setLevel) kullanılır.
+    function envAt(t) {
+      if (!speech) return level;
+      const x = (t - speakAt()) * speech.fps, z = speech.zarf;
+      if (x < 0 || x > z.length - 1) return 0;
+      const i = Math.floor(x), f = x - i;
+      return z[i] + (z[Math.min(i + 1, z.length - 1)] - z[i]) * f;
+    }
+    // t anında en son başlamış kelime (konuşma zamanıyla); yoksa -1.
+    function wordAt(tr) { let k = -1; if (words) for (let i = 0; i < words.words.length; i++) if (words.words[i].s <= tr) k = i; return k; }
 
     function fit() {
       const dpr = global.devicePixelRatio || 1, w = el.clientWidth || 400, h = el.clientHeight || 400;
@@ -109,7 +158,8 @@
       draw(cur, weightsAt(states, cur).w);
     }
 
-    function draw(t, w) {
+    // ov: yalnız sabit poz için (reduced-motion): { env, wt } zarf ve konuşma zamanını zorlar.
+    function draw(t, w, ov) {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = BG; ctx.fillRect(0, 0, cv.width, cv.height);
@@ -117,18 +167,20 @@
       let r = 0, g = 0, b = 0;
       for (const nm of NAMES) { r += w[nm] * RGB[nm][0]; g += w[nm] * RGB[nm][1]; b += w[nm] * RGB[nm][2]; }
       r = Math.round(r); g = Math.round(g); b = Math.round(b);
-      const glow = ctx.createRadialGradient(500, 500, 40, 500, 500, 520);
-      glow.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',0.10)'); glow.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0)');
+      const env = ov && ov.env != null ? ov.env : envAt(t);
+      const cx = 500, cy = words ? CAP.cy : 500, R = words ? CAP.r : 380;       // altyazı varsa küre yukarı çıkar ve küçülür
+      const glow = ctx.createRadialGradient(cx, cy, 40, cx, cy, 520);
+      glow.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',' + (0.1 + 0.2 * env * w.speaking) + ')'); glow.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0)');
       ctx.fillStyle = glow; ctx.fillRect(0, 0, 1000, 1000);
       ctx.globalCompositeOperation = 'lighter';
       ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
-      const R = 380, act = NAMES.filter((nm) => w[nm] > 0.001);
+      const act = NAMES.filter((nm) => w[nm] > 0.001);
       for (let q = 0; q < BUCKETS; q++) bk[q].length = 0;
       for (let i = 0; i < n; i++) {
         let x = 0, y = 0;
-        for (const nm of act) { const p = POS[nm](P.s[i], P.ph[i], P.rx[i], P.ry[i], t, level, i); x += w[nm] * p[0]; y += w[nm] * p[1]; }
+        for (const nm of act) { const p = POS[nm](P.s[i], P.ph[i], P.rx[i], P.ry[i], t, level, i, env); x += w[nm] * p[0]; y += w[nm] * p[1]; }
         const q = Math.min(BUCKETS - 1, ((0.5 + 0.5 * Math.sin(P.ph[i] + 2 * t * P.w[i])) * BUCKETS) | 0);
-        bk[q].push(500 + x * R, 500 + y * R, 2.2 + 1.2 * P.w[i]);
+        bk[q].push(cx + x * R, cy + y * R, 2.2 + 1.2 * P.w[i]);
       }
       for (let q = 0; q < BUCKETS; q++) {                      // aynı saydamlıktakiler tek yolda: çok sayıda ayrı çizim çağrısından kaçınır
         const c = bk[q];
@@ -140,15 +192,37 @@
       }
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
+      if (words) drawWords(ov && ov.wt != null ? ov.wt : t - speakAt(), cy);
       if (opts.label) {
         ctx.font = '26px "JetBrains Mono", ui-monospace, monospace'; ctx.fillStyle = MUTE; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
         ctx.fillText(L[weightsAt(states, t).cur], 500, 975);
       }
     }
 
-    // Saf: aynı t, aynı durum listesi, aynı seviye → aynı kare.
+    // Kelimeler küreden çıkar: her kelime başladığı anda orb merkezinden yuvasına uçar (yalnız konuşma zamanı tr'nin işlevi).
+    // Görünen satırlar kayar: yeni satırın ilk kelimesiyle önceki satır bir adım yukarı çıkıp solar.
+    function drawWords(tr, cy) {
+      const W = words, last = wordAt(tr);
+      if (last < 0) return;
+      const L = W.slots[last].line, Lf = L > 0 ? L - 1 + smooth((tr - W.first[L]) / CAP.shift) : 0;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+      for (let i = 0; i <= last; i++) {
+        const sl = W.slots[i], e0 = W.words[i], d = sl.line - Lf, ra = Math.max(0, Math.min(1, 1 + 0.9 * d));
+        if (ra <= 0.004) continue;
+        const p = Math.min(1, (tr - e0.s) / CAP.fly), e = 1 - Math.pow(1 - p, 3);
+        const sx = 500 - W.lens[sl.line] * CAP.adv / 2 + (sl.col + sl.n / 2) * CAP.adv, sy = CAP.y + d * CAP.row;
+        ctx.font = (CAP.fs * (0.5 + 0.5 * e)).toFixed(2) + 'px "JetBrains Mono", ui-monospace, monospace';
+        ctx.fillStyle = tr < e0.s + e0.d ? '#ffc21a' : '#f1ece2';
+        ctx.globalAlpha = e * ra;
+        ctx.fillText(e0.w, 500 + (sx - 500) * e, cy + (sy - cy) * e);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // Saf: aynı t, aynı durum listesi, aynı seviye/konuşma → aynı kare.
     function seek(t) {
       t = Math.max(0, +t || 0);
+      const back = t < prevT;
       cur = t;
       const q = weightsAt(states, t);
       draw(t, q.w);
@@ -156,6 +230,11 @@
       root.setAttribute('aria-label', label(curName));
       el.setAttribute('data-t', t.toFixed(3)); el.setAttribute('data-state', curName);
       if (t >= prevT && seenName !== null && curName !== seenName) { emit('state', { t: t, state: curName }); live.textContent = label(curName); }
+      if (words) {
+        const wi = wordAt(t - speakAt());
+        if (!back && wi > seenWord) emit('word', { t: t, i: wi, word: words.words[wi].w });
+        seenWord = wi;
+      }
       seenName = curName; prevT = t;
       emit('tick', { t: t });
       const done = t >= duration;
@@ -175,8 +254,10 @@
 
     // Hareket tercihinde animasyon yok: durumun sabit pozu (STATIC_T anı), geçiş yok.
     function still() {
-      const nm = weightsAt(states, cur).cur, w = { listening: 0, thinking: 0, searching: 0, done: 0 };
-      w[nm] = 1; draw(STATIC_T, w);
+      const nm = weightsAt(states, cur).cur, w = {};
+      for (const x of NAMES) w[x] = 0;
+      w[nm] = 1;
+      draw(STATIC_T, w, nm === 'speaking' ? { env: 0.55, wt: speech ? speech.len + 1 : 0 } : null);   // konuşurken: orta seviye zarf, bütün kelimeler yerinde
       curName = nm; root.setAttribute('aria-label', label(nm)); el.setAttribute('data-state', nm); el.setAttribute('data-t', cur.toFixed(3));
       if (seenName !== nm) live.textContent = label(nm);
       seenName = nm;
@@ -208,6 +289,9 @@
       const text = [TXT.tr, TXT.en].map((d) => Object.keys(d).map((x) => d[x]).join(' ')).join(' ');
       document.fonts.load('26px "JetBrains Mono"', text).then(() => draw(cur, weightsAt(states, cur).w), function () {});
     }
+    if (words && document.fonts && document.fonts.load) {         // altyazıdaki Türkçe harfler için de aynı: konuşmanın bütün metni önceden yüklenir
+      document.fonts.load(CAP.fs + 'px "JetBrains Mono"', speech.text + words.words.map((e) => e.w).join('')).then(() => { if (reduce()) still(); else draw(cur, weightsAt(states, cur).w); }, function () {});
+    }
 
     function destroy() { destroyed = true; pause(); if (ro) ro.disconnect(); el.textContent = ''; el.removeAttribute('data-t'); el.removeAttribute('data-state'); }
 
@@ -218,6 +302,8 @@
       seek: seek, play: play, pause: pause, destroy: destroy, duration: duration, setState: setState, setLevel: setLevel,
       get playing() { return !!raf; },
       get state() { return curName; },
+      get speakAt() { return speakAt(); },                       // konuşma sesinin zaman çizelgesindeki başı (sn): <audio>.currentTime = t − speakAt
+      get speechDuration() { return speech ? speech.len : 0; },
       get states() { return states.map((e) => e.slice()); },
     };
   }

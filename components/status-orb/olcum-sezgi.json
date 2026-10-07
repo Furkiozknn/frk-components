@@ -1,0 +1,318 @@
+{
+  "olculdu": "2026-10-07T03:21:58.879Z",
+  "kontroller": {
+    "zarf_sessiz_ton": {
+      "gecti": true,
+      "kanit": {
+        "sessiz_bas": 0,
+        "ton": 0.997,
+        "sessiz_son_70_90": 0.001,
+        "yumusak_iniyor": true
+      }
+    },
+    "zarf_deterministik": {
+      "gecti": true,
+      "kanit": "aynı girdi iki kez aynı JSON"
+    },
+    "yaklasik_kelime_sayisi": {
+      "gecti": true,
+      "kanit": {
+        "yaklasik": 9,
+        "motor": 9
+      }
+    },
+    "yaklasik_kelime_makul": {
+      "gecti": true,
+      "kanit": "ortalama başlangıç sapması 0.410 sn (<0,6 sağlık eşiği; \"doğru\" demek değildir)"
+    },
+    "determinizm_tr": {
+      "gecti": true,
+      "kanit": {
+        "zamanlar": [
+          0,
+          0.3,
+          0.82,
+          2.012,
+          3.4,
+          3.8,
+          5.375,
+          8.267,
+          8.367
+        ],
+        "canvas_ileri_geri_karisik_esit": true,
+        "farkli_kare_sayisi": 9,
+        "ekran_goruntusu_onceki_durumdan_bagimsiz": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    "determinizm_en": {
+      "gecti": true,
+      "kanit": {
+        "zamanlar": [
+          0,
+          0.3,
+          0.82,
+          1.625,
+          2.875,
+          3.275,
+          4.375,
+          6.967,
+          7.067
+        ],
+        "canvas_ileri_geri_karisik_esit": true,
+        "farkli_kare_sayisi": 9,
+        "ekran_goruntusu_onceki_durumdan_bagimsiz": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    "konsol_hatasi_yok": {
+      "gecti": true,
+      "kanit": []
+    },
+    "zarf_kureyi_buyutur": {
+      "gecti": true,
+      "kanit": {
+        "sesli_yaricap": 383.3,
+        "sessiz_yaricap": 224.2,
+        "oran": 1.709,
+        "esik": 1.3
+      }
+    },
+    "ayni_t_ayni_kare": {
+      "gecti": true,
+      "kanit": "zarflı konuşmada seek(0) → seek(t) ile seek(t) aynı"
+    },
+    "canli_seviye_kipi": {
+      "gecti": true,
+      "kanit": {
+        "seviye0": 224.4,
+        "seviye1": 387.7,
+        "oran": 1.728
+      }
+    },
+    "onay_durumu": {
+      "gecti": true,
+      "kanit": {
+        "farkli_kare": true,
+        "durum": "approval",
+        "aria": "Assistant: awaiting approval"
+      }
+    },
+    "kelime_olaylari": {
+      "gecti": true,
+      "kanit": {
+        "ilk_oynatma": 9,
+        "beklenen": 9,
+        "sira_dogru": true,
+        "geri_sarinca": 0,
+        "ikinci_oynatma": 9
+      }
+    },
+    "aria_konusurken_metin": {
+      "gecti": true,
+      "kanit": "Asistan: Merhaba, ben Sezgi. Sana ne lazımsa söyle, ben dinliyorum."
+    },
+    "gecersiz_durum_atilir": {
+      "gecti": true,
+      "kanit": "RangeError"
+    },
+    "reduced_motion_konusma": {
+      "gecti": true,
+      "kanit": {
+        "oynuyor": false,
+        "durum_yazilan_t": "6.000",
+        "altyazi_parlak_piksel": 2937
+      }
+    },
+    "seek_kare_butcesi": {
+      "gecti": true,
+      "kanit": "seek ort 3.079 ms (bütçe 16,7)"
+    },
+    "axe_sezgi": {
+      "gecti": true,
+      "kanit": [
+        {
+          "t": 0.2,
+          "ihlal": 0,
+          "kurallar": []
+        },
+        {
+          "t": 2,
+          "ihlal": 0,
+          "kurallar": []
+        },
+        {
+          "t": 4.5,
+          "ihlal": 0,
+          "kurallar": []
+        },
+        {
+          "t": 7,
+          "ihlal": 0,
+          "kurallar": []
+        },
+        {
+          "durum": "onay",
+          "ihlal": 0,
+          "kurallar": []
+        }
+      ]
+    },
+    "klavye_durumlar": {
+      "gecti": true,
+      "kanit": {
+        "tus2_t2": "approval",
+        "tus1_t2": "speaking"
+      }
+    },
+    "mobil_390": {
+      "gecti": true,
+      "kanit": {
+        "tasma_yok": true,
+        "sahne_px": 358,
+        "dokunma_hedefi_min_px": 44
+      }
+    }
+  },
+  "yaklasik_kelime_hatasi": {
+    "not": "edge-tts kelime zamanı referans; tek TR cümle (9 kelime), genel doğruluk DEĞİL",
+    "ort_mutlak_sapma_sn": 0.41,
+    "en_buyuk_sn": 0.642
+  },
+  "tarayici": "Chromium 153.0.8010.12",
+  "determinizm": {
+    "tr": {
+      "zamanlar": [
+        0,
+        0.3,
+        0.82,
+        2.012,
+        3.4,
+        3.8,
+        5.375,
+        8.267,
+        8.367
+      ],
+      "canvas_ileri_geri_karisik_esit": true,
+      "farkli_kare_sayisi": 9,
+      "ekran_goruntusu_onceki_durumdan_bagimsiz": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "en": {
+      "zamanlar": [
+        0,
+        0.3,
+        0.82,
+        1.625,
+        2.875,
+        3.275,
+        4.375,
+        6.967,
+        7.067
+      ],
+      "canvas_ileri_geri_karisik_esit": true,
+      "farkli_kare_sayisi": 9,
+      "ekran_goruntusu_onceki_durumdan_bagimsiz": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  "konsol_hatasi": [],
+  "zarf_kure": {
+    "sesli_yaricap": 383.2681103932917,
+    "sesli_zarf": 0.979,
+    "sessiz_yaricap": 224.22706745122855,
+    "sessiz_zarf": 0,
+    "ayni_t_ayni_kare": true,
+    "canli_seviye0_yaricap": 224.36329666166185,
+    "canli_seviye1_yaricap": 387.67827440346,
+    "onay": {
+      "farkli_kare": true,
+      "durum": "approval",
+      "aria": "Assistant: awaiting approval"
+    },
+    "kelime_olaylari": {
+      "ilk_oynatma": 9,
+      "beklenen": 9,
+      "sira_dogru": true,
+      "geri_sarinca": 0,
+      "ikinci_oynatma": 9
+    },
+    "aria_konusurken": "Asistan: Merhaba, ben Sezgi. Sana ne lazımsa söyle, ben dinliyorum.",
+    "gecersiz_durum_atildi": true,
+    "oran_sesli_sessiz": 1.709,
+    "canli_oran": 1.728
+  },
+  "reduced_motion": {
+    "oynuyor": false,
+    "durum_yazilan_t": "6.000",
+    "altyazi_parlak_piksel": 2937
+  },
+  "performans": {
+    "seek_ort_ms": 3.079,
+    "seek_max_ms": 11.6,
+    "canli_kare_sayisi": 69,
+    "kare_araligi_ort_ms": 16.62,
+    "kare_araligi_p95_ms": 18.2,
+    "hedef_kare_ms": 16.7,
+    "not": "Başsız Chromium, bu makine, masaüstü. Telefon ölçülmedi."
+  },
+  "erisilebilirlik": {
+    "arac": "axe-core 4.13.0",
+    "taramalar": [
+      {
+        "t": 0.2,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 2,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 4.5,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "t": 7,
+        "ihlal": 0,
+        "kurallar": []
+      },
+      {
+        "durum": "onay",
+        "ihlal": 0,
+        "kurallar": []
+      }
+    ],
+    "klavye_2_onay_durumuna_gecer": "approval",
+    "klavye_1_konusmaya_doner": "speaking"
+  },
+  "mobil_390": {
+    "tasma_yok": true,
+    "sahne_px": 358,
+    "dokunma_hedefi_min_px": 44,
+    "not": "Chromium mobil emülasyonu; gerçek telefon ölçülmedi"
+  },
+  "ozet": {
+    "toplam": 19,
+    "gecen": 19,
+    "basarisiz": []
+  }
+}

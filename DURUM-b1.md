@@ -32,3 +32,12 @@ Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.m
 **Sıradaki:** yeni yönlendirme beklemek; ikinci tur b1 maddeleri bitti, kanıtlar güncel bileşenlerle eşit.
 
 **Takılma yok.**
+
+## 07.10.2026 ~07:00 — SEZGİ: konuşan küre (Sonnet 5.5 oturumu, "Projeye dönüştürme")
+
+**Bitti:** `status-orb`'a `speaking` (konuşuyor) ve `approval` (onay bekliyor) durumları, `opts.speech` (zarf + kelime zamanı, `seek(t)` saf), kelimelerin küreden çıkıp altyazıya oturması, `frk:word` olayı, canlı `setLevel` kipi. `araclar/seslendir.mjs` (windows-tolga/zira, edge, dosya motorları → tek JSON), `components/status-orb/sezgi.html` demo, `araclar/sezgi-test.mjs` (19/19 geçti, `olcum-sezgi.json`).
+**Regresyon:** varsayılan 4 durumlu reelin 22 karesi değişiklik öncesiyle birebir aynı (bayt eşit hash).
+**Araştırmadan alınanlar:** JARVIS-ARASTIRMA fikir 1 (zarf+seek), 3 (onay durumu), 4 (değiştirilebilir ses, ücretsiz varsayılan), 5 (özgün+TR); SATIS-ARASTIRMASI: kit değil çalışan hat satılır → ses motoru bağımsız boru hattı.
+**Ses dosyaları git dışı** (`assets/ses/`): edge-tts ticari kullanım ve Windows sesi yeniden dağıtımı doğrulanmadı; yalnız türev JSON depoda.
+**Yapılmadı:** README/RECETE güncellemesi (yeni durumlar, speech seçeneği), `deneme/hazirla.mjs` ile türev kopya tazeleme, SEZGİ reklam videosu (`deneme/kure-reklam/`), video üreticisine sahne türleri, push. `olcum.json` olc-parca ile yenilendi; seek süresi eskisinden yüksek çıktı (ort 2,4 ms; önceki 0,9) — makine yükü mü kod mu **ölçülmedi**. Ses seçimi Furki'nin.
+Kargola'ya dokunulmadı.
