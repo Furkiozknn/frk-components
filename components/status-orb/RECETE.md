@@ -96,3 +96,13 @@ FRKComponents.statusOrb.mount(baskaEl, { states: kayit }).seek(2.5);
 - Kare maliyeti GPU'suz olabilecek ortamda ~3,6 ms; zayıf cihazlarda `n` düşürülmeli (ölçülmedi).
 - `duration: Infinity` ile sürekli çalışan gösterge tasarlandı ama denenmedi.
 - HyperFrames: 5 sn'lik 1080×1080 kompozisyon `deneme/status-orb/` altında; `check` 0 bulgu, TR+EN render, aynı `t` aynı kare kanıtı `deneme/SONUC.md` ve `deneme/KANIT.json`'da. Canvas etiketi HyperFrames kontrast denetiminin dışında kalır.
+
+## Ek: SEZGİ — konuşan küre (07.10.2026)
+
+**Girdi (özet):** Araştırma notlarını (`JARVIS-ARASTIRMA.md`, `SATIS-ARASTIRMASI.md`, `sosyal/ses-hazirlik/OKU.md`) oku, mantığını anla, somut işe çevir. Alınan kararlar: ses zarfı önceden çıkarılır ve `seek(t)` onu okur (rakiplerde canlı `isSpeaking` bayrağı var); "onay bekliyor" durumu; ses sağlayıcısı değiştirilebilir ve ücretsiz varsayılan; satılacak şey kit değil, çalışan hat.
+
+**Adımlar:** (1) Çalışmadan önce varsayılan reelin 22 karesinin hash'i alındı; (2) `speaking`, `approval`, `opts.speech`, kelime altyazısı, `frk:word` eklendi; (3) 22 kare birebir aynı çıktı; (4) `araclar/seslendir.mjs` ve `araclar/sezgi-test.mjs` yazıldı; (5) `sezgi.html` demo ve `deneme/kure-reklam/` reklam taslağı.
+
+**Yolda bulunanlar:** testin ilk taslağında zarf sessizlik penceresi erken seçilmişti (bırakma 0,2/kare, 20 kare sonra ölçülmeli); düzeltildi. `araclar/olc.mjs` status-orb'un olcum.json'unu daha zayıf biçimde ezdi; geri alınıp `deneme/araclar/olc-parca.mjs` ile yeniden ölçüldü. `file://` altında `fetch` çalışmadığı için konuşma verisi `.js` olarak da yazılıyor.
+
+**Sınırlar:** kelime zamanı motorda yoksa karakter oranıyla yaklaşık; ses seçimi Furki'nin; edge-tts ticari kullanımı doğrulanmadı.

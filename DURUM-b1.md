@@ -41,3 +41,6 @@ Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.m
 **Ses dosyaları git dışı** (`assets/ses/`): edge-tts ticari kullanım ve Windows sesi yeniden dağıtımı doğrulanmadı; yalnız türev JSON depoda.
 **Yapılmadı:** README/RECETE güncellemesi (yeni durumlar, speech seçeneği), `deneme/hazirla.mjs` ile türev kopya tazeleme, SEZGİ reklam videosu (`deneme/kure-reklam/`), video üreticisine sahne türleri, push. `olcum.json` olc-parca ile yenilendi; seek süresi eskisinden yüksek çıktı (ort 2,4 ms; önceki 0,9) — makine yükü mü kod mu **ölçülmedi**. Ses seçimi Furki'nin.
 Kargola'ya dokunulmadı.
+
+**07.10 ikinci blok:** RECETE eklendi; `deneme/kure-reklam/` (1080×1920, 30 sn, TR+EN): HyperFrames `check` 0 bulgu, render TR/EN tamam (ilk deneme 2 işçiyle bellek yetmedi, 1 işçiyle geçti), sesli taslak `out/kure-reklam-{tr,en}-taslak.mp4` (edge-tts sesi, loudnorm −14; **taslak**, ses Furki seçince yeniden). Ham render (32 MB) git dışı. Kontak sayfası gözle bakıldı: altyazı küçük, son sürümde büyütülebilir; determinizm kanıtı (A/B/C) bu video için **koşulmadı**; 5 karelik temas sayfası yerine 6 kare.
+**Kalan:** video üreticisine sahne türleri (`sosyal/uret`), YEDEK işleri (metadata, PR temizliği), ses seçimi/kararlar Furki'de.
