@@ -34,6 +34,18 @@ Kutu kare olmalı ve boyutu önceden verilmiş olmalı; canvas kutuyu doldurur v
 
 Durumlar arasında 0,7 sn'lik pürüzsüz geçiş vardır; parçacıklar eski şekilden yenisine doğrusal gider. Geçiş de `t`'nin saf fonksiyonudur. / States blend over 0.7 s, and the blend is a pure function of `t` too.
 
+## SEZGİ: konuşma / speaking
+
+**TR** — İki ek durum: `speaking` (konuşuyor, sarı halka sesle şişer) ve `approval` (onay bekliyor, mercan halka + duraklat çubukları). Konuşma verisi `node araclar/seslendir.mjs` ile üretilir (Windows Tolga/Zira, edge-tts ya da kendi ses dosyan → tek JSON: genlik zarfı + kelime zamanı) ve `speech` seçeneğine verilir; küre zarfı `seek(t)` ile okur, kelimeler küreden çıkıp altyazıya oturur. Aynı ses aynı kareyi verir. Konuşma verisi yoksa `setLevel(v)` canlı seviye girişidir. Demo: `sezgi.html`. Ses dosyaları depoda yok (`assets/ses/` git dışı).
+**EN** — Two extra states: `speaking` (yellow ring swells with the voice) and `approval` (coral ring + pause bars). Speech data comes from `node araclar/seslendir.mjs` (Windows Tolga/Zira, edge-tts or your own audio file → one JSON: amplitude envelope + word timings) and goes into the `speech` option; the orb reads the envelope via `seek(t)` and words leave the orb and settle as captions. Same voice, same frame. Without speech data, `setLevel(v)` is a live level input. Demo: `sezgi.html`. Audio files are not in the repo (`assets/ses/` is git-ignored).
+
+```js
+FRKComponents.statusOrb.mount(el, { speech: window.SEZGI_SES.tr, locale: 'tr' });   // dinliyor → konuşuyor → bitti
+// inst.speakAt, inst.speechDuration: sesi <audio> ile eşlemek için / to sync an <audio>; olay / event: frk:word {t, i, word}
+```
+
+Ölçüm (`araclar/sezgi-test.mjs`, `olcum-sezgi.json`): 19/19 kontrol; sesli/sessiz kare yarıçap oranı 1,71; TR ve EN'de ileri/geri/karışık sırada aynı kare; axe 0 ihlal; varsayılan 4 durumlu reelin 22 karesi değişiklik öncesiyle birebir aynı. `seek` ort. ~3 ms (başsız Chromium, yük altında). Sınırlar: kelime zamanı motorda yoksa karakter oranıyla **yaklaşık** (tek örnekte ort. 0,41 sn sapma, genel doğruluk ölçülmedi); tek aralıklı yazı; ses seçimi, telefon ve gerçek mikrofon **ölçülmedi**. / 19/19 checks; loud/silent radius ratio 1.71; identical frames in forward/reverse/shuffled order; axe 0; the default 4-state reel is frame-identical to before. Word timing is **approximate** (character ratio) when the engine gives none (0.41 s mean offset on one sample; general accuracy not measured); voice choice, phone and live microphone **not measured**.
+
 ## Seçenekler / Options
 
 | Seçenek / Option | Varsayılan / Default | Anlamı / Meaning |
