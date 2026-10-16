@@ -1,0 +1,65 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "ilerleme-halkasi",
+  "type": "hyperframes:block",
+  "title": "Progress ring",
+  "description": "Percent-fill ring: one number in the middle, smooth ease via `setValue`.",
+  "tags": [
+    "frk-components",
+    "deterministic",
+    "seekable",
+    "tr-en"
+  ],
+  "author": "Furkiozknn",
+  "license": "MIT AND OFL-1.1",
+  "dimensions": {
+    "width": 1080,
+    "height": 1080
+  },
+  "duration": 5,
+  "files": [
+    {
+      "path": "index.html",
+      "target": "compositions/ilerleme-halkasi.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "../../components/ilerleme-halkasi/ilerleme-halkasi.js",
+      "target": "compositions/ilerleme-halkasi.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/league-gothic-latin-400-normal.woff2",
+      "target": "compositions/fonts/league-gothic-latin-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/league-gothic-latin-ext-400-normal.woff2",
+      "target": "compositions/fonts/league-gothic-latin-ext-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "target": "compositions/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/jetbrains-mono-latin-ext-400-normal.woff2",
+      "target": "compositions/fonts/jetbrains-mono-latin-ext-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/LICENSE-jetbrains-mono.txt",
+      "target": "compositions/fonts/LICENSE-jetbrains-mono.txt",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/LICENSE-league-gothic.txt",
+      "target": "compositions/fonts/LICENSE-league-gothic.txt",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "preview": {
+    "video": "out/ilerleme-halkasi-en.mp4"
+  }
+}
