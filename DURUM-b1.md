@@ -11,7 +11,7 @@ Sahip: `components/rope-swing/`, `components/status-orb/`, `deneme/`, `TASARIM.m
 
 **Ölçümler** (başsız Chromium 153, bu makine, masaüstü)
 - rope-swing: JS 15.605 bayt (gzip 5.725); determinizm 9 zaman × 3 sıra piksel + durum aynı; canlı koşunun 6 karesi kayıttan tekrarda aynı; axe 0; seek JS ort. 0,07 ms.
-- status-orb: JS 11.864 bayt (gzip 4.671); determinizm 9 zaman × 3 sıra aynı; durum kaydı tekrarında 3/3 kare aynı; axe 0; seek JS ort. 0,92 ms, boşaltmalı medyan 3,5 ms.
+- status-orb (eski ölçüm, 02.10; güncel değerler `OLCUM.md` ve `components/status-orb/olcum.json`'da): JS 11.864 bayt (gzip 4.671); determinizm 9 zaman × 3 sıra aynı; durum kaydı tekrarında 3/3 kare aynı; axe 0; seek JS ort. 0,92 ms, boşaltmalı medyan 3,5 ms.
 - HyperFrames determinizm kanıtı (6/6 parça, odometre düzeltmesinden sonra): A (düz Chromium, `totalTime(t,false)`, 7 zaman × ileri/ters/karışık) hepsi aynı; B (HF snapshot ↔ düz Chromium bayt eşitliği) 3/3; C (1 ↔ 2 işçili render, 150 kare) 150/150.
 - İlk koşuda odometre `t = 3,3` sn'de geliş yoluna bağlıydı (PSNR 55,48 dB, sub-piksel); sahibi (YEDEK) oturma darbesini `scale()` yerine `font-size` yüzdesiyle yapınca kayboldu. Kare karşılaştırması gerçek bir geçmiş bağımlılığı yakaladı.
 
