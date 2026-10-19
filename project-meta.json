@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "id": "frk-components",
+  "owner": "Furkiozknn",
+  "repository": "https://github.com/Furkiozknn/frk-components",
+  "homepage": null,
+  "releases": "https://github.com/Furkiozknn/frk-components/releases",
+  "status": "active",
+  "category": "developer-tool",
+  "platform": [
+    "web"
+  ],
+  "primary_language": "JavaScript",
+  "technologies": [
+    "vanilla JavaScript",
+    "Canvas",
+    "HyperFrames",
+    "no dependencies"
+  ],
+  "version": null,
+  "license": "MIT",
+  "topics": [
+    "accessibility",
+    "animation",
+    "canvas",
+    "claude-code",
+    "deterministic",
+    "hyperframes",
+    "javascript",
+    "ui-components",
+    "zero-dependency"
+  ],
+  "summary": "Single-file, dependency-free UI components that animate frame by frame; each one is a live demo, a HyperFrames video scene and copyable code, with real measurements · Tek dosyalık, kütüphanesiz, kare kare oynatılabilen arayüz parçaları; her biri canlı demo, HyperFrames video sahnesi ve kopyalanabilir kod",
+  "key_features": [
+    "Seven single-file UI parts (odometer, prompt terminal, rope swing, status orb, contribution heat, code diff, progress ring), each with a live demo",
+    "One shared contract: mount, a pure seek(t), play, pause, destroy; randomness only from a seed, checked by a source scan",
+    "Each part is also a HyperFrames video scene with generated, schema-validated catalogue manifests",
+    "Real measurements in OLCUM.md; real phones and iOS Safari are stated as not measured"
+  ],
+  "media": {
+    "hero": null,
+    "screenshots": [
+      "assets/galeri/odometer-390.png",
+      "assets/galeri/status-orb-390.png"
+    ],
+    "gifs": [],
+    "videos": []
+  },
+  "ci": {
+    "workflows": [],
+    "badge": null
+  },
+  "docs": {
+    "readme": "README.md",
+    "changelog": null,
+    "version_history": null,
+    "roadmap": null,
+    "security": null,
+    "contributing": null,
+    "license_file": "LICENSE"
+  },
+  "provenance": {
+    "generated_at": "2026-10-19",
+    "generator": "hand-written",
+    "rule": "mechanical fields read from the repository and the GitHub API; editorial fields hand-written from the README; no field is generated from a guess"
+  }
+}
