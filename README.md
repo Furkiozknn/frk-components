@@ -1,7 +1,7 @@
 # frk-components
 
-**TR** — Tek dosyalık, kütüphanesiz, kare kare sarılabilir arayüz parçaları. Her parça aynı dosyayla üç iş görür: canlı demo, HyperFrames video sahnesi, kopyalanabilir kod. Yanında "Claude Code ile nasıl yapıldı" reçetesi (`RECETE.md`) ve gerçek ölçümler (`olcum.json`) gelir. Depo şimdilik **kamuya kapalıdır**.
-**EN** — Single-file, dependency-free UI parts that can be wrapped frame by frame. Each part serves three purposes with the same file: a live demo, a HyperFrames video scene and copyable code. Each ships with a "how it was made with Claude Code" recipe (`RECETE.md`) and real measurements (`olcum.json`). The repo is **private** for now.
+**TR** — Tek dosyalık, kütüphanesiz, kare kare sarılabilir arayüz parçaları. Her parça aynı dosyayla üç iş görür: canlı demo, HyperFrames video sahnesi, kopyalanabilir kod. Yanında "Claude Code ile nasıl yapıldı" reçetesi (`RECETE.md`) ve gerçek ölçümler (`olcum.json`) gelir. Depo herkese açık, lisans MIT.
+**EN** — Single-file, dependency-free UI parts that can be wrapped frame by frame. Each part serves three purposes with the same file: a live demo, a HyperFrames video scene and copyable code. Each ships with a "how it was made with Claude Code" recipe (`RECETE.md`) and real measurements (`olcum.json`). The repo is public under the MIT licence.
 
 ## Parçalar / Parts
 
@@ -21,6 +21,11 @@ Hepsini bir arada görmek için `index.html`'i bir HTTP sunucusundan açın (ör
 
 **TR** — Her parçanın 5 sn'lik HyperFrames kompozisyonu ve TR+EN render'ı `deneme/<parça>/` altındadır; yedi parçanın hepsi bir arada 30 sn'lik, 1080×1920 bir tanıtım videosu da vardır: [`deneme/vitrin-tanitim/out/vitrin-tanitim-tr.mp4`](deneme/vitrin-tanitim/out/vitrin-tanitim-tr.mp4), [`-en.mp4`](deneme/vitrin-tanitim/out/vitrin-tanitim-en.mp4). Kare determinizmi kanıtı ve yöntem: [`deneme/SONUC.md`](deneme/SONUC.md). Videolar yayınlanmamıştır; yalnız depoda durur.
 **EN** — Each part has a 5 s HyperFrames composition and TR+EN renders under `deneme/<part>/`; there is also a 30 s, 1080×1920 promo video with all seven parts together (links above). Frame-determinism proof and method: [`deneme/SONUC.md`](deneme/SONUC.md). The videos are not published; they live in the repo only.
+
+### Katalog manifestleri / Catalogue manifests
+
+**TR** — Her kompozisyonun yanında HyperFrames kataloğunun biçiminde bir `deneme/<parça>/registry-item.json` durur (ad, tür, boyut, süre, dosyalar, önizleme). Elle yazılmaz: `node araclar/registry.mjs` boyutu ve süreyi kompozisyonun `#root` niteliklerinden, dosya listesini kompozisyonun gerçekten yüklediklerinden (bileşen betiği, `@font-face` dosyaları ve yazı tipi lisansları), başlık ve özeti bu README'den okur ve her manifesti üst akışın şemasıyla (`araclar/registry-item.schema.json`, heygen-com/hyperframes, Apache-2.0, değiştirilmeden) doğrular. `node araclar/registry.mjs --denetle` hiçbir şey yazmaz, eski ya da geçersiz manifestte 1 döner; `node araclar/registry-test.mjs` doğrulayıcının her kuralı tek tek bozulunca yakaladığını ölçer (24/24) ve üst akıştan bir katalog öğesinin geçtiğini gösterir. Kataloğa gönderilmedi; o karar ayrı.
+**EN** — Next to each composition sits a `deneme/<part>/registry-item.json` in the HyperFrames catalogue format. It is generated, not typed: `node araclar/registry.mjs` reads size and duration from the composition's `#root`, the file list from what the composition really loads (component script, `@font-face` files and their font licences), title and summary from this README, and validates each manifest against the vendored upstream schema. `--denetle` writes nothing and exits 1 on a stale or invalid manifest; `node araclar/registry-test.mjs` shows that every schema rule, broken alone, is caught (24/24) and that an upstream catalogue item passes. Nothing was submitted to the catalogue.
 
 ## Ortak sözleşme / Shared contract
 

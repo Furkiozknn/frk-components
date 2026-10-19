@@ -1,0 +1,65 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "status-orb",
+  "type": "hyperframes:block",
+  "title": "Status orb",
+  "description": "Deterministic particle orb with four states.",
+  "tags": [
+    "frk-components",
+    "deterministic",
+    "seekable",
+    "tr-en"
+  ],
+  "author": "Furkiozknn",
+  "license": "MIT AND OFL-1.1",
+  "dimensions": {
+    "width": 1080,
+    "height": 1080
+  },
+  "duration": 5,
+  "files": [
+    {
+      "path": "index.html",
+      "target": "compositions/status-orb.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "../../components/status-orb/status-orb.js",
+      "target": "compositions/status-orb.js",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/league-gothic-latin-400-normal.woff2",
+      "target": "compositions/fonts/league-gothic-latin-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/league-gothic-latin-ext-400-normal.woff2",
+      "target": "compositions/fonts/league-gothic-latin-ext-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "target": "compositions/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/jetbrains-mono-latin-ext-400-normal.woff2",
+      "target": "compositions/fonts/jetbrains-mono-latin-ext-400-normal.woff2",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/LICENSE-jetbrains-mono.txt",
+      "target": "compositions/fonts/LICENSE-jetbrains-mono.txt",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "../../assets/fonts/LICENSE-league-gothic.txt",
+      "target": "compositions/fonts/LICENSE-league-gothic.txt",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "preview": {
+    "video": "out/status-orb-en.mp4"
+  }
+}

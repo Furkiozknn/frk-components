@@ -15,6 +15,12 @@ const metin = (p) => (existsSync(p) ? readFileSync(p, 'utf8') : '');
 const bt = '`';
 
 const hepsi = readdirSync(dizin).filter((d) => existsSync(join(dizin, d, 'olcum.json'))).sort();
+// HyperFrames katalog sözleşmesi: deneme/<parça>/registry-item.json, üst akış şemasıyla (araclar/registry.mjs).
+const { SEMA: regSema, dogrula: regDogrula } = await import('./registry.mjs');
+const regGecerliMi = (d) => {
+  const m = okuJson(join(kok, 'deneme', d, 'registry-item.json'));
+  return Boolean(m) && regDogrula(regSema, m).length === 0;
+};
 const tamPaket = (d) => existsSync(join(dizin, d, 'README.md')) && existsSync(join(dizin, d, 'RECETE.md')) && existsSync(join(dizin, d, 'demo.html'));
 const eksik = hepsi.filter((d) => !tamPaket(d));
 const P = hepsi.filter(tamPaket).map((ad) => {
@@ -33,6 +39,8 @@ const P = hepsi.filter(tamPaket).map((ad) => {
   };
 });
 const N = P.length;
+const regGecerli = P.filter((p) => regGecerliMi(p.ad)).length;
+const regOz = 'HeyGen registry-item.json şemasına uyum (üst akış şeması, araclar/registry-test.mjs): ' + regGecerli + '/' + N + (regGecerli ? ' parça (deneme/<parça>/registry-item.json); kataloğa gönderilmedi' : ' (yazılmadı)');
 const sayi = (f) => P.filter(f).length;
 const fontBayt = existsSync(join(kok, 'assets', 'fonts')) ? readdirSync(join(kok, 'assets', 'fonts')).filter((f) => f.endsWith('.woff2')).reduce((s, f) => s + statSync(join(kok, 'assets', 'fonts', f)).size, 0) : null;
 
@@ -118,8 +126,8 @@ S('**Erişilebilirlik**',
   'Rakipte ölçülmüş sonuç bulunamadı (rapor: 9 README taraması); bizde ölçülmüş. Bu, rakibin erişilebilir olmadığı anlamına gelmez, ölçmediğimiz anlamına gelir.');
 S('**Video uyumu**',
   'HyperFrames kataloğu: 405 öğe, registry-item.json (dimensions, duration, preview.video, params). React Bits: Background Studio\'da video dışa aktarma. Ship Notes: gerçek zamanlı fizik, uyumsuz.',
-  hfParca + ' parçanın HyperFrames kompozisyonu, ' + videoSayi + ' render (TR+EN, 30 fps, 150 kare); b1 raporu: lint ve check 0 bulgu. Kare determinizmi kanıtı (deneme/KANIT.json): ' + kanitOz + '. Ayrıca ' + tanitimOz + '. HeyGen registry-item.json şemasına uyum: **yok** (yazılmadı). Kaynak taramasında yasak çağrı (' + bt + 'Math.random' + bt + ', ' + bt + 'Date.now' + bt + ', ' + bt + 'performance.now' + bt + ', ' + bt + 'new Date' + bt + ') yok: ' + yasakYok + '/' + N + '.',
-  'Ölçek: ' + hfParca + ' ↔ 405 öğe. Rakip raporu katalog öğesinde ölçüm/yapım kaydı alanı olmadığını söylüyor; kare determinizmi kanıtı araştırılmadı: ölçülmedi. Şema uyumu bizde yok; kataloğa PR ikinci aşamada, Furki\'ye sorulur. Aynı dosya hem canlı demo hem render olarak çalışıyor.');
+  hfParca + ' parçanın HyperFrames kompozisyonu, ' + videoSayi + ' render (TR+EN, 30 fps, 150 kare); b1 raporu: lint ve check 0 bulgu. Kare determinizmi kanıtı (deneme/KANIT.json): ' + kanitOz + '. Ayrıca ' + tanitimOz + '. ' + regOz + '. Kaynak taramasında yasak çağrı (' + bt + 'Math.random' + bt + ', ' + bt + 'Date.now' + bt + ', ' + bt + 'performance.now' + bt + ', ' + bt + 'new Date' + bt + ') yok: ' + yasakYok + '/' + N + '.',
+  'Ölçek: ' + hfParca + ' ↔ 405 öğe. Rakip raporu katalog öğesinde ölçüm/yapım kaydı alanı olmadığını söylüyor; kare determinizmi kanıtı araştırılmadı: ölçülmedi. ' + (regGecerli === N ? 'Şema uyumu ' + N + '/' + N + ' (araclar/registry-test.mjs); kataloğa gönderilmedi, o karar Furki\'nin.' : 'Şema uyumu bizde ' + regGecerli + '/' + N + '; kataloğa PR ikinci aşamada, Furki\'ye sorulur.') + ' Aynı dosya hem canlı demo hem render olarak çalışıyor.');
 S('**"Nasıl yapıldı" katmanı**',
   'Rauno Freiberg: $249, 23 bölüm, indirilebilir kaynak. Emil Kowalski: animations.dev (13.000+ tamamlayan beyanı, 15 AI skill/prompt), skills deposu 42.665★. Codrops: makale + demo + kod.',
   sayi((p) => p.receteVar) + '/' + N + ' parçada RECETE.md, ' + sayi((p) => p.promptKaydi) + '/' + N + ' tanesinde "Prompt kaydı" bölümü; ücretsiz, depoda. Prompt kaydı, oturumdaki ham girdilerdir (başlatan mesaj ve YONLENDIRME.md içindeki ilgili madde); ayrı bir sohbet dökümü değildir. Yolda bulunan hataları anlatan bölüm: ' + sayi((p) => p.hataBolumu) + '/' + N + '.',
@@ -144,7 +152,7 @@ H('0 çalışma zamanı bağımlılığı, tek dosya', sayi((p) => p.harici === 
 H('axe-core 0 ihlal', toplamAxe + ' ihlal / ' + taramaSayisi + ' tarama', durum(toplamAxe === 0));
 H('prefers-reduced-motion, klavye', 'reduced-motion ' + rmOk + '/' + N + '; klavye ' + klavyeGecti + '/' + N + (klavyeBilinmez ? ' (' + klavyeBilinmez + ' parçada kural tanımsız)' : ''), durum(rmOk === N && klavyeGecti === N, rmOk === N && klavyeKaldi === 0));
 H('390 px + gerçek iOS Safari ve Android Chrome', '390 px emülasyon ' + mobilTasmaYok + '/' + mobil.length + '; gerçek telefon ölçülmedi', durum(false, mobilTasmaYok === mobil.length && mobil.length > 0));
-H('Zamanı dışarıdan alan, HyperFrames\'te kare kare render', 'determinizm ' + detSayi + '/' + N + ', render kanıtı ' + hfParca + ' parçada; HeyGen şeması yok', durum(false, hfParca > 0));
+H('Zamanı dışarıdan alan, HyperFrames\'te kare kare render', 'determinizm ' + detSayi + '/' + N + ', render kanıtı ' + hfParca + ' parçada; HeyGen şeması ' + regGecerli + '/' + N, durum(detSayi === N && hfParca === N && regGecerli === N, hfParca > 0));
 H('Her parçada prompt kaydı + ölçüm tablosu', 'RECETE ' + sayi((p) => p.promptKaydi) + '/' + N + ', olcum.json ' + N + '/' + N, durum(sayi((p) => p.promptKaydi) === N));
 H('TR + EN', 'README ' + sayi((p) => p.ikiDilliReadme) + '/' + N, durum(sayi((p) => p.ikiDilliReadme) === N));
 H('MIT, her dosyada SPDX', 'SPDX ' + sayi((p) => p.spdx) + '/' + N + ', LICENSE ' + (existsSync(join(kok, 'LICENSE')) ? 'var' : 'yok'), durum(sayi((p) => p.spdx) === N && existsSync(join(kok, 'LICENSE'))));
@@ -161,7 +169,7 @@ ${satirlar.join('\n')}
 
 ${h.join('\n')}
 
-Rapordaki kural: bağımlılık ve boyutta Ship Notes'a eşit, video kontratında HeyGen'e eşit ol; geri kalanda (ölçüm, yapım kaydı, TR/EN) ayrış. Durum: boyut ve bağımlılıkta eşitlik **ölçüldü**; video kontratında kare determinizmi kanıtlandı ama HeyGen ${bt}registry-item.json${bt} şeması ve kataloğun ölçeği (405 öğe) bizde yok, yani **eşit değiliz**; ölçüm, yapım kaydı ve TR/EN'de ayrışma ölçülmüş verilerle yazılı.
+Rapordaki kural: bağımlılık ve boyutta Ship Notes'a eşit, video kontratında HeyGen'e eşit ol; geri kalanda (ölçüm, yapım kaydı, TR/EN) ayrış. Durum: boyut ve bağımlılıkta eşitlik **ölçüldü**; ${regGecerli === N ? `video kontratında kare determinizmi kanıtlandı ve HeyGen ${bt}registry-item.json${bt} şemasına ${N}/${N} parça uyuyor, ama kataloğun ölçeği (405 öğe) bizde yok ve katalogda değiliz, yani **ölçekte eşit değiliz**;` : `video kontratında kare determinizmi kanıtlandı ama HeyGen ${bt}registry-item.json${bt} şeması (${regGecerli}/${N}) ve kataloğun ölçeği (405 öğe) bizde yok, yani **eşit değiliz**;`} ölçüm, yapım kaydı ve TR/EN'de ayrışma ölçülmüş verilerle yazılı.
 
 ## Dikkat
 
