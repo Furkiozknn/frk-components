@@ -16,7 +16,7 @@ Sahip: `components/odometer/`, `components/prompt-terminal/`, `components/katki-
 
 **Ölçümler** (başsız Chromium 153, bu makine, masaüstü; tablo `OLCUM.md`'de, zamanlama değerleri koşudan koşuya oynar)
 - Beş parçada da axe 0 ihlal, konsol hatası yok, `Math.random`/`Date.now`/`performance.now`/`new Date` kaynakta yok, reduced-motion'da son kare.
-- JS boyutu 8,2–15,6 KB (hedef ≤ 50 KB). `seek` ortalaması 0,016–0,92 ms; hiçbir parçada kare bütçesi (16,7 ms) aşılmıyor.
+- JS boyutu 8,2–15,6 KB (hedef ≤ 50 KB). `seek` ortalaması 0,016–0,92 ms (eski ölçüm, 02.10 beş parça; güncel değerler `OLCUM.md`'de); hiçbir parçada kare bütçesi (16,7 ms) aşılmıyor.
 - Piksel determinizmi: odometre, prompt-terminal, katki-isi için 7 zaman noktası (son faz dahil) × 4 farklı önceki durum bayt bayt aynı; rope-swing ve status-orb için b1'in betiği (durum JSON'u + piksel) aynı.
 
 **HyperFrames (b1, `deneme/SONUC.md`):** beş parça × TR/EN = 10 render (150 kare, 30 fps), `lint` 0 ve `check` 0 bulgu; determinizm kanıtı 5/5 parçada tam: düz Chromium'da ileri/ters/karışık aynı, HyperFrames snapshot'ı ile düz Chromium bayt eşit (3/3), 1 işçi ↔ 2 işçi render'ın 150/150 karesi aynı. Render videoları `deneme/<parça>/out/` içinde (commit'te).
