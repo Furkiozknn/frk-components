@@ -1,7 +1,7 @@
 # frk-components
 
-**TR** — Tek dosyalık, kütüphanesiz, kare kare sarılabilir arayüz parçaları. Her parça aynı dosyayla üç iş görür: canlı demo, HyperFrames video sahnesi, kopyalanabilir kod. Yanında "Claude Code ile nasıl yapıldı" reçetesi (`RECETE.md`) ve gerçek ölçümler (`olcum.json`) gelir. Depo şimdilik **kamuya kapalıdır**.
-**EN** — Single-file, dependency-free UI parts that can be wrapped frame by frame. Each part serves three purposes with the same file: a live demo, a HyperFrames video scene and copyable code. Each ships with a "how it was made with Claude Code" recipe (`RECETE.md`) and real measurements (`olcum.json`). The repo is **private** for now.
+**TR** — Tek dosyalık, kütüphanesiz, kare kare sarılabilir arayüz parçaları. Her parça aynı dosyayla üç iş görür: canlı demo, HyperFrames video sahnesi, kopyalanabilir kod. Yanında "Claude Code ile nasıl yapıldı" reçetesi (`RECETE.md`) ve gerçek ölçümler (`olcum.json`) gelir. Depo herkese açık, lisans MIT.
+**EN** — Single-file, dependency-free UI parts that can be wrapped frame by frame. Each part serves three purposes with the same file: a live demo, a HyperFrames video scene and copyable code. Each ships with a "how it was made with Claude Code" recipe (`RECETE.md`) and real measurements (`olcum.json`). The repo is public under the MIT licence.
 
 ## Parçalar / Parts
 
